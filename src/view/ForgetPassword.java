@@ -1,23 +1,58 @@
-/*
+]]/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+
+import com.sun.jdi.connect.spi.Connection;
+import javax.swing.JOptionPane;
+
+    private Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 /**
  *
  * @author Acer
  */
 public class ForgetPassword extends javax.swing.JFrame {
+
+    int generatedOTP = 0;
+    String userEmail = "";
+
+    public ForgetPassword() {
+        initComponents();
+    }
+
+    // 🔽 STEP 2 — Paste this here inside SAME FILE
+    public Connection getConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/hotelapp",
+                    "root",
+                    ""
+            );
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // your button actions...
+}
+
+    
+    
+
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgetPassword.class.getName());
 
     /**
      * Creates new form ForgetPassword
      */
-    public ForgetPassword() {
-        initComponents();
-    }
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +120,11 @@ public class ForgetPassword extends javax.swing.JFrame {
         OTPbutton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         OTPbutton.setForeground(new java.awt.Color(255, 255, 255));
         OTPbutton.setText("Send OTP");
+        OTPbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OTPbuttonActionPerformed(evt);
+            }
+        });
         jPanel1.add(OTPbutton);
         OTPbutton.setBounds(570, 240, 100, 27);
 
@@ -172,6 +212,38 @@ public class ForgetPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NewpasswordActionPerformed
 
+    private void OTPbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTPbuttonActionPerformed
+    String userEmail = Email.getText().trim(); // reading email from your text field
+
+    if (userEmail.equals("")) {
+        JOptionPane.showMessageDialog(this, "Enter your email!");
+        return;
+    }
+
+    try {
+        Connection con = getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE email=?");
+        ps.setString(1, userEmail);
+        ResultSet rs = ps.executeQuery();
+
+        if (!rs.next()) {
+            JOptionPane.showMessageDialog(this, "Email not registered!");
+            return;
+        }
+
+        // Generate 4-digit OTP
+        int generatedOTP = (int);
+
+        // Show OTP on screen (for college project demo)
+        JOptionPane.showMessageDialog(this, 
+                "OTP Sent Successfully!\nYour OTP is: " + generatedOTP);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+}          // TODO add your handling code here:
+    }//GEN-LAST:event_OTPbuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,4 +284,32 @@ public class ForgetPassword extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel maincolorlabel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the generatedOTP
+     */
+    public int getGeneratedOTP() {
+        return generatedOTP;
+    }
+
+    /**
+     * @param generatedOTP the generatedOTP to set
+     */
+    public void setGeneratedOTP(int generatedOTP) {
+        this.generatedOTP = generatedOTP;
+    }
+
+    /**
+     * @return the userEmail
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * @param userEmail the userEmail to set
+     */
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 }
