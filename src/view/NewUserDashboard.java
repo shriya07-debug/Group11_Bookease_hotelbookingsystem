@@ -60,6 +60,10 @@ public class NewUserDashboard extends javax.swing.JFrame {
         viewdetails3 = new javax.swing.JButton();
         hotelimage2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Screenshot 2025-12-09 at 20.40.10.png"))); // NOI18N
@@ -233,10 +237,33 @@ public class NewUserDashboard extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(520, 180, 370, 240);
 
+        jLabel3.setText("Email");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(250, 70, 32, 17);
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator1);
+        jSeparator1.setBounds(250, 90, 140, 10);
+
+        jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField1);
+        jTextField1.setBounds(290, 60, 78, 23);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 1.png"))); // NOI18N
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(350, 267, 60, 40);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Screenshot 2025-12-10 at 07.19.50.png"))); // NOI18N
         image.setText("jLabel3");
+        image.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(image);
-        image.setBounds(0, 0, 1858, 915);
+        image.setBounds(0, 0, 1862, 915);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1440, 910);
@@ -251,6 +278,10 @@ public class NewUserDashboard extends javax.swing.JFrame {
     private void viewdetails3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewdetails3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_viewdetails3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,7 +325,11 @@ public class NewUserDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel menu;
     private javax.swing.JLabel notifications;
     private javax.swing.JLabel notificationsicon;
