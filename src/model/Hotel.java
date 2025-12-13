@@ -9,7 +9,7 @@ package model;
  * @author sailenawale
  */
 public class Hotel {
-    private int hotelId;
+    private int hotel_id;
     private String name;
     private String location;
     private String description;
@@ -20,19 +20,19 @@ public class Hotel {
     public Hotel() {}
     
   
-    public Hotel(int hotelId, String name, String location, double rating, String image) {
-        this.hotelId = hotelId;
+    public Hotel(int hotel_id, String name, String location, double rating, String image) {
+        this.hotel_id = hotel_id;
         this.name = name;
         this.location = location;
         this.rating = rating;
         this.image = image;
     }
     
-    public void setHotelId(int hotelId) { 
-        this.hotelId = hotelId; 
+    public void setHotelId(int hotel_id) { 
+        this.hotel_id = hotel_id; 
     }
     public int getHotelId() { 
-        return hotelId; 
+        return hotel_id; 
     }
     public void setName(String name) { 
         this.name = name; 

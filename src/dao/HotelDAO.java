@@ -5,9 +5,11 @@
 package dao;
 
 import database.MySqlConnection;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import model.Hotel;
 
 /**
@@ -17,16 +19,16 @@ import model.Hotel;
 public class HotelDAO {
     MySqlConnection mysql = new MySqlConnection();
     
-    public void signup(Hotel dashboard){
+    public void signup(Hotel hotel){
         Connection conn = mysql.openConnection();
-        String sql = "insert into dashboard (hotelid, name, location, description, rating, image) values (?,?,?,?,?,?)";
+        String sql = "insert into hotels (hotelid, name, location, description, rating, image) values (?,?,?,?,?,?)";
         try(PreparedStatement pstm = conn.prepareStatement(sql)){
-            pstm.setInt(1, dashboard.getHotelid());
-            pstm.setString(2, dashboard.getName());
-            pstm.setString(3, dashboard.getLocation());
-             pstm.setString(4, dashboard.getDescription());
-              pstm.setDouble(5, dashboard.getRating());
-               pstm.setString(6, dashboard.getImage());
+            pstm.setInt(1, hotel.getHotelId());
+            pstm.setString(2, hotel.getName());
+            pstm.setString(3, hotel.getLocation());
+            pstm.setString(4, hotel.getDescription());
+            pstm.setDouble(5, hotel.getRating());
+            pstm.setString(6, hotel.getImage());
             pstm.executeUpdate();
         }catch(Exception ex){
             System.out.println(ex);
@@ -36,21 +38,37 @@ public class HotelDAO {
     }
 
 
-public boolean check(Hotel search){
-        Connection conn = mysql.openConnection();
-        String sql = "select * from users where email = ? or username = ?";
-        try(PreparedStatement pstm = conn.prepareStatement(sql)){
-            pstm.setString(1, dashboard.getEmail());
-            pstm.setString(2, dashboard.getUsername());
-            ResultSet result = pstm.executeQuery();
-            return result.next();
-        }catch(Exception ex){
-            System.out.println(ex);
-        }finally{
-            mysql.closeConnection(conn);
+public List<Hotel> searchHotels(String keyword) {
+    List<Hotel> hotels = new ArrayList<>();
+    Connection conn = mysql.openConnection();
+    
+    String sql = "SELECT * FROM hotels WHERE name LIKE ? OR location LIKE ?";
+    
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        pstm.setString(1, "%" + keyword + "%");  // Search name
+        pstm.setString(2, "%" + keyword + "%");  // Search location
+        
+        ResultSet rs = pstm.executeQuery();
+        
+        while (rs.next()) {
+            Hotel hotel = new Hotel();
+            hotel.setHotelId(rs.getInt("hotel_id"));
+            hotel.setName(rs.getString("name"));
+            hotel.setLocation(rs.getString("location"));
+            hotel.setDescription(rs.getString("description"));
+            hotel.setRating(rs.getDouble("rating"));
+            hotel.setImage(rs.getString("image"));
+            hotels.add(hotel);
         }
-        return false;
+        
+    } catch (Exception ex) {
+        System.out.println("Search error: " + ex.getMessage());
+        ex.printStackTrace();
+    } finally {
+        mysql.closeConnection(conn);
     }
+    return hotels;  // Returns list (empty if no hotels found)
+}
 }
 
 
