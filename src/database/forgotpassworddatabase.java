@@ -1,0 +1,10 @@
+
+package database;
+import java.sql.*;
+
+public interface forgotpassworddatabase {
+    Connection openConnection();
+    void closeConnection (Connection conn);
+    ResultSet runQuery(Connection conn, String query);
+    int executeUpdate(Connection conn, String query);
+}
