@@ -86,7 +86,7 @@ public class Dasboard extends javax.swing.JFrame {
         userdashboard.setBounds(590, 60, 260, 40);
 
         hotelid1.setFont(new java.awt.Font("PT Sans", 0, 20)); // NOI18N
-        hotelid1.setText("Hotel ID: A1  ");
+        hotelid1.setText("Hotel ID: 101  ");
         jPanel1.add(hotelid1);
         hotelid1.setBounds(420, 340, 170, 30);
 
@@ -96,7 +96,7 @@ public class Dasboard extends javax.swing.JFrame {
         hotelname1.setBounds(420, 370, 260, 30);
 
         Location2.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
-        Location2.setText("Location: Swotha, Patan");
+        Location2.setText("Location: Lalitpur");
         jPanel1.add(Location2);
         Location2.setBounds(420, 400, 260, 30);
 
@@ -115,7 +115,7 @@ public class Dasboard extends javax.swing.JFrame {
         star2.setBounds(820, 460, 30, 30);
 
         hotelid.setFont(new java.awt.Font("PT Sans", 0, 20)); // NOI18N
-        hotelid.setText("Hotel ID: B33  ");
+        hotelid.setText("Hotel ID: 102  ");
         jPanel1.add(hotelid);
         hotelid.setBounds(760, 340, 170, 30);
 
@@ -125,7 +125,7 @@ public class Dasboard extends javax.swing.JFrame {
         hotelname.setBounds(760, 370, 260, 30);
 
         Location1.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
-        Location1.setText("Location: Jhamsikhel, Lalitpur");
+        Location1.setText("Location: Lalitpur");
         jPanel1.add(Location1);
         Location1.setBounds(760, 400, 310, 30);
 
@@ -209,9 +209,10 @@ public class Dasboard extends javax.swing.JFrame {
         jPanel1.add(logo);
         logo.setBounds(0, 600, 130, 90);
 
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(90, 660, 90, 17);
+        slogan.setBounds(90, 660, 90, 16);
 
         viewdetails3.setBackground(new java.awt.Color(246, 80, 90));
         viewdetails3.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N

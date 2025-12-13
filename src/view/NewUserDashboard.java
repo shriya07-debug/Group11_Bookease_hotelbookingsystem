@@ -235,8 +235,9 @@ public class NewUserDashboard extends javax.swing.JFrame {
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Screenshot 2025-12-10 at 07.19.50.png"))); // NOI18N
         image.setText("jLabel3");
+        image.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(image);
-        image.setBounds(0, 0, 1858, 915);
+        image.setBounds(0, 0, 1862, 915);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1440, 910);

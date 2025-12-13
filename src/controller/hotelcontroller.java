@@ -8,6 +8,6 @@ package controller;
  *
  * @author sailenawale
  */
-public class demo {
+public class hotelcontroller {
     
 }
