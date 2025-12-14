@@ -4,6 +4,14 @@
  */
 package view;
 
+import com.sun.jdi.connect.spi.Connection;
+import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sailenawale
@@ -13,7 +21,7 @@ public class Dasboard extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dasboard.class.getName());
 
     /**
-     * Creates new form Dasboard
+     * Creates new form Dashboard
      */
     public Dasboard() {
         initComponents();
@@ -45,10 +53,8 @@ public class Dasboard extends javax.swing.JFrame {
         star3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         search = new javax.swing.JLabel();
-        dashboard = new javax.swing.JLabel();
         bookinghistory = new javax.swing.JLabel();
-        notifications = new javax.swing.JLabel();
-        support = new javax.swing.JLabel();
+        notificationlabel = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         dashboardicon = new javax.swing.JLabel();
         bookingicon = new javax.swing.JLabel();
@@ -60,6 +66,9 @@ public class Dasboard extends javax.swing.JFrame {
         slogan = new javax.swing.JLabel();
         viewdetails3 = new javax.swing.JButton();
         viewdetails4 = new javax.swing.JButton();
+        support1 = new javax.swing.JLabel();
+        support2 = new javax.swing.JLabel();
+        searchbar = new javax.swing.JTextField();
         dashboardimage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,33 +88,33 @@ public class Dasboard extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(750, 160, 250, 170);
 
-        userdashboard.setFont(new java.awt.Font("PT Sans", 0, 36)); // NOI18N
+        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         userdashboard.setForeground(new java.awt.Color(232, 128, 153));
         userdashboard.setText("User Dashboard");
         jPanel1.add(userdashboard);
-        userdashboard.setBounds(590, 60, 260, 40);
+        userdashboard.setBounds(490, 60, 290, 30);
 
-        hotelid1.setFont(new java.awt.Font("PT Sans", 0, 20)); // NOI18N
+        hotelid1.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
         hotelid1.setText("Hotel ID: 101  ");
         jPanel1.add(hotelid1);
         hotelid1.setBounds(420, 340, 170, 30);
 
-        hotelname1.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        hotelname1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         hotelname1.setText("Hotel Name: Aquaphor  ");
         jPanel1.add(hotelname1);
         hotelname1.setBounds(420, 370, 260, 30);
 
-        Location2.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        Location2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         Location2.setText("Location: Lalitpur");
         jPanel1.add(Location2);
         Location2.setBounds(420, 400, 260, 30);
 
-        roomstatus2.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        roomstatus2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         roomstatus2.setText("Room status: Available  ");
         jPanel1.add(roomstatus2);
         roomstatus2.setBounds(420, 430, 244, 30);
 
-        Ratings2.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        Ratings2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         Ratings2.setText("Rating:       4.5");
         jPanel1.add(Ratings2);
         Ratings2.setBounds(420, 460, 170, 30);
@@ -114,27 +123,27 @@ public class Dasboard extends javax.swing.JFrame {
         jPanel1.add(star2);
         star2.setBounds(820, 460, 30, 30);
 
-        hotelid.setFont(new java.awt.Font("PT Sans", 0, 20)); // NOI18N
+        hotelid.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
         hotelid.setText("Hotel ID: 102  ");
         jPanel1.add(hotelid);
         hotelid.setBounds(760, 340, 170, 30);
 
-        hotelname.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        hotelname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         hotelname.setText("Hotel Name: Skyscraper  ");
         jPanel1.add(hotelname);
         hotelname.setBounds(760, 370, 260, 30);
 
-        Location1.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        Location1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         Location1.setText("Location: Lalitpur");
         jPanel1.add(Location1);
         Location1.setBounds(760, 400, 310, 30);
 
-        roomstatus1.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        roomstatus1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         roomstatus1.setText("Room status: Unavailable  ");
         jPanel1.add(roomstatus1);
         roomstatus1.setBounds(760, 430, 271, 30);
 
-        Ratings1.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        Ratings1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         Ratings1.setText("Rating:       5");
         jPanel1.add(Ratings1);
         Ratings1.setBounds(760, 460, 170, 30);
@@ -145,37 +154,35 @@ public class Dasboard extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(410, 150, 280, 180);
+        jLabel2.setBounds(410, 150, 255, 180);
 
         search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
         jPanel1.add(search);
-        search.setBounds(920, 60, 40, 40);
+        search.setBounds(940, 60, 40, 40);
 
-        dashboard.setFont(new java.awt.Font("PT Sans", 0, 24)); // NOI18N
-        dashboard.setForeground(new java.awt.Color(255, 255, 255));
-        dashboard.setText("Dashboard");
-        jPanel1.add(dashboard);
-        dashboard.setBounds(70, 150, 150, 32);
-
-        bookinghistory.setFont(new java.awt.Font("PT Sans", 0, 24)); // NOI18N
+        bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         bookinghistory.setForeground(new java.awt.Color(255, 255, 255));
         bookinghistory.setText("Booking History");
         jPanel1.add(bookinghistory);
-        bookinghistory.setBounds(70, 190, 220, 40);
+        bookinghistory.setBounds(70, 190, 220, 30);
 
-        notifications.setFont(new java.awt.Font("PT Sans", 0, 24)); // NOI18N
-        notifications.setForeground(new java.awt.Color(255, 255, 255));
-        notifications.setText("Notifications");
-        jPanel1.add(notifications);
-        notifications.setBounds(70, 240, 180, 30);
+        notificationlabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        notificationlabel.setForeground(new java.awt.Color(255, 255, 255));
+        notificationlabel.setText("Notifications");
+        notificationlabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                notificationlabelMouseClicked(evt);
+            }
+        });
+        jPanel1.add(notificationlabel);
+        notificationlabel.setBounds(70, 240, 150, 20);
 
-        support.setFont(new java.awt.Font("PT Sans", 0, 24)); // NOI18N
-        support.setForeground(new java.awt.Color(255, 255, 255));
-        support.setText("Support");
-        jPanel1.add(support);
-        support.setBounds(70, 280, 150, 30);
-
-        profile.setFont(new java.awt.Font("PT Sans", 0, 24)); // NOI18N
+        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
         jPanel1.add(profile);
@@ -215,7 +222,7 @@ public class Dasboard extends javax.swing.JFrame {
         slogan.setBounds(90, 660, 90, 16);
 
         viewdetails3.setBackground(new java.awt.Color(246, 80, 90));
-        viewdetails3.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        viewdetails3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         viewdetails3.setForeground(new java.awt.Color(255, 255, 255));
         viewdetails3.setText("View details");
         viewdetails3.addActionListener(new java.awt.event.ActionListener() {
@@ -224,10 +231,10 @@ public class Dasboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(viewdetails3);
-        viewdetails3.setBounds(760, 510, 240, 50);
+        viewdetails3.setBounds(750, 510, 250, 50);
 
         viewdetails4.setBackground(new java.awt.Color(246, 80, 90));
-        viewdetails4.setFont(new java.awt.Font("PT Sans", 0, 18)); // NOI18N
+        viewdetails4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         viewdetails4.setForeground(new java.awt.Color(255, 255, 255));
         viewdetails4.setText("View details");
         viewdetails4.addActionListener(new java.awt.event.ActionListener() {
@@ -238,8 +245,37 @@ public class Dasboard extends javax.swing.JFrame {
         jPanel1.add(viewdetails4);
         viewdetails4.setBounds(420, 510, 240, 50);
 
+        support1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        support1.setForeground(new java.awt.Color(255, 255, 255));
+        support1.setText("Dashboard");
+        jPanel1.add(support1);
+        support1.setBounds(70, 150, 150, 30);
+
+        support2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        support2.setForeground(new java.awt.Color(255, 255, 255));
+        support2.setText("Support");
+        jPanel1.add(support2);
+        support2.setBounds(70, 280, 150, 30);
+
+        searchbar.setText("search here");
+        searchbar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchbarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchbarFocusLost(evt);
+            }
+        });
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchbar);
+        searchbar.setBounds(780, 70, 140, 23);
+
         dashboardimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/w_2.png"))); // NOI18N
-        dashboardimage.setText("jLabel2");
+        dashboardimage.setText("s");
         jPanel1.add(dashboardimage);
         dashboardimage.setBounds(-20, -60, 1280, 850);
 
@@ -257,6 +293,71 @@ public class Dasboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewdetails4ActionPerformed
 
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        // TODO add your handling code here:
+                                                                         
+
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+        // TODO add your handling code here:                                                   
+    String searchText = searchbar.getText().trim();
+    
+    try {
+        // Load driver and connect
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        java.sql.Connection conn = java.sql.DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/hotel_booking", "root", "shr7y42007@#");
+        
+        // Search by name column (NOT hotel_name)
+        String sql = "SELECT * FROM hotels WHERE name LIKE ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, "%" + searchText + "%");
+        
+        java.sql.ResultSet rs = pstmt.executeQuery();
+        
+        // Show results
+        String result = "";
+        while (rs.next()) {
+            result += rs.getString("name") + " (ID: " + rs.getInt("hotel_id") + ")\n";
+        }
+        
+        if (result.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hotels found");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Found:\n" + result);
+        }
+        
+        conn.close();
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_searchbarActionPerformed
+
+    private void searchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusGained
+        // TODO add your handling code here:
+        if(searchbar.getText().equals("search here")){
+            searchbar.setText("");
+        }
+    }//GEN-LAST:event_searchbarFocusGained
+
+    private void searchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusLost
+        // TODO add your handling code here:
+        if(searchbar.getText().equals("")){
+           searchbar.setText("search here");}
+    }//GEN-LAST:event_searchbarFocusLost
+
+    private void notificationlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationlabelMouseClicked
+        // TODO add your handling code here:
+    this.dispose();
+    
+    // Open notifications
+    new notifications().setVisible(true);
+
+    }//GEN-LAST:event_notificationlabelMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -289,7 +390,6 @@ public class Dasboard extends javax.swing.JFrame {
     private javax.swing.JLabel Ratings2;
     private javax.swing.JLabel bookinghistory;
     private javax.swing.JLabel bookingicon;
-    private javax.swing.JLabel dashboard;
     private javax.swing.JLabel dashboardicon;
     private javax.swing.JLabel dashboardimage;
     private javax.swing.JLabel hotelid;
@@ -301,17 +401,19 @@ public class Dasboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel menu;
-    private javax.swing.JLabel notifications;
+    private javax.swing.JLabel notificationlabel;
     private javax.swing.JLabel notificationsicon;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel profileicon;
     private javax.swing.JLabel roomstatus1;
     private javax.swing.JLabel roomstatus2;
     private javax.swing.JLabel search;
+    private javax.swing.JTextField searchbar;
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel star2;
     private javax.swing.JLabel star3;
-    private javax.swing.JLabel support;
+    private javax.swing.JLabel support1;
+    private javax.swing.JLabel support2;
     private javax.swing.JLabel supporticon;
     private javax.swing.JLabel userdashboard;
     private javax.swing.JButton viewdetails3;
