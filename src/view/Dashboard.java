@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author sailenawale
  */
-public class Dasboard extends javax.swing.JFrame {
+public class dashboard extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dasboard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dashboard.class.getName());
 
     /**
      * Creates new form Dashboard
      */
-    public Dasboard() {
+    public dashboard() {
         initComponents();
     }
 
@@ -163,11 +163,16 @@ public class Dasboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(940, 60, 40, 40);
+        search.setBounds(940, 60, 40, 30);
 
         bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         bookinghistory.setForeground(new java.awt.Color(255, 255, 255));
         bookinghistory.setText("Booking History");
+        bookinghistory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookinghistoryMouseClicked(evt);
+            }
+        });
         jPanel1.add(bookinghistory);
         bookinghistory.setBounds(70, 190, 220, 30);
 
@@ -185,6 +190,11 @@ public class Dasboard extends javax.swing.JFrame {
         profile.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
+        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMouseClicked(evt);
+            }
+        });
         jPanel1.add(profile);
         profile.setBounds(70, 320, 150, 32);
 
@@ -248,12 +258,22 @@ public class Dasboard extends javax.swing.JFrame {
         support1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         support1.setForeground(new java.awt.Color(255, 255, 255));
         support1.setText("Dashboard");
+        support1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                support1MouseClicked(evt);
+            }
+        });
         jPanel1.add(support1);
         support1.setBounds(70, 150, 150, 30);
 
         support2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         support2.setForeground(new java.awt.Color(255, 255, 255));
         support2.setText("Support");
+        support2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                support2MouseClicked(evt);
+            }
+        });
         jPanel1.add(support2);
         support2.setBounds(70, 280, 150, 30);
 
@@ -272,7 +292,7 @@ public class Dasboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(searchbar);
-        searchbar.setBounds(780, 70, 140, 23);
+        searchbar.setBounds(780, 60, 140, 30);
 
         dashboardimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/w_2.png"))); // NOI18N
         dashboardimage.setText("s");
@@ -357,6 +377,42 @@ public class Dasboard extends javax.swing.JFrame {
     new notifications().setVisible(true);
 
     }//GEN-LAST:event_notificationlabelMouseClicked
+
+    private void support2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_support2MouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+    
+    // Open sipport
+    new support().setVisible(true);
+
+    }//GEN-LAST:event_support2MouseClicked
+
+    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+    
+    // Open profile
+    new profile().setVisible(true);
+
+    }//GEN-LAST:event_profileMouseClicked
+
+    private void support1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_support1MouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+    
+    // Open dashboard
+    new dashboard().setVisible(true);
+
+    }//GEN-LAST:event_support1MouseClicked
+
+    private void bookinghistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookinghistoryMouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+    
+    // Open bookinghistory
+    new bookinghistory().setVisible(true);
+
+    }//GEN-LAST:event_bookinghistoryMouseClicked
     
     /**
      * @param args the command line arguments
@@ -380,7 +436,7 @@ public class Dasboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dasboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new dashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
