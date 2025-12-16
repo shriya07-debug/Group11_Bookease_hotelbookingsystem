@@ -34,8 +34,9 @@ public class booking extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -71,14 +72,18 @@ public class booking extends javax.swing.JFrame {
         jLabel4.setText("Check-In-Date:");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(190, 360, 150, 20);
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(190, 210, 260, 40);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Check-Out-Date:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(190, 440, 160, 21);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1);
+        jComboBox1.setBounds(420, 220, 20, 22);
+        jPanel1.add(jTextField3);
+        jTextField3.setBounds(190, 210, 260, 40);
         jPanel1.add(jTextField4);
         jTextField4.setBounds(190, 390, 260, 40);
 
@@ -144,6 +149,7 @@ public class booking extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
