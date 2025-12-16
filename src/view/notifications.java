@@ -38,6 +38,7 @@ public class notifications extends javax.swing.JFrame {
         text = new javax.swing.JLabel();
         text1 = new javax.swing.JLabel();
         text2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,6 +95,15 @@ public class notifications extends javax.swing.JFrame {
         jPanel1.add(text2);
         text2.setBounds(410, 260, 430, 30);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(320, 40, 60, 40);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notification.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -104,6 +114,15 @@ public class notifications extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    
+    // Open dashboard
+    new dashboard().setVisible(true);
+
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -132,6 +151,7 @@ public class notifications extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel image;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel msg;
     private javax.swing.JLabel msg1;

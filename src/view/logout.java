@@ -8,14 +8,14 @@ package view;
  *
  * @author sailenawale
  */
-public class support extends javax.swing.JFrame {
+public class logout extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(support.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
 
     /**
      * Creates new form support
      */
-    public support() {
+    public logout() {
         initComponents();
     }
 
@@ -29,56 +29,27 @@ public class support extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        support = new javax.swing.JLabel();
-        number = new javax.swing.JLabel();
-        number1 = new javax.swing.JLabel();
-        number2 = new javax.swing.JLabel();
         number3 = new javax.swing.JLabel();
         helpfulbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        support.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        support.setForeground(new java.awt.Color(241, 150, 174));
-        support.setText("Support");
-        jPanel1.add(support);
-        support.setBounds(380, 140, 180, 40);
-
-        number.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        number.setForeground(new java.awt.Color(255, 255, 255));
-        number.setText("Find us in social media: bookease");
-        jPanel1.add(number);
-        number.setBounds(380, 380, 300, 30);
-
-        number1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        number1.setForeground(new java.awt.Color(255, 255, 255));
-        number1.setText("Phone no: +977 9837256780 ");
-        jPanel1.add(number1);
-        number1.setBounds(380, 260, 260, 30);
-
-        number2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        number2.setForeground(new java.awt.Color(255, 255, 255));
-        number2.setText("Tel no: 5134567");
-        jPanel1.add(number2);
-        number2.setBounds(380, 300, 260, 30);
-
-        number3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        number3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         number3.setForeground(new java.awt.Color(255, 255, 255));
-        number3.setText("Email: bookease.org.com");
+        number3.setText("You have been logged out.");
         jPanel1.add(number3);
-        number3.setBounds(380, 340, 260, 30);
+        number3.setBounds(360, 170, 470, 60);
 
         helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
         helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
-        helpfulbutton.setText("Helpful");
+        helpfulbutton.setText("Login");
         helpfulbutton.setBorder(null);
         helpfulbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -86,7 +57,7 @@ public class support extends javax.swing.JFrame {
             }
         });
         jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(380, 450, 120, 30);
+        helpfulbutton.setBounds(360, 250, 120, 30);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
@@ -116,7 +87,7 @@ public class support extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     
-    // Open dashboard
+    // Open notifications
     new dashboard().setVisible(true);
 
     }//GEN-LAST:event_helpfulbuttonMouseClicked
@@ -143,18 +114,14 @@ public class support extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new support().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel number;
-    private javax.swing.JLabel number1;
-    private javax.swing.JLabel number2;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
-    private javax.swing.JLabel support;
     // End of variables declaration//GEN-END:variables
 }

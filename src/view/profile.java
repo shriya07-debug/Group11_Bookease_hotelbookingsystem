@@ -28,21 +28,153 @@ public class profile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        profile = new javax.swing.JLabel();
+        slogan = new javax.swing.JLabel();
+        deletebutton = new javax.swing.JButton();
+        logoutbutton = new javax.swing.JButton();
+        editbutton = new javax.swing.JButton();
+        email = new javax.swing.JLabel();
+        phoneno = new javax.swing.JLabel();
+        fullname = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        mailicon = new javax.swing.JLabel();
+        nameicon = new javax.swing.JLabel();
+        noicon = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(null);
+
+        profile.setBackground(new java.awt.Color(201, 12, 51));
+        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        profile.setForeground(new java.awt.Color(201, 12, 51));
+        profile.setText("Profile");
+        jPanel1.add(profile);
+        profile.setBounds(60, 300, 190, 70);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(120, 40, 90, 16);
+
+        deletebutton.setBackground(new java.awt.Color(184, 12, 47));
+        deletebutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        deletebutton.setForeground(new java.awt.Color(232, 128, 153));
+        deletebutton.setText("Cancel");
+        deletebutton.setBorder(null);
+        deletebutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletebuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(deletebutton);
+        deletebutton.setBounds(710, 430, 110, 30);
+
+        logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
+        logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        logoutbutton.setForeground(new java.awt.Color(232, 128, 153));
+        logoutbutton.setText("Logout");
+        logoutbutton.setBorder(null);
+        logoutbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(logoutbutton);
+        logoutbutton.setBounds(570, 520, 110, 30);
+
+        editbutton.setBackground(new java.awt.Color(184, 12, 47));
+        editbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        editbutton.setForeground(new java.awt.Color(232, 128, 153));
+        editbutton.setText("Edit");
+        editbutton.setBorder(null);
+        jPanel1.add(editbutton);
+        editbutton.setBounds(380, 433, 110, 30);
+
+        email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(255, 255, 255));
+        email.setText("E-mail");
+        jPanel1.add(email);
+        email.setBounds(380, 260, 110, 30);
+
+        phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        phoneno.setForeground(new java.awt.Color(255, 255, 255));
+        phoneno.setText("Phone no");
+        jPanel1.add(phoneno);
+        phoneno.setBounds(380, 330, 110, 30);
+
+        fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        fullname.setForeground(new java.awt.Color(255, 255, 255));
+        fullname.setText("Full name");
+        jPanel1.add(fullname);
+        fullname.setBounds(380, 190, 110, 30);
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(480, 280, 330, 10);
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator3);
+        jSeparator3.setBounds(480, 350, 330, 20);
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator4);
+        jSeparator4.setBounds(480, 210, 330, 10);
+
+        mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
+        jPanel1.add(mailicon);
+        mailicon.setBounds(790, 260, 30, 20);
+
+        nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
+        jPanel1.add(nameicon);
+        nameicon.setBounds(790, 190, 42, 17);
+
+        noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
+        jPanel1.add(noicon);
+        noicon.setBounds(790, 330, 42, 17);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(40, 130, 140, 170);
+
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
+        image.setText("jLabel1");
+        jPanel1.add(image);
+        image.setBounds(0, 0, 1280, 740);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+    
+    // Open dashboard
+    new dashboard().setVisible(true);
+
+    }//GEN-LAST:event_deletebuttonMouseClicked
+
+    private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    
+    // Open logout
+    new logout().setVisible(true);
+
+    }//GEN-LAST:event_logoutbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -70,5 +202,22 @@ public class profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deletebutton;
+    private javax.swing.JButton editbutton;
+    private javax.swing.JLabel email;
+    private javax.swing.JLabel fullname;
+    private javax.swing.JLabel image;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JButton logoutbutton;
+    private javax.swing.JLabel mailicon;
+    private javax.swing.JLabel nameicon;
+    private javax.swing.JLabel noicon;
+    private javax.swing.JLabel phoneno;
+    private javax.swing.JLabel profile;
+    private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
 }
