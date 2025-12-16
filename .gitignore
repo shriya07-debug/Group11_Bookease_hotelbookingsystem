@@ -47,5 +47,5 @@ out/
 # VS Code Java
 .vscode/
 
-src/database/
-nbproject/project.properties
+# src/database/
+# nbproject/project.properties
