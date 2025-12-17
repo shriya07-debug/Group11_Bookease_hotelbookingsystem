@@ -3,24 +3,24 @@ package view;
 
 
 
-import Controller.ForgotPasswordController;
+import controller.ForgotPasswordController;
 import javax.swing.JOptionPane;
 
 
+    
+
+   
 @SuppressWarnings("serial")
 public class ForgotPassword extends javax.swing.JFrame {
-     
- 
-        private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
-private final ForgotPasswordController controller = new ForgotPasswordController();
-    /**
-     * Creates new form ForgotPassword
-     */
-public ForgotPassword() {
-        initComponents();
-        
+
+    
+
+    private final ForgotPasswordController controller;
+
+   public ForgotPassword() {
+    initComponents();
+    controller = new ForgotPasswordController();
 }
- 
 @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -161,26 +161,28 @@ public ForgotPassword() {
 
     private void btnResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetPasswordActionPerformed
         // TODO add your handling code here:
-    boolean success = controller.resetPassword(
-        txtEmail.getText(),
-        txtNewPassword.getText()
-    );
+        String email = txtEmail.getText().trim();
+String newPass = txtNewPassword.getText().trim();
 
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Password reset successful!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Please verify OTP first!");
-    }
+if (newPass.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Enter new password!");
+    return;
+}
+
+controller.resetPassword(email, newPass);
       
     }//GEN-LAST:event_btnResetPasswordActionPerformed
 
     private void btnVerifyOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyOtpActionPerformed
         // TODO add your handling code here:
-if (controller.verifyOtp(txtOtp.getText())) {
-        JOptionPane.showMessageDialog(this, "OTP Verified");
-    } else {
-        JOptionPane.showMessageDialog(this, "Invalid OTP");
-    }
+        String email = txtEmail.getText().trim();
+String otp = txtOtp.getText().trim();
+
+if (    controller.verifyOtp(email, otp)) {
+    JOptionPane.showMessageDialog(this, "OTP Verified!");
+} else {
+    JOptionPane.showMessageDialog(this, "Invalid OTP!");
+}
     }//GEN-LAST:event_btnVerifyOtpActionPerformed
 
     private void txtOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtpActionPerformed
@@ -193,18 +195,22 @@ if (controller.verifyOtp(txtOtp.getText())) {
 
     private void btnSendOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendOtpActionPerformed
    
-      String email = txtEmail.getText();
-    if (controller.sendOtp(email)) {
-        JOptionPane.showMessageDialog(this, "OTP sent to email");
-    } else {
-        JOptionPane.showMessageDialog(this, "Email not found");
-    }
+      String email = txtEmail.getText().trim();
+      controller.sendOtp(email);
+
+        if (email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter email!");
+        return;
+}
+
+        controller.sendOtp(email);JOptionPane.showMessageDialog(this, "OTP sent (check email / demo)");
+    
     }//GEN-LAST:event_btnSendOtpActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
