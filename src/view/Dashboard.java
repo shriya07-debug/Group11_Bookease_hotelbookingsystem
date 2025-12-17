@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author sailenawale
  */
-public class dashboard extends javax.swing.JFrame {
+public class Dashboard extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dashboard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
 
     /**
      * Creates new form Dashboard
      */
-    public dashboard() {
+    public Dashboard() {
         initComponents();
     }
 
@@ -401,7 +401,7 @@ public class dashboard extends javax.swing.JFrame {
          this.dispose();
     
     // Open dashboard
-    new dashboard().setVisible(true);
+    new Dashboard().setVisible(true);
 
     }//GEN-LAST:event_support1MouseClicked
 
@@ -436,7 +436,7 @@ public class dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new dashboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

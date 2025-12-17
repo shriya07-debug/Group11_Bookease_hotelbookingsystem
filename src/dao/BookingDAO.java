@@ -5,12 +5,13 @@
 package dao;
 import model.Booking;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author sailenawale
  */
 public class BookingDAO {
-
     private Connection connection;
     
     public BookingDAO() {
@@ -26,28 +27,51 @@ public class BookingDAO {
         }
     }
     
-    // Get single booking (latest one)
-    public Booking getLatestBooking(int userId) {
-        String sql = "SELECT booking_id, check_in_date, check_out_date, status, price " +
-                     "FROM user_bookings WHERE user_id = ? ORDER BY check_in_date DESC LIMIT 1";
+    // 1️⃣ METHOD TO SAVE NEW BOOKING (when user books)
+    public boolean saveBooking(int userId, String hotelName, Date checkIn, Date checkOut, double price) {
+        String sql = "INSERT INTO bookings (user_id, hotel_name, check_in_date, check_out_date, price, status) " +
+                     "VALUES (?, ?, ?, ?, ?, 'confirmed')";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, hotelName);
+            stmt.setDate(3, new java.sql.Date(checkIn.getTime()));
+            stmt.setDate(4, new java.sql.Date(checkOut.getTime()));
+            stmt.setDouble(5, price);
+            
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    // 2️⃣ METHOD TO GET ALL BOOKINGS FOR HISTORY
+    public List<Booking> getUserBookings(int userId) {
+        List<Booking> bookings = new ArrayList<>();
+        
+        String sql = "SELECT booking_id, hotel_name, check_in_date, check_out_date, status, price " +
+                     "FROM bookings WHERE user_id = ? ORDER BY check_in_date DESC";
         
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             
-            if (rs.next()) {
+            // ⭐⭐ GET ALL ROWS, not just one!
+            while (rs.next()) {
                 Booking booking = new Booking();
                 booking.setBooking_ID(rs.getInt("booking_id"));
+                booking.setHotelName(rs.getString("hotel_name"));      // Get hotel name!
                 booking.setCheck_in_date(rs.getDate("check_in_date"));
                 booking.setCheck_out_date(rs.getDate("check_out_date"));
                 booking.setStatus(rs.getString("status"));
                 booking.setPrice(rs.getDouble("price"));
-                return booking;
+                
+                bookings.add(booking); // Add to list
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return bookings; // Return LIST of bookings
     }
 }
-

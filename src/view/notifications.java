@@ -120,7 +120,7 @@ public class notifications extends javax.swing.JFrame {
         this.dispose();
     
     // Open dashboard
-    new dashboard().setVisible(true);
+    new Dashboard().setVisible(true);
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
