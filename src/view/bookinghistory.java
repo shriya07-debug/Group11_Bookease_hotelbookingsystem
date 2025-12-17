@@ -3,20 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import model.User;
+import model.Booking;
+import dao.BookingDAO;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
  * @author sailenawale
  */
-public class bookinghistory extends javax.swing.JFrame {
+private User currentUser;
+    private javax.swing.JTable bookingTable;
+    private DefaultTableModel tableModel;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
-
     /**
      * Creates new form bookinghistory
      */
-    public bookinghistory() {
+    public bookinghistory(User currentUser) {
+        this.currentUser = currentUser;
         initComponents();
+        addBookingHistoryTable();
+        loadBookingData();
     }
 
     /**
@@ -50,6 +59,70 @@ public class bookinghistory extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    // ADD THIS METHOD: Add booking table to existing panel
+    private void addBookingHistoryTable() {
+        // Remove the jLabel1
+        jPanel1.remove(jLabel1);
+        
+        // Create table model
+        String[] columns = {"Booking ID", "Hotel", "Check-in", "Check-out", "Status", "Price"};
+        tableModel = new DefaultTableModel(columns, 0);
+        
+        // Create table
+        bookingTable = new javax.swing.JTable(tableModel);
+        bookingTable.setBounds(50, 50, 1100, 500);
+        bookingTable.setRowHeight(40);
+        bookingTable.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 14));
+        
+        // Add to panel
+        jPanel1.add(bookingTable);
+        
+        // Add title
+        JLabel title = new JLabel("MY BOOKING HISTORY");
+        title.setBounds(50, 10, 400, 30);
+        title.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
+        title.setForeground(java.awt.Color.WHITE);
+        jPanel1.add(title);
+    }
+    
+    // ADD THIS METHOD: Load data from database
+    private void loadBookingData() {
+        try {
+            // Get bookings from DAO
+            BookingDAO bookingDAO = new BookingDAO();
+            List<Booking> bookings = bookingDAO.getUserBookings(currentUser.getId());
+            
+            // Clear table
+            tableModel.setRowCount(0);
+            
+            // Add data to table
+            for (Booking booking : bookings) {
+                Object[] row = {
+                    booking.getBooking_ID(),
+                    booking.getHotelName(),
+                    booking.getCheck_in_date(),
+                    booking.getCheck_out_date(),
+                    booking.getStatus(),
+                    String.format("$%.2f", booking.getPrice())
+                };
+                tableModel.addRow(row);
+            }
+            
+            // If no bookings, show message
+            if (bookings.isEmpty()) {
+                tableModel.addRow(new Object[]{"No bookings found", "", "", "", "", ""});
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            tableModel.addRow(new Object[]{"Error loading data", e.getMessage(), "", "", "", ""});
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -76,4 +149,6 @@ public class bookinghistory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-}
+
+
+
