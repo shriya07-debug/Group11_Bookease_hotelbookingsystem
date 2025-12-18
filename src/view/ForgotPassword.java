@@ -81,7 +81,7 @@ public class ForgotPassword extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSendOtp);
-        btnSendOtp.setBounds(570, 240, 100, 27);
+        btnSendOtp.setBounds(570, 240, 100, 23);
 
         txtOtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +101,7 @@ public class ForgotPassword extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnVerifyOtp);
-        btnVerifyOtp.setBounds(570, 360, 110, 27);
+        btnVerifyOtp.setBounds(570, 360, 110, 23);
 
         jLabel4.setBackground(new java.awt.Color(255, 102, 102));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -136,10 +136,9 @@ public class ForgotPassword extends javax.swing.JFrame {
         maincolorlabel.setBackground(new java.awt.Color(255, 255, 255));
         maincolorlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         maincolorlabel.setForeground(new java.awt.Color(51, 51, 51));
-        maincolorlabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Screenshot 2025-12-10 123450.png")); // NOI18N
         maincolorlabel.setText("Enter the OTP");
         jPanel1.add(maincolorlabel);
-        maincolorlabel.setBounds(-20, 10, 1430, 720);
+        maincolorlabel.setBounds(-20, 10, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

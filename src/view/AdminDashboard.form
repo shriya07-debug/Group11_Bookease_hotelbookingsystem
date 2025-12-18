@@ -48,11 +48,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="hamburgermenu">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\Hamburger Menu.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="170" y="20" width="30" height="40"/>
@@ -68,9 +63,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\Frame.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="   Recent Booking"/>
           </Properties>
           <Events>
@@ -91,9 +83,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\Vector (1).png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="    Profile"/>
           </Properties>
           <Events>
@@ -114,9 +103,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\Vector (2).png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="   Support"/>
           </Properties>
           <Events>
@@ -137,9 +123,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\= (1).png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="   Dashboard"/>
           </Properties>
           <Events>
@@ -235,11 +218,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="backgrounddashboard">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Acer\Downloads\Screenshot 2025-12-17 121050.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="49" y="0" width="-1" height="-1"/>
