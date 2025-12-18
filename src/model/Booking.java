@@ -9,20 +9,22 @@ import java.util.Date;
  * @author sailenawale
  */
     public class Booking {
-    private int booking_ID;
+    private int bookingId;
+    private int userId; 
     private String hotelName;
-    private Date Check_in_date;
-    private Date Check_out_date;
+    private Date CheckInDate;
+    private Date CheckOutDate;
     private String Status;
     private double Price;
     
     // Constructor with hotelName
-    public Booking(int booking_ID, String hotelName, Date Check_in_date, 
-                   Date Check_out_date, String Status, double Price) {
-        this.booking_ID = booking_ID;
+    public Booking(int bookingId,int userId, String hotelName, Date CheckInDate, 
+                   Date CheckOutDate, String Status, double Price) {
+        this.bookingId = bookingId;
+        this.userId = userId;
         this.hotelName = hotelName;  
-        this.Check_in_date = Check_in_date;
-        this.Check_out_date = Check_out_date;
+        this.CheckInDate = CheckInDate;
+        this.CheckOutDate = CheckOutDate;
         this.Status = Status;
         this.Price = Price;
     }
@@ -31,13 +33,18 @@ import java.util.Date;
     public Booking() {}
     
     // Getters and Setters
-    public void setBooking_ID(int booking_ID) { 
-        this.booking_ID = booking_ID; 
+    public void setBookingId(int bookingId) { 
+        this.bookingId = bookingId; 
     }
-    public int getBooking_ID() { 
-        return booking_ID;
+    public int getBookingId() { 
+        return bookingId;
     }
-    
+    public void setUserId(int userId) { 
+        this.userId = userId; 
+    }
+    public int getUserId() { 
+        return userId;
+    }
     public void setHotelName(String hotelName) { 
         this.hotelName = hotelName;
     } 
@@ -46,19 +53,19 @@ import java.util.Date;
         return hotelName; 
     }       
   
-    public void setCheck_in_date(Date Check_in_date) {
-        this.Check_in_date = Check_in_date; 
+    public void setCheckInDate(Date CheckInDate) {
+        this.CheckInDate = CheckInDate; 
     }
-    public Date getCheck_in_date() { 
-        return Check_in_date;
+    public Date getCheckInDate() { 
+        return CheckInDate;
     }
    
-     public void setCheck_out_date(Date Check_out_date) { 
-        this.Check_out_date = Check_out_date; 
+     public void setCheckOutDate(Date CheckOutDate) { 
+        this.CheckOutDate = CheckOutDate; 
     }
     
-    public Date getCheck_out_date() { 
-        return Check_out_date; 
+    public Date getCheckOutDate() { 
+        return CheckOutDate; 
     }
   
     public void setStatus(String Status) {

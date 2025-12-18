@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
+import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author sailenawale
@@ -11,14 +12,57 @@ package view;
 public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
-
+    private final int currentUserId = 1; // Your user ID
     /**
      * Creates new form profile
      */
     public profile() {
         initComponents();
+        loadUserData();
+        setLocationRelativeTo(null);
+        cancelbutton.setVisible(true); 
     }
-
+    private void loadUserData() {
+        try {
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/hotel_booking", 
+                "root", 
+                "shr7y42007@#"
+            );
+            
+            String sql = "SELECT * FROM users WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, currentUserId);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                // Set your label texts
+                userid.setText("User ID: " + rs.getInt("user_id"));
+                fullname.setText("Full Name: " + rs.getString("full_name"));
+                email.setText("Email: " + rs.getString("email"));
+                phoneno.setText("Phone: " + rs.getString("phone"));
+            } else {
+                // If no user found, show defaults
+                userid.setText("User ID: 1");
+                fullname.setText("Full Name: Sailena Wale");
+                email.setText("Email: sailena@email.com");
+                phoneno.setText("Phone: 9876543210");
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading profile");
+        }
+     } 
+  
+    
+   
+  
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,12 +75,12 @@ public class profile extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         profile = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
-        deletebutton = new javax.swing.JButton();
+        cancelbutton = new javax.swing.JButton();
         logoutbutton = new javax.swing.JButton();
         editbutton = new javax.swing.JButton();
         email = new javax.swing.JLabel();
         phoneno = new javax.swing.JLabel();
-        fullname = new javax.swing.JLabel();
+        userid = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -44,6 +88,9 @@ public class profile extends javax.swing.JFrame {
         nameicon = new javax.swing.JLabel();
         noicon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        fullname = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        idicon = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,18 +114,23 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(slogan);
         slogan.setBounds(120, 40, 90, 16);
 
-        deletebutton.setBackground(new java.awt.Color(184, 12, 47));
-        deletebutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        deletebutton.setForeground(new java.awt.Color(232, 128, 153));
-        deletebutton.setText("Cancel");
-        deletebutton.setBorder(null);
-        deletebutton.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelbutton.setBackground(new java.awt.Color(184, 12, 47));
+        cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cancelbutton.setForeground(new java.awt.Color(232, 128, 153));
+        cancelbutton.setText("Cancel");
+        cancelbutton.setBorder(null);
+        cancelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deletebuttonMouseClicked(evt);
+                cancelbuttonMouseClicked(evt);
             }
         });
-        jPanel1.add(deletebutton);
-        deletebutton.setBounds(710, 430, 110, 30);
+        cancelbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cancelbutton);
+        cancelbutton.setBounds(630, 430, 110, 30);
 
         logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
         logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -90,14 +142,24 @@ public class profile extends javax.swing.JFrame {
                 logoutbuttonMouseClicked(evt);
             }
         });
+        logoutbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutbuttonActionPerformed(evt);
+            }
+        });
         jPanel1.add(logoutbutton);
-        logoutbutton.setBounds(570, 520, 110, 30);
+        logoutbutton.setBounds(510, 510, 110, 30);
 
         editbutton.setBackground(new java.awt.Color(184, 12, 47));
         editbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         editbutton.setForeground(new java.awt.Color(232, 128, 153));
         editbutton.setText("Edit");
         editbutton.setBorder(null);
+        editbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editbuttonActionPerformed(evt);
+            }
+        });
         jPanel1.add(editbutton);
         editbutton.setBounds(380, 433, 110, 30);
 
@@ -105,47 +167,61 @@ public class profile extends javax.swing.JFrame {
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("E-mail");
         jPanel1.add(email);
-        email.setBounds(380, 260, 110, 30);
+        email.setBounds(380, 260, 330, 30);
 
         phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         phoneno.setForeground(new java.awt.Color(255, 255, 255));
         phoneno.setText("Phone no");
         jPanel1.add(phoneno);
-        phoneno.setBounds(380, 330, 110, 30);
+        phoneno.setBounds(380, 330, 340, 30);
+
+        userid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        userid.setForeground(new java.awt.Color(255, 255, 255));
+        userid.setText("User Id");
+        jPanel1.add(userid);
+        userid.setBounds(380, 120, 310, 30);
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(430, 290, 290, 30);
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator3);
+        jSeparator3.setBounds(440, 360, 280, 20);
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator4);
+        jSeparator4.setBounds(450, 150, 270, 50);
+
+        mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
+        jPanel1.add(mailicon);
+        mailicon.setBounds(700, 270, 30, 20);
+
+        nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
+        jPanel1.add(nameicon);
+        nameicon.setBounds(700, 200, 42, 17);
+
+        noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
+        jPanel1.add(noicon);
+        noicon.setBounds(700, 340, 42, 17);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(40, 130, 140, 170);
 
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
         fullname.setText("Full name");
         jPanel1.add(fullname);
-        fullname.setBounds(380, 190, 110, 30);
+        fullname.setBounds(380, 190, 330, 30);
 
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(480, 280, 330, 10);
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator5);
+        jSeparator5.setBounds(470, 220, 250, 20);
 
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3);
-        jSeparator3.setBounds(480, 350, 330, 20);
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4);
-        jSeparator4.setBounds(480, 210, 330, 10);
-
-        mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
-        jPanel1.add(mailicon);
-        mailicon.setBounds(790, 260, 30, 20);
-
-        nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
-        jPanel1.add(nameicon);
-        nameicon.setBounds(790, 190, 42, 17);
-
-        noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
-        jPanel1.add(noicon);
-        noicon.setBounds(790, 330, 42, 17);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 130, 140, 170);
+        idicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-badge.png"))); // NOI18N
+        jPanel1.add(idicon);
+        idicon.setBounds(700, 120, 42, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
@@ -158,23 +234,88 @@ public class profile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deletebuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebuttonMouseClicked
+    private void cancelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseClicked
         // TODO add your handling code here:
-         this.dispose();
     
-    // Open dashboard
-    new Dashboard().setVisible(true);
-
-    }//GEN-LAST:event_deletebuttonMouseClicked
+    }//GEN-LAST:event_cancelbuttonMouseClicked
 
     private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-    
-    // Open logout
-    new logout().setVisible(true);
+       
 
     }//GEN-LAST:event_logoutbuttonMouseClicked
+
+    private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose(); // Close profile
+        new logout().setVisible(true); // Open logout
+    }//GEN-LAST:event_logoutbuttonActionPerformed
+
+    private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
+        // TODO add your handling code here:
+        editbutton.setText("Edit");
+        cancelbutton.setVisible(true);
+        loadUserData(); // Reload original data
+        
+        this.dispose();
+        new userdashboard().setVisible(true);
+    }//GEN-LAST:event_cancelbuttonActionPerformed
+
+    private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
+        // TODO add your handling code here:
+     String currentName = fullname.getText().replace("Full Name: ", "");
+    
+    // 2. Ask for new name
+    String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
+    
+    
+    // 3. If user entered something, update it
+    if (newName != null && !newName.trim().isEmpty()) {
+        // Update on screen
+        fullname.setText("Full Name: " + newName.trim());
+        
+        // Save to database
+        try {
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/hotel_booking", 
+                "root", 
+                "shr7y42007@#"
+            );
+            
+            String sql = "UPDATE users SET full_name = ? WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, newName.trim());
+            stmt.setInt(2, currentUserId);
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+            
+            JOptionPane.showMessageDialog(this, "Name updated!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error saving!");
+        }
+      }
+    // Edit Email
+    String currentEmail = email.getText().replace("Email: ", "");
+    String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
+    
+    if (newEmail != null && !newEmail.trim().isEmpty()) {
+        email.setText("Email: " + newEmail.trim());
+        // Save email to database (add similar code as above)
+    }
+    
+    // Edit Phone
+    String currentPhone = phoneno.getText().replace("Phone: ", "");
+    String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
+    
+    if (newPhone != null && !newPhone.trim().isEmpty()) {
+        phoneno.setText("Phone: " + newPhone.trim());
+        // Save phone to database (add similar code as above)
+    }
+
+    }//GEN-LAST:event_editbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,16 +343,18 @@ public class profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deletebutton;
+    private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;
     private javax.swing.JLabel fullname;
+    private javax.swing.JLabel idicon;
     private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JButton logoutbutton;
     private javax.swing.JLabel mailicon;
     private javax.swing.JLabel nameicon;
@@ -219,5 +362,6 @@ public class profile extends javax.swing.JFrame {
     private javax.swing.JLabel phoneno;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel slogan;
+    private javax.swing.JLabel userid;
     // End of variables declaration//GEN-END:variables
 }

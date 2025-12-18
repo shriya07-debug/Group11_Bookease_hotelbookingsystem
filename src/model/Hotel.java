@@ -10,9 +10,9 @@ package model;
  */
 public class Hotel {
     private int hotel_id;
-    private String name;
+    private String hotel_name;
     private String location;
-    private String description;
+    private String room_status;
     private double rating;
     private String image;
     
@@ -20,10 +20,11 @@ public class Hotel {
     public Hotel() {}
     
   
-    public Hotel(int hotel_id, String name, String location, double rating, String image) {
+    public Hotel(int hotel_id, String hotel_name, String location,String room_status, double rating, String image) {
         this.hotel_id = hotel_id;
-        this.name = name;
+        this.hotel_name = hotel_name;
         this.location = location;
+        this.room_status = room_status;
         this.rating = rating;
         this.image = image;
     }
@@ -34,12 +35,12 @@ public class Hotel {
     public int getHotelId() { 
         return hotel_id; 
     }
-    public void setName(String name) { 
-        this.name = name; 
+    public void setHotelName(String hotel_name) { 
+        this.hotel_name = hotel_name;    
     }
     
-    public String getName() { 
-        return name; 
+    public String getHotelName() { 
+        return hotel_name; 
     }
     public void setLocation(String location) { 
         this.location = location; 
@@ -47,11 +48,11 @@ public class Hotel {
     public String getLocation() { 
         return location; 
     }
-    public void setDescription(String description) { 
-        this.description = description; 
+    public void setRoomstatus(String room_status) { 
+        this.room_status = room_status; 
     }
-    public String getDescription() { 
-        return description; 
+    public String getRoomstatus() { 
+        return room_status; 
     }
      public void setRating(double rating) { 
         this.rating = rating; 

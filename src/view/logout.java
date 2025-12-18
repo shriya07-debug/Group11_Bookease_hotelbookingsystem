@@ -87,9 +87,7 @@ public class logout extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     
-    // Open notifications
-    new Dashboard().setVisible(true);
-
+   
     }//GEN-LAST:event_helpfulbuttonMouseClicked
 
     /**

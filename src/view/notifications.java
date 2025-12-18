@@ -117,11 +117,7 @@ public class notifications extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        this.dispose();
-    
-    // Open dashboard
-    new Dashboard().setVisible(true);
-
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

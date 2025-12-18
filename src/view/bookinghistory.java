@@ -3,30 +3,107 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import model.User;
-import model.Booking;
-import dao.BookingDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.List;
-
+import java.sql.*;
 /**
  *
  * @author sailenawale
  */
-private User currentUser;
-    private javax.swing.JTable bookingTable;
-    private DefaultTableModel tableModel;
+public class bookinghistory extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
+  
+    
+    private int userId = 1; // Your user ID
+    
+    public bookinghistory() {
+        initComponents();
+        setupTable();
+        loadBookings();
+        setLocationRelativeTo(null); // Center window
+    }
+    
+    private void setupTable() {
+        String[] columns = {"ID", "Hotel", "Check-in", "Check-out", "Price", "Status"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make table read-only
+            }
+        };
+        table.setModel(model); // CHANGE jTable1 to YOUR table's variable name
+    }
+  
+    
+  
+      private void loadBookings() {
+        try {
+            // 1. Connect to database
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/hotel_booking", 
+                "root", 
+                "shr7y42007@#"
+            );
+            
+            // 2. Get bookings for this user
+            String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booking_id DESC";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            
+            // 3. Execute query
+            ResultSet rs = stmt.executeQuery();
+            
+            // 4. Get table model and clear old data
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+            
+            // 5. Add each booking to table
+            boolean hasData = false;
+            while (rs.next()) {
+                hasData = true;
+                Object[] row = {
+                    rs.getInt("booking_id"),
+                    rs.getString("hotel_name"),
+                    rs.getString("check_in_date"),
+                    rs.getString("check_out_date"),
+                    "Rs " + rs.getDouble("price"), // Changed $ to Rs
+                    rs.getString("status")
+                };
+                model.addRow(row);
+            }
+            
+            // 6. Close connections
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            // 7. If no bookings, show message
+            if (!hasData) {
+                JOptionPane.showMessageDialog(this,
+                    "No bookings found.\nBook hotels from dashboard first!",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Database error: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                "Error: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     
     /**
      * Creates new form bookinghistory
      */
-    public bookinghistory(User currentUser) {
-        this.currentUser = currentUser;
-        initComponents();
-        addBookingHistoryTable();
-        loadBookingData();
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,20 +115,71 @@ private User currentUser;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        bookinghistory = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        scroll = new javax.swing.JScrollBar();
+        image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 42, 17);
+        bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        bookinghistory.setForeground(new java.awt.Color(232, 128, 153));
+        bookinghistory.setText("Booking History");
+        jPanel1.add(bookinghistory);
+        bookinghistory.setBounds(420, 20, 330, 44);
+
+        table.setBackground(new java.awt.Color(255, 180, 170));
+        table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        table.setForeground(new java.awt.Color(255, 255, 255));
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "user_id", "booking_id", "hotel_name", "check_in_date", "check_out_date", "status", "price"
+            }
+        ));
+        jScrollPane1.setViewportView(table);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(120, 160, 920, 440);
+        jPanel1.add(scroll);
+        scroll.setBounds(1040, 160, 20, 440);
+
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
+        jPanel1.add(image);
+        image.setBounds(0, -10, 1200, 690);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1280, 720);
+        jPanel1.setBounds(-3, 0, 1280, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -59,70 +187,6 @@ private User currentUser;
     /**
      * @param args the command line arguments
      */
-    // ADD THIS METHOD: Add booking table to existing panel
-    private void addBookingHistoryTable() {
-        // Remove the jLabel1
-        jPanel1.remove(jLabel1);
-        
-        // Create table model
-        String[] columns = {"Booking ID", "Hotel", "Check-in", "Check-out", "Status", "Price"};
-        tableModel = new DefaultTableModel(columns, 0);
-        
-        // Create table
-        bookingTable = new javax.swing.JTable(tableModel);
-        bookingTable.setBounds(50, 50, 1100, 500);
-        bookingTable.setRowHeight(40);
-        bookingTable.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 14));
-        
-        // Add to panel
-        jPanel1.add(bookingTable);
-        
-        // Add title
-        JLabel title = new JLabel("MY BOOKING HISTORY");
-        title.setBounds(50, 10, 400, 30);
-        title.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
-        title.setForeground(java.awt.Color.WHITE);
-        jPanel1.add(title);
-    }
-    
-    // ADD THIS METHOD: Load data from database
-    private void loadBookingData() {
-        try {
-            // Get bookings from DAO
-            BookingDAO bookingDAO = new BookingDAO();
-            List<Booking> bookings = bookingDAO.getUserBookings(currentUser.getId());
-            
-            // Clear table
-            tableModel.setRowCount(0);
-            
-            // Add data to table
-            for (Booking booking : bookings) {
-                Object[] row = {
-                    booking.getBooking_ID(),
-                    booking.getHotelName(),
-                    booking.getCheck_in_date(),
-                    booking.getCheck_out_date(),
-                    booking.getStatus(),
-                    String.format("$%.2f", booking.getPrice())
-                };
-                tableModel.addRow(row);
-            }
-            
-            // If no bookings, show message
-            if (bookings.isEmpty()) {
-                tableModel.addRow(new Object[]{"No bookings found", "", "", "", "", ""});
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            tableModel.addRow(new Object[]{"Error loading data", e.getMessage(), "", "", "", ""});
-        }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -146,9 +210,11 @@ private User currentUser;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel bookinghistory;
+    private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollBar scroll;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-
-
-
+}

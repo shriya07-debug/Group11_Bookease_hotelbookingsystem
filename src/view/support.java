@@ -96,7 +96,7 @@ public class support extends javax.swing.JFrame {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
-        image.setBounds(0, 0, 1260, 730);
+        image.setBounds(0, 0, 1260, 740);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,11 +114,13 @@ public class support extends javax.swing.JFrame {
 
     private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
         // TODO add your handling code here:
+        
         this.dispose();
-    
-    // Open dashboard
-    new Dashboard().setVisible(true);
 
+        // Open notifications
+        new userdashboard().setVisible(true);
+    
+ 
     }//GEN-LAST:event_helpfulbuttonMouseClicked
 
     /**

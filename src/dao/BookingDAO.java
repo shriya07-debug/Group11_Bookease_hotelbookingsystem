@@ -50,7 +50,7 @@ public class BookingDAO {
     public List<Booking> getUserBookings(int userId) {
         List<Booking> bookings = new ArrayList<>();
         
-        String sql = "SELECT booking_id, hotel_name, check_in_date, check_out_date, status, price " +
+        String sql = "SELECT booking_id, user_id,hotel_name, check_in_date, check_out_date, status, price " +
                      "FROM bookings WHERE user_id = ? ORDER BY check_in_date DESC";
         
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -60,10 +60,11 @@ public class BookingDAO {
             // ⭐⭐ GET ALL ROWS, not just one!
             while (rs.next()) {
                 Booking booking = new Booking();
-                booking.setBooking_ID(rs.getInt("booking_id"));
+                booking.setBookingId(rs.getInt("booking_id"));
+                booking.setUserId(rs.getInt("user_id"));
                 booking.setHotelName(rs.getString("hotel_name"));      // Get hotel name!
-                booking.setCheck_in_date(rs.getDate("check_in_date"));
-                booking.setCheck_out_date(rs.getDate("check_out_date"));
+                booking.setCheckInDate(rs.getDate("check_in_date"));
+                booking.setCheckOutDate(rs.getDate("check_out_date"));
                 booking.setStatus(rs.getString("status"));
                 booking.setPrice(rs.getDouble("price"));
                 
