@@ -28,86 +28,99 @@ public class LOGIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Login = new javax.swing.JLabel();
+        Password = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
+        Login1 = new javax.swing.JLabel();
+        ACC = new javax.swing.JLabel();
+        Forgetpwd = new javax.swing.JLabel();
+        Mailbox = new javax.swing.JLabel();
+        key = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        Hoteltap = new javax.swing.JLabel();
+        redbox = new javax.swing.JButton();
+        layout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 153));
-        jLabel1.setText("Login ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(800, 110, 130, 60);
+        Login.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Login.setForeground(new java.awt.Color(255, 0, 153));
+        Login.setText("Login ");
+        getContentPane().add(Login);
+        Login.setBounds(800, 110, 130, 60);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Password");
-        jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(710, 320, 310, 34);
+        Password.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Password.setForeground(new java.awt.Color(255, 255, 255));
+        Password.setText("Password");
+        Password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(Password);
+        Password.setBounds(710, 320, 310, 34);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Email");
-        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(710, 220, 300, 30);
+        Email.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Email.setForeground(new java.awt.Color(255, 255, 255));
+        Email.setText("Email");
+        Email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(Email);
+        Email.setBounds(710, 220, 300, 30);
 
-        jLabel5.setBackground(new java.awt.Color(200, 0, 40));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 153));
-        jLabel5.setText("                 Login");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(730, 440, 310, 60);
+        Login1.setBackground(new java.awt.Color(200, 0, 40));
+        Login1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Login1.setForeground(new java.awt.Color(255, 0, 153));
+        Login1.setText("       Login");
+        getContentPane().add(Login1);
+        Login1.setBounds(800, 450, 140, 30);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Create an account");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(700, 510, 150, 30);
+        ACC.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ACC.setForeground(new java.awt.Color(255, 255, 255));
+        ACC.setText("Create an account");
+        getContentPane().add(ACC);
+        ACC.setBounds(700, 510, 150, 30);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Forget password ?");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(910, 510, 170, 30);
+        Forgetpwd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Forgetpwd.setForeground(new java.awt.Color(255, 255, 255));
+        Forgetpwd.setText("Forget password ?");
+        getContentPane().add(Forgetpwd);
+        Forgetpwd.setBounds(910, 510, 170, 30);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(990, 180, 50, 110);
+        Mailbox.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Mailbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
+        getContentPane().add(Mailbox);
+        Mailbox.setBounds(990, 180, 50, 110);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 1.png"))); // NOI18N
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(990, 300, 30, 60);
+        key.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 1.png"))); // NOI18N
+        getContentPane().add(key);
+        key.setBounds(990, 300, 30, 60);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(70, 40, 100, 90);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
+        getContentPane().add(logo);
+        logo.setBounds(70, 40, 100, 90);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(140, 50, 110, 40);
+        Hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
+        getContentPane().add(Hoteltap);
+        Hoteltap.setBounds(140, 40, 110, 40);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login page.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 50, 1070, 620);
+        redbox.setBackground(new java.awt.Color(204, 0, 0));
+        redbox.setForeground(new java.awt.Color(255, 0, 102));
+        redbox.setBorder(null);
+        redbox.addActionListener(this::redboxActionPerformed);
+        getContentPane().add(redbox);
+        redbox.setBounds(770, 440, 220, 50);
+
+        layout.setBackground(new java.awt.Color(204, 0, 0));
+        layout.setForeground(new java.awt.Color(204, 0, 0));
+        layout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        layout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login page.png"))); // NOI18N
+        layout.setText("jLabel2");
+        getContentPane().add(layout);
+        layout.setBounds(50, 10, 1070, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void redboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_redboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,16 +148,17 @@ public class LOGIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel ACC;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Forgetpwd;
+    private javax.swing.JLabel Hoteltap;
+    private javax.swing.JLabel Login;
+    private javax.swing.JLabel Login1;
+    private javax.swing.JLabel Mailbox;
+    private javax.swing.JLabel Password;
+    private javax.swing.JLabel key;
+    private javax.swing.JLabel layout;
+    private javax.swing.JLabel logo;
+    private javax.swing.JButton redbox;
     // End of variables declaration//GEN-END:variables
 }
