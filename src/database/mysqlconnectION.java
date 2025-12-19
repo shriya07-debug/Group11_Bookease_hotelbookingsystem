@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.*;
 
-public class mysqlconnector implements forgotpassworddatabase {
+public class mysqlconnection implements DBConnection {
 
 
 @Override
@@ -24,7 +24,7 @@ public Connection openConnection() {
         System.out.println("Connected Successfully!");
         return connection;
 
-    } catch (Exception e) {
+    } catch (ClassNotFoundException | SQLException e) {
         System.out.println("Connection Error: " + e.getMessage());
         return null;
     }
