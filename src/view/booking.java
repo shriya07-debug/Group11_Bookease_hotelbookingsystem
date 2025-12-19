@@ -79,7 +79,7 @@ public class booking extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(190, 440, 160, 21);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Delux", "Suite", " " }));
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(420, 220, 20, 22);
         jPanel1.add(jTextField3);
