@@ -48,15 +48,12 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         backgroundpannel.setPreferredSize(new java.awt.Dimension(1280, 720));
         backgroundpannel.setLayout(null);
-
-        hamburgermenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Hamburger Menu.png")); // NOI18N
         backgroundpannel.add(hamburgermenu);
         hamburgermenu.setBounds(170, 20, 30, 40);
 
         RecentBooking.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         RecentBooking.setForeground(new java.awt.Color(255, 255, 255));
         RecentBooking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RecentBooking.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Frame.png")); // NOI18N
         RecentBooking.setText("   Recent Booking");
         RecentBooking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -69,7 +66,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         Profile.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Profile.setForeground(new java.awt.Color(255, 255, 255));
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Vector (1).png")); // NOI18N
         Profile.setText("    Profile");
         Profile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -82,7 +78,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         Support.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Support.setForeground(new java.awt.Color(255, 255, 255));
         Support.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Support.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Vector (2).png")); // NOI18N
         Support.setText("   Support");
         Support.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,7 +90,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         Dashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         Dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Dashboard.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\= (1).png")); // NOI18N
         Dashboard.setText("   Dashboard");
         Dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,10 +135,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         backgroundpannel.add(hamburgermenubutton);
         hamburgermenubutton.setBounds(160, 20, 50, 40);
-
-        backgrounddashboard.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Screenshot 2025-12-17 121050.png")); // NOI18N
         backgroundpannel.add(backgrounddashboard);
-        backgrounddashboard.setBounds(49, 0, 1280, 720);
+        backgrounddashboard.setBounds(49, 0, 0, 0);
 
         getContentPane().add(backgroundpannel);
         backgroundpannel.setBounds(0, 0, 1280, 720);
