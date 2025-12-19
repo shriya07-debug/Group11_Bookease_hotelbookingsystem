@@ -1,56 +1,67 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
 
 import dao.UserDAO;
 import java.util.Random;
-import javax.swing.JOptionPane;
+
+
+
 
 public class ForgotPasswordController {
-    private final UserDAO userDAO;
 
-    public ForgotPasswordController() {
-        userDAO = new UserDAO();
-    }
+    private String generatedOtp;
+    private boolean otpVerified = false;
 
-    // Generate 6-digit OTP
-    private String generateOTP() {
-          Random rand = new Random();
-        int otp = 100000 + rand.nextInt(900000); // 6-digit OTP
-        return String.valueOf(otp);
-    }
+    private final UserDAO userDAO = new UserDAO();
 
-    // Send OTP
-    public boolean sendOTP(String email) {
-        if (userDAO.checkEmail(email)) {
-            String otp = generateOTP();
-            userDAO.saveOTP(email, otp);
-            // For now, show OTP in message (later integrate email service)
-            JOptionPane.showMessageDialog(null, "Your OTP: " + otp);
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Email not registered!");
+
+    public boolean sendOtp(String email) {
+
+        if (!userDAO.emailExists(email)) {
             return false;
         }
+
+        generatedOtp = String.valueOf(new Random().nextInt(900000) + 100000);
+        otpVerified = false; // reset old verification
+
+        EmailService.sendEmail(
+            email,
+            "Password Reset OTP",
+            "Your OTP is: " + generatedOtp
+        );
+
+        return true;
     }
 
-    // Verify OTP
-    public boolean verifyOTP(String email, String otp) {
-        return userDAO.verifyOTP(email, otp);
+  
+    public boolean verifyOtp(String enteredOtp) {
+
+        if (generatedOtp != null && generatedOtp.equals(enteredOtp)) {
+            otpVerified = true;
+            return true;
+        }
+
+        return false;
     }
 
-    // Reset Password
-    public void resetPassword(String email, String newPassword) {
-    }
+    // 🔒 Reset password ONLY if OTP verified
 
-    public boolean verifyOtp(String email, String otp) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    /**
+     *
+     * @param email
+     * @param newPassword
+     * @return
+     */
+    public boolean resetPassword(String email, String newPassword) {
 
-    public void sendOtp(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        if (!otpVerified) {
+            return false; 
+        }
 
-    public boolean verifyOtp(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return userDAO.updatePassword(email, newPassword);
     }
 }
