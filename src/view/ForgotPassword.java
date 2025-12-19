@@ -164,30 +164,26 @@ public ForgotPassword() {
 
     private void btnResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetPasswordActionPerformed
         // TODO add your handling code here:
-       String email = txtEmail.getText().trim();
-String newPass = txtNewPassword.getText().trim();
-
-if (newPass.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Enter new password!");
-    return;
-}
-
-controller.resetPassword(email, newPass);
+        boolean success = controller.resetPassword(
+               txtEmail.getText(),
+                txtNewPassword.getText()
+        );
+        if (success){
+            JOptionPane.showMessageDialog(this, "Password reset success");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "unsuccess ,verify ");
+        }
       
     }//GEN-LAST:event_btnResetPasswordActionPerformed
 
     private void btnVerifyOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyOtpActionPerformed
         // TODO add your handling code here:
-        boolean success = controller.resetPassword(
-        txtEmail.getText(),
-        txtNewPassword.getText()
-    );
-
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Password reset successful!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Please verify OTP first!");
-    }
+       if(controller.verifyOtp(txtOtp.getText())){
+           JOptionPane.showMessageDialog(this, "Otp Verified");
+       }else{
+           JOptionPane.showMessageDialog(this, "Invalid Otp");
+       }
     }//GEN-LAST:event_btnVerifyOtpActionPerformed
 
     private void txtOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtpActionPerformed
