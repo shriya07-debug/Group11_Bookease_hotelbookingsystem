@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BookingController {
    
-    private BookingDAO bookingDAO;
+    private final BookingDAO bookingDAO;
     
     public BookingController() {
         this.bookingDAO = new BookingDAO();

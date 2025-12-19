@@ -4,10 +4,10 @@
  */
 package view;
 import java.awt.HeadlessException;
-import javax.swing.*;  // Add this if not already there
+import javax.swing.*;  
 import model.HotelModel;    
 import controller.HotelController;
-// Add this to import your Hotel class
+
 public class userdashboard extends javax.swing.JFrame {
     
     

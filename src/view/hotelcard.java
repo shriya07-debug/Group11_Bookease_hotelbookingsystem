@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
-import java.awt.Color;
 import javax.swing.ImageIcon;  // Add this import
 import java.awt.Image;         // Add this import
 /**

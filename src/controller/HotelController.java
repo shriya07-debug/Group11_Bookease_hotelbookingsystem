@@ -9,7 +9,7 @@ import model.HotelModel;
 import view.hotelcard;
 
 public class HotelController {
-    private HotelDAO hotelDAO;
+    private final HotelDAO hotelDAO;
     
     public HotelController() {
         hotelDAO = new HotelDAO();
