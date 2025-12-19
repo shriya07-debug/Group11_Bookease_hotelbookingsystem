@@ -4,11 +4,9 @@
  */
 package view;
 import java.awt.HeadlessException;
-import java.sql.SQLException;
 import javax.swing.*;  // Add this if not already there
-import model.Hotel;    
-import java.awt.Image; 
-
+import model.HotelModel;    
+import controller.HotelController;
 // Add this to import your Hotel class
 public class userdashboard extends javax.swing.JFrame {
     
@@ -19,7 +17,8 @@ public class userdashboard extends javax.swing.JFrame {
     public userdashboard() {
         initComponents();
          drawerPanel.setLocation(-300, 0);
-    }
+        
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,7 +172,10 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel1.add(drawerPanel);
         drawerPanel.setBounds(0, 0, 340, 720);
 
-        searchbar.setText("search here");
+        searchbar.setBackground(new java.awt.Color(232, 128, 153));
+        searchbar.setForeground(new java.awt.Color(255, 255, 255));
+        searchbar.setText("Search here");
+        searchbar.setBorder(null);
         searchbar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 searchbarFocusGained(evt);
@@ -188,7 +190,7 @@ public class userdashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(searchbar);
-        searchbar.setBounds(800, 50, 140, 30);
+        searchbar.setBounds(800, 40, 140, 40);
 
         welcome.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
         welcome.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,7 +205,7 @@ public class userdashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(970, 50, 40, 30);
+        search.setBounds(960, 50, 40, 20);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newdash.png"))); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -219,27 +221,27 @@ public class userdashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-        // TODO add your handling code here:
-        String hotelName = searchbar.getText().trim();
-        
-        if (hotelName.isEmpty() || hotelName.equals("search here")) {
-            JOptionPane.showMessageDialog(this, "Please enter hotel name!");
-            return;
-        }
-        
-        // Get hotel from database
-        Hotel hotel = getHotelFromDatabase(hotelName);
-        
-        if (hotel == null) {
-            JOptionPane.showMessageDialog(this, "Hotel '" + hotelName + "' not found!");
-            return;
-        }
-        
-        // Show hotel on THIS dashboard
-        showHotel(hotel);
-        
-        // Clear search
-        searchbar.setText("");
+       String hotelName = searchbar.getText().trim();
+    
+    if (hotelName.isEmpty() || hotelName.equalsIgnoreCase("Search here")) {
+        JOptionPane.showMessageDialog(this, "Please enter hotel name!");
+        return;
+    }
+    
+    // Use HotelController instead of direct DAO call
+    HotelController hotelController = new HotelController();
+    HotelModel hotel = hotelController.searchHotel(hotelName);
+    
+    if (hotel == null) {
+        JOptionPane.showMessageDialog(this, "Hotel '" + hotelName + "' not found!");
+        return;
+    }
+    
+    // Show hotel on THIS dashboard
+    showHotel(hotel);
+    
+    // Clear search
+    searchbar.setText("");
     
     }//GEN-LAST:event_searchMouseClicked
 
@@ -296,15 +298,15 @@ public class userdashboard extends javax.swing.JFrame {
 
     private void searchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusGained
         // TODO add your handling code here:
-        if(searchbar.getText().equals("search here")){
+        if(searchbar.getText().trim().equals("Search here")){
             searchbar.setText("");
         }
     }//GEN-LAST:event_searchbarFocusGained
 
     private void searchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusLost
         // TODO add your handling code here:
-        if(searchbar.getText().equals("")){
-            searchbar.setText("search here");}
+        if(searchbar.getText().trim().equals("")){
+            searchbar.setText("Search here");}
     }//GEN-LAST:event_searchbarFocusLost
 
     private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
@@ -336,7 +338,7 @@ public class userdashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new userdashboard().setVisible(true));
     }
-    public void showHotel(Hotel hotel) {
+    public void showHotel(HotelModel hotel) {
         try {
             if (welcome != null && welcome.isVisible()) {
             welcome.setVisible(false);
@@ -348,9 +350,9 @@ public class userdashboard extends javax.swing.JFrame {
             card.setHotelId(String.valueOf(hotel.getHotelId()));
             card.setHotelName(hotel.getHotelName());
             card.setLocation(hotel.getLocation());
-            card.setRoomStatus(hotel.getRoomstatus());
+            card.setRoomStatus(hotel.getRoomStatus());
             card.setRating(hotel.getRating());
-            card.setImage(hotel.getImage()); 
+            card.setImage(hotel.getImagePath()); 
           
             
             card.setVisible(true);  
@@ -395,47 +397,17 @@ public class userdashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error showing hotel!");
         }
     }
- private Hotel getHotelFromDatabase(String hotelName) {
-        try {
-            // Database connection
-            java.sql.Connection conn = java.sql.DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/hotel_booking", 
-                "root", 
-                "shr7y42007@#"
-            );
-            
-            String sql = "SELECT Hotel_id, Hotel_name, Location, Room_status, Rating, image_path " +
-                         "FROM hotels WHERE Hotel_name LIKE ?";
-            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, "%" + hotelName + "%");
-            
-            java.sql.ResultSet rs = pstm.executeQuery();
-            
-            if (rs.next()) {
-                Hotel hotel = new Hotel(
-                    rs.getInt("Hotel_id"),
-                    rs.getString("Hotel_name"),
-                    rs.getString("Location"),
-                    rs.getString("Room_status"),
-                    rs.getDouble("Rating"),
-                    rs.getString("image_path")
-                );
-                
-                rs.close();
-                pstm.close();
-                conn.close();
-                return hotel;
-            }
-            
-            rs.close();
-            pstm.close();
-            conn.close();
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Database error!");
-        }
-      return null;
-    }
+// private HotelModel getHotelFromDatabase(String hotelName) {
+//        try {
+//        // Instead of direct database code, use HotelDAO
+//        HotelDAO hotelDAO = new HotelDAO();
+//        return hotelDAO.searchHotelByName(hotelName);
+//        
+//    } catch (Exception e) {
+//        JOptionPane.showMessageDialog(this, "Error finding hotel!");
+//        return null;
+//    }
+  
 
     
 

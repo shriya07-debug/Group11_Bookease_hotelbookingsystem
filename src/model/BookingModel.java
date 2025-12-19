@@ -8,7 +8,7 @@ import java.util.Date;
  *
  * @author sailenawale
  */
-    public class Booking {
+    public class BookingModel {
     private int bookingId;
     private int userId; 
     private String hotelName;
@@ -18,7 +18,7 @@ import java.util.Date;
     private double Price;
     
     // Constructor with hotelName
-    public Booking(int bookingId,int userId, String hotelName, Date CheckInDate, 
+    public BookingModel(int bookingId,int userId, String hotelName, Date CheckInDate, 
                    Date CheckOutDate, String Status, double Price) {
         this.bookingId = bookingId;
         this.userId = userId;
@@ -30,7 +30,7 @@ import java.util.Date;
     }
     
     // Default constructor
-    public Booking() {}
+    public BookingModel() {}
     
     // Getters and Setters
     public void setBookingId(int bookingId) { 

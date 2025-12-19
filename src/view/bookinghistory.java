@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import javax.swing.*;
+import controller.BookingController;
 import javax.swing.table.DefaultTableModel;
-import java.sql.*;
 /**
  *
  * @author sailenawale
@@ -14,7 +13,7 @@ public class bookinghistory extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
   
-    
+    private BookingController bookingController;  // ADD THIS
     private int userId = 1; // Your user ID
     
     public bookinghistory() {
@@ -34,70 +33,39 @@ public class bookinghistory extends javax.swing.JFrame {
         };
         table.setModel(model); // CHANGE jTable1 to YOUR table's variable name
     }
-  
+    private void loadBookings() {
+        bookingController.loadUserBookings(table, userId);
+    }
     
   
-      private void loadBookings() {
-        try {
-            // 1. Connect to database
-            Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/hotel_booking", 
-                "root", 
-                "shr7y42007@#"
-            );
-            
-            // 2. Get bookings for this user
-            String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booking_id DESC";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, userId);
-            
-            // 3. Execute query
-            ResultSet rs = stmt.executeQuery();
-            
-            // 4. Get table model and clear old data
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
-            
-            // 5. Add each booking to table
-            boolean hasData = false;
-            while (rs.next()) {
-                hasData = true;
-                Object[] row = {
-                    rs.getInt("booking_id"),
-                    rs.getString("hotel_name"),
-                    rs.getString("check_in_date"),
-                    rs.getString("check_out_date"),
-                    "Rs " + rs.getDouble("price"), // Changed $ to Rs
-                    rs.getString("status")
-                };
-                model.addRow(row);
-            }
-            
-            // 6. Close connections
-            rs.close();
-            stmt.close();
-            conn.close();
-            
-            // 7. If no bookings, show message
-            if (!hasData) {
-                JOptionPane.showMessageDialog(this,
-                    "No bookings found.\nBook hotels from dashboard first!",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this,
-                "Database error: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                "Error: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        }
-    }
+//      private void loadBookings() {
+//        BookingDAO bookingDAO = new BookingDAO();
+//        List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
+//        
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        model.setRowCount(0);
+//        
+//        boolean hasData = false;
+//        for (BookingModel booking : bookings) {
+//            hasData = true;
+//            Object[] row = {
+//                booking.getBookingId(),
+//                booking.getHotelName(),
+//                booking.getCheckInDate(),
+//                booking.getCheckOutDate(),
+//                "Rs " + booking.getPrice(),
+//                booking.getStatus()
+//            };
+//            model.addRow(row);
+//        }
+//        
+//        if (!hasData) {
+//            JOptionPane.showMessageDialog(this,
+//                "No bookings found.\nBook hotels from dashboard first!",
+//                "Information",
+//                JOptionPane.INFORMATION_MESSAGE);
+//        }
+//    }
     
     
     /**
@@ -127,7 +95,6 @@ public class bookinghistory extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
@@ -137,8 +104,9 @@ public class bookinghistory extends javax.swing.JFrame {
         jPanel1.add(bookinghistory);
         bookinghistory.setBounds(420, 20, 330, 44);
 
-        table.setBackground(new java.awt.Color(255, 180, 170));
+        table.setBackground(new java.awt.Color(250, 54, 93));
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        table.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         table.setForeground(new java.awt.Color(255, 255, 255));
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,7 +147,7 @@ public class bookinghistory extends javax.swing.JFrame {
         image.setBounds(0, -10, 1200, 690);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-3, 0, 1280, 650);
+        jPanel1.setBounds(-6, 0, 0, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

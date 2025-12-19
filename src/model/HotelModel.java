@@ -8,7 +8,7 @@ package model;
  *
  * @author sailenawale
  */
-public class Hotel {
+public class HotelModel {
     private int hotel_id;
     private String hotel_name;
     private String location;
@@ -17,10 +17,10 @@ public class Hotel {
     private String image;
     
     
-    public Hotel() {}
+    public HotelModel() {}
     
   
-    public Hotel(int hotel_id, String hotel_name, String location,String room_status, double rating, String image) {
+    public HotelModel(int hotel_id, String hotel_name, String location,String room_status, double rating, String image) {
         this.hotel_id = hotel_id;
         this.hotel_name = hotel_name;
         this.location = location;
@@ -48,10 +48,10 @@ public class Hotel {
     public String getLocation() { 
         return location; 
     }
-    public void setRoomstatus(String room_status) { 
+    public void setRoomStatus(String room_status) { 
         this.room_status = room_status; 
     }
-    public String getRoomstatus() { 
+    public String getRoomStatus() { 
         return room_status; 
     }
      public void setRating(double rating) { 
@@ -60,10 +60,10 @@ public class Hotel {
     public double getRating() { 
         return rating; 
     }
-    public void setImage(String image) { 
+    public void setImagePath(String image) { 
         this.image = image; 
     }
-    public String getImage() { 
+    public String getImagePath() { 
         return image; 
     }
 }
