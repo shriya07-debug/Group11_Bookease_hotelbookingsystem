@@ -4,7 +4,8 @@
  */
 package view;
 import javax.swing.*;
-import java.sql.*;
+import controller.ProfileController;
+import model.ProfileModel;
 /**
  *
  * @author sailenawale
@@ -20,44 +21,62 @@ public class profile extends javax.swing.JFrame {
         initComponents();
         loadUserData();
         setLocationRelativeTo(null);
-        cancelbutton.setVisible(true); 
+        cancelbutton.setVisible(false); 
     }
+    
     private void loadUserData() {
-        try {
-            Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/hotel_booking", 
-                "root", 
-                "shr7y42007@#"
-            );
-            
-            String sql = "SELECT * FROM users WHERE user_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, currentUserId);
-            
-            ResultSet rs = stmt.executeQuery();
-            
-            if (rs.next()) {
-                // Set your label texts
-                userid.setText("User ID: " + rs.getInt("user_id"));
-                fullname.setText("Full Name: " + rs.getString("full_name"));
-                email.setText("Email: " + rs.getString("email"));
-                phoneno.setText("Phone: " + rs.getString("phone"));
-            } else {
-                // If no user found, show defaults
-                userid.setText("User ID: 1");
-                fullname.setText("Full Name: Sailena Wale");
-                email.setText("Email: sailena@email.com");
-                phoneno.setText("Phone: 9876543210");
-            }
-            
-            rs.close();
-            stmt.close();
-            conn.close();
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error loading profile");
+    try {
+        ProfileController profileController = new ProfileController();
+        ProfileModel profile = profileController.getProfile(currentUserId);
+        
+        if (profile != null) {
+            userid.setText("User ID: " + profile.getUserId());
+            fullname.setText("Full Name: " + profile.getFullName());
+            email.setText("Email: " + profile.getEmail());
+            phoneno.setText("Phone: " + profile.getPhone());
+        } else {
+            userid.setText("User ID: 1");
+            fullname.setText("Full Name: shriya awale");
+            email.setText("Email: shriyaawale2007@email.com");
+            phoneno.setText("Phone: 9876543210");
         }
-     } 
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error loading profile");
+    }
+}
+    
+
+// Update your edit/save method:
+private void saveProfileChanges(String newName, String newEmail, String newPhone) {
+        ProfileModel updatedProfile = new ProfileModel();
+        updatedProfile.setUserId(currentUserId);
+        updatedProfile.setFullName(newName);
+        updatedProfile.setEmail(newEmail);
+        updatedProfile.setPhone(newPhone);
+        
+        ProfileController profileController = new ProfileController();
+        
+        // Validate before saving
+        if (newName.trim().isEmpty() || newEmail.trim().isEmpty() || newPhone.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!");
+            return;
+        }
+        
+        if (!newEmail.contains("@")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid email!");
+            return;
+        }
+        
+        boolean success = profileController.updateProfile(updatedProfile);
+        if (success) {
+            JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+            loadUserData(); // Reload updated data
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to update profile!");
+        }
+    }
+
+      
   
     
    
@@ -91,6 +110,7 @@ public class profile extends javax.swing.JFrame {
         fullname = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         idicon = new javax.swing.JLabel();
+        backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -223,6 +243,15 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(idicon);
         idicon.setBounds(700, 120, 42, 30);
 
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(70, 630, 40, 30);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -263,59 +292,76 @@ public class profile extends javax.swing.JFrame {
 
     private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
         // TODO add your handling code here:
-     String currentName = fullname.getText().replace("Full Name: ", "");
+                                             
+    // Ask which field to edit
+    String[] options = {"Name", "Email", "Phone"};
+    String choice = (String) JOptionPane.showInputDialog(
+        this,
+        "What do you want to edit?",
+        "Edit Profile",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        options,
+        options[0]
+    );
     
-    // 2. Ask for new name
-    String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
+    if (choice == null) return; // User cancelled
     
-    
-    // 3. If user entered something, update it
-    if (newName != null && !newName.trim().isEmpty()) {
-        // Update on screen
-        fullname.setText("Full Name: " + newName.trim());
+    if (choice.equals("Name")) {
+        String currentName = fullname.getText().replace("Full Name: ", "");
+        String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
         
-        // Save to database
-        try {
-            Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/hotel_booking", 
-                "root", 
-                "shr7y42007@#"
-            );
-            
-            String sql = "UPDATE users SET full_name = ? WHERE user_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, newName.trim());
-            stmt.setInt(2, currentUserId);
-            stmt.executeUpdate();
-            
-            stmt.close();
-            conn.close();
-            
-            JOptionPane.showMessageDialog(this, "Name updated!");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error saving!");
+        if (newName != null && !newName.trim().isEmpty()) {
+            fullname.setText("Full Name: " + newName.trim());
+            saveToDatabase();
         }
-      }
-    // Edit Email
-    String currentEmail = email.getText().replace("Email: ", "");
-    String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
-    
-    if (newEmail != null && !newEmail.trim().isEmpty()) {
-        email.setText("Email: " + newEmail.trim());
-        // Save email to database (add similar code as above)
     }
-    
-    // Edit Phone
-    String currentPhone = phoneno.getText().replace("Phone: ", "");
-    String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
-    
-    if (newPhone != null && !newPhone.trim().isEmpty()) {
-        phoneno.setText("Phone: " + newPhone.trim());
-        // Save phone to database (add similar code as above)
+    else if (choice.equals("Email")) {
+        String currentEmail = email.getText().replace("Email: ", "");
+        String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
+        
+        if (newEmail != null && !newEmail.trim().isEmpty()) {
+            email.setText("Email: " + newEmail.trim());
+            saveToDatabase();
+        }
     }
+    else if (choice.equals("Phone")) {
+        String currentPhone = phoneno.getText().replace("Phone: ", "");
+        String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
+        
+        if (newPhone != null && !newPhone.trim().isEmpty()) {
+            phoneno.setText("Phone: " + newPhone.trim());
+            saveToDatabase();
+        }
+    }
+}
+
+// Helper method to save to database
+private void saveToDatabase() {
+    ProfileModel profile = new ProfileModel();
+    profile.setUserId(currentUserId);
+    profile.setFullName(fullname.getText().replace("Full Name: ", ""));
+    profile.setEmail(email.getText().replace("Email: ", ""));
+    profile.setPhone(phoneno.getText().replace("Phone: ", ""));
+    
+    ProfileController controller = new ProfileController();
+    boolean success = controller.updateProfile(profile);
+    
+    if (success) {
+        JOptionPane.showMessageDialog(this, "Updated successfully!");
+    } else {
+        JOptionPane.showMessageDialog(this, "Error saving!");
+     }
 
     }//GEN-LAST:event_editbuttonActionPerformed
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        // Open userdashboard
+        new userdashboard().setVisible(true);
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -343,6 +389,7 @@ public class profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
     private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;

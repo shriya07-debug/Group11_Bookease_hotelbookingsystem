@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import controller.NotificationController;
+import model.NotificationModel;
+import javax.swing.*;
+import java.util.List;
 
 /**
  *
  * @author sailenawale
  */
 public class notifications extends javax.swing.JFrame {
-    
+    private final int currentUserId = 1;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(notifications.class.getName());
 
     /**
@@ -17,8 +21,38 @@ public class notifications extends javax.swing.JFrame {
      */
     public notifications() {
         initComponents();
+        loadNotifications();
+        setLocationRelativeTo(null);
     }
-
+private void loadNotifications() {
+       try {
+        NotificationController controller = new NotificationController();
+        List<NotificationModel> notifications = controller.getUserNotifications(currentUserId);
+        
+        // Use jList1 (your JList component)
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        if (notifications.isEmpty()) {
+            model.addElement(" No notifications yet");
+            model.addElement("Update your profile to get notifications!");
+        } else {
+            for (NotificationModel notif : notifications) {
+                String displayText = "• " + notif.getMessage() + 
+                                   " [" + notif.getCreatedAt() + "]";
+                model.addElement(displayText);
+            }
+        }
+        
+        jList1.setModel(model);
+        
+    } catch (Exception e) {
+        // Show error in the list
+        DefaultListModel<String> errorModel = new DefaultListModel<>();
+        errorModel.addElement("Error loading notifications");
+        errorModel.addElement("Check database connection");
+        jList1.setModel(errorModel);
+     }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,10 +69,9 @@ public class notifications extends javax.swing.JFrame {
         msg = new javax.swing.JLabel();
         msg1 = new javax.swing.JLabel();
         msg2 = new javax.swing.JLabel();
-        text = new javax.swing.JLabel();
-        text1 = new javax.swing.JLabel();
-        text2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        list = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,32 +110,24 @@ public class notifications extends javax.swing.JFrame {
         jPanel1.add(msg2);
         msg2.setBounds(320, 260, 40, 40);
 
-        text.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        text.setForeground(new java.awt.Color(242, 242, 242));
-        text.setText("A confirmation email has been sent to you. Please check it.");
-        jPanel1.add(text);
-        text.setBounds(410, 350, 520, 30);
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        list.setViewportView(jList1);
 
-        text1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        text1.setForeground(new java.awt.Color(255, 255, 255));
-        text1.setText("You edited your details.");
-        jPanel1.add(text1);
-        text1.setBounds(410, 170, 430, 30);
+        jPanel1.add(list);
+        list.setBounds(380, 170, 560, 450);
 
-        text2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        text2.setForeground(new java.awt.Color(255, 255, 255));
-        text2.setText("You have booked a room on 2nd december.");
-        jPanel1.add(text2);
-        text2.setBounds(410, 260, 430, 30);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                backbuttonMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(320, 40, 60, 40);
+        jPanel1.add(backbutton);
+        backbutton.setBounds(330, 50, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notification.png"))); // NOI18N
         image.setText("jLabel1");
@@ -115,10 +140,13 @@ public class notifications extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
+        this.dispose();
+
+        // Open userdashboard
+        new userdashboard().setVisible(true);
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,17 +174,16 @@ public class notifications extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
     private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane list;
     private javax.swing.JLabel msg;
     private javax.swing.JLabel msg1;
     private javax.swing.JLabel msg2;
     private javax.swing.JLabel notificationsicon;
     private javax.swing.JLabel slogan;
-    private javax.swing.JLabel text;
-    private javax.swing.JLabel text1;
-    private javax.swing.JLabel text2;
     private javax.swing.JLabel userdashboard;
     // End of variables declaration//GEN-END:variables
 }

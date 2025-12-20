@@ -36,6 +36,7 @@ public class support extends javax.swing.JFrame {
         number3 = new javax.swing.JLabel();
         helpfulbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
+        backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,6 +94,15 @@ public class support extends javax.swing.JFrame {
         jPanel1.add(slogan);
         slogan.setBounds(130, 40, 90, 16);
 
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(40, 600, 40, 30);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -117,11 +127,19 @@ public class support extends javax.swing.JFrame {
         
         this.dispose();
 
-        // Open notifications
+        // Open userdashboard
         new userdashboard().setVisible(true);
     
  
     }//GEN-LAST:event_helpfulbuttonMouseClicked
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        // Open userdashboard
+        new userdashboard().setVisible(true);
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -149,6 +167,7 @@ public class support extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
     private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;

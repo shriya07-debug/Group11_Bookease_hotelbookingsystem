@@ -14,7 +14,7 @@ public class BookingDAO {
     public List<BookingModel> getUserBookings(int userId) {
         List<BookingModel> bookings = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booking_id DESC";
+        String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booking_id";
         
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setInt(1, userId);

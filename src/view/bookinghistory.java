@@ -13,61 +13,39 @@ public class bookinghistory extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
   
-    private BookingController bookingController;  // ADD THIS
-    private int userId = 1; // Your user ID
+    private final BookingController bookingController;  
+    private final int userId = 1; // Your user ID
     
     public bookinghistory() {
         initComponents();
+        bookingController = new BookingController(); 
         setupTable();
         loadBookings();
-        setLocationRelativeTo(null); // Center window
+        setLocationRelativeTo(null);
+        setVisible(true);// Center window
     }
     
     private void setupTable() {
-        String[] columns = {"ID", "Hotel", "Check-in", "Check-out", "Price", "Status"};
+        String[] columns = {"user_id", "booking_id", "hotel_name", "check_in_date", 
+                        "check_out_date", "status", "price"};
         DefaultTableModel model = new DefaultTableModel(columns, 0){
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Make table read-only
+                return false; 
             }
         };
-        table.setModel(model); // CHANGE jTable1 to YOUR table's variable name
+        table.setModel(model); 
     }
     private void loadBookings() {
         bookingController.loadUserBookings(table, userId);
+        try {
+        bookingController.loadUserBookings(table, userId);
+    } catch (Exception e) {
+        System.out.println("Error in loadBookings: " + e.getMessage());
+            // Don't crash - just show empty table
+      }
     }
-    
   
-//      private void loadBookings() {
-//        BookingDAO bookingDAO = new BookingDAO();
-//        List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
-//        
-//        DefaultTableModel model = (DefaultTableModel) table.getModel();
-//        model.setRowCount(0);
-//        
-//        boolean hasData = false;
-//        for (BookingModel booking : bookings) {
-//            hasData = true;
-//            Object[] row = {
-//                booking.getBookingId(),
-//                booking.getHotelName(),
-//                booking.getCheckInDate(),
-//                booking.getCheckOutDate(),
-//                "Rs " + booking.getPrice(),
-//                booking.getStatus()
-//            };
-//            model.addRow(row);
-//        }
-//        
-//        if (!hasData) {
-//            JOptionPane.showMessageDialog(this,
-//                "No bookings found.\nBook hotels from dashboard first!",
-//                "Information",
-//                JOptionPane.INFORMATION_MESSAGE);
-//        }
-//    }
-    
-    
     /**
      * Creates new form bookinghistory
      */
@@ -87,6 +65,7 @@ public class bookinghistory extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         scroll = new javax.swing.JScrollBar();
+        backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,6 +74,7 @@ public class bookinghistory extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
@@ -142,15 +122,32 @@ public class bookinghistory extends javax.swing.JFrame {
         jPanel1.add(scroll);
         scroll.setBounds(1040, 160, 20, 440);
 
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(160, 30, 40, 30);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         jPanel1.add(image);
         image.setBounds(0, -10, 1200, 690);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-6, 0, 0, 650);
+        jPanel1.setBounds(-6, 0, 1280, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        // Open userdashboard
+        new userdashboard().setVisible(true);
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,6 +175,7 @@ public class bookinghistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
     private javax.swing.JLabel bookinghistory;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;

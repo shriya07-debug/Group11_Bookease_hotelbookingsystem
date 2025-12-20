@@ -174,6 +174,7 @@ public class userdashboard extends javax.swing.JFrame {
 
         searchbar.setBackground(new java.awt.Color(232, 128, 153));
         searchbar.setForeground(new java.awt.Color(255, 255, 255));
+        searchbar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         searchbar.setText("Search here");
         searchbar.setBorder(null);
         searchbar.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -306,7 +307,7 @@ public class userdashboard extends javax.swing.JFrame {
     private void searchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusLost
         // TODO add your handling code here:
         if(searchbar.getText().trim().equals("")){
-            searchbar.setText("Search here");}
+            searchbar.setText("       Search here");}
     }//GEN-LAST:event_searchbarFocusLost
 
     private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
