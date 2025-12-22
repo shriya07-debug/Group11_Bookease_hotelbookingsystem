@@ -9,15 +9,16 @@ public class ProfileModel {
     private String fullName;
     private String email;
     private String phone;
-    
+    private String photoPath;
     // Constructors
     public ProfileModel() {}
     
-    public ProfileModel(int userId, String fullName, String email, String phone) {
+    public ProfileModel(int userId, String fullName, String email, String phone, String photoPath) {
         this.userId = userId;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
+        this.photoPath = photoPath;
     }
     
     // Getters and Setters
@@ -47,5 +48,11 @@ public class ProfileModel {
     }
     public void setPhone(String phone) {
         this.phone = phone; 
+    }
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+    public String getPhotoPath() {
+        return photoPath;
     }
 }

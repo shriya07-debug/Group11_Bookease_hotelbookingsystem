@@ -25,6 +25,7 @@ public class ProfileDAO {
                 profile.setFullName(result.getString("full_name"));
                 profile.setEmail(result.getString("email"));
                 profile.setPhone(result.getString("phone"));
+                profile.setPhotoPath(result.getString("photo_path"));
                 return profile;
             }
         } catch (Exception ex) {
@@ -55,4 +56,23 @@ public class ProfileDAO {
         }
         return false;
     }
+    public boolean updateProfileWithPhoto(ProfileModel profile) {
+    Connection conn = mysql.openConnection();
+    String sql = "UPDATE profiles SET full_name = ?, email = ?, phone = ?, photo_path = ? WHERE user_id = ?";
+    
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        pstm.setString(1, profile.getFullName());
+        pstm.setString(2, profile.getEmail());
+        pstm.setString(3, profile.getPhone());
+        pstm.setString(4, profile.getPhotoPath());
+        pstm.setInt(5, profile.getUserId());
+        
+        return pstm.executeUpdate() > 0;
+    } catch (Exception ex) {
+        System.out.println("Error: " + ex);
+        return false;
+    } finally {
+        mysql.closeConnection(conn);
+    }
+  }
 }

@@ -62,4 +62,5 @@ public class ProfileController {
         }
         return !(profile.getPhone() == null || profile.getPhone().trim().isEmpty());
     }
+    
 }

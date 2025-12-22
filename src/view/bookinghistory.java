@@ -26,8 +26,8 @@ public class bookinghistory extends javax.swing.JFrame {
     }
     
     private void setupTable() {
-        String[] columns = {"user_id", "booking_id", "hotel_name", "check_in_date", 
-                        "check_out_date", "status", "price"};
+        String[] columns = {"User_id", "Booking_id", "Hotel_name", "Check_in_date", 
+                        "Check_out_date", "Price", "Status"};
         DefaultTableModel model = new DefaultTableModel(columns, 0){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -83,10 +83,8 @@ public class bookinghistory extends javax.swing.JFrame {
         jPanel1.add(bookinghistory);
         bookinghistory.setBounds(420, 20, 330, 44);
 
-        table.setBackground(new java.awt.Color(250, 54, 93));
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        table.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        table.setForeground(new java.awt.Color(255, 255, 255));
+        table.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -111,9 +109,15 @@ public class bookinghistory extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "user_id", "booking_id", "hotel_name", "check_in_date", "check_out_date", "status", "price"
+                "User_id", "Booking_id", "Hotel_name", "Check_in_date", "Check_out_date", "Price", "Status"
             }
         ));
+        table.setMaximumSize(new java.awt.Dimension(105, 400));
+        table.setRowHeight(30);
+        table.setSelectionBackground(new java.awt.Color(232, 57, 95));
+        table.setShowGrid(true);
+        table.setShowHorizontalLines(false);
+        table.setShowVerticalLines(false);
         jScrollPane1.setViewportView(table);
 
         jPanel1.add(jScrollPane1);

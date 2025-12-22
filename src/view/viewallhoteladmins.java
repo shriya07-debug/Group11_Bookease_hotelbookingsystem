@@ -52,17 +52,42 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jPanel1.add(superadmindashboard);
         superadmindashboard.setBounds(380, 40, 410, 44);
 
+        jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Hotel_id", "Name", "Email", "Password", "Status", "Last_login"
             }
         ));
+        jTable1.setMaximumSize(new java.awt.Dimension(90, 420));
+        jTable1.setRowHeight(30);
+        jTable1.setSelectionBackground(new java.awt.Color(232, 57, 95));
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.setShowGrid(true);
+        jTable1.setShowHorizontalLines(true);
+        jTable1.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
@@ -93,8 +118,8 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
 
-        // Open userdashboard
-        new userdashboard().setVisible(true);
+        // Open dashboard
+        new superadmindashboard().setVisible(true);
     }//GEN-LAST:event_backbuttonMouseClicked
 
     /**

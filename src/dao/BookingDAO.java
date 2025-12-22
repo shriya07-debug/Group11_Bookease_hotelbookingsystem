@@ -14,7 +14,7 @@ public class BookingDAO {
     public List<BookingModel> getUserBookings(int userId) {
         List<BookingModel> bookings = new ArrayList<>();
         Connection conn = mysql.openConnection();
-        String sql = "SELECT * FROM bookings WHERE user_id = ? ORDER BY booking_id";
+        String sql = "SELECT * FROM bookings WHERE User_id = ? ORDER BY Booking_id";
         
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             pstm.setInt(1, userId);
@@ -22,13 +22,13 @@ public class BookingDAO {
             
             while (result.next()) {
                 BookingModel booking = new BookingModel();
-                booking.setBookingId(result.getInt("booking_id"));
-                booking.setUserId(result.getInt("user_id"));
-                booking.setHotelName(result.getString("hotel_name"));
-                booking.setCheckInDate(result.getDate("check_in_date"));
-                booking.setCheckOutDate(result.getDate("check_out_date"));
-                booking.setStatus(result.getString("status"));
-                booking.setPrice(result.getDouble("price"));
+                booking.setBookingId(result.getInt("Booking_id"));
+                booking.setUserId(result.getInt("User_id"));
+                booking.setHotelName(result.getString("Hotel_name"));
+                booking.setCheckInDate(result.getDate("Check_in_date"));
+                booking.setCheckOutDate(result.getDate("Check_out_date"));
+                booking.setStatus(result.getString("Status"));
+                booking.setPrice(result.getDouble("Price"));
                 
                 bookings.add(booking);
             }

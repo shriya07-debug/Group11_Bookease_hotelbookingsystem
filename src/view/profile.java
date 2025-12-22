@@ -5,7 +5,10 @@
 package view;
 import javax.swing.*;
 import controller.ProfileController;
+import java.awt.Image;
+import java.io.File;
 import model.ProfileModel;
+
 /**
  *
  * @author sailenawale
@@ -14,6 +17,10 @@ public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
     private final int currentUserId = 1; // Your user ID
+    private String currentPhotoPath;
+   
+ 
+ 
     /**
      * Creates new form profile
      */
@@ -21,8 +28,28 @@ public class profile extends javax.swing.JFrame {
         initComponents();
         loadUserData();
         setLocationRelativeTo(null);
-        cancelbutton.setVisible(true);  
+        cancelbutton.setVisible(true); 
+        loadProfilePhoto(); 
     }
+    private void loadProfilePhoto() {
+    try {
+        String photoPath = "src/images/user_" + currentUserId + ".jpg";
+        File photoFile = new File(photoPath);
+        
+        if (photoFile.exists()) {
+            ImageIcon icon = new ImageIcon(photoPath);
+            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
+            newpp.setIcon(new ImageIcon(scaled));
+            
+            faceicon.setVisible(false);
+            newpp.setVisible(true);
+            uploadbutton.setText("Change");
+            currentPhotoPath = photoPath;
+        }
+    } catch (Exception e) {
+        // Do nothing - show face by default
+    }
+}
     
     private void loadUserData() {
     try {
@@ -34,6 +61,7 @@ public class profile extends javax.swing.JFrame {
             fullname.setText("Full Name: " + profile.getFullName());
             email.setText("Email: " + profile.getEmail());
             phoneno.setText("Phone: " + profile.getPhone());
+    
         } else {
             userid.setText("User ID: 1");
             fullname.setText("Full Name: shriya awale");
@@ -106,11 +134,14 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         mailicon = new javax.swing.JLabel();
         nameicon = new javax.swing.JLabel();
         noicon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        faceicon = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         idicon = new javax.swing.JLabel();
         backbutton = new javax.swing.JLabel();
+        newpp = new javax.swing.JLabel();
+        uploadbutton = new javax.swing.JButton();
+        removebutton = new javax.swing.JButton();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,7 +158,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         profile.setForeground(new java.awt.Color(201, 12, 51));
         profile.setText("Profile");
         jPanel1.add(profile);
-        profile.setBounds(60, 300, 190, 70);
+        profile.setBounds(60, 80, 120, 60);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
@@ -225,9 +256,9 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         jPanel1.add(noicon);
         noicon.setBounds(700, 340, 42, 17);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 130, 140, 170);
+        faceicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
+        jPanel1.add(faceicon);
+        faceicon.setBounds(50, 140, 140, 170);
 
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,6 +282,33 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         });
         jPanel1.add(backbutton);
         backbutton.setBounds(40, 630, 40, 30);
+        jPanel1.add(newpp);
+        newpp.setBounds(20, 110, 190, 230);
+
+        uploadbutton.setBackground(new java.awt.Color(184, 12, 47));
+        uploadbutton.setForeground(new java.awt.Color(232, 128, 153));
+        uploadbutton.setText("Upload ");
+        uploadbutton.setBorder(null);
+        uploadbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(uploadbutton);
+        uploadbutton.setBounds(30, 340, 70, 30);
+
+        removebutton.setBackground(new java.awt.Color(184, 12, 47));
+        removebutton.setForeground(new java.awt.Color(232, 128, 153));
+        removebutton.setText("Remove");
+        removebutton.setBorder(null);
+        removebutton.setBorderPainted(false);
+        removebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removebuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(removebutton);
+        removebutton.setBounds(130, 340, 70, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
@@ -363,6 +421,77 @@ private void saveToDatabase() {
         new userdashboard().setVisible(true);
     }//GEN-LAST:event_backbuttonMouseClicked
 
+    private void uploadbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbuttonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+    
+    if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile(); // This is the actual file
+        
+        try {
+            // Save in images folder
+            String newFileName = "user_" + currentUserId + ".jpg";
+            File destination = new File("src/images", newFileName);
+            
+            // Copy file
+            java.io.FileInputStream fis = new java.io.FileInputStream(selectedFile); // Use selectedFile here
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(destination);
+            
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesRead);
+            }
+            
+            fis.close();
+            fos.close();
+            
+            // Display photo
+            ImageIcon icon = new ImageIcon(destination.getAbsolutePath());
+            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
+            newpp.setIcon(new ImageIcon(scaled));
+            
+            // Hide face, show photo
+            faceicon.setVisible(false);
+            newpp.setVisible(true);
+            uploadbutton.setText("Change");
+            
+            currentPhotoPath = destination.getAbsolutePath();
+            
+            JOptionPane.showMessageDialog(this, "Photo uploaded!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+     }
+    }//GEN-LAST:event_uploadbuttonActionPerformed
+
+    private void removebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebuttonActionPerformed
+        // TODO add your handling code here:
+        if (currentPhotoPath != null) {
+        try {
+            File photoFile = new File(currentPhotoPath);
+            if (photoFile.exists()) {
+                photoFile.delete();
+            }
+            
+            // Show face again
+            faceicon.setVisible(true);
+            newpp.setVisible(false);
+            uploadbutton.setText("Upload");
+            currentPhotoPath = null;
+            
+            JOptionPane.showMessageDialog(this, "Photo removed!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error removing photo");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No photo to remove");
+     }
+    }//GEN-LAST:event_removebuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,10 +522,10 @@ private void saveToDatabase() {
     private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;
+    private javax.swing.JLabel faceicon;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel idicon;
     private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -405,10 +534,13 @@ private void saveToDatabase() {
     private javax.swing.JButton logoutbutton;
     private javax.swing.JLabel mailicon;
     private javax.swing.JLabel nameicon;
+    private javax.swing.JLabel newpp;
     private javax.swing.JLabel noicon;
     private javax.swing.JLabel phoneno;
     private javax.swing.JLabel profile;
+    private javax.swing.JButton removebutton;
     private javax.swing.JLabel slogan;
+    private javax.swing.JButton uploadbutton;
     private javax.swing.JLabel userid;
     // End of variables declaration//GEN-END:variables
 }

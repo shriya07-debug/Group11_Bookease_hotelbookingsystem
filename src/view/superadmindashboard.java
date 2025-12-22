@@ -208,8 +208,8 @@ public class superadmindashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
 
-        //Open bookinghistory
-        new bookinghistory().setVisible(true);
+        //Open viewallhoteladmins
+        new viewallhoteladmins().setVisible(true);
     }//GEN-LAST:event_allhoteladminsMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
