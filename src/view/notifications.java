@@ -127,7 +127,7 @@ private void loadNotifications() {
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(330, 50, 40, 30);
+        backbutton.setBounds(40, 630, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notification.png"))); // NOI18N
         image.setText("jLabel1");

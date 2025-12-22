@@ -54,7 +54,6 @@ public class userdashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -167,7 +166,7 @@ public class userdashboard extends javax.swing.JFrame {
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
         panel.setPreferredSize(new java.awt.Dimension(330, 700));
         drawerPanel.add(panel);
-        panel.setBounds(0, 0, 340, 750);
+        panel.setBounds(0, 0, 340, 720);
 
         jPanel1.add(drawerPanel);
         drawerPanel.setBounds(0, 0, 340, 720);
@@ -206,14 +205,14 @@ public class userdashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(960, 50, 40, 20);
+        search.setBounds(970, 50, 40, 20);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newdash.png"))); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1280, 720));
         image.setMinimumSize(new java.awt.Dimension(1280, 720));
         image.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.add(image);
-        image.setBounds(-18, 0, 1250, 720);
+        image.setBounds(0, 0, 1250, 720);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -368,7 +367,7 @@ public class userdashboard extends javax.swing.JFrame {
             // CLOSE side-by-side: 300 width + 10px gap
             int cardWidth = 300;
             int cardHeight = 450;
-            int gap = 55; // Small gap between cards
+            int gap = 55; 
             
             // First card: x=400, Second: x=710, Third: x=1020
             int xPosition = 400 + (hotelCardCount * (cardWidth + gap));
@@ -398,16 +397,7 @@ public class userdashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error showing hotel!");
         }
     }
-// private HotelModel getHotelFromDatabase(String hotelName) {
-//        try {
-//        // Instead of direct database code, use HotelDAO
-//        HotelDAO hotelDAO = new HotelDAO();
-//        return hotelDAO.searchHotelByName(hotelName);
-//        
-//    } catch (Exception e) {
-//        JOptionPane.showMessageDialog(this, "Error finding hotel!");
-//        return null;
-//    }
+
   
 
     

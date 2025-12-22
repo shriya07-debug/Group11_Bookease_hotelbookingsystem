@@ -29,16 +29,200 @@ public class superadmindashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        superadmindashboard = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        slogan = new javax.swing.JLabel();
+        menubar = new javax.swing.JLabel();
+        drawerPanel = new javax.swing.JPanel();
+        dashboard = new javax.swing.JLabel();
+        allhoteladmins = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
+        hoteladminsicon = new javax.swing.JLabel();
+        dashboardicon = new javax.swing.JLabel();
+        logouticon = new javax.swing.JLabel();
+        panel = new javax.swing.JLabel();
+        password = new javax.swing.JLabel();
+        hoteladmincredentials = new javax.swing.JLabel();
+        hotelid = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        hotelidfield = new javax.swing.JTextField();
+        emailfield = new javax.swing.JTextField();
+        passwordfield = new javax.swing.JPasswordField();
+        image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
+
+        superadmindashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        superadmindashboard.setForeground(new java.awt.Color(232, 128, 153));
+        superadmindashboard.setText("Super Admin Dashboard");
+        jPanel1.add(superadmindashboard);
+        superadmindashboard.setBounds(600, 50, 410, 44);
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
+        jPanel1.add(logo);
+        logo.setBounds(10, 620, 130, 90);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(100, 660, 90, 50);
+
+        menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        menubar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menubarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(menubar);
+        menubar.setBounds(10, 10, 50, 40);
+
+        drawerPanel.setLayout(null);
+
+        dashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(255, 255, 255));
+        dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
+        drawerPanel.add(dashboard);
+        dashboard.setBounds(70, 160, 150, 30);
+
+        allhoteladmins.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        allhoteladmins.setForeground(new java.awt.Color(255, 255, 255));
+        allhoteladmins.setText("View all hotel admins");
+        allhoteladmins.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                allhoteladminsMouseClicked(evt);
+            }
+        });
+        drawerPanel.add(allhoteladmins);
+        allhoteladmins.setBounds(70, 210, 240, 30);
+
+        logout.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Logout");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        drawerPanel.add(logout);
+        logout.setBounds(70, 260, 150, 30);
+
+        hoteladminsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        drawerPanel.add(hoteladminsicon);
+        hoteladminsicon.setBounds(15, 210, 25, 30);
+
+        dashboardicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/=.png"))); // NOI18N
+        drawerPanel.add(dashboardicon);
+        dashboardicon.setBounds(20, 160, 70, 30);
+
+        logouticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoutbutton.png"))); // NOI18N
+        drawerPanel.add(logouticon);
+        logouticon.setBounds(20, 260, 50, 30);
+
+        panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
+        panel.setMinimumSize(new java.awt.Dimension(363, 720));
+        panel.setPreferredSize(new java.awt.Dimension(330, 700));
+        drawerPanel.add(panel);
+        panel.setBounds(0, 0, 360, 750);
+
+        jPanel1.add(drawerPanel);
+        drawerPanel.setBounds(0, 0, 340, 720);
+
+        password.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setText("Password: ");
+        jPanel1.add(password);
+        password.setBounds(500, 370, 130, 50);
+
+        hoteladmincredentials.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        hoteladmincredentials.setForeground(new java.awt.Color(255, 255, 255));
+        hoteladmincredentials.setText("Hotel Admin Credentials");
+        jPanel1.add(hoteladmincredentials);
+        hoteladmincredentials.setBounds(660, 180, 290, 50);
+
+        hotelid.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        hotelid.setForeground(new java.awt.Color(255, 255, 255));
+        hotelid.setText("Hotel ID:");
+        jPanel1.add(hotelid);
+        hotelid.setBounds(500, 260, 110, 50);
+
+        email.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        email.setForeground(new java.awt.Color(255, 255, 255));
+        email.setText("Email: ");
+        jPanel1.add(email);
+        email.setBounds(500, 320, 110, 40);
+        jPanel1.add(hotelidfield);
+        hotelidfield.setBounds(630, 263, 350, 40);
+        jPanel1.add(emailfield);
+        emailfield.setBounds(630, 320, 350, 40);
+
+        passwordfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordfieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passwordfield);
+        passwordfield.setBounds(630, 373, 350, 40);
+
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/superadmin.png"))); // NOI18N
+        image.setText("jLabel1");
+        jPanel1.add(image);
+        image.setBounds(0, 0, 1370, 720);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menubarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menubarMouseClicked
+        // TODO add your handling code here:
+        if (drawerPanel.getX() < 0) {
+            // Slide IN from left
+            drawerPanel.setBounds(0, 0, 300, 720);
+        } else {
+            // Slide OUT to left
+            drawerPanel.setBounds(-300, 0, 300, 720);
+        }
+    }//GEN-LAST:event_menubarMouseClicked
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        // Open superadmindashboard
+        new superadmindashboard().setVisible(true);
+    }//GEN-LAST:event_dashboardMouseClicked
+
+    private void allhoteladminsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allhoteladminsMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        //Open bookinghistory
+        new bookinghistory().setVisible(true);
+    }//GEN-LAST:event_allhoteladminsMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        // Open logout
+        new logout().setVisible(true);
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void passwordfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordfieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -66,6 +250,26 @@ public class superadmindashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel allhoteladmins;
+    private javax.swing.JLabel dashboard;
+    private javax.swing.JLabel dashboardicon;
+    private javax.swing.JPanel drawerPanel;
+    private javax.swing.JLabel email;
+    private javax.swing.JTextField emailfield;
+    private javax.swing.JLabel hoteladmincredentials;
+    private javax.swing.JLabel hoteladminsicon;
+    private javax.swing.JLabel hotelid;
+    private javax.swing.JTextField hotelidfield;
+    private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel logout;
+    private javax.swing.JLabel logouticon;
+    private javax.swing.JLabel menubar;
+    private javax.swing.JLabel panel;
+    private javax.swing.JLabel password;
+    private javax.swing.JPasswordField passwordfield;
+    private javax.swing.JLabel slogan;
+    private javax.swing.JLabel superadmindashboard;
     // End of variables declaration//GEN-END:variables
 }

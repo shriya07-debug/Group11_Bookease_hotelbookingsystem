@@ -1,9 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+*/
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+
 import dao.BookingDAO;
+import java.awt.HeadlessException;
 import model.BookingModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -32,6 +38,7 @@ public class BookingController {
             for (BookingModel booking : bookings) {
                 hasData = true;
                 Object[] row = {
+                    userId, 
                     booking.getBookingId(),
                     booking.getHotelName(),
                     booking.getCheckInDate(),
@@ -49,7 +56,7 @@ public class BookingController {
                     JOptionPane.INFORMATION_MESSAGE);
             }
             
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null,
                 "Error loading bookings: " + e.getMessage(),
                 "Error",
@@ -82,4 +89,5 @@ public class BookingController {
         return total;
     }
 }
+
 

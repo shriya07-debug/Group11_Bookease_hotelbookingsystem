@@ -21,7 +21,7 @@ public class profile extends javax.swing.JFrame {
         initComponents();
         loadUserData();
         setLocationRelativeTo(null);
-        cancelbutton.setVisible(false); 
+        cancelbutton.setVisible(true);  
     }
     
     private void loadUserData() {
@@ -250,7 +250,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(70, 630, 40, 30);
+        backbutton.setBounds(40, 630, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");

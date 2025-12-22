@@ -37,8 +37,8 @@ public class bookinghistory extends javax.swing.JFrame {
         table.setModel(model); 
     }
     private void loadBookings() {
-        bookingController.loadUserBookings(table, userId);
-        try {
+        
+      try {
         bookingController.loadUserBookings(table, userId);
     } catch (Exception e) {
         System.out.println("Error in loadBookings: " + e.getMessage());
@@ -74,7 +74,6 @@ public class bookinghistory extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
@@ -129,14 +128,14 @@ public class bookinghistory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(160, 30, 40, 30);
+        backbutton.setBounds(30, 600, 30, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         jPanel1.add(image);
         image.setBounds(0, -10, 1200, 690);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-6, 0, 1280, 650);
+        jPanel1.setBounds(0, 0, 1280, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
