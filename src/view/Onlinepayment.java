@@ -8,14 +8,14 @@ package view;
  *
  * @author hp
  */
-public class Onlinepayment extends javax.swing.JFrame {
+public class onlinepayment extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Onlinepayment.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(onlinepayment.class.getName());
 
     /**
      * Creates new form Onlinepayment
      */
-    public Onlinepayment() {
+    public onlinepayment() {
         initComponents();
     }
 
@@ -60,7 +60,7 @@ public class Onlinepayment extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Onlinepayment().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new onlinepayment().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

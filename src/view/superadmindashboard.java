@@ -62,7 +62,7 @@ public class superadmindashboard extends javax.swing.JFrame {
         superadmindashboard.setForeground(new java.awt.Color(232, 128, 153));
         superadmindashboard.setText("Super Admin Dashboard");
         jPanel1.add(superadmindashboard);
-        superadmindashboard.setBounds(600, 50, 410, 44);
+        superadmindashboard.setBounds(590, 50, 410, 44);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         jPanel1.add(logo);

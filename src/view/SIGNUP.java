@@ -4,18 +4,20 @@
  */
 package view;
 
+    
+
 /**
  *
  * @author hp
  */
-public class SIGNUP extends javax.swing.JFrame {
+public class signup extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SIGNUP.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger( signup.class.getName());
 
     /**
      * Creates new form SIGNUP
      */
-    public SIGNUP() {
+    public  signup() {
         initComponents();
     }
 
@@ -28,102 +30,123 @@ public class SIGNUP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SIGNUP1 = new javax.swing.JLabel();
+        signup = new javax.swing.JLabel();
         Username = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         password = new javax.swing.JLabel();
-        acc = new javax.swing.JLabel();
+        account = new javax.swing.JLabel();
         logouser = new javax.swing.JLabel();
         mailbox = new javax.swing.JLabel();
         key = new javax.swing.JLabel();
         hoteltap = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        redbox = new javax.swing.JButton();
+        signupbutton = new javax.swing.JButton();
         layout = new javax.swing.JLabel();
         signup2 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        SIGNUP1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        SIGNUP1.setForeground(new java.awt.Color(204, 0, 51));
-        SIGNUP1.setText("Sign up");
-        getContentPane().add(SIGNUP1);
-        SIGNUP1.setBounds(230, 90, 180, 70);
+        signup.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        signup.setForeground(new java.awt.Color(204, 0, 51));
+        signup.setText("Sign up");
+        getContentPane().add(signup);
+        signup.setBounds(230, 90, 180, 70);
 
-        Username.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Username.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         Username.setForeground(new java.awt.Color(255, 255, 255));
         Username.setText("Username");
         Username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         getContentPane().add(Username);
-        Username.setBounds(190, 210, 240, 30);
+        Username.setBounds(140, 220, 340, 30);
 
-        email.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        email.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("Email");
         email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         getContentPane().add(email);
-        email.setBounds(190, 290, 240, 34);
+        email.setBounds(140, 290, 340, 31);
 
-        password.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        password.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         password.setForeground(new java.awt.Color(255, 255, 255));
         password.setText("Password");
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         getContentPane().add(password);
-        password.setBounds(190, 360, 240, 34);
+        password.setBounds(140, 370, 340, 30);
 
-        acc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        acc.setForeground(new java.awt.Color(255, 255, 255));
-        acc.setText("Already have an account ?");
-        getContentPane().add(acc);
-        acc.setBounds(220, 530, 210, 20);
+        account.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        account.setForeground(new java.awt.Color(255, 255, 255));
+        account.setText("Already have an account ?");
+        account.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountMouseClicked(evt);
+            }
+        });
+        getContentPane().add(account);
+        account.setBounds(200, 530, 230, 20);
 
         logouser.setForeground(new java.awt.Color(255, 255, 255));
-        logouser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/person.png"))); // NOI18N
+        logouser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/head.png"))); // NOI18N
         getContentPane().add(logouser);
-        logouser.setBounds(410, 190, 80, 70);
+        logouser.setBounds(440, 210, 40, 40);
 
-        mailbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
+        mailbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mailicon.png"))); // NOI18N
         getContentPane().add(mailbox);
-        mailbox.setBounds(410, 280, 90, 60);
+        mailbox.setBounds(440, 290, 40, 30);
 
         key.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 1.png"))); // NOI18N
         getContentPane().add(key);
-        key.setBounds(410, 340, 50, 70);
+        key.setBounds(440, 350, 50, 60);
 
         hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
         getContentPane().add(hoteltap);
-        hoteltap.setBounds(100, 10, 160, 40);
+        hoteltap.setBounds(90, 10, 160, 40);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         getContentPane().add(logo);
-        logo.setBounds(30, 0, 100, 110);
+        logo.setBounds(0, -30, 100, 110);
 
-        redbox.setBackground(new java.awt.Color(204, 0, 0));
-        redbox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        redbox.setForeground(new java.awt.Color(255, 0, 153));
-        redbox.setText("Sign up ");
-        redbox.addActionListener(this::redboxActionPerformed);
-        getContentPane().add(redbox);
-        redbox.setBounds(200, 463, 210, 40);
+        signupbutton.setBackground(new java.awt.Color(204, 0, 0));
+        signupbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        signupbutton.setForeground(new java.awt.Color(239, 139, 163));
+        signupbutton.setText("Sign up ");
+        signupbutton.setBorder(null);
+        signupbutton.addActionListener(this::signupbuttonActionPerformed);
+        getContentPane().add(signupbutton);
+        signupbutton.setBounds(200, 463, 210, 40);
 
         layout.setBackground(new java.awt.Color(255, 0, 51));
         layout.setForeground(new java.awt.Color(255, 0, 0));
         layout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/signup page.png"))); // NOI18N
-        layout.setText("jLabel1");
         getContentPane().add(layout);
-        layout.setBounds(0, -50, 1110, 760);
+        layout.setBounds(0, -50, 1270, 760);
 
         signup2.setText("jTextField1");
         getContentPane().add(signup2);
         signup2.setBounds(200, 470, 210, 30);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(null);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void redboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redboxActionPerformed
+    private void signupbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_redboxActionPerformed
+        this.dispose();
+        
+        new login().setVisible(true);
+    }//GEN-LAST:event_signupbuttonActionPerformed
+
+    private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+        new login().setVisible(true);
+    }//GEN-LAST:event_accountMouseClicked
 
     /**
      * @param args the command line arguments
@@ -147,49 +170,23 @@ public class SIGNUP extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SIGNUP().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new  signup().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel SIGNUP1;
     private javax.swing.JLabel Username;
-    private javax.swing.JLabel acc;
+    private javax.swing.JLabel account;
     private javax.swing.JLabel email;
     private javax.swing.JLabel hoteltap;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel key;
     private javax.swing.JLabel layout;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logouser;
     private javax.swing.JLabel mailbox;
     private javax.swing.JLabel password;
-    private javax.swing.JButton redbox;
+    private javax.swing.JLabel signup;
     private javax.swing.JTextField signup2;
+    private javax.swing.JButton signupbutton;
     // End of variables declaration//GEN-END:variables
-}
-private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {
-
-    String username = txtUsername.getText();
-    String email = txtEmail.getText();
-    String password = new String(txtPassword.getPassword());
-
-    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "All fields are required");
-        return;
-    }
-
-    User user = new User();
-    user.setUsername(username);
-    user.setEmail(email);
-    user.setPassword(password);
-
-    UserController controller = new UserController();
-    boolean success = controller.signup(user);
-
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Account Created Successfully");
-        new LOGIN().setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this, "Email already exists");
-    }
 }

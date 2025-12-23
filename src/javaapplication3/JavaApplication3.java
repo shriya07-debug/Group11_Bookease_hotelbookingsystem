@@ -4,6 +4,9 @@
  */
 package javaapplication3;
 
+import controller.UserController;
+import view.login;
+
 /**
  *
  * @author sailenawale
@@ -15,6 +18,14 @@ public class JavaApplication3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+     
+        // Create UserController
+        UserController userController = new UserController();
+        
+        // Create and show login window
+        login loginWindow = new login(userController);
+        loginWindow.setVisible(true);
+    
     }
     
 }

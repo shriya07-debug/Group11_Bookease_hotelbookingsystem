@@ -139,7 +139,7 @@ public class bookinghistory extends javax.swing.JFrame {
         image.setBounds(0, -10, 1200, 690);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1280, 650);
+        jPanel1.setBounds(0, 0, 0, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
