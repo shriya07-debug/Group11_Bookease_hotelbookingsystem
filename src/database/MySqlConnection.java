@@ -22,7 +22,7 @@ public class mysqlconnection implements Database{
             Connection connection;
             connection  = DriverManager.getConnection (
                    
-            "jdbc:mysql://localhost:3306/" +database ,
+            "jdbc:mysql://localhost:3  306/" +database ,
                     username, password
             );
             if(connection == null) {

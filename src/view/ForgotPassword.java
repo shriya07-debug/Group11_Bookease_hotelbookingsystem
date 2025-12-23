@@ -67,7 +67,7 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(btnResetPassword);
-        btnResetPassword.setBounds(510, 550, 240, 50);
+        btnResetPassword.setBounds(510, 580, 240, 50);
 
         edit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         edit.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +85,7 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(btnSendOtp);
-        btnSendOtp.setBounds(570, 240, 100, 23);
+        btnSendOtp.setBounds(570, 240, 100, 27);
 
         txtOtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(btnVerifyOtp);
-        btnVerifyOtp.setBounds(570, 360, 110, 23);
+        btnVerifyOtp.setBounds(570, 360, 110, 27);
 
         jLabel4.setBackground(new java.awt.Color(255, 102, 102));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -140,9 +140,11 @@ public ForgotPassword() {
         maincolorlabel.setBackground(new java.awt.Color(255, 255, 255));
         maincolorlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         maincolorlabel.setForeground(new java.awt.Color(51, 51, 51));
+        maincolorlabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\forgotpasswordcolor.png")); // NOI18N
         maincolorlabel.setText("Enter the OTP");
+        maincolorlabel.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.add(maincolorlabel);
-        maincolorlabel.setBounds(-20, 10, 160, 30);
+        maincolorlabel.setBounds(-20, 10, 1280, 720);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
