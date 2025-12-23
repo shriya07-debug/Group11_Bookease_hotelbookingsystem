@@ -166,3 +166,30 @@ public class SIGNUP extends javax.swing.JFrame {
     private javax.swing.JTextField signup2;
     // End of variables declaration//GEN-END:variables
 }
+private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {
+
+    String username = txtUsername.getText();
+    String email = txtEmail.getText();
+    String password = new String(txtPassword.getPassword());
+
+    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "All fields are required");
+        return;
+    }
+
+    User user = new User();
+    user.setUsername(username);
+    user.setEmail(email);
+    user.setPassword(password);
+
+    UserController controller = new UserController();
+    boolean success = controller.signup(user);
+
+    if (success) {
+        JOptionPane.showMessageDialog(this, "Account Created Successfully");
+        new LOGIN().setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Email already exists");
+    }
+}

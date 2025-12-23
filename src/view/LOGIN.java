@@ -162,3 +162,24 @@ public class LOGIN extends javax.swing.JFrame {
     private javax.swing.JButton redbox;
     // End of variables declaration//GEN-END:variables
 }
+private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
+
+    String email = txtEmail.getText();
+    String password = new String(txtPassword.getPassword());
+
+    LoginController controller = new LoginController();
+    User user = controller.authenticate(email, password);
+
+    if (user != null) {
+        JOptionPane.showMessageDialog(this, "Login Successful");
+
+        if (user.getRole().equals("ADMIN")) {
+            new AdminDashboard().setVisible(true);
+        } else {
+            new UserDashboard().setVisible(true);
+        }
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Invalid Email or Password");
+    }
+}

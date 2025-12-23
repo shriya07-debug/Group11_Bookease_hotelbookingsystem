@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -42,11 +43,29 @@ public class UserDAO {
             Connection con = getConnection();
             String sql = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(sql);
+=======
+package dao;
+
+import database.Database;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class UserDAO {
+
+    public boolean login(String email, String password) {
+
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+>>>>>>> b2f44b22a35445cf1883b30363baff567fa1a9e6
 
             ps.setString(1, email);
             ps.setString(2, password);
 
             ResultSet rs = ps.executeQuery();
+<<<<<<< HEAD
             if (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
@@ -60,3 +79,14 @@ public class UserDAO {
         return null;
     }
 }
+=======
+
+            return rs.next(); // true if user exists
+
+        } catch (Exception e) {
+        }
+
+        return false;
+    }
+}
+>>>>>>> b2f44b22a35445cf1883b30363baff567fa1a9e6
