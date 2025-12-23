@@ -11,6 +11,8 @@ import java.sql.*;
  */
 
     public interface Database {
+
+    public static Connection getConnection();
     Connection openConnection();
     void closeConnection (Connection conn);
     ResultSet runQuery(Connection conn, String query);
