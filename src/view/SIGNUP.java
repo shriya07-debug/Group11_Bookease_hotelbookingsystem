@@ -4,20 +4,25 @@
  */
 package view;
 
-    
+import controller.UserController;
+
+
+
 
 /**
  *
  * @author hp
  */
 public class signup extends javax.swing.JFrame {
-    
+    private final UserController userController;
+   
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger( signup.class.getName());
-
+   
     /**
      * Creates new form SIGNUP
      */
     public  signup() {
+        userController = new UserController();
         initComponents();
     }
 
@@ -30,10 +35,8 @@ public class signup extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        emailfield = new javax.swing.JTextField();
         signup = new javax.swing.JLabel();
-        Username = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
-        password = new javax.swing.JLabel();
         account = new javax.swing.JLabel();
         logouser = new javax.swing.JLabel();
         mailbox = new javax.swing.JLabel();
@@ -41,39 +44,25 @@ public class signup extends javax.swing.JFrame {
         hoteltap = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         signupbutton = new javax.swing.JButton();
+        usernamefield = new javax.swing.JTextField();
+        username = new javax.swing.JLabel();
+        password = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        passwordfield = new javax.swing.JPasswordField();
         layout = new javax.swing.JLabel();
         signup2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+        getContentPane().add(emailfield);
+        emailfield.setBounds(120, 290, 320, 40);
 
         signup.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         signup.setForeground(new java.awt.Color(204, 0, 51));
         signup.setText("Sign up");
         getContentPane().add(signup);
-        signup.setBounds(230, 90, 180, 70);
-
-        Username.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        Username.setForeground(new java.awt.Color(255, 255, 255));
-        Username.setText("Username");
-        Username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(Username);
-        Username.setBounds(140, 220, 340, 30);
-
-        email.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        email.setForeground(new java.awt.Color(255, 255, 255));
-        email.setText("Email");
-        email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(email);
-        email.setBounds(140, 290, 340, 31);
-
-        password.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        password.setText("Password");
-        password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(password);
-        password.setBounds(140, 370, 340, 30);
+        signup.setBounds(240, 80, 180, 70);
 
         account.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         account.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,20 +73,20 @@ public class signup extends javax.swing.JFrame {
             }
         });
         getContentPane().add(account);
-        account.setBounds(200, 530, 230, 20);
+        account.setBounds(190, 510, 230, 20);
 
         logouser.setForeground(new java.awt.Color(255, 255, 255));
         logouser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/head.png"))); // NOI18N
         getContentPane().add(logouser);
-        logouser.setBounds(440, 210, 40, 40);
+        logouser.setBounds(450, 210, 40, 40);
 
         mailbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mailicon.png"))); // NOI18N
         getContentPane().add(mailbox);
-        mailbox.setBounds(440, 290, 40, 30);
+        mailbox.setBounds(450, 290, 40, 30);
 
         key.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 1.png"))); // NOI18N
         getContentPane().add(key);
-        key.setBounds(440, 350, 50, 60);
+        key.setBounds(450, 360, 50, 60);
 
         hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
         getContentPane().add(hoteltap);
@@ -114,7 +103,29 @@ public class signup extends javax.swing.JFrame {
         signupbutton.setBorder(null);
         signupbutton.addActionListener(this::signupbuttonActionPerformed);
         getContentPane().add(signupbutton);
-        signupbutton.setBounds(200, 463, 210, 40);
+        signupbutton.setBounds(190, 450, 210, 40);
+        getContentPane().add(usernamefield);
+        usernamefield.setBounds(120, 210, 320, 40);
+
+        username.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("Username");
+        getContentPane().add(username);
+        username.setBounds(120, 180, 120, 30);
+
+        password.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setText("Password");
+        getContentPane().add(password);
+        password.setBounds(120, 340, 120, 30);
+
+        email.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        email.setForeground(new java.awt.Color(255, 255, 255));
+        email.setText("Email");
+        getContentPane().add(email);
+        email.setBounds(120, 260, 120, 30);
+        getContentPane().add(passwordfield);
+        passwordfield.setBounds(120, 370, 320, 40);
 
         layout.setBackground(new java.awt.Color(255, 0, 51));
         layout.setForeground(new java.awt.Color(255, 0, 0));
@@ -136,9 +147,8 @@ public class signup extends javax.swing.JFrame {
 
     private void signupbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbuttonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
+         signupAction();
+            
     }//GEN-LAST:event_signupbuttonActionPerformed
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
@@ -147,6 +157,21 @@ public class signup extends javax.swing.JFrame {
         
         new login().setVisible(true);
     }//GEN-LAST:event_accountMouseClicked
+private void signupAction() {
+        String username = usernamefield.getText().trim();
+        String email = emailfield.getText().trim();
+        String password = new String(passwordfield.getPassword()).trim();
+        
+        boolean success = userController.signup(username, email, password);
+        
+        if (success) {
+            dispose();
+            new login().setVisible(true);
+        }
+    }
+   
+    
+
 
     /**
      * @param args the command line arguments
@@ -174,9 +199,9 @@ public class signup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Username;
     private javax.swing.JLabel account;
     private javax.swing.JLabel email;
+    private javax.swing.JTextField emailfield;
     private javax.swing.JLabel hoteltap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel key;
@@ -185,8 +210,11 @@ public class signup extends javax.swing.JFrame {
     private javax.swing.JLabel logouser;
     private javax.swing.JLabel mailbox;
     private javax.swing.JLabel password;
+    private javax.swing.JPasswordField passwordfield;
     private javax.swing.JLabel signup;
     private javax.swing.JTextField signup2;
     private javax.swing.JButton signupbutton;
+    private javax.swing.JLabel username;
+    private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
 }

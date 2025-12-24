@@ -86,8 +86,6 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jTable1.setSelectionBackground(new java.awt.Color(232, 57, 95));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.setShowGrid(true);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);

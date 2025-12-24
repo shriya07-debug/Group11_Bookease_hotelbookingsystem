@@ -8,12 +8,18 @@ public class UserDAO {
     private static final String USER = "root";
     private static final String PASSWORD = "";
     
-    // Constructor
     public UserDAO() {
-        // Simple constructor
+        testConnection();
     }
     
-    // Login method
+    private void testConnection() {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            System.out.println(" Database connection successful!");
+        } catch (SQLException e) {
+            System.out.println(" Database connection failed: " + e.getMessage());
+        }
+    }
+    
     public UserModel login(String email, String password) {
         String sql = "SELECT user_id, username, email, role, status, hotel_id FROM users WHERE email = ? AND password = ?";
         
@@ -37,12 +43,11 @@ public class UserDAO {
             }
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Login error: " + e.getMessage());
         }
         return null;
     }
     
-    // Signup method
     public boolean signup(UserModel user) {
         String sql = "INSERT INTO users (username, email, password, role, status) VALUES (?, ?, ?, ?, ?)";
         
@@ -55,19 +60,14 @@ public class UserDAO {
             pstmt.setString(4, user.getRole());
             pstmt.setString(5, user.getStatus() != null ? user.getStatus() : "pending");
             
-            int rows = pstmt.executeUpdate();
-            return rows > 0;
+            return pstmt.executeUpdate() > 0;
             
         } catch (SQLException e) {
-            if (e.getMessage().contains("Duplicate")) {
-                System.out.println("Email already exists!");
-            }
-            e.printStackTrace();
+            System.out.println("Signup error: " + e.getMessage());
             return false;
         }
     }
     
-    // Check if email exists
     public boolean emailExists(String email) {
         String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         
@@ -82,7 +82,7 @@ public class UserDAO {
             }
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Email check error: " + e.getMessage());
         }
         return false;
     }

@@ -1,7 +1,6 @@
 package model;
 
 public class UserModel {
-    // Private fields
     private int userId;
     private String username;
     private String email;
@@ -10,19 +9,9 @@ public class UserModel {
     private Integer hotelId;
     private String status;
     
-    // =============== CONSTRUCTORS ===============
+    // Constructors
+    public UserModel() {}
     
-    // Empty constructor
-    public UserModel() {
-    }
-    
-    // Constructor for LOGIN (minimal fields)
-    public UserModel(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-    
-    // Constructor for SIGNUP
     public UserModel(String username, String email, String password, String role) {
         this.username = username;
         this.email = email;
@@ -31,92 +20,31 @@ public class UserModel {
         this.status = "pending";
     }
     
-    // Full constructor (all fields)
-    public UserModel(int userId, String username, String email, String password, 
-                     String role, Integer hotelId, String status) {
-        this.userId = userId;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.hotelId = hotelId;
-        this.status = status;
-    }
+    // Getters and Setters
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
     
-    // =============== GETTERS ===============
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
     
-    public int getUserId() {
-        return userId;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
     
-    public String getUsername() {
-        return username;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
     
-    public String getEmail() {
-        return email;
-    }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
     
-    public String getPassword() {
-        return password;
-    }
+    public Integer getHotelId() { return hotelId; }
+    public void setHotelId(Integer hotelId) { this.hotelId = hotelId; }
     
-    public String getRole() {
-        return role;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
     
-    public Integer getHotelId() {
-        return hotelId;
-    }
-    
-    public String getStatus() {
-        return status;
-    }
-    
-    // =============== SETTERS ===============
-    
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-    
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    public void setRole(String role) {
-        this.role = role;
-    }
-    
-    public void setHotelId(Integer hotelId) {
-        this.hotelId = hotelId;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
-    // =============== UTILITY METHODS ===============
-    
+    // Utility methods
     public boolean isActive() {
         return "active".equalsIgnoreCase(this.status);
-    }
-    
-    public boolean isAdmin() {
-        return "superadmin".equalsIgnoreCase(this.role) || 
-               "hotel_admin".equalsIgnoreCase(this.role);
-    }
-    
-    public boolean isValidForLogin() {
-        return email != null && !email.trim().isEmpty() && 
-               password != null && !password.trim().isEmpty();
     }
     
     @Override

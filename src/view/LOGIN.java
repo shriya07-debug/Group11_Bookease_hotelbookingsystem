@@ -5,7 +5,8 @@
 package view;
 
 import controller.UserController;
-import java.awt.HeadlessException;
+import model.UserModel;
+import javax.swing.*;
 
 /**
  *
@@ -13,22 +14,20 @@ import java.awt.HeadlessException;
  */
 public class login extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
     private final UserController userController;
+    
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
 
     /**
      * Creates new form LOGIN
-     * @param userController
+     * @param 
      */
-
-    public login(UserController userController) {
-        this.userController = userController;
-        initComponents();
-    }
     
     public login() {
-        this.userController = new UserController();
+        userController = new UserController();
         initComponents();
+   
     }
         /**
          * This method is called from within the constructor to initialize the form.
@@ -62,6 +61,9 @@ public class login extends javax.swing.JFrame {
         layout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -102,8 +104,6 @@ public class login extends javax.swing.JFrame {
         Login.setText("Login ");
         jPanel1.add(Login);
         Login.setBounds(780, 110, 130, 60);
-
-        emailfield.addActionListener(this::emailfieldActionPerformed);
         jPanel1.add(emailfield);
         emailfield.setBounds(660, 250, 320, 50);
         jPanel1.add(passwordfield);
@@ -126,7 +126,7 @@ public class login extends javax.swing.JFrame {
         password.setBounds(660, 320, 120, 30);
 
         loginbutton.setBackground(new java.awt.Color(184, 12, 47));
-        loginbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        loginbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         loginbutton.setForeground(new java.awt.Color(239, 139, 163));
         loginbutton.setText("Login");
         loginbutton.setBorder(null);
@@ -146,39 +146,7 @@ public class login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void openDashboard(model.UserModel user) {
-    String role = user.getRole().toLowerCase();
-    
-    switch (role) {
-        case "superadmin":
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Opening Super Admin Dashboard...",
-                "Welcome Admin",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            // TODO: Open superadmin dashboard
-            new superadmindashboard().setVisible(true);
-            break;
-            
-        case "hotel_admin":
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Opening Hotel Management Dashboard...",
-                "Welcome Hotel Manager",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            // TODO: Open hotel admin dashboard
-            // new HotelAdminDashboard(user).setVisible(true);
-            break;
-            
-        case "customer":
-        default:
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Opening User Dashboard...",
-                "Welcome " + user.getUsername(),
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            // TODO: Open customer dashboard
-            new userdashboard().setVisible(true);
-            break;
-    }
-}
+
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
         // TODO add your handling code here:
         this.dispose();
@@ -187,89 +155,38 @@ private void openDashboard(model.UserModel user) {
         new signup().setVisible(true);
     }//GEN-LAST:event_accountMouseClicked
 
-    private void emailfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailfieldActionPerformed
-
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
-        // Get email and password from fields
-    String email = emailfield.getText().trim();
-    String password = new String(passwordfield.getPassword()).trim();
-    
-    // Validate inputs
-    if (email.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Please enter your email address", 
-            "Email Required", 
-            javax.swing.JOptionPane.WARNING_MESSAGE);
-        emailfield.requestFocus();
-        return;
-    }
-    
-    if (password.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Please enter your password", 
-            "Password Required", 
-            javax.swing.JOptionPane.WARNING_MESSAGE);
-        passwordfield.requestFocus();
-        return;
-    }
-    
-    // Validate email format (basic check)
-    if (!email.contains("@") || !email.contains(".")) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Please enter a valid email address", 
-            "Invalid Email", 
-            javax.swing.JOptionPane.WARNING_MESSAGE);
-        emailfield.requestFocus();
-        return;
-    }
-    
-    try {
-        // Use UserController to authenticate
-        if (userController != null) {
-            model.UserModel loggedInUser = userController.login(email, password);
-            
-            if (loggedInUser != null) {
-                // Login successful
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Login Successful!\nWelcome, " + loggedInUser.getUsername() + "!\nRole: " + loggedInUser.getRole(),
-                    "Success",
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                
-                // Close login window
-                this.dispose();
-                
-                // TODO: Open dashboard based on role
-                // For now, just show a message
-                System.out.println("User logged in: " + loggedInUser.getUsername() + 
-                                   " | Role: " + loggedInUser.getRole());
-                
-            } else {
-                // Login failed
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Invalid email or password.\nPlease try again.",
-                    "Login Failed",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
-                
-                // Clear password field
-                passwordfield.setText("");
-                passwordfield.requestFocus();
-            }
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "System error: Authentication service not available",
-                "Error",
-                javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Error during login: " + e.getMessage(),
-            "System Error",
-            javax.swing.JOptionPane.ERROR_MESSAGE);
-     }
+         loginAction();
+                 
     }//GEN-LAST:event_loginbuttonActionPerformed
+    private void loginAction() {
+        String email = emailfield.getText().trim();
+        String password = new String(passwordfield.getPassword()).trim();
+        
+        UserModel user = userController.login(email, password);
+        
+        if (user != null) {
+            // Login successful - open appropriate dashboard
+            dispose();
+            openDashboard(user);
+        }
+    }
+    
+    private void openDashboard(UserModel user) {
+        String role = user.getRole().toLowerCase();
+        
+        switch (role) {
+            case "superadmin" -> JOptionPane.showMessageDialog(this, "Opening Super Admin Dashboard");
+            // new SuperAdminDashboard().setVisible(true);
+            case "hotel_admin" -> JOptionPane.showMessageDialog(this, "Opening Hotel Admin Dashboard");
+            // new HotelAdminDashboard().setVisible(true);
+            default -> JOptionPane.showMessageDialog(this, "Opening User Dashboard");
+            // new UserDashboard().setVisible(true);
+        }
+    }
+    
+
 
     /**
      * @param args the command line arguments
@@ -312,6 +229,5 @@ private void openDashboard(model.UserModel user) {
     private javax.swing.JLabel password;
     private javax.swing.JPasswordField passwordfield;
     // End of variables declaration//GEN-END:variables
-
     
 }
