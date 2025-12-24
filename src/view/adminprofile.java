@@ -1,16 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
-
-    void setVisible(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-//    void setVisible(boolean b) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 
 /**
  *
@@ -36,277 +25,198 @@ public class adminprofile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        profile = new javax.swing.JLabel();
-        slogan = new javax.swing.JLabel();
-        cancelbutton = new javax.swing.JButton();
-        logoutbutton = new javax.swing.JButton();
-        editbutton = new javax.swing.JButton();
-        email = new javax.swing.JLabel();
-        phoneno = new javax.swing.JLabel();
-        userid = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        mailicon = new javax.swing.JLabel();
-        nameicon = new javax.swing.JLabel();
-        noicon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        fullname = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        idicon = new javax.swing.JLabel();
-        image = new javax.swing.JLabel();
+        backgroundpannel = new javax.swing.JPanel();
+        HotelLogo = new javax.swing.JLabel();
+        Profile = new javax.swing.JLabel();
+        Hotelicon = new javax.swing.JLabel();
+        Back = new javax.swing.JLabel();
+        HotelID = new javax.swing.JLabel();
+        HotelIDseperator = new javax.swing.JSeparator();
+        FullName = new javax.swing.JLabel();
+        FullNameseperator = new javax.swing.JSeparator();
+        Email = new javax.swing.JLabel();
+        EmailSeperatror = new javax.swing.JSeparator();
+        Phone = new javax.swing.JLabel();
+        Phoneseperator = new javax.swing.JSeparator();
+        Edit = new javax.swing.JButton();
+        Cancel = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
+        Hotellogo = new javax.swing.JLabel();
+        NameLogo = new javax.swing.JLabel();
+        Emaillogo = new javax.swing.JLabel();
+        Phonelogo = new javax.swing.JLabel();
+        backgroundcolor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setLayout(null);
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 100, 100);
+        backgroundpannel.setPreferredSize(new java.awt.Dimension(1280, 720));
+        backgroundpannel.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setLayout(null);
+        HotelLogo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        HotelLogo.setForeground(new java.awt.Color(89, 4, 20));
+        HotelLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Documents\\Netbeans\\Group11_Bookease_hotelbookingsystem\\src\\images\\adsT 3.png")); // NOI18N
+        HotelLogo.setText("Hotel in a Tap");
+        backgroundpannel.add(HotelLogo);
+        HotelLogo.setBounds(110, 20, 180, 60);
 
-        profile.setBackground(new java.awt.Color(201, 12, 51));
-        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        profile.setForeground(new java.awt.Color(201, 12, 51));
-        profile.setText("Profile");
-        jPanel2.add(profile);
-        profile.setBounds(60, 300, 190, 70);
+        Profile.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        Profile.setForeground(new java.awt.Color(201, 12, 51));
+        Profile.setText("Profile");
+        backgroundpannel.add(Profile);
+        Profile.setBounds(140, 290, 110, 60);
 
-        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        slogan.setText("Hotel in a tap");
-        jPanel2.add(slogan);
-        slogan.setBounds(120, 40, 90, 16);
+        Hotelicon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Vector (4).png")); // NOI18N
+        backgroundpannel.add(Hotelicon);
+        Hotelicon.setBounds(160, 200, 70, 100);
 
-        cancelbutton.setBackground(new java.awt.Color(184, 12, 47));
-        cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        cancelbutton.setForeground(new java.awt.Color(232, 128, 153));
-        cancelbutton.setText("Cancel");
-        cancelbutton.setBorder(null);
-        cancelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelbuttonMouseClicked(evt);
-            }
-        });
-        cancelbutton.addActionListener(new java.awt.event.ActionListener() {
+        Back.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Vector (5).png")); // NOI18N
+        backgroundpannel.add(Back);
+        Back.setBounds(130, 650, 50, 30);
+
+        HotelID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        HotelID.setForeground(new java.awt.Color(255, 255, 255));
+        HotelID.setText("Hotel ID");
+        backgroundpannel.add(HotelID);
+        HotelID.setBounds(530, 140, 60, 30);
+        backgroundpannel.add(HotelIDseperator);
+        HotelIDseperator.setBounds(620, 160, 250, 10);
+
+        FullName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        FullName.setForeground(new java.awt.Color(255, 255, 255));
+        FullName.setText("Full Name");
+        backgroundpannel.add(FullName);
+        FullName.setBounds(530, 210, 80, 30);
+        backgroundpannel.add(FullNameseperator);
+        FullNameseperator.setBounds(620, 233, 250, 10);
+
+        Email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Email.setForeground(new java.awt.Color(255, 255, 255));
+        Email.setText("Email");
+        backgroundpannel.add(Email);
+        Email.setBounds(530, 280, 50, 30);
+        backgroundpannel.add(EmailSeperatror);
+        EmailSeperatror.setBounds(620, 300, 250, 10);
+
+        Phone.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Phone.setForeground(new java.awt.Color(255, 255, 255));
+        Phone.setText("Phone");
+        backgroundpannel.add(Phone);
+        Phone.setBounds(530, 350, 50, 30);
+        backgroundpannel.add(Phoneseperator);
+        Phoneseperator.setBounds(620, 370, 250, 20);
+
+        Edit.setBackground(new java.awt.Color(184, 12, 47));
+        Edit.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        Edit.setForeground(new java.awt.Color(232, 128, 153));
+        Edit.setText("Edit");
+        Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelbuttonActionPerformed(evt);
+                EditActionPerformed(evt);
             }
         });
-        jPanel2.add(cancelbutton);
-        cancelbutton.setBounds(630, 430, 110, 30);
+        backgroundpannel.add(Edit);
+        Edit.setBounds(510, 470, 80, 28);
 
-        logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
-        logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        logoutbutton.setForeground(new java.awt.Color(232, 128, 153));
-        logoutbutton.setText("Logout");
-        logoutbutton.setBorder(null);
-        logoutbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutbuttonMouseClicked(evt);
-            }
-        });
-        logoutbutton.addActionListener(new java.awt.event.ActionListener() {
+        Cancel.setBackground(new java.awt.Color(184, 12, 47));
+        Cancel.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        Cancel.setForeground(new java.awt.Color(232, 128, 153));
+        Cancel.setText("Cancel");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutbuttonActionPerformed(evt);
+                CancelActionPerformed(evt);
             }
         });
-        jPanel2.add(logoutbutton);
-        logoutbutton.setBounds(510, 510, 110, 30);
+        backgroundpannel.add(Cancel);
+        Cancel.setBounds(790, 470, 80, 28);
 
-        editbutton.setBackground(new java.awt.Color(184, 12, 47));
-        editbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        editbutton.setForeground(new java.awt.Color(232, 128, 153));
-        editbutton.setText("Edit");
-        editbutton.setBorder(null);
-        editbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editbuttonActionPerformed(evt);
-            }
-        });
-        jPanel2.add(editbutton);
-        editbutton.setBounds(380, 433, 110, 30);
+        Logout.setBackground(new java.awt.Color(184, 12, 47));
+        Logout.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        Logout.setForeground(new java.awt.Color(232, 128, 153));
+        Logout.setText("Logout");
+        backgroundpannel.add(Logout);
+        Logout.setBounds(650, 540, 90, 28);
 
-        email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        email.setForeground(new java.awt.Color(255, 255, 255));
-        email.setText("E-mail");
-        jPanel2.add(email);
-        email.setBounds(380, 260, 330, 30);
+        Hotellogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\id-badge.png")); // NOI18N
+        backgroundpannel.add(Hotellogo);
+        Hotellogo.setBounds(850, 124, 20, 40);
 
-        phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        phoneno.setForeground(new java.awt.Color(255, 255, 255));
-        phoneno.setText("Phone no");
-        jPanel2.add(phoneno);
-        phoneno.setBounds(380, 330, 340, 30);
+        NameLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\image 8.png")); // NOI18N
+        backgroundpannel.add(NameLogo);
+        NameLogo.setBounds(850, 200, 20, 40);
 
-        userid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        userid.setForeground(new java.awt.Color(255, 255, 255));
-        userid.setText("User Id");
-        jPanel2.add(userid);
-        userid.setBounds(380, 120, 310, 30);
+        Emaillogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\image 8 (1).png")); // NOI18N
+        backgroundpannel.add(Emaillogo);
+        Emaillogo.setBounds(850, 280, 30, 20);
 
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2);
-        jSeparator2.setBounds(430, 290, 290, 30);
+        Phonelogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\image 8 (2).png")); // NOI18N
+        backgroundpannel.add(Phonelogo);
+        Phonelogo.setBounds(850, 350, 37, 16);
 
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3);
-        jSeparator3.setBounds(440, 360, 280, 20);
+        backgroundcolor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Screenshot 2025-12-24 082945.png"))); // NOI18N
+        backgroundpannel.add(backgroundcolor);
+        backgroundcolor.setBounds(-20, 10, 1740, 720);
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4);
-        jSeparator4.setBounds(450, 150, 270, 50);
-
-        mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
-        jPanel2.add(mailicon);
-        mailicon.setBounds(700, 270, 30, 20);
-
-        nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
-        jPanel2.add(nameicon);
-        nameicon.setBounds(700, 200, 42, 17);
-
-        noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
-        jPanel2.add(noicon);
-        noicon.setBounds(700, 340, 42, 17);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(40, 130, 140, 170);
-
-        fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        fullname.setForeground(new java.awt.Color(255, 255, 255));
-        fullname.setText("Full name");
-        jPanel2.add(fullname);
-        fullname.setBounds(380, 190, 330, 30);
-
-        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5);
-        jSeparator5.setBounds(470, 220, 250, 20);
-        jPanel2.add(idicon);
-        idicon.setBounds(700, 120, 42, 30);
-
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
-        image.setText("jLabel1");
-        jPanel2.add(image);
-        image.setBounds(0, 0, 1280, 740);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 1280, 720);
+        getContentPane().add(backgroundpannel);
+        backgroundpannel.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseClicked
+    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancelbuttonMouseClicked
+    }//GEN-LAST:event_EditActionPerformed
 
-    private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
-        //        // TODO add your handling code here:
-        //        editbutton.setText("Edit");
-        //        cancelbutton.setVisible(true);
-        //        loadUserData(); // Reload original data
-        //
-        //        this.dispose();
-        //        new admindashboard().setVisible(true);
-    }//GEN-LAST:event_cancelbuttonActionPerformed
-
-    private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logoutbuttonMouseClicked
-
-    private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
-        // TODO add your handling code here:
-        //        this.dispose(); // Close adminprofilee
-        //        new logout().setVisible(true); // Open logout
-    }//GEN-LAST:event_logoutbuttonActionPerformed
-
-    private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
-        // TODO add your handling code here:
-        //     String currentName = fullname.getText().replace("Full Name: ", "");
-        //
-        //    // 2. Ask for new name
-        //    String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
-
-        // 3. If user entered something, update it
-        //    if (newName != null && !newName.trim().isEmpty()) {
-            // Update on screen
-            //        fullname.setText("Full Name: " + newName.trim());
-
-            // Save to database
-            //        try {
-                //            Connection conn = DriverManager.getConnection(
-                    //                "jdbc:mysql://localhost:3306/hotel_booking",
-                    //                "root",
-                    //                "shr7y42007@#"
-                    //            );
-                //
-                //            String sql = "UPDATE users SET full_name = ? WHERE user_id = ?";
-                //            PreparedStatement stmt = conn.prepareStatement(sql);
-                //            stmt.setString(1, newName.trim());
-                //            stmt.setInt(2, currentUserId);
-                //            stmt.executeUpdate();
-                //
-                //            stmt.close();
-                //            conn.close();
-
-                //            JOptionPane.showMessageDialog(this, "Name updated!");
-                //
-                //        } catch (Exception e) {
-                //            JOptionPane.showMessageDialog(this, "Error saving!");
-                //        }
-            //      }
-        // Edit Email
-        //    String currentEmail = email.getText().replace("Email: ", "");
-        //    String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
-        //
-        //    if (newEmail != null && !newEmail.trim().isEmpty()) {
-            //        email.setText("Email: " + newEmail.trim());
-            // Save email to database (add similar code as above)
-        }
-
-        // Edit Phone
-        //    String currentPhone = phoneno.getText().replace("Phone: ", "");
-        //    String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
-
-        //    if (newPhone != null && !newPhone.trim().isEmpty()) {
-            //        phoneno.setText("Phone: " + newPhone.trim());
-            // Save phone to database (add similar code as above)
-            //    }
-        //
-    }//GEN-LAST:event_editbuttonActionPerformed
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
-       
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new adminprofile().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelbutton;
-    private javax.swing.JButton editbutton;
-    private javax.swing.JLabel email;
-    private javax.swing.JLabel fullname;
-    private javax.swing.JLabel idicon;
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JButton logoutbutton;
-    private javax.swing.JLabel mailicon;
-    private javax.swing.JLabel nameicon;
-    private javax.swing.JLabel noicon;
-    private javax.swing.JLabel phoneno;
-    private javax.swing.JLabel profile;
-    private javax.swing.JLabel slogan;
-    private javax.swing.JLabel userid;
+    private javax.swing.JLabel Back;
+    private javax.swing.JButton Cancel;
+    private javax.swing.JButton Edit;
+    private javax.swing.JLabel Email;
+    private javax.swing.JSeparator EmailSeperatror;
+    private javax.swing.JLabel Emaillogo;
+    private javax.swing.JLabel FullName;
+    private javax.swing.JSeparator FullNameseperator;
+    private javax.swing.JLabel HotelID;
+    private javax.swing.JSeparator HotelIDseperator;
+    private javax.swing.JLabel HotelLogo;
+    private javax.swing.JLabel Hotelicon;
+    private javax.swing.JLabel Hotellogo;
+    private javax.swing.JButton Logout;
+    private javax.swing.JLabel NameLogo;
+    private javax.swing.JLabel Phone;
+    private javax.swing.JLabel Phonelogo;
+    private javax.swing.JSeparator Phoneseperator;
+    private javax.swing.JLabel Profile;
+    private javax.swing.JLabel backgroundcolor;
+    private javax.swing.JPanel backgroundpannel;
     // End of variables declaration//GEN-END:variables
-
+}

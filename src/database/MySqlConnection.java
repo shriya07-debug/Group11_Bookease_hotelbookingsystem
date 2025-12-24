@@ -13,6 +13,10 @@ import java.sql.*;
 
 public class mysqlconnection implements Database{
 
+    public static Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public Connection openConnection() {
         try{
