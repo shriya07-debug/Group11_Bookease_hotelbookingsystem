@@ -41,8 +41,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-<<<<<<< HEAD
 }
-=======
-} 
->>>>>>> b2f44b22a35445cf1883b30363baff567fa1a9e6

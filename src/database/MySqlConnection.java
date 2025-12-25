@@ -7,79 +7,113 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
-/**
- *
- * @author sailenawale
- */
 
-    
-public class MySqlConnection implements Database{
 
-    public MySqlConnection() {
+public class mysqlconnection implements Database{
+
+    public static Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Connection openConnection() {
+        try{
+            String username = "root";
+            String password = "1234";
+            String database = "hotel_booking";
+            Connection connection;
+            connection  = DriverManager.getConnection (
+                   
+            "jdbc:mysql://localhost:3  306/" +database ,
+                    username, password
+            );
+            if(connection == null) {
+                System.out.print("Connection unsuccessfull");
+            } else {
+                System.out.println("Connection successfull");
+            }
+            return connection;
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+          }
+
+    @Override
+     public ResultSet runQuery(Connection conn, String query) {
+
+       try{
+
+           Statement stmp = conn.createStatement();
+
+           ResultSet result = stmp.executeQuery(query);
+
+           return result;
+
+       
+
+       }catch (SQLException e){
+
+           System.out.println(e);
+
+           return null;
+
+       }
+
+    }
+
+
+
+
+          
+    @Override
+       public int executeUpdate(Connection conn, String query) {
+
       try{
-          String username = "root";
-          String password = "shr7y42007@#";
-          String database = "hotel_booking"; 
-          Connection connection;
-          connection = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/" + database, username, password);
-          if(connection == null)
-          {
-              System.out.print("Connection unsuccessfull");
-          }
-          else
-          {
-          System.out.print("Connection successfull");
-          }
-          return connection;
-      } catch(Exception e){
+
+          Statement stmp = conn.createStatement();
+
+          int result = stmp.executeUpdate(query);
+
+          return result;
+
+          
+
+      }catch(SQLException e){
+
           System.out.println(e);
-          return null;
+
+          return -1;
+
       }
+
     }
 
     @Override
     public void closeConnection(Connection conn) {
-        try{
-       if(conn != null && !conn.isClosed()){
-            conn.close();
-            System.out.print("Connection close");
-        }
+           try{
+
+            if(conn != null && !conn.isClosed() ){
+
+                conn.close();
+
+                System.out.println("Connection close");
+
+            }
+
+            
+
         }catch(Exception e){
-                System.out.println(e);
-                }
-        }
 
-    @Override
-    public ResultSet runQuery(Connection conn, String query) {
-        try {
-            Statement stmp = conn.createStatement();
-            ResultSet result = stmp.executeQuery(query);
-            return result;
-        }
-        catch(Exception e){
             System.out.println(e);
-            return null;
+
+            
+
         }
-    }
 
-    @Override
-    public int executeUpdate(Connection conn, String query) {
-       try {
-           Statement stmp = conn. createStatement();
-           int result = stmp.executeUpdate(query);
-           return result;
-       } catch(Exception e) {
-           System.out.println(e);
-           return -1;
-       }
     }
+   
 }
-
-
