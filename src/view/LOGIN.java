@@ -90,7 +90,7 @@ public class login extends javax.swing.JFrame {
 
         forgetpassword.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         forgetpassword.setForeground(new java.awt.Color(255, 255, 255));
-        forgetpassword.setText("Forget password ?");
+        forgetpassword.setText("Forget password?");
         jPanel1.add(forgetpassword);
         forgetpassword.setBounds(860, 520, 170, 30);
 
@@ -177,13 +177,25 @@ public class login extends javax.swing.JFrame {
         String role = user.getRole().toLowerCase();
         
         switch (role) {
-            case "superadmin" -> JOptionPane.showMessageDialog(this, "Opening Super Admin Dashboard");
-            // new SuperAdminDashboard().setVisible(true);
-            case "hotel_admin" -> JOptionPane.showMessageDialog(this, "Opening Hotel Admin Dashboard");
+        case "superadmin":
+        case "admin":
+            JOptionPane.showMessageDialog(this, "Opening Super Admin Dashboard");
+            new superadmindashboard().setVisible(true);
+            break;
+            
+        case "hotel_admin":
+        case "hotel admin":
+            JOptionPane.showMessageDialog(this, "Opening Hotel Admin Dashboard");
             // new HotelAdminDashboard().setVisible(true);
-            default -> JOptionPane.showMessageDialog(this, "Opening User Dashboard");
-            // new UserDashboard().setVisible(true);
-        }
+            break;
+            
+        case "user":
+        case "customer":
+        default:
+            JOptionPane.showMessageDialog(this, "Opening User Dashboard");
+            new userdashboard().setVisible(true);
+            break;
+    }
     }
     
 

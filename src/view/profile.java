@@ -16,7 +16,7 @@ import model.ProfileModel;
 public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
-    private final int currentUserId = 1; // Your user ID
+    private int currentUserId;// Your user ID
     private String currentPhotoPath;
    
  
@@ -24,13 +24,39 @@ public class profile extends javax.swing.JFrame {
     /**
      * Creates new form profile
      */
-    public profile() {
+    public profile(int userId, String userRole) {
+        if ("user".equalsIgnoreCase(userRole)) {
+        this.currentUserId = userId;
         initComponents();
         loadUserData();
         setLocationRelativeTo(null);
         cancelbutton.setVisible(true); 
         loadProfilePhoto(); 
+    }else {
+        // For admin/superadmin, show message and redirect
+        JOptionPane.showMessageDialog(null,
+            userRole + " accounts do not have user profiles.\n" +
+            "Please use the admin dashboard for account settings.",
+            "Profile Not Available",
+            JOptionPane.INFORMATION_MESSAGE);
+        
+        // Redirect based on role
+        this.dispose();
+         if ("superadmin".equalsIgnoreCase(userRole)) {
+            new superadmindashboard().setVisible(true);
+        } else {
+            new userdashboard().setVisible(true);
+        }
     }
+}
+
+    private profile() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
+
+  
     private void loadProfilePhoto() {
     try {
         String photoPath = "src/images/user_" + currentUserId + ".jpg";
@@ -58,18 +84,16 @@ public class profile extends javax.swing.JFrame {
         
         if (profile != null) {
             userid.setText("User ID: " + profile.getUserId());
-            fullname.setText("Full Name: " + profile.getFullName());
-            email.setText("Email: " + profile.getEmail());
-            phoneno.setText("Phone: " + profile.getPhone());
-    
+            fullname.setText("Full Name: " + (profile.getFullName() != null ? profile.getFullName() : ""));
+            email.setText("Email: " + (profile.getEmail() != null ? profile.getEmail() : ""));
+            phoneno.setText("Phone: " + (profile.getPhone() != null ? profile.getPhone() : ""));
         } else {
-            userid.setText("User ID: 1");
-            fullname.setText("Full Name: shriya awale");
-            email.setText("Email: shriyaawale2007@email.com");
-            phoneno.setText("Phone: 9876543210");
+            // Load from user session or database directly
+            userid.setText("User ID: " + currentUserId);
+            // You might want to fetch user data from users table here
         }
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error loading profile");
+        JOptionPane.showMessageDialog(this, "Error loading profile: " + e.getMessage());
     }
 }
     
@@ -166,7 +190,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         slogan.setBounds(120, 40, 90, 16);
 
         cancelbutton.setBackground(new java.awt.Color(184, 12, 47));
-        cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         cancelbutton.setForeground(new java.awt.Color(232, 128, 153));
         cancelbutton.setText("Cancel");
         cancelbutton.setBorder(null);
@@ -184,7 +208,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         cancelbutton.setBounds(630, 430, 110, 30);
 
         logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
-        logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         logoutbutton.setForeground(new java.awt.Color(232, 128, 153));
         logoutbutton.setText("Logout");
         logoutbutton.setBorder(null);
@@ -202,7 +226,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         logoutbutton.setBounds(510, 510, 110, 30);
 
         editbutton.setBackground(new java.awt.Color(184, 12, 47));
-        editbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        editbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         editbutton.setForeground(new java.awt.Color(232, 128, 153));
         editbutton.setText("Edit");
         editbutton.setBorder(null);
@@ -286,6 +310,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         newpp.setBounds(20, 110, 190, 230);
 
         uploadbutton.setBackground(new java.awt.Color(184, 12, 47));
+        uploadbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         uploadbutton.setForeground(new java.awt.Color(232, 128, 153));
         uploadbutton.setText("Upload ");
         uploadbutton.setBorder(null);
@@ -298,6 +323,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         uploadbutton.setBounds(30, 340, 70, 30);
 
         removebutton.setBackground(new java.awt.Color(184, 12, 47));
+        removebutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         removebutton.setForeground(new java.awt.Color(232, 128, 153));
         removebutton.setText("Remove");
         removebutton.setBorder(null);
@@ -328,6 +354,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
 
     private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
         // TODO add your handling code here:
+        new login().setVisible(true);
        
 
     }//GEN-LAST:event_logoutbuttonMouseClicked

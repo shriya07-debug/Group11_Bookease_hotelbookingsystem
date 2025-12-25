@@ -247,10 +247,12 @@ public class userdashboard extends javax.swing.JFrame {
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
         // TODO add your handling code here:
+        int testUserId = 1;
+        String testUserRole = "user";
          this.dispose();
 
         // Open profile
-        new profile().setVisible(true);
+        new profile(testUserId, testUserRole).setVisible(true);
     }//GEN-LAST:event_profileMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked

@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
+import dao.UserDAO;
+import model.UserModel;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 /**
  *
  * @author sailenawale
@@ -17,6 +21,8 @@ public class viewallhoteladmins extends javax.swing.JFrame {
      */
     public viewallhoteladmins() {
         initComponents();
+        loadHotelAdmins(); // Add this line
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -119,7 +125,51 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         // Open dashboard
         new superadmindashboard().setVisible(true);
     }//GEN-LAST:event_backbuttonMouseClicked
-
+    private void loadHotelAdmins() {
+    System.out.println("\n=== LOADING HOTEL ADMINS ===");
+    
+    try {
+        UserDAO userDAO = new UserDAO();
+        List<UserModel> hotelAdmins = userDAO.getAllHotelAdmins();
+        
+        // Get the table model
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        // Clear existing data (but keep column headers)
+        model.setRowCount(0);
+        
+        // Add data to table
+        for (UserModel admin : hotelAdmins) {
+            Object[] rowData = {
+                admin.getHotelId() != null ? admin.getHotelId() : "N/A",
+                admin.getUsername() != null ? admin.getUsername() : "N/A",
+                admin.getEmail() != null ? admin.getEmail() : "N/A",
+                admin.getPassword() != null ? "******" : "N/A", // Show as stars for security
+                admin.getStatus() != null ? admin.getStatus() : "N/A",
+                "N/A" // Last login - you can add this field later
+            };
+            model.addRow(rowData);
+        }
+        
+        System.out.println("Loaded " + hotelAdmins.size() + " hotel admins into table");
+        
+        // If no hotel admins found, show message
+        if (hotelAdmins.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "No hotel admins found in the database.",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    } catch (Exception e) {
+        System.out.println("Error loading hotel admins: " + e.getMessage());
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, 
+            "Error loading hotel admins: " + e.getMessage(),
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
+}
     /**
      * @param args the command line arguments
      */

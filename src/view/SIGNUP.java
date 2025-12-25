@@ -5,6 +5,7 @@
 package view;
 
 import controller.UserController;
+import javax.swing.JOptionPane;
 
 
 
@@ -56,7 +57,7 @@ public class signup extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         getContentPane().add(emailfield);
-        emailfield.setBounds(120, 290, 320, 40);
+        emailfield.setBounds(140, 290, 300, 40);
 
         signup.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         signup.setForeground(new java.awt.Color(204, 0, 51));
@@ -66,7 +67,7 @@ public class signup extends javax.swing.JFrame {
 
         account.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         account.setForeground(new java.awt.Color(255, 255, 255));
-        account.setText("Already have an account ?");
+        account.setText("Already have an account?");
         account.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 accountMouseClicked(evt);
@@ -103,29 +104,29 @@ public class signup extends javax.swing.JFrame {
         signupbutton.setBorder(null);
         signupbutton.addActionListener(this::signupbuttonActionPerformed);
         getContentPane().add(signupbutton);
-        signupbutton.setBounds(190, 450, 210, 40);
+        signupbutton.setBounds(180, 450, 220, 40);
         getContentPane().add(usernamefield);
-        usernamefield.setBounds(120, 210, 320, 40);
+        usernamefield.setBounds(140, 210, 300, 40);
 
         username.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
         username.setText("Username");
         getContentPane().add(username);
-        username.setBounds(120, 180, 120, 30);
+        username.setBounds(140, 180, 120, 30);
 
         password.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         password.setForeground(new java.awt.Color(255, 255, 255));
         password.setText("Password");
         getContentPane().add(password);
-        password.setBounds(120, 340, 120, 30);
+        password.setBounds(140, 340, 120, 30);
 
         email.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("Email");
         getContentPane().add(email);
-        email.setBounds(120, 260, 120, 30);
+        email.setBounds(140, 260, 120, 30);
         getContentPane().add(passwordfield);
-        passwordfield.setBounds(120, 370, 320, 40);
+        passwordfield.setBounds(140, 370, 300, 40);
 
         layout.setBackground(new java.awt.Color(255, 0, 51));
         layout.setForeground(new java.awt.Color(255, 0, 0));
@@ -148,6 +149,7 @@ public class signup extends javax.swing.JFrame {
     private void signupbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbuttonActionPerformed
         // TODO add your handling code here:
          signupAction();
+         
             
     }//GEN-LAST:event_signupbuttonActionPerformed
 
@@ -158,17 +160,45 @@ public class signup extends javax.swing.JFrame {
         new login().setVisible(true);
     }//GEN-LAST:event_accountMouseClicked
 private void signupAction() {
-        String username = usernamefield.getText().trim();
-        String email = emailfield.getText().trim();
-        String password = new String(passwordfield.getPassword()).trim();
-        
-        boolean success = userController.signup(username, email, password);
-        
-        if (success) {
-            dispose();
-            new login().setVisible(true);
-        }
+    String username = usernamefield.getText().trim();
+    String email = emailfield.getText().trim();
+    String password = new String(passwordfield.getPassword()).trim();
+    
+    System.out.println("Signup attempt:");
+    System.out.println("Username: " + username);
+    System.out.println("Email: " + email);
+    System.out.println("Password length: " + password.length());
+    
+    // Validate input
+    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "All fields are required!");
+        return;
     }
+    
+    if (!email.contains("@")) {
+        JOptionPane.showMessageDialog(this, "Invalid email format!");
+        return;
+    }
+    
+    if (password.length() < 4) {
+        JOptionPane.showMessageDialog(this, "Password must be at least 4 characters!");
+        return;
+    }
+    
+    UserController userController = new UserController();
+    boolean success = userController.signup(username, email, password);
+    
+    if (success) {
+        JOptionPane.showMessageDialog(this, "Signup successful!");
+        // ONLY dispose and navigate AFTER successful signup
+        this.dispose();
+        new login().setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Signup failed. Email may already exist.");
+        //  Don't dispose - keep form open so user can try again
+    }
+}
+
    
     
 

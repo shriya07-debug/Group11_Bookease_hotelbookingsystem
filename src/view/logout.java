@@ -86,7 +86,8 @@ public class logout extends javax.swing.JFrame {
     private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
         // TODO add your handling code here:
         this.dispose();
-    
+        
+        new login().setVisible(true);
    
     }//GEN-LAST:event_helpfulbuttonMouseClicked
 

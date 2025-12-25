@@ -4,6 +4,9 @@
  */
 package view;
 
+import dao.UserDAO;  // Add this import
+import javax.swing.JOptionPane;  // Add this import
+import java.sql.*;  // Add this import if needed
 /**
  *
  * @author sailenawale
@@ -48,6 +51,7 @@ public class superadmindashboard extends javax.swing.JFrame {
         hotelidfield = new javax.swing.JTextField();
         emailfield = new javax.swing.JTextField();
         passwordfield = new javax.swing.JPasswordField();
+        savebutton = new javax.swing.JButton();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -174,6 +178,19 @@ public class superadmindashboard extends javax.swing.JFrame {
         jPanel1.add(passwordfield);
         passwordfield.setBounds(630, 373, 350, 40);
 
+        savebutton.setBackground(new java.awt.Color(184, 12, 47));
+        savebutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        savebutton.setForeground(new java.awt.Color(232, 128, 153));
+        savebutton.setText("Save");
+        savebutton.setBorder(null);
+        savebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savebuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(savebutton);
+        savebutton.setBounds(740, 450, 130, 40);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/superadmin.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -224,6 +241,94 @@ public class superadmindashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordfieldActionPerformed
 
+    private void savebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttonActionPerformed
+        // TODO add your handling code here:
+        // Get values from form
+    String hotelIdStr = hotelidfield.getText().trim();
+    String email = emailfield.getText().trim();
+    String password = new String(passwordfield.getPassword()).trim();
+    
+    System.out.println("\n=== CREATING HOTEL ADMIN ===");
+    System.out.println("Hotel ID: " + hotelIdStr);
+    System.out.println("Email: " + email);
+    System.out.println("Password length: " + password.length());
+    
+    // Validate
+    if (hotelIdStr.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, 
+            "All fields are required!\nPlease fill in Hotel ID, Email, and Password.",
+            "Validation Error",
+            JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (!email.contains("@")) {
+        JOptionPane.showMessageDialog(this, 
+            "Please enter a valid email address!",
+            "Invalid Email",
+            JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (password.length() < 4) {
+        JOptionPane.showMessageDialog(this, 
+            "Password must be at least 4 characters!",
+            "Weak Password",
+            JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    try {
+        int hotelId = Integer.parseInt(hotelIdStr);
+        
+        // Create hotel admin
+        UserDAO userDAO = new UserDAO();
+        boolean success = userDAO.createHotelAdmin(hotelId, email, password);
+        
+        if (success) {
+            JOptionPane.showMessageDialog(this, 
+                "Hotel Admin Created Successfully!\n\n" +
+                "Hotel ID: " + hotelId + "\n" +
+                "Email: " + email + "\n" +
+                "Password: " + password + "\n\n" +
+                "The hotel admin can now login using these credentials.",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+            
+            // Clear fields for next entry
+            hotelidfield.setText("");
+            emailfield.setText("");
+            passwordfield.setText("");
+            
+            // Focus on hotel ID field for next entry
+            hotelidfield.requestFocus();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Failed to create hotel admin!\n\n" +
+                "Possible reasons:\n" +
+                "1. Email already exists\n" +
+                "2. Database error\n" +
+                "3. Hotel ID might not exist",
+                "Creation Failed",
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, 
+            "Hotel ID must be a valid number!\nPlease enter numeric value for Hotel ID.",
+            "Invalid Hotel ID",
+            JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, 
+            "Unexpected error: " + e.getMessage(),
+            "System Error",
+            JOptionPane.ERROR_MESSAGE);
+     }
+    }//GEN-LAST:event_savebuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,6 +374,7 @@ public class superadmindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel panel;
     private javax.swing.JLabel password;
     private javax.swing.JPasswordField passwordfield;
+    private javax.swing.JButton savebutton;
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel superadmindashboard;
     // End of variables declaration//GEN-END:variables

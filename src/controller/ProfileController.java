@@ -1,11 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import dao.ProfileDAO;
@@ -15,11 +7,16 @@ import model.ProfileModel;
 
 public class ProfileController {
     private final ProfileDAO profileDAO;
-    private final NotificationDAO notificationDAO;
+    private NotificationDAO notificationDAO;
     
     public ProfileController() {
         profileDAO = new ProfileDAO();
-        notificationDAO = new NotificationDAO();
+        try {
+            notificationDAO = new NotificationDAO();
+        } catch (Exception e) {
+            System.out.println("NotificationDAO initialization failed: " + e.getMessage());
+            notificationDAO = null; // Set to null if fails
+        }
     }
     
     public ProfileModel getProfile(int userId) {
@@ -35,21 +32,23 @@ public class ProfileController {
         // Save profile
         boolean success = profileDAO.updateProfile(profile);
         
-        // Create notification if successful
-        if (success) {
-            String message = "Profile updated: " + profile.getFullName() + 
-                           " | Email: " + profile.getEmail() + 
-                           " | Phone: " + profile.getPhone();
-            // Create NotificationModel object
-        NotificationModel notification = new NotificationModel();
-        notification.setUserId(profile.getUserId());
-        notification.setMessage(message);
+        // Create notification if successful AND notificationDAO is available
+        if (success && notificationDAO != null) {
+            try {
+                String message = "Profile updated: " + profile.getFullName() + 
+                               " | Email: " + profile.getEmail() + 
+                               " | Phone: " + profile.getPhone();
+                NotificationModel notification = new NotificationModel();
+                notification.setUserId(profile.getUserId());
+                notification.setMessage(message);
+                notificationDAO.createNotification(notification);
+            } catch (Exception e) {
+                System.out.println("Failed to create notification: " + e.getMessage());
+                // Don't return false, profile update was successful
+            }
+        }
         
-        // Call the existing method
-        notificationDAO.createNotification(notification);
-    }
-    
-    return success;
+        return success;
     }
     
     // Validation method
@@ -62,5 +61,4 @@ public class ProfileController {
         }
         return !(profile.getPhone() == null || profile.getPhone().trim().isEmpty());
     }
-    
 }

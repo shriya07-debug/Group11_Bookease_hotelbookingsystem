@@ -74,6 +74,7 @@ public class bookinghistory extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
@@ -81,7 +82,7 @@ public class bookinghistory extends javax.swing.JFrame {
         bookinghistory.setForeground(new java.awt.Color(232, 128, 153));
         bookinghistory.setText("Booking History");
         jPanel1.add(bookinghistory);
-        bookinghistory.setBounds(420, 20, 330, 44);
+        bookinghistory.setBounds(410, 40, 330, 44);
 
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -121,9 +122,9 @@ public class bookinghistory extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(120, 160, 920, 440);
+        jScrollPane1.setBounds(120, 190, 920, 440);
         jPanel1.add(scroll);
-        scroll.setBounds(1040, 160, 20, 440);
+        scroll.setBounds(1040, 190, 20, 440);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,14 +133,18 @@ public class bookinghistory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(30, 600, 30, 30);
+        backbutton.setBounds(30, 650, 30, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
+        image.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
+        image.setMaximumSize(new java.awt.Dimension(1280, 720));
+        image.setMinimumSize(new java.awt.Dimension(1280, 720));
+        image.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.add(image);
-        image.setBounds(0, -10, 1200, 690);
+        image.setBounds(0, 0, 1280, 720);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 0, 650);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
