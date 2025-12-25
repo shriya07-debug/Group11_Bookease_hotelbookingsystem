@@ -4,9 +4,9 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class BooknowModel {
-    private int bookingId;
+    private int id;
     private String roomType;
-    private int numPeople;
+    private int numberOfPeople;
     private Date checkInDate;
     private Date checkOutDate;
     private Timestamp bookingDate;
@@ -19,36 +19,68 @@ public class BooknowModel {
     }
     
     // Getters and Setters
-    public int getBookingId() { return bookingId; }
-    public void setBookingId(int bookingId) { this.bookingId = bookingId; }
-    
-    public String getRoomType() { return roomType; }
-    public void setRoomType(String roomType) { this.roomType = roomType; }
-    
-    public int getNumPeople() { return numPeople; }
-    public void setNumPeople(int numPeople) { this.numPeople = numPeople; }
-    
-    public Date getCheckInDate() { return checkInDate; }
-    public void setCheckInDate(Date checkInDate) { this.checkInDate = checkInDate; }
-    
-    public Date getCheckOutDate() { return checkOutDate; }
-    public void setCheckOutDate(Date checkOutDate) { this.checkOutDate = checkOutDate; }
-    
-    public Timestamp getBookingDate() { return bookingDate; }
-    public void setBookingDate(Timestamp bookingDate) { this.bookingDate = bookingDate; }
-    
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
-    public void setId(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  public int getId() { 
+        return id; 
     }
-
-    public void setNumberOfPeople(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public void setId(int id) { 
+        this.id = id; 
     }
-
-    public int getNumberOfPeople() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public String getRoomType() { 
+        return roomType; 
     }
-}
+    
+    public void setRoomType(String roomType) { 
+        this.roomType = roomType; 
+    }
+    
+    public int getNumberOfPeople() { 
+        return numberOfPeople; 
+    }
+    
+    public void setNumberOfPeople(int numberOfPeople) { 
+        this.numberOfPeople = numberOfPeople; 
+    }
+    
+    // Keep this for backward compatibility with controller
+    public int getNumPeople() { 
+        return numberOfPeople; 
+    }
+    
+    public void setNumPeople(int numPeople) { 
+        this.numberOfPeople = numPeople; 
+    }
+    
+    public Date getCheckInDate() { 
+        return checkInDate; 
+    }
+    
+    public void setCheckInDate(Date checkInDate) { 
+        this.checkInDate = checkInDate; 
+    }
+    
+    public Date getCheckOutDate() { 
+        return checkOutDate; 
+    }
+    
+    public void setCheckOutDate(Date checkOutDate) { 
+        this.checkOutDate = checkOutDate; 
+    }
+    
+    public Timestamp getBookingDate() { 
+        return bookingDate; 
+    }
+    
+    public void setBookingDate(Timestamp bookingDate) { 
+        this.bookingDate = bookingDate; 
+    }
+    
+    public String getStatus() { 
+        return status; 
+    }
+    
+    public void setStatus(String status) { 
+        this.status = status; 
+    }
+}  

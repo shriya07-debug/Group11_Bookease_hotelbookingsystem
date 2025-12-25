@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
  */
 public class BooknowController {
  private final booknow view;           // The View
-    private final BooknowDAO dao;         // The DAO
+    private final BooknowDAO dao;         // The DAO9* 
 
     public BooknowController(booknow view, Connection connection) {
         this.view = view;
