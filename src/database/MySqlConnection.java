@@ -9,10 +9,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-/**
- *
- * @author sailenawale
- */
 
     
 public class MySqlConnection implements Database{
@@ -24,8 +20,8 @@ public class MySqlConnection implements Database{
     public Connection openConnection() {
       try{
           String username = "root";
-          String password = "sha7y42007@#";
-          String database = "helloworld"; 
+          String password = "#neeraz2060";
+          String database = "hotel_booking"; 
           Connection connection;
           connection = DriverManager.getConnection(
           "jdbc:mysql://localhost:3306/" + database, username, password);
