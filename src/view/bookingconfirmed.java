@@ -8,7 +8,7 @@ package view;
  *
  * @author nirajhamal
  */
-
+<<<<<<<< HEAD:src/view/logout.java
 public class logout extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
@@ -17,8 +17,8 @@ public class logout extends javax.swing.JFrame {
      * Creates new form support
      */
     public logout() {
-
-
+========
+public class bookingconfirmed extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookingconfirmed.class.getName());
 
@@ -26,7 +26,7 @@ public class logout extends javax.swing.JFrame {
      * Creates new form bookingconfirmed
      */
     public bookingconfirmed() {
-
+>>>>>>>> niraj:src/view/bookingconfirmed.java
         initComponents();
     }
 
@@ -143,7 +143,7 @@ public class logout extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+<<<<<<<< HEAD:src/view/logout.java
     private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
         // TODO add your handling code here:
         this.dispose();
@@ -151,10 +151,11 @@ public class logout extends javax.swing.JFrame {
         new login().setVisible(true);
    
     }//GEN-LAST:event_helpfulbuttonMouseClicked
-
+========
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>>> niraj:src/view/bookingconfirmed.java
 
     /**
      * @param args the command line arguments
@@ -178,15 +179,17 @@ public class logout extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+<<<<<<<< HEAD:src/view/logout.java
         java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
+========
         java.awt.EventQueue.invokeLater(() -> new bookingconfirmed().setVisible(true));
     }
 
