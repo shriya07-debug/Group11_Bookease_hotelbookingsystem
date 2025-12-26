@@ -159,7 +159,7 @@ public class admindashboard extends javax.swing.JFrame {
         this.dispose();
 
         // Open profile
-        new adminprofile().setVisible(true);
+        //new adminprofile().setVisible(true);
     }//GEN-LAST:event_profileMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked

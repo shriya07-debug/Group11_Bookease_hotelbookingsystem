@@ -6,9 +6,6 @@ public class AdminProfileModel {
     private String email;
     private String phone;
     
-    // Constructors
-    public AdminProfileModel() {}
-    
     public AdminProfileModel(String hotelId, String fullName, String email, String phone) {
         this.hotelId = hotelId;
         this.fullName = fullName;
@@ -28,12 +25,4 @@ public class AdminProfileModel {
     
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
-    
-    // Validation
-    public boolean isValid() {
-        return hotelId != null && !hotelId.trim().isEmpty() &&
-               fullName != null && !fullName.trim().isEmpty() &&
-               email != null && email.contains("@") &&
-               phone != null && phone.length() >= 10;
-    }
 }
