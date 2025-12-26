@@ -7,12 +7,12 @@ package dao;
 
 
 import database.Database;
-import database.mysqlconnection;
+import database.MySqlConnection;
 import java.sql.*;
 
 public class ForgotPasswordDao {
 
-    Database db = new mysqlconnection();
+    Database db = new MySqlConnection();
 
     // Check if email exists
     public boolean emailExists(String email) {

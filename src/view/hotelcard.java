@@ -40,7 +40,7 @@ public class hotelcard extends javax.swing.JPanel {
         jLabel1.setBounds(new java.awt.Rectangle(10, 10, 280, 180));
 
         viewdetails.setBackground(new java.awt.Color(246, 80, 90));
-        viewdetails.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        viewdetails.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         viewdetails.setForeground(new java.awt.Color(255, 255, 255));
         viewdetails.setText("View details");
         viewdetails.addActionListener(new java.awt.event.ActionListener() {

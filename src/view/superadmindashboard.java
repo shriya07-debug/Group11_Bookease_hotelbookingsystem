@@ -62,11 +62,11 @@ public class superadmindashboard extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        superadmindashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        superadmindashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         superadmindashboard.setForeground(new java.awt.Color(232, 128, 153));
         superadmindashboard.setText("Super Admin Dashboard");
         jPanel1.add(superadmindashboard);
-        superadmindashboard.setBounds(590, 50, 410, 44);
+        superadmindashboard.setBounds(590, 50, 440, 45);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         jPanel1.add(logo);

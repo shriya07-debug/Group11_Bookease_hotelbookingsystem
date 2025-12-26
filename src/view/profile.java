@@ -178,7 +178,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         jPanel1.setLayout(null);
 
         profile.setBackground(new java.awt.Color(201, 12, 51));
-        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        profile.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         profile.setForeground(new java.awt.Color(201, 12, 51));
         profile.setText("Profile");
         jPanel1.add(profile);

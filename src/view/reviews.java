@@ -8,14 +8,14 @@ package view;
  *
  * @author sailenawale
  */
-public class logout extends javax.swing.JFrame {
+public class reviews extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reviews.class.getName());
 
     /**
-     * Creates new form support
+     * Creates new form reviews
      */
-    public logout() {
+    public reviews() {
         initComponents();
     }
 
@@ -29,67 +29,33 @@ public class logout extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        number3 = new javax.swing.JLabel();
-        helpfulbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
-
-        number3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        number3.setForeground(new java.awt.Color(255, 255, 255));
-        number3.setText("You have been logged out.");
-        jPanel1.add(number3);
-        number3.setBounds(360, 170, 470, 60);
-
-        helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
-        helpfulbutton.setText("Login");
-        helpfulbutton.setBorder(null);
-        helpfulbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                helpfulbuttonMouseClicked(evt);
-            }
-        });
-        jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 240, 130, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(120, 40, 90, 16);
+        slogan.setBounds(120, 40, 90, 20);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
-        image.setBounds(0, 0, 1260, 740);
+        image.setBounds(0, 0, 1280, 740);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -113,14 +79,12 @@ public class logout extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new reviews().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
 }

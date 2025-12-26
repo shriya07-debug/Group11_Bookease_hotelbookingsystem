@@ -33,15 +33,17 @@ public ForgotPassword() {
         jPanel1 = new javax.swing.JPanel();
         Forgot = new javax.swing.JLabel();
         btnResetPassword = new javax.swing.JButton();
+        txtOtp = new javax.swing.JTextField();
         edit = new javax.swing.JLabel();
         btnSendOtp = new javax.swing.JButton();
-        txtOtp = new javax.swing.JTextField();
         btnVerifyOtp = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtNewPassword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        maincolorlabel = new javax.swing.JLabel();
+        backbutton = new javax.swing.JLabel();
+        slogan = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 450));
@@ -51,41 +53,24 @@ public ForgotPassword() {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        Forgot.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Forgot.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         Forgot.setForeground(new java.awt.Color(241, 150, 174));
         Forgot.setText("Forgot Password");
         jPanel1.add(Forgot);
-        Forgot.setBounds(500, 70, 290, 60);
+        Forgot.setBounds(460, 80, 340, 60);
 
         btnResetPassword.setBackground(new java.awt.Color(185, 12, 46));
-        btnResetPassword.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnResetPassword.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnResetPassword.setForeground(new java.awt.Color(241, 150, 174));
-        btnResetPassword.setText("Reset");
+        btnResetPassword.setText("Reset Password");
+        btnResetPassword.setBorder(null);
         btnResetPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetPasswordActionPerformed(evt);
             }
         });
         jPanel1.add(btnResetPassword);
-        btnResetPassword.setBounds(510, 580, 240, 50);
-
-        edit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        edit.setForeground(new java.awt.Color(255, 255, 255));
-        edit.setText("E-mail");
-        jPanel1.add(edit);
-        edit.setBounds(430, 180, 70, 20);
-
-        btnSendOtp.setBackground(new java.awt.Color(185, 12, 46));
-        btnSendOtp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSendOtp.setForeground(new java.awt.Color(255, 255, 255));
-        btnSendOtp.setText("Send OTP");
-        btnSendOtp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSendOtpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSendOtp);
-        btnSendOtp.setBounds(570, 240, 100, 27);
+        btnResetPassword.setBounds(550, 540, 180, 40);
 
         txtOtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,26 +78,46 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(txtOtp);
-        txtOtp.setBounds(430, 320, 380, 30);
+        txtOtp.setBounds(430, 330, 390, 40);
+
+        edit.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        edit.setForeground(new java.awt.Color(255, 255, 255));
+        edit.setText("E-mail");
+        jPanel1.add(edit);
+        edit.setBounds(430, 170, 70, 30);
+
+        btnSendOtp.setBackground(new java.awt.Color(185, 12, 46));
+        btnSendOtp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnSendOtp.setForeground(new java.awt.Color(241, 150, 174));
+        btnSendOtp.setText("Send OTP");
+        btnSendOtp.setBorder(null);
+        btnSendOtp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendOtpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSendOtp);
+        btnSendOtp.setBounds(550, 250, 150, 40);
 
         btnVerifyOtp.setBackground(new java.awt.Color(185, 12, 46));
-        btnVerifyOtp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVerifyOtp.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerifyOtp.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnVerifyOtp.setForeground(new java.awt.Color(241, 150, 174));
         btnVerifyOtp.setText("Verify");
+        btnVerifyOtp.setBorder(null);
         btnVerifyOtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerifyOtpActionPerformed(evt);
             }
         });
         jPanel1.add(btnVerifyOtp);
-        btnVerifyOtp.setBounds(570, 360, 110, 27);
+        btnVerifyOtp.setBounds(550, 390, 160, 40);
 
         jLabel4.setBackground(new java.awt.Color(255, 102, 102));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("New Password");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(430, 420, 120, 20);
+        jLabel4.setBounds(430, 450, 180, 30);
 
         txtNewPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,14 +125,14 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(txtNewPassword);
-        txtNewPassword.setBounds(430, 440, 380, 30);
+        txtNewPassword.setBounds(430, 480, 390, 40);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("OTP");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(430, 300, 70, 20);
+        jLabel3.setBounds(430, 290, 70, 40);
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,16 +140,30 @@ public ForgotPassword() {
             }
         });
         jPanel1.add(txtEmail);
-        txtEmail.setBounds(430, 200, 380, 30);
+        txtEmail.setBounds(430, 200, 390, 40);
 
-        maincolorlabel.setBackground(new java.awt.Color(255, 255, 255));
-        maincolorlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        maincolorlabel.setForeground(new java.awt.Color(51, 51, 51));
-        maincolorlabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\forgotpasswordcolor.png")); // NOI18N
-        maincolorlabel.setText("Enter the OTP");
-        maincolorlabel.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jPanel1.add(maincolorlabel);
-        maincolorlabel.setBounds(-20, 10, 1280, 720);
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(40, 630, 40, 30);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(120, 40, 90, 20);
+
+        image.setBackground(new java.awt.Color(255, 255, 255));
+        image.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        image.setForeground(new java.awt.Color(51, 51, 51));
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
+        image.setText("Enter the OTP");
+        image.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.add(image);
+        image.setBounds(0, 0, 1260, 740);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,20 +230,29 @@ public ForgotPassword() {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+        new login().setVisible(true);
+    }//GEN-LAST:event_backbuttonMouseClicked
+
     
   public static void main(String args[] ){
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Forgot;
+    private javax.swing.JLabel backbutton;
     private javax.swing.JButton btnResetPassword;
     private javax.swing.JButton btnSendOtp;
     private javax.swing.JButton btnVerifyOtp;
     private javax.swing.JLabel edit;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel maincolorlabel;
+    private javax.swing.JLabel slogan;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNewPassword;
     private javax.swing.JTextField txtOtp;
