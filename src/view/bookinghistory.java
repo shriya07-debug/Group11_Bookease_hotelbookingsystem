@@ -78,11 +78,11 @@ public class bookinghistory extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         bookinghistory.setForeground(new java.awt.Color(232, 128, 153));
         bookinghistory.setText("Booking History");
         jPanel1.add(bookinghistory);
-        bookinghistory.setBounds(410, 40, 330, 44);
+        bookinghistory.setBounds(410, 40, 330, 45);
 
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -117,8 +117,6 @@ public class bookinghistory extends javax.swing.JFrame {
         table.setRowHeight(30);
         table.setSelectionBackground(new java.awt.Color(232, 57, 95));
         table.setShowGrid(true);
-        table.setShowHorizontalLines(false);
-        table.setShowVerticalLines(false);
         jScrollPane1.setViewportView(table);
 
         jPanel1.add(jScrollPane1);

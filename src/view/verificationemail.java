@@ -8,14 +8,14 @@ package view;
  *
  * @author sailenawale
  */
-public class logout extends javax.swing.JFrame {
+public class verificationemail extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(verificationemail.class.getName());
 
     /**
-     * Creates new form support
+     * Creates new form verificationemail
      */
-    public logout() {
+    public verificationemail() {
         initComponents();
     }
 
@@ -29,67 +29,68 @@ public class logout extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        number3 = new javax.swing.JLabel();
-        helpfulbutton = new javax.swing.JButton();
+        verification = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
+        text1 = new javax.swing.JLabel();
+        text2 = new javax.swing.JLabel();
+        done = new javax.swing.JButton();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        number3.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        number3.setForeground(new java.awt.Color(255, 255, 255));
-        number3.setText("You have been logged out.");
-        jPanel1.add(number3);
-        number3.setBounds(360, 170, 470, 60);
-
-        helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
-        helpfulbutton.setText("Login");
-        helpfulbutton.setBorder(null);
-        helpfulbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                helpfulbuttonMouseClicked(evt);
-            }
-        });
-        jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 240, 130, 40);
+        verification.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        verification.setForeground(new java.awt.Color(241, 150, 174));
+        verification.setText("Verification Email Sent");
+        jPanel1.add(verification);
+        verification.setBounds(440, 100, 430, 60);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(120, 40, 90, 16);
+        slogan.setBounds(110, 50, 90, 16);
+
+        text1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        text1.setForeground(new java.awt.Color(255, 255, 255));
+        text1.setText("A verification email has been sent to your mail");
+        jPanel1.add(text1);
+        text1.setBounds(410, 190, 580, 100);
+
+        text2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        text2.setForeground(new java.awt.Color(255, 255, 255));
+        text2.setText("Please check your mail.");
+        jPanel1.add(text2);
+        text2.setBounds(520, 260, 430, 29);
+
+        done.setBackground(new java.awt.Color(185, 12, 46));
+        done.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        done.setForeground(new java.awt.Color(241, 150, 174));
+        done.setText("Done");
+        done.setBorder(null);
+        done.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doneActionPerformed(evt);
+            }
+        });
+        jPanel1.add(done);
+        done.setBounds(610, 320, 120, 40);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
-        image.setText("jLabel1");
         jPanel1.add(image);
-        image.setBounds(0, 0, 1260, 740);
+        image.setBounds(0, -10, 1210, 760);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
+    private void doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
+    }//GEN-LAST:event_doneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,14 +114,16 @@ public class logout extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new verificationemail().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton helpfulbutton;
+    private javax.swing.JButton done;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
+    private javax.swing.JLabel text1;
+    private javax.swing.JLabel text2;
+    private javax.swing.JLabel verification;
     // End of variables declaration//GEN-END:variables
 }

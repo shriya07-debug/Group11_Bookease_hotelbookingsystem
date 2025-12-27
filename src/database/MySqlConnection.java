@@ -11,7 +11,7 @@ import java.sql.*;
 
 
 
-public class mysqlconnection implements Database{
+public class MySqlConnection implements Database{
 
     public static Connection getConnection() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -21,7 +21,7 @@ public class mysqlconnection implements Database{
     public Connection openConnection() {
         try{
             String username = "root";
-            String password = "1234";
+            String password = "shr7y42007@#";
             String database = "hotel_booking";
             Connection connection;
             connection  = DriverManager.getConnection (
