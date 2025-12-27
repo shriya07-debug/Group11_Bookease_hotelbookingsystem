@@ -4,21 +4,37 @@
  */
 package view;
 
+import controller.ReviewController;
+import model.ReviewModel;
+
 /**
  *
  * @author sailenawale
  */
 public class reviews extends javax.swing.JFrame {
-    
+    private final ReviewController controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reviews.class.getName());
 
     /**
      * Creates new form reviews
      */
+    
     public reviews() {
+    this("Aquaphor Hotel"); 
+}
+    public reviews(String hotelName) {
         initComponents();
+        controller = new ReviewController(hotelName);
+        loadReviews();
     }
-
+private void loadReviews() {
+    StringBuilder sb = new StringBuilder();
+    for (ReviewModel r : controller.getReviews()) {
+        sb.append("★ ").append(r.getUserName()).append(":\n");
+        sb.append(r.getComment()).append("\n\n");
+    }
+    txtreviews.setText(sb.toString());
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +46,11 @@ public class reviews extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         slogan = new javax.swing.JLabel();
+        reviews = new javax.swing.JLabel();
+        addreviewbutton = new javax.swing.JButton();
+        viewdetailsbutton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtreviews = new javax.swing.JTextArea();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,6 +67,46 @@ public class reviews extends javax.swing.JFrame {
         jPanel1.add(slogan);
         slogan.setBounds(120, 40, 90, 20);
 
+        reviews.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        reviews.setForeground(new java.awt.Color(241, 150, 174));
+        reviews.setText("Reviews");
+        jPanel1.add(reviews);
+        reviews.setBounds(340, 120, 180, 40);
+
+        addreviewbutton.setBackground(new java.awt.Color(184, 12, 47));
+        addreviewbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        addreviewbutton.setForeground(new java.awt.Color(232, 128, 153));
+        addreviewbutton.setText("Add review");
+        addreviewbutton.setBorder(null);
+        addreviewbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addreviewbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addreviewbutton);
+        addreviewbutton.setBounds(390, 513, 150, 40);
+
+        viewdetailsbutton.setBackground(new java.awt.Color(184, 12, 47));
+        viewdetailsbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        viewdetailsbutton.setForeground(new java.awt.Color(232, 128, 153));
+        viewdetailsbutton.setText("View details");
+        viewdetailsbutton.setBorder(null);
+        jPanel1.add(viewdetailsbutton);
+        viewdetailsbutton.setBounds(690, 510, 170, 40);
+
+        jScrollPane1.setForeground(new java.awt.Color(254, 185, 206));
+
+        txtreviews.setEditable(false);
+        txtreviews.setBackground(new java.awt.Color(255, 255, 255));
+        txtreviews.setColumns(20);
+        txtreviews.setFont(new java.awt.Font("Arial Hebrew Scholar", 0, 18)); // NOI18N
+        txtreviews.setLineWrap(true);
+        txtreviews.setRows(20);
+        jScrollPane1.setViewportView(txtreviews);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(340, 170, 600, 420);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -56,6 +117,22 @@ public class reviews extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addreviewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addreviewbuttonActionPerformed
+        // TODO add your handling code here:
+         javax.swing.JDialog dialog = new javax.swing.JDialog(this, "Add Review", true);
+         addreviewpanel panel = new addreviewpanel();
+         dialog.add(panel);
+         dialog.pack();
+         dialog.setLocationRelativeTo(this);
+         dialog.setVisible(true);
+    
+    // Check if submitted
+    if (panel.isSubmitted()) {  // Use the getter method
+    controller.addReview(panel.getUserName(), panel.getComment());  // Use getter methods
+    loadReviews();
+      }
+    }//GEN-LAST:event_addreviewbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,8 +160,13 @@ public class reviews extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addreviewbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel reviews;
     private javax.swing.JLabel slogan;
+    private javax.swing.JTextArea txtreviews;
+    private javax.swing.JButton viewdetailsbutton;
     // End of variables declaration//GEN-END:variables
 }
