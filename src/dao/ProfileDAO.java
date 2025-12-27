@@ -4,12 +4,12 @@
  */
 package dao;
 
-import database.MySqlConnection;
+import database.mysqlconnection;
 import model.ProfileModel;
 import java.sql.*;
 
 public class ProfileDAO {
-    MySqlConnection mysql = new MySqlConnection();
+    mysqlconnection mysql = new mysqlconnection();
  public ProfileModel getProfileById(int userId) {
     Connection conn = mysql.openConnection();
     String sql = "SELECT * FROM profiles WHERE user_id = ?";

@@ -4,14 +4,14 @@
  */
 package dao;
 
-import database.MySqlConnection;
+import database.mysqlconnection;
 import model.NotificationModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationDAO {
-    MySqlConnection mysql = new MySqlConnection();
+    mysqlconnection mysql = new mysqlconnection();
     
     // Get all notifications for a user
     public List<NotificationModel> getUserNotifications(int userId) {

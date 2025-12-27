@@ -1,14 +1,14 @@
 package dao;
 
 import model.UserModel;
-import database.MySqlConnection;
+import database.mysqlconnection;
 import java.sql.*;
 
 public class UserDAO {
-    private final MySqlConnection mysql;
+    private final mysqlconnection mysql;
     
     public UserDAO() {
-        this.mysql = new MySqlConnection();
+        this.mysql = new mysqlconnection();
         System.out.println("UserDAO initialized");
     }
     
