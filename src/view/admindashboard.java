@@ -1,15 +1,31 @@
 
 package view;
-
+import controller.AdminDashboardController;
+import model.AdminDashboardModel;
 /**
  *
  * @author Acer
  */
 public class admindashboard extends javax.swing.JFrame {
     
+    private final AdminDashboardController controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(admindashboard.class.getName());
     public admindashboard() {
         initComponents();
+        controller = new AdminDashboardController();
+        displayDashboardData();
+    }
+     private void displayDashboardData() {
+        // Get data from controller
+        AdminDashboardModel data = controller.getDashboardData();
+        
+        if (data != null) {
+            // Display text
+            text.setText(data.gettext());
+            
+            // Display image (simple text for now)
+            imagedisplayarea.setText("Image: " + data.getimage());
+        }
     }
 
     /**
@@ -23,47 +39,78 @@ public class admindashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         AdminDashboard = new javax.swing.JLabel();
+        GenerateInvoice = new javax.swing.JButton();
+        slogan = new javax.swing.JLabel();
+        imagedisplayarea = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        menubar = new javax.swing.JLabel();
         drawerPanel = new javax.swing.JPanel();
-        profile = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         recentbookings = new javax.swing.JLabel();
         bookingicon = new javax.swing.JLabel();
-        support = new javax.swing.JLabel();
+        profile = new javax.swing.JLabel();
         dashboardicon = new javax.swing.JLabel();
         supporticon = new javax.swing.JLabel();
-        hotellabellogo = new javax.swing.JLabel();
-        THREElines = new javax.swing.JLabel();
+        hotelprofileicon = new javax.swing.JLabel();
+        support1 = new javax.swing.JLabel();
         panel = new javax.swing.JLabel();
-        Databaseconnected = new javax.swing.JLabel();
-        GenerateInvoice = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
         admindashboardbackgroundcolor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        AdminDashboard.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AdminDashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         AdminDashboard.setForeground(new java.awt.Color(232, 128, 153));
         AdminDashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminDashboard.setText("Admin Dashboard");
         jPanel1.add(AdminDashboard);
-        AdminDashboard.setBounds(700, 56, 340, 60);
+        AdminDashboard.setBounds(590, 40, 340, 60);
 
-        drawerPanel.setLayout(null);
-
-        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        profile.setForeground(new java.awt.Color(255, 255, 255));
-        profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Vector (3).png"))); // NOI18N
-        profile.setText("     Profile");
-        profile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileMouseClicked(evt);
+        GenerateInvoice.setBackground(new java.awt.Color(184, 12, 47));
+        GenerateInvoice.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        GenerateInvoice.setForeground(new java.awt.Color(232, 128, 153));
+        GenerateInvoice.setText("Generate Invoice");
+        GenerateInvoice.setBorder(null);
+        GenerateInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateInvoiceActionPerformed(evt);
             }
         });
-        drawerPanel.add(profile);
-        profile.setBounds(20, 360, 190, 30);
+        jPanel1.add(GenerateInvoice);
+        GenerateInvoice.setBounds(650, 570, 220, 40);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(100, 616, 90, 70);
+        jPanel1.add(imagedisplayarea);
+        imagedisplayarea.setBounds(520, 180, 480, 240);
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
+        jPanel1.add(logo);
+        logo.setBounds(0, 570, 100, 120);
+
+        menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        menubar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menubarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(menubar);
+        menubar.setBounds(10, 10, 50, 40);
+
+        drawerPanel.setLayout(null);
 
         dashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,16 +138,16 @@ public class admindashboard extends javax.swing.JFrame {
         drawerPanel.add(bookingicon);
         bookingicon.setBounds(20, 260, 25, 30);
 
-        support.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        support.setForeground(new java.awt.Color(255, 255, 255));
-        support.setText("Support");
-        support.addMouseListener(new java.awt.event.MouseAdapter() {
+        profile.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        profile.setForeground(new java.awt.Color(255, 255, 255));
+        profile.setText("Profile");
+        profile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                supportMouseClicked(evt);
+                profileMouseClicked(evt);
             }
         });
-        drawerPanel.add(support);
-        support.setBounds(70, 310, 160, 30);
+        drawerPanel.add(profile);
+        profile.setBounds(70, 350, 160, 40);
 
         dashboardicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/=.png"))); // NOI18N
         drawerPanel.add(dashboardicon);
@@ -108,45 +155,44 @@ public class admindashboard extends javax.swing.JFrame {
 
         supporticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Support.png"))); // NOI18N
         drawerPanel.add(supporticon);
-        supporticon.setBounds(20, 320, 50, 25);
+        supporticon.setBounds(20, 310, 40, 30);
 
-        hotellabellogo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        hotellabellogo.setForeground(new java.awt.Color(89, 4, 20));
-        hotellabellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 3.png"))); // NOI18N
-        hotellabellogo.setText("Hotel in a Tap");
-        drawerPanel.add(hotellabellogo);
-        hotellabellogo.setBounds(10, 620, 180, 70);
+        hotelprofileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotelprofile.png"))); // NOI18N
+        drawerPanel.add(hotelprofileicon);
+        hotelprofileicon.setBounds(20, 350, 50, 40);
 
-        THREElines.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Hamburger Menu (1).png")); // NOI18N
-        drawerPanel.add(THREElines);
-        THREElines.setBounds(10, 10, 30, 40);
+        support1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        support1.setForeground(new java.awt.Color(255, 255, 255));
+        support1.setText("Support");
+        support1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                support1MouseClicked(evt);
+            }
+        });
+        drawerPanel.add(support1);
+        support1.setBounds(70, 310, 160, 30);
 
         panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
         panel.setPreferredSize(new java.awt.Dimension(330, 700));
         drawerPanel.add(panel);
-        panel.setBounds(0, 0, 330, 750);
+        panel.setBounds(0, -10, 330, 750);
+
+        jLabel3.setText("jLabel3");
+        drawerPanel.add(jLabel3);
+        jLabel3.setBounds(10, 10, 42, 17);
 
         jPanel1.add(drawerPanel);
-        drawerPanel.setBounds(100, 10, 330, 710);
-        jPanel1.add(Databaseconnected);
-        Databaseconnected.setBounds(650, 210, 410, 320);
+        drawerPanel.setBounds(0, 0, 330, 720);
+        jPanel1.add(text);
+        text.setBounds(500, 470, 500, 60);
 
-        GenerateInvoice.setBackground(new java.awt.Color(184, 12, 47));
-        GenerateInvoice.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        GenerateInvoice.setForeground(new java.awt.Color(232, 128, 153));
-        GenerateInvoice.setText("Generate Invoice");
-        GenerateInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenerateInvoiceActionPerformed(evt);
-            }
-        });
-        jPanel1.add(GenerateInvoice);
-        GenerateInvoice.setBounds(770, 560, 170, 40);
-
-        admindashboardbackgroundcolor.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Screenshot 2025-12-21 115223.png")); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/admindash.png"))); // NOI18N
+        image.setText("jLabel2");
+        jPanel1.add(image);
+        image.setBounds(0, 0, 1280, 720);
         jPanel1.add(admindashboardbackgroundcolor);
-        admindashboardbackgroundcolor.setBounds(0, 0, 1280, 720);
+        admindashboardbackgroundcolor.setBounds(0, 0, 0, 720);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -154,20 +200,12 @@ public class admindashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-
-        // Open profile
-        new adminprofile().setVisible(true);
-    }//GEN-LAST:event_profileMouseClicked
-
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-        //        // TODO add your handling code here:
-        //        this.dispose();
-        //
-        //        // Open dashboard
-        //        new admindashboard().setVisible(true);
+                // TODO add your handling code here:
+                this.dispose();
+        
+                // Open dashboard
+                new admindashboard().setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
     private void recentbookingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recentbookingsMouseClicked
@@ -178,17 +216,35 @@ public class admindashboard extends javax.swing.JFrame {
         ////        new bookinghistory().setVisible(true);
     }//GEN-LAST:event_recentbookingsMouseClicked
 
-    private void supportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supportMouseClicked
+    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
         // TODO add your handling code here:
         //        this.dispose();
         //
         //        // Open support
         //        new support().setVisible(true);
-    }//GEN-LAST:event_supportMouseClicked
+    }//GEN-LAST:event_profileMouseClicked
 
     private void GenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateInvoiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GenerateInvoiceActionPerformed
+
+    private void support1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_support1MouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        new support().setVisible(true);
+    }//GEN-LAST:event_support1MouseClicked
+
+    private void menubarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menubarMouseClicked
+        // TODO add your handling code here:
+        if (drawerPanel.getX() < 0) {
+            // Slide IN from left
+            drawerPanel.setBounds(0, 0, 300, 720);
+        } else {
+            // Slide OUT to left
+            drawerPanel.setBounds(-300, 0, 300, 720);
+        }
+    }//GEN-LAST:event_menubarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,20 +273,25 @@ public class admindashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminDashboard;
-    private javax.swing.JLabel Databaseconnected;
     private javax.swing.JButton GenerateInvoice;
-    private javax.swing.JLabel THREElines;
     private javax.swing.JLabel admindashboardbackgroundcolor;
     private javax.swing.JLabel bookingicon;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel dashboardicon;
     private javax.swing.JPanel drawerPanel;
-    private javax.swing.JLabel hotellabellogo;
+    private javax.swing.JLabel hotelprofileicon;
+    private javax.swing.JLabel image;
+    private javax.swing.JLabel imagedisplayarea;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel menubar;
     private javax.swing.JLabel panel;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel recentbookings;
-    private javax.swing.JLabel support;
+    private javax.swing.JLabel slogan;
+    private javax.swing.JLabel support1;
     private javax.swing.JLabel supporticon;
+    private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
 }

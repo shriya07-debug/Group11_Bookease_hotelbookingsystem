@@ -6,7 +6,6 @@ package view;
 
 import dao.UserDAO;  // Add this import
 import javax.swing.JOptionPane;  // Add this import
-import java.sql.*;  // Add this import if needed
 /**
  *
  * @author sailenawale
