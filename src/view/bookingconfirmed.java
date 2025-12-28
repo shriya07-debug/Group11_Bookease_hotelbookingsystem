@@ -9,15 +9,15 @@ package view;
  * @author nirajhamal
  */
 
-public class logout extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
+public class bookingconfirmed extends javax.swing.JFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(bookingconfirmed.class.getName());
 
     /**
-     * Creates new form support
+     * Creates new form bookingconfirmed
      */
-    public logout
-
+    public bookingconfirmed() {
         initComponents();
     }
 
@@ -31,12 +31,10 @@ public class logout extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-<<<<<<<< HEAD:src/view/logout.java
         number3 = new javax.swing.JLabel();
         helpfulbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
-========
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,12 +49,10 @@ public class logout extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
->>>>>>>> niraj:src/view/bookingconfirmed.java
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-<<<<<<<< HEAD:src/view/logout.java
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
@@ -67,7 +63,7 @@ public class logout extends javax.swing.JFrame {
         number3.setBounds(360, 170, 470, 60);
 
         helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
         helpfulbutton.setText("Login");
         helpfulbutton.setBorder(null);
@@ -77,19 +73,17 @@ public class logout extends javax.swing.JFrame {
             }
         });
         jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 240, 130, 40);
+        helpfulbutton.setBounds(360, 250, 120, 30);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(120, 40, 90, 16);
+        slogan.setBounds(130, 40, 90, 16);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
-<<<<<<< HEAD
         image.setBounds(0, 0, 1260, 730);
-========
         jPanel3.setLayout(null);
 
         jButton2.setBackground(new java.awt.Color(184, 13, 47));
@@ -109,56 +103,53 @@ public class logout extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jPanel3.add(jLabel1);
         jLabel1.setBounds(30, 10, 1140, 17);
->>>>>>>> niraj:src/view/bookingconfirmed.java
-=======
-        image.setBounds(0, 0, 1260, 740);
->>>>>>> 4d259b7e93c7c2fc5f11380bdd1326171edde359
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<<< HEAD:src/view/logout.java
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-========
+
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
->>>>>>>> niraj:src/view/bookingconfirmed.java
-        );
+                .addGap(0, 0, Short.MAX_VALUE)));
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
+    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_helpfulbuttonMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        
-        new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new login().setVisible(true);
+
+    }// GEN-LAST:event_helpfulbuttonMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -170,26 +161,19 @@ public class logout extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
+
         java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
-        
-    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
->>>>>>>> niraj:src/view/bookingconfirmed.java
-    // End of variables declaration//GEN-END:variables
+    java.awt.EventQueue.invokeLater(()->new bookingconfirmed().setVisible(true));
 }
