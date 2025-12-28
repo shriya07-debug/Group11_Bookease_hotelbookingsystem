@@ -16,16 +16,7 @@ public class logout extends javax.swing.JFrame {
     /**
      * Creates new form support
      */
-    public logout() {
-
-
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookingconfirmed.class.getName());
-
-    /**
-     * Creates new form bookingconfirmed
-     */
-    public bookingconfirmed() {
+    public logout
 
         initComponents();
     }
@@ -187,7 +178,7 @@ public class logout extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
-        java.awt.EventQueue.invokeLater(() -> new bookingconfirmed().setVisible(true));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
