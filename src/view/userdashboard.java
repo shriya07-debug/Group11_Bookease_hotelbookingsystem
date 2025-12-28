@@ -65,16 +65,16 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel1.add(logo);
         logo.setBounds(0, 600, 130, 90);
 
-        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         userdashboard.setForeground(new java.awt.Color(232, 128, 153));
         userdashboard.setText("User Dashboard");
         jPanel1.add(userdashboard);
-        userdashboard.setBounds(500, 36, 290, 44);
+        userdashboard.setBounds(500, 36, 290, 45);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(100, 636, 90, 50);
+        slogan.setBounds(90, 640, 90, 50);
 
         menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
         menubar.addMouseListener(new java.awt.event.MouseAdapter() {

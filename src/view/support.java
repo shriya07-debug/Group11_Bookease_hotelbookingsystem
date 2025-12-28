@@ -46,7 +46,7 @@ public class support extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        support.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        support.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         support.setForeground(new java.awt.Color(241, 150, 174));
         support.setText("Support");
         jPanel1.add(support);
@@ -77,7 +77,7 @@ public class support extends javax.swing.JFrame {
         number3.setBounds(380, 340, 260, 30);
 
         helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
         helpfulbutton.setText("Helpful");
         helpfulbutton.setBorder(null);
@@ -87,12 +87,12 @@ public class support extends javax.swing.JFrame {
             }
         });
         jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(380, 450, 120, 30);
+        helpfulbutton.setBounds(380, 440, 120, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(130, 40, 90, 16);
+        slogan.setBounds(120, 40, 90, 16);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {

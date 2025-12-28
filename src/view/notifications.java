@@ -83,7 +83,7 @@ private void loadNotifications() {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         userdashboard.setForeground(new java.awt.Color(232, 128, 153));
         userdashboard.setText("Notifications");
         jPanel1.add(userdashboard);

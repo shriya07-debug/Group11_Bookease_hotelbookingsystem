@@ -8,25 +8,16 @@ package view;
  *
  * @author nirajhamal
  */
-<<<<<<<< HEAD:src/view/logout.java
-public class logout extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
 
-    /**
-     * Creates new form support
-     */
-    public logout() {
-========
 public class bookingconfirmed extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookingconfirmed.class.getName());
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(bookingconfirmed.class.getName());
 
     /**
      * Creates new form bookingconfirmed
      */
     public bookingconfirmed() {
->>>>>>>> niraj:src/view/bookingconfirmed.java
         initComponents();
     }
 
@@ -40,12 +31,10 @@ public class bookingconfirmed extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-<<<<<<<< HEAD:src/view/logout.java
         number3 = new javax.swing.JLabel();
         helpfulbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
-========
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -60,12 +49,10 @@ public class bookingconfirmed extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
->>>>>>>> niraj:src/view/bookingconfirmed.java
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-<<<<<<<< HEAD:src/view/logout.java
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
@@ -97,7 +84,6 @@ public class bookingconfirmed extends javax.swing.JFrame {
         image.setText("jLabel1");
         jPanel1.add(image);
         image.setBounds(0, 0, 1260, 730);
-========
         jPanel3.setLayout(null);
 
         jButton2.setBackground(new java.awt.Color(184, 13, 47));
@@ -117,54 +103,53 @@ public class bookingconfirmed extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jPanel3.add(jLabel1);
         jLabel1.setBounds(30, 10, 1140, 17);
->>>>>>>> niraj:src/view/bookingconfirmed.java
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<<< HEAD:src/view/logout.java
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-========
+
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
->>>>>>>> niraj:src/view/bookingconfirmed.java
-        );
+                .addGap(0, 0, Short.MAX_VALUE)));
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<<< HEAD:src/view/logout.java
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
+    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_helpfulbuttonMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        
+
         new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
-========
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }// GEN-LAST:event_helpfulbuttonMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
->>>>>>>> niraj:src/view/bookingconfirmed.java
+    }// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -176,10 +161,10 @@ public class bookingconfirmed extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
-<<<<<<<< HEAD:src/view/logout.java
+
         java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
@@ -189,15 +174,6 @@ public class bookingconfirmed extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
-========
-        java.awt.EventQueue.invokeLater(() -> new bookingconfirmed().setVisible(true));
-    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
->>>>>>>> niraj:src/view/bookingconfirmed.java
-    // End of variables declaration//GEN-END:variables
+    java.awt.EventQueue.invokeLater(()->new bookingconfirmed().setVisible(true));
 }

@@ -67,7 +67,7 @@ public class logout extends javax.swing.JFrame {
         number3.setBounds(360, 170, 470, 60);
 
         helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
         helpfulbutton.setText("Login");
         helpfulbutton.setBorder(null);
@@ -77,16 +77,17 @@ public class logout extends javax.swing.JFrame {
             }
         });
         jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 250, 120, 30);
+        helpfulbutton.setBounds(360, 240, 130, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(130, 40, 90, 16);
+        slogan.setBounds(120, 40, 90, 16);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
+<<<<<<< HEAD
         image.setBounds(0, 0, 1260, 730);
 ========
         jPanel3.setLayout(null);
@@ -109,6 +110,9 @@ public class logout extends javax.swing.JFrame {
         jPanel3.add(jLabel1);
         jLabel1.setBounds(30, 10, 1140, 17);
 >>>>>>>> niraj:src/view/bookingconfirmed.java
+=======
+        image.setBounds(0, 0, 1260, 740);
+>>>>>>> 4d259b7e93c7c2fc5f11380bdd1326171edde359
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

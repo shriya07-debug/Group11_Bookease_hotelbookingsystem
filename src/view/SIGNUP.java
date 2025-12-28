@@ -42,7 +42,6 @@ public class signup extends javax.swing.JFrame {
         logouser = new javax.swing.JLabel();
         mailbox = new javax.swing.JLabel();
         key = new javax.swing.JLabel();
-        hoteltap = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         signupbutton = new javax.swing.JButton();
         usernamefield = new javax.swing.JTextField();
@@ -50,6 +49,7 @@ public class signup extends javax.swing.JFrame {
         password = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         passwordfield = new javax.swing.JPasswordField();
+        slogan = new javax.swing.JLabel();
         layout = new javax.swing.JLabel();
         signup2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -89,10 +89,6 @@ public class signup extends javax.swing.JFrame {
         getContentPane().add(key);
         key.setBounds(450, 360, 50, 60);
 
-        hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
-        getContentPane().add(hoteltap);
-        hoteltap.setBounds(90, 10, 160, 40);
-
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         getContentPane().add(logo);
         logo.setBounds(0, -30, 100, 110);
@@ -127,6 +123,11 @@ public class signup extends javax.swing.JFrame {
         email.setBounds(140, 260, 120, 30);
         getContentPane().add(passwordfield);
         passwordfield.setBounds(140, 370, 300, 40);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        getContentPane().add(slogan);
+        slogan.setBounds(90, 30, 90, 16);
 
         layout.setBackground(new java.awt.Color(255, 0, 51));
         layout.setForeground(new java.awt.Color(255, 0, 0));
@@ -232,7 +233,6 @@ private void signupAction() {
     private javax.swing.JLabel account;
     private javax.swing.JLabel email;
     private javax.swing.JTextField emailfield;
-    private javax.swing.JLabel hoteltap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel key;
     private javax.swing.JLabel layout;
@@ -244,6 +244,7 @@ private void signupAction() {
     private javax.swing.JLabel signup;
     private javax.swing.JTextField signup2;
     private javax.swing.JButton signupbutton;
+    private javax.swing.JLabel slogan;
     private javax.swing.JLabel username;
     private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
