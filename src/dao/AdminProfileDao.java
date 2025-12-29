@@ -18,7 +18,7 @@ public class AdminProfileDao {
         try {
             conn = mysqlconnection.getConnection();
             if (conn == null) {
-                System.out.println("❌ Database connection is null!");
+                System.out.println("Database connection is null!");
                 return null;
             }
             
@@ -35,7 +35,7 @@ public class AdminProfileDao {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("❌ Get Admin Error: " + e.getMessage());
+            System.err.println("Get Admin Error: " + e.getMessage());
             e.printStackTrace();
         } finally {
             // Close resources
@@ -67,8 +67,7 @@ public class AdminProfileDao {
             return rowsUpdated > 0;
             
         } catch (SQLException e) {
-            System.err.println("❌ Update Error: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Update Error: " + e.getMessage());
             return false;
         } finally {
             closeResources(conn, ps, null);
@@ -95,8 +94,7 @@ public class AdminProfileDao {
             return rowsDeleted > 0;
             
         } catch (SQLException e) {
-            System.err.println("❌ Delete Error: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Delete Error: " + e.getMessage());
             return false;
         } finally {
             closeResources(conn, ps, null);
@@ -113,7 +111,7 @@ public class AdminProfileDao {
         try {
             conn = mysqlconnection.getConnection();
             if (conn == null) {
-                System.out.println("❌ Database connection is null!");
+                System.out.println("Database connection is null!");
                 return false;
             }
             
@@ -126,8 +124,7 @@ public class AdminProfileDao {
                 return rs.getInt("count") > 0;
             }
         } catch (SQLException e) {
-            System.err.println("❌ Email Check Error: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Email Check Error: " + e.getMessage());
         } finally {
             closeResources(conn, ps, rs);
         }
@@ -145,7 +142,7 @@ public class AdminProfileDao {
         try {
             conn = mysqlconnection.getConnection();
             if (conn == null) {
-                System.out.println("❌ Database connection is null!");
+                System.out.println("Database connection is null!");
                 return admins;
             }
             
@@ -161,7 +158,7 @@ public class AdminProfileDao {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("❌ Get All Error: " + e.getMessage());
+            System.err.println("Get All Error: " + e.getMessage());
             e.printStackTrace();
         } finally {
             closeResources(conn, stmt, rs);

@@ -17,21 +17,21 @@ public class UserDAO {
     // Check if email exists
     public boolean emailExists(String email) {
 
-        Connection conn = db.openConnection();
+        Connection conn = mysqlconnection.getConnection();
         String query = "SELECT * FROM users WHERE email='" + email + "'";
 
         ResultSet rs = db.runQuery(conn, query);
 
         try {
             if (rs != null && rs.next()) {
-                db.closeConnection(conn);
+               
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        db.closeConnection(conn);
+        
         return false;
     }
 
