@@ -4,9 +4,6 @@
  */
 package view;
 
-import controller.UserController;
-import javax.swing.JOptionPane;
-
 
 
 
@@ -15,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author hp
  */
 public class signup extends javax.swing.JFrame {
-    private final UserController userController;
+   
    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger( signup.class.getName());
    
@@ -23,7 +20,6 @@ public class signup extends javax.swing.JFrame {
      * Creates new form SIGNUP
      */
     public  signup() {
-        userController = new UserController();
         initComponents();
     }
 
@@ -149,8 +145,6 @@ public class signup extends javax.swing.JFrame {
 
     private void signupbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbuttonActionPerformed
         // TODO add your handling code here:
-         signupAction();
-         
             
     }//GEN-LAST:event_signupbuttonActionPerformed
 
@@ -160,47 +154,7 @@ public class signup extends javax.swing.JFrame {
         
         new login().setVisible(true);
     }//GEN-LAST:event_accountMouseClicked
-private void signupAction() {
-    String username = usernamefield.getText().trim();
-    String email = emailfield.getText().trim();
-    String password = new String(passwordfield.getPassword()).trim();
-    
-    System.out.println("Signup attempt:");
-    System.out.println("Username: " + username);
-    System.out.println("Email: " + email);
-    System.out.println("Password length: " + password.length());
-    
-    // Validate input
-    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "All fields are required!");
-        return;
-    }
-    
-    if (!email.contains("@")) {
-        JOptionPane.showMessageDialog(this, "Invalid email format!");
-        return;
-    }
-    
-    if (password.length() < 4) {
-        JOptionPane.showMessageDialog(this, "Password must be at least 4 characters!");
-        return;
-    }
-    
-    UserController userController = new UserController();
-    boolean success = userController.signup(username, email, password);
-    
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Signup successful!");
-        // ONLY dispose and navigate AFTER successful signup
-        this.dispose();
-        new login().setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Signup failed. Email may already exist.");
-        //  Don't dispose - keep form open so user can try again
-    }
-}
 
-   
     
 
 
@@ -248,4 +202,17 @@ private void signupAction() {
     private javax.swing.JLabel username;
     private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTextField getUsernameField() { 
+    return usernamefield;
+}
+public javax.swing.JTextField getEmailField() {
+    return emailfield;
+}
+public javax.swing.JPasswordField getPasswordField() { 
+    return passwordfield;
+}
+public void addSignupButtonListener(java.awt.event.ActionListener listener) {
+        signupbutton.addActionListener(listener);
+}
+   
 }

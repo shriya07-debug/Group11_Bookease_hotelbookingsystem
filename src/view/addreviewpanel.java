@@ -9,9 +9,7 @@ package view;
  * @author sailenawale
  */
 public class addreviewpanel extends javax.swing.JPanel {
-    private boolean submitted = false;
-    private String userName = "";
-    private String comment = "";
+   
     /**
      * Creates new form addreviewpanel
      */
@@ -19,17 +17,7 @@ public class addreviewpanel extends javax.swing.JPanel {
         initComponents();
     }
     
-public boolean isSubmitted() {
-    return submitted;
-     }
 
-public String getUserName() {
-    return userName;
-}
-
-public String getComment() {
-    return comment;
-} 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,28 +126,12 @@ public String getComment() {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
-        userName = txtusername.getText().trim();
-        comment = txtcomment.getText().trim();
-    
-    if (!userName.isEmpty() && !comment.isEmpty()) {
-        submitted = true;
-        
-        // Close parent window if it exists
-        java.awt.Window parent = javax.swing.SwingUtilities.getWindowAncestor(this);
-        if (parent != null) {
-            parent.dispose();
-        }
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Please enter both name and review!",
-            "Error",
-            javax.swing.JOptionPane.WARNING_MESSAGE);
-     }
+       
     }//GEN-LAST:event_submitActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
-       this.getTopLevelAncestor().setVisible(false);
+       
     }//GEN-LAST:event_cancelActionPerformed
 
 
@@ -174,5 +146,19 @@ public String getComment() {
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 
+ public javax.swing.JTextField getUserNameField() {
+        return txtusername;
+    }
     
+    public javax.swing.JTextArea getCommentTextArea() {
+        return txtcomment;
+    }
+    
+    public javax.swing.JButton getSubmitButton() {
+        return submit;
+    }
+    
+    public javax.swing.JButton getCancelButton() {
+        return cancel;
+    }   
 }

@@ -3,56 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.NotificationController;
-import model.NotificationModel;
-import javax.swing.*;
-import java.util.List;
+
 
 /**
  *
  * @author sailenawale
  */
 public class notifications extends javax.swing.JFrame {
-    private final int currentUserId = 1;
+   
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(notifications.class.getName());
 
     /**
      * Creates new form notifications
      */
-    public notifications() {
-        initComponents();
-        loadNotifications();
+    public notifications(int userId) {
+        initComponents();      
         setLocationRelativeTo(null);
+        new controller.NotificationController(userId).setupNotifications(this);
     }
-private void loadNotifications() {
-       try {
-        NotificationController controller = new NotificationController();
-        List<NotificationModel> notifications = controller.getUserNotifications(currentUserId);
-        
-        // Use jList1 (your JList component)
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        if (notifications.isEmpty()) {
-            model.addElement(" No notifications yet");
-            model.addElement("Update your profile to get notifications!");
-        } else {
-            for (NotificationModel notif : notifications) {
-                String displayText = "• " + notif.getMessage() + 
-                                   " [" + notif.getCreatedAt() + "]";
-                model.addElement(displayText);
-            }
-        }
-        
-        jList1.setModel(model);
-        
-    } catch (Exception e) {
-        // Show error in the list
-        DefaultListModel<String> errorModel = new DefaultListModel<>();
-        errorModel.addElement("Error loading notifications");
-        errorModel.addElement("Check database connection");
-        jList1.setModel(errorModel);
-     }
-    }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,10 +112,7 @@ private void loadNotifications() {
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open userdashboard
-        new userdashboard().setVisible(true);
+       
     }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
@@ -170,7 +137,10 @@ private void loadNotifications() {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new notifications().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+                int userId = 1;
+                new notifications(userId).setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,4 +156,10 @@ private void loadNotifications() {
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel userdashboard;
     // End of variables declaration//GEN-END:variables
-}
+ public javax.swing.JList<String> getNotificationsList() {
+        return jList1;
+    }
+    
+    public javax.swing.JLabel getBackButton() {
+        return backbutton;
+    }}

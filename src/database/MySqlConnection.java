@@ -73,26 +73,6 @@ public class MySqlConnection implements Database{
        public int executeUpdate(Connection conn, String query) {
 
       try{
-<<<<<<< HEAD
-          String username = "root";
-
-          String password = "#neeraz2060";
-
-          String database = "hotel_booking"; 
-          Connection connection;
-          connection = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/" + database, username, password);
-          if(connection == null)
-          {
-              System.out.print("Connection unsuccessfull");
-          }
-          else
-          {
-          System.out.print("Connection successfull");
-          }
-          return connection;
-      } catch(Exception e){
-=======
 
           Statement stmp = conn.createStatement();
 
@@ -104,7 +84,7 @@ public class MySqlConnection implements Database{
 
       }catch(SQLException e){
 
->>>>>>> 4d259b7e93c7c2fc5f11380bdd1326171edde359
+
           System.out.println(e);
 
           return -1;

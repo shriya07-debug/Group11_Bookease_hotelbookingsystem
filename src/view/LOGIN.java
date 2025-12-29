@@ -4,19 +4,12 @@
  */
 package view;
 
-import controller.UserController;
-import model.UserModel;
-import javax.swing.*;
-
 /**
  *
  * @author hp
  */
 public class login extends javax.swing.JFrame {
-    
-    private final UserController userController;
-    
-    
+   
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
 
     /**
@@ -25,9 +18,7 @@ public class login extends javax.swing.JFrame {
      */
     
     public login() {
-        userController = new UserController();
         initComponents();
-   
     }
         /**
          * This method is called from within the constructor to initialize the form.
@@ -158,46 +149,9 @@ public class login extends javax.swing.JFrame {
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
-         loginAction();
-                 
+      
     }//GEN-LAST:event_loginbuttonActionPerformed
-    private void loginAction() {
-        String email = emailfield.getText().trim();
-        String password = new String(passwordfield.getPassword()).trim();
-        
-        UserModel user = userController.login(email, password);
-        
-        if (user != null) {
-            // Login successful - open appropriate dashboard
-            dispose();
-            openDashboard(user);
-        }
-    }
     
-    private void openDashboard(UserModel user) {
-        String role = user.getRole().toLowerCase();
-        
-        switch (role) {
-        case "superadmin":
-        case "admin":
-            JOptionPane.showMessageDialog(this, "Opening Super Admin Dashboard");
-            new superadmindashboard().setVisible(true);
-            break;
-            
-        case "hotel_admin":
-        case "hotel admin":
-            JOptionPane.showMessageDialog(this, "Opening Hotel Admin Dashboard");
-            // new HotelAdminDashboard().setVisible(true);
-            break;
-            
-        case "user":
-        case "customer":
-        default:
-            JOptionPane.showMessageDialog(this, "Opening User Dashboard");
-            new userdashboard().setVisible(true);
-            break;
-    }
-    }
     
 
 
@@ -242,5 +196,13 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordfield;
     private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
-    
+    public javax.swing.JTextField getEmailField() {
+        return emailfield; 
+    }
+    public javax.swing.JPasswordField getPasswordField() { 
+        return passwordfield; 
+    }
+     public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+        loginbutton.addActionListener(listener);
+    }
 }

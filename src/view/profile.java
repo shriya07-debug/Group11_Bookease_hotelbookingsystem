@@ -3,12 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import javax.swing.*;
-import controller.ProfileController;
-import java.awt.Image;
-import java.io.File;
-import model.ProfileModel;
-
 /**
  *
  * @author sailenawale
@@ -16,122 +10,17 @@ import model.ProfileModel;
 public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
-    private int currentUserId;// Your user ID
-    private String currentPhotoPath;
-   
- 
+  
+    public profile() {
+    initComponents(); // This line is CRITICAL
+}
  
     /**
      * Creates new form profile
      */
-    public profile(int userId, String userRole) {
-        if ("user".equalsIgnoreCase(userRole)) {
-        this.currentUserId = userId;
-        initComponents();
-        loadUserData();
-        setLocationRelativeTo(null);
-        cancelbutton.setVisible(true); 
-        loadProfilePhoto(); 
-    }else {
-        // For admin/superadmin, show message and redirect
-        JOptionPane.showMessageDialog(null,
-            userRole + " accounts do not have user profiles.\n" +
-            "Please use the admin dashboard for account settings.",
-            "Profile Not Available",
-            JOptionPane.INFORMATION_MESSAGE);
-        
-        // Redirect based on role
-        this.dispose();
-         if ("superadmin".equalsIgnoreCase(userRole)) {
-            new superadmindashboard().setVisible(true);
-        } else {
-            new userdashboard().setVisible(true);
-        }
-    }
-}
-
-    private profile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
    
 
   
-    private void loadProfilePhoto() {
-    try {
-        String photoPath = "src/images/user_" + currentUserId + ".jpg";
-        File photoFile = new File(photoPath);
-        
-        if (photoFile.exists()) {
-            ImageIcon icon = new ImageIcon(photoPath);
-            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-            newpp.setIcon(new ImageIcon(scaled));
-            
-            faceicon.setVisible(false);
-            newpp.setVisible(true);
-            uploadbutton.setText("Change");
-            currentPhotoPath = photoPath;
-        }
-    } catch (Exception e) {
-        // Do nothing - show face by default
-    }
-}
-    
-    private void loadUserData() {
-    try {
-        ProfileController profileController = new ProfileController();
-        ProfileModel profile = profileController.getProfile(currentUserId);
-        
-        if (profile != null) {
-            userid.setText("User ID: " + profile.getUserId());
-            fullname.setText("Full Name: " + (profile.getFullName() != null ? profile.getFullName() : ""));
-            email.setText("Email: " + (profile.getEmail() != null ? profile.getEmail() : ""));
-            phoneno.setText("Phone: " + (profile.getPhone() != null ? profile.getPhone() : ""));
-        } else {
-            // Load from user session or database directly
-            userid.setText("User ID: " + currentUserId);
-            // You might want to fetch user data from users table here
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error loading profile: " + e.getMessage());
-    }
-}
-    
-
-// Update your edit/save method:
-private void saveProfileChanges(String newName, String newEmail, String newPhone) {
-        ProfileModel updatedProfile = new ProfileModel();
-        updatedProfile.setUserId(currentUserId);
-        updatedProfile.setFullName(newName);
-        updatedProfile.setEmail(newEmail);
-        updatedProfile.setPhone(newPhone);
-        
-        ProfileController profileController = new ProfileController();
-        
-        // Validate before saving
-        if (newName.trim().isEmpty() || newEmail.trim().isEmpty() || newPhone.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "All fields are required!");
-            return;
-        }
-        
-        if (!newEmail.contains("@")) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email!");
-            return;
-        }
-        
-        boolean success = profileController.updateProfile(updatedProfile);
-        if (success) {
-            JOptionPane.showMessageDialog(this, "Profile updated successfully!");
-            loadUserData(); // Reload updated data
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed to update profile!");
-        }
-    }
-
-      
-  
-    
-   
   
     
     /**
@@ -353,170 +242,39 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
     }//GEN-LAST:event_cancelbuttonMouseClicked
 
     private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
-        // TODO add your handling code here:
-        new login().setVisible(true);
+        
        
 
     }//GEN-LAST:event_logoutbuttonMouseClicked
 
     private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
         // TODO add your handling code here:
-        this.dispose(); // Close profile
-        new logout().setVisible(true); // Open logout
+       
     }//GEN-LAST:event_logoutbuttonActionPerformed
 
     private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
-        // TODO add your handling code here:
-        editbutton.setText("Edit");
-        cancelbutton.setVisible(true);
-        loadUserData(); // Reload original data
-        
-        this.dispose();
-        new userdashboard().setVisible(true);
+       
     }//GEN-LAST:event_cancelbuttonActionPerformed
 
     private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
         // TODO add your handling code here:
-                                             
-    // Ask which field to edit
-    String[] options = {"Name", "Email", "Phone"};
-    String choice = (String) JOptionPane.showInputDialog(
-        this,
-        "What do you want to edit?",
-        "Edit Profile",
-        JOptionPane.QUESTION_MESSAGE,
-        null,
-        options,
-        options[0]
-    );
-    
-    if (choice == null) return; // User cancelled
-    
-    if (choice.equals("Name")) {
-        String currentName = fullname.getText().replace("Full Name: ", "");
-        String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
-        
-        if (newName != null && !newName.trim().isEmpty()) {
-            fullname.setText("Full Name: " + newName.trim());
-            saveToDatabase();
-        }
-    }
-    else if (choice.equals("Email")) {
-        String currentEmail = email.getText().replace("Email: ", "");
-        String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
-        
-        if (newEmail != null && !newEmail.trim().isEmpty()) {
-            email.setText("Email: " + newEmail.trim());
-            saveToDatabase();
-        }
-    }
-    else if (choice.equals("Phone")) {
-        String currentPhone = phoneno.getText().replace("Phone: ", "");
-        String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
-        
-        if (newPhone != null && !newPhone.trim().isEmpty()) {
-            phoneno.setText("Phone: " + newPhone.trim());
-            saveToDatabase();
-        }
-    }
-}
-
-// Helper method to save to database
-private void saveToDatabase() {
-    ProfileModel profile = new ProfileModel();
-    profile.setUserId(currentUserId);
-    profile.setFullName(fullname.getText().replace("Full Name: ", ""));
-    profile.setEmail(email.getText().replace("Email: ", ""));
-    profile.setPhone(phoneno.getText().replace("Phone: ", ""));
-    
-    ProfileController controller = new ProfileController();
-    boolean success = controller.updateProfile(profile);
-    
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Updated successfully!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Error saving!");
-     }
+                                            
 
     }//GEN-LAST:event_editbuttonActionPerformed
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open userdashboard
-        new userdashboard().setVisible(true);
     }//GEN-LAST:event_backbuttonMouseClicked
 
     private void uploadbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbuttonActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-    
-    if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile(); // This is the actual file
-        
-        try {
-            // Save in images folder
-            String newFileName = "user_" + currentUserId + ".jpg";
-            File destination = new File("src/images", newFileName);
-            
-            // Copy file
-            java.io.FileInputStream fis = new java.io.FileInputStream(selectedFile); // Use selectedFile here
-            java.io.FileOutputStream fos = new java.io.FileOutputStream(destination);
-            
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesRead);
-            }
-            
-            fis.close();
-            fos.close();
-            
-            // Display photo
-            ImageIcon icon = new ImageIcon(destination.getAbsolutePath());
-            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-            newpp.setIcon(new ImageIcon(scaled));
-            
-            // Hide face, show photo
-            faceicon.setVisible(false);
-            newpp.setVisible(true);
-            uploadbutton.setText("Change");
-            
-            currentPhotoPath = destination.getAbsolutePath();
-            
-            JOptionPane.showMessageDialog(this, "Photo uploaded!");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
-     }
+       
+     
     }//GEN-LAST:event_uploadbuttonActionPerformed
 
     private void removebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebuttonActionPerformed
         // TODO add your handling code here:
-        if (currentPhotoPath != null) {
-        try {
-            File photoFile = new File(currentPhotoPath);
-            if (photoFile.exists()) {
-                photoFile.delete();
-            }
-            
-            // Show face again
-            faceicon.setVisible(true);
-            newpp.setVisible(false);
-            uploadbutton.setText("Upload");
-            currentPhotoPath = null;
-            
-            JOptionPane.showMessageDialog(this, "Photo removed!");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error removing photo");
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "No photo to remove");
-     }
+       
     }//GEN-LAST:event_removebuttonActionPerformed
 
     /**
@@ -570,4 +328,14 @@ private void saveToDatabase() {
     private javax.swing.JButton uploadbutton;
     private javax.swing.JLabel userid;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JLabel getUserIdLabel() { return userid; }
+public javax.swing.JLabel getFullNameLabel() { return fullname; }
+public javax.swing.JLabel getEmailLabel() { return email; }
+public javax.swing.JLabel getPhoneLabel() { return phoneno; }
+public javax.swing.JLabel getPhotoLabel() { return newpp; }
+public javax.swing.JButton getEditButton() { return editbutton; }
+public javax.swing.JLabel getBackButtonLabel() { return backbutton; }
+public javax.swing.JButton getCancelButton() { return cancelbutton; }
+public javax.swing.JButton getLogoutButton() { return logoutbutton; }
+public javax.swing.JButton getUploadButton() { return uploadbutton; }
+public javax.swing.JButton getRemoveButton() { return removebutton; }}

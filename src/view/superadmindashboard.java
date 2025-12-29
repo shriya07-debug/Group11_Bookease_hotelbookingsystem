@@ -4,8 +4,7 @@
  */
 package view;
 
-import dao.UserDAO;  // Add this import
-import javax.swing.JOptionPane;  // Add this import
+
 /**
  *
  * @author sailenawale
@@ -19,6 +18,8 @@ public class superadmindashboard extends javax.swing.JFrame {
      */
     public superadmindashboard() {
         initComponents();
+        drawerPanel.setLocation(-300, 0); // Start with drawer hidden
+        new controller.SuperAdminController().setupSuperAdminDashboard(this);
     }
 
     /**
@@ -34,7 +35,7 @@ public class superadmindashboard extends javax.swing.JFrame {
         superadmindashboard = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
-        menubar = new javax.swing.JLabel();
+        menuicon = new javax.swing.JLabel();
         drawerPanel = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         allhoteladmins = new javax.swing.JLabel();
@@ -76,14 +77,14 @@ public class superadmindashboard extends javax.swing.JFrame {
         jPanel1.add(slogan);
         slogan.setBounds(100, 660, 90, 50);
 
-        menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
-        menubar.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        menuicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menubarMouseClicked(evt);
+                menuiconMouseClicked(evt);
             }
         });
-        jPanel1.add(menubar);
-        menubar.setBounds(10, 10, 50, 40);
+        jPanel1.add(menuicon);
+        menuicon.setBounds(10, 10, 50, 40);
 
         drawerPanel.setLayout(null);
 
@@ -201,39 +202,24 @@ public class superadmindashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menubarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menubarMouseClicked
+    private void menuiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuiconMouseClicked
         // TODO add your handling code here:
-        if (drawerPanel.getX() < 0) {
-            // Slide IN from left
-            drawerPanel.setBounds(0, 0, 300, 720);
-        } else {
-            // Slide OUT to left
-            drawerPanel.setBounds(-300, 0, 300, 720);
-        }
-    }//GEN-LAST:event_menubarMouseClicked
+      
+    }//GEN-LAST:event_menuiconMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open superadmindashboard
-        new superadmindashboard().setVisible(true);
+       
     }//GEN-LAST:event_dashboardMouseClicked
 
     private void allhoteladminsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allhoteladminsMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        //Open viewallhoteladmins
-        new viewallhoteladmins().setVisible(true);
+       
     }//GEN-LAST:event_allhoteladminsMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open logout
-        new logout().setVisible(true);
+        
     }//GEN-LAST:event_logoutMouseClicked
 
     private void passwordfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordfieldActionPerformed
@@ -242,90 +228,7 @@ public class superadmindashboard extends javax.swing.JFrame {
 
     private void savebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttonActionPerformed
         // TODO add your handling code here:
-        // Get values from form
-    String hotelIdStr = hotelidfield.getText().trim();
-    String email = emailfield.getText().trim();
-    String password = new String(passwordfield.getPassword()).trim();
-    
-    System.out.println("\n=== CREATING HOTEL ADMIN ===");
-    System.out.println("Hotel ID: " + hotelIdStr);
-    System.out.println("Email: " + email);
-    System.out.println("Password length: " + password.length());
-    
-    // Validate
-    if (hotelIdStr.isEmpty() || email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, 
-            "All fields are required!\nPlease fill in Hotel ID, Email, and Password.",
-            "Validation Error",
-            JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    if (!email.contains("@")) {
-        JOptionPane.showMessageDialog(this, 
-            "Please enter a valid email address!",
-            "Invalid Email",
-            JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    if (password.length() < 4) {
-        JOptionPane.showMessageDialog(this, 
-            "Password must be at least 4 characters!",
-            "Weak Password",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    
-    try {
-        int hotelId = Integer.parseInt(hotelIdStr);
         
-        // Create hotel admin
-        UserDAO userDAO = new UserDAO();
-        boolean success = userDAO.createHotelAdmin(hotelId, email, password);
-        
-        if (success) {
-            JOptionPane.showMessageDialog(this, 
-                "Hotel Admin Created Successfully!\n\n" +
-                "Hotel ID: " + hotelId + "\n" +
-                "Email: " + email + "\n" +
-                "Password: " + password + "\n\n" +
-                "The hotel admin can now login using these credentials.",
-                "Success",
-                JOptionPane.INFORMATION_MESSAGE);
-            
-            // Clear fields for next entry
-            hotelidfield.setText("");
-            emailfield.setText("");
-            passwordfield.setText("");
-            
-            // Focus on hotel ID field for next entry
-            hotelidfield.requestFocus();
-            
-        } else {
-            JOptionPane.showMessageDialog(this, 
-                "Failed to create hotel admin!\n\n" +
-                "Possible reasons:\n" +
-                "1. Email already exists\n" +
-                "2. Database error\n" +
-                "3. Hotel ID might not exist",
-                "Creation Failed",
-                JOptionPane.ERROR_MESSAGE);
-        }
-        
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, 
-            "Hotel ID must be a valid number!\nPlease enter numeric value for Hotel ID.",
-            "Invalid Hotel ID",
-            JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        System.out.println("Error: " + e.getMessage());
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, 
-            "Unexpected error: " + e.getMessage(),
-            "System Error",
-            JOptionPane.ERROR_MESSAGE);
-     }
     }//GEN-LAST:event_savebuttonActionPerformed
 
     /**
@@ -369,7 +272,7 @@ public class superadmindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel logouticon;
-    private javax.swing.JLabel menubar;
+    private javax.swing.JLabel menuicon;
     private javax.swing.JLabel panel;
     private javax.swing.JLabel password;
     private javax.swing.JPasswordField passwordfield;
@@ -377,4 +280,48 @@ public class superadmindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel superadmindashboard;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JLabel getMenuIcon() {
+        return menuicon;
+    }
+    
+    public javax.swing.JPanel getDrawerPanel() {
+        return drawerPanel;
+    }
+    
+    public javax.swing.JLabel getDashboardLabel() {
+        return dashboard;
+    }
+    
+    public javax.swing.JLabel getAllHotelAdminsLabel() {
+        return allhoteladmins;
+    }
+    
+    public javax.swing.JLabel getLogoutLabel() {
+        return logout;
+    }
+    
+    public javax.swing.JTextField getHotelIdField() {
+        return hotelidfield;
+    }
+    
+    public javax.swing.JTextField getEmailField() {
+        return emailfield;
+    }
+    
+    public javax.swing.JPasswordField getPasswordField() {
+        return passwordfield;
+    }
+    
+    public javax.swing.JButton getSaveButton() {
+        return savebutton;
+    }
+    
+    // Listener attachment methods
+    public void addSaveButtonListener(java.awt.event.ActionListener listener) {
+        savebutton.addActionListener(listener);
+    }
+    
+    public void addMenuIconListener(java.awt.event.MouseListener listener) {
+        menuicon.addMouseListener(listener);
+    }
 }

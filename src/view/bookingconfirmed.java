@@ -126,17 +126,8 @@ public class bookingconfirmed extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_helpfulbuttonMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-
-        new login().setVisible(true);
-
-    }// GEN-LAST:event_helpfulbuttonMouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton2ActionPerformed
+   
+    
 
     /**
      * @param args the command line arguments
@@ -163,12 +154,9 @@ public class bookingconfirmed extends javax.swing.JFrame {
         }
         // </editor-fold>
 
-        /* Create and display the form */
-
-        java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;

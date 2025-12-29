@@ -1,33 +1,62 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import dao.NotificationDAO;
 import model.NotificationModel;
+import view.notifications;
+import javax.swing.*;
 import java.util.List;
 
 public class NotificationController {
     private final NotificationDAO notificationDAO;
+    private int userId;
     
-    public NotificationController() {
-        notificationDAO = new NotificationDAO();
+    public NotificationController(int userId) {
+        this.notificationDAO = new NotificationDAO();
+        this.userId = userId;
     }
     
-    public List<NotificationModel> getUserNotifications(int userId) {
-        return notificationDAO.getUserNotifications(userId);
+    public void setupNotifications(notifications view) {
+        loadNotifications(view);
+        setupBackButton(view);
     }
     
-    public boolean createNotification(int userId, String message) {
-        NotificationModel notification = new NotificationModel();
-        notification.setUserId(userId);
-        notification.setMessage(message);
-        
-        return notificationDAO.createNotification(notification);
+    private void loadNotifications(notifications view) {
+        try {
+            List<NotificationModel> notifications = notificationDAO.getUserNotifications(userId);
+            DefaultListModel<String> model = new DefaultListModel<>();
+            
+            if (notifications.isEmpty()) {
+                model.addElement(" No notifications yet");
+                model.addElement("Update your profile to get notifications!");
+            } else {
+                for (NotificationModel notif : notifications) {
+                    String displayText = "• " + notif.getMessage() + 
+                                       " [" + notif.getCreatedAt() + "]";
+                    model.addElement(displayText);
+                }
+            }
+            
+            view.getNotificationsList().setModel(model);
+            
+        } catch (Exception e) {
+            DefaultListModel<String> errorModel = new DefaultListModel<>();
+            errorModel.addElement("Error loading notifications");
+            errorModel.addElement("Check database connection");
+            view.getNotificationsList().setModel(errorModel);
+        }
+    }
+    
+    private void setupBackButton(notifications view) {
+        view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackToDashboard(view);
+            }
+        });
+    }
+    
+    private void goBackToDashboard(notifications view) {
+        view.dispose();
+        new view.userdashboard().setVisible(true);
     }
 }

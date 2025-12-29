@@ -10,13 +10,12 @@ package model;
  */
 public class AdminDashboardModel {
     private String image;
-    private String text;
     
     public AdminDashboardModel() {}
     
-    public AdminDashboardModel (String image, String text){
+    public AdminDashboardModel (String image){
         this.image = image;
-        this.text = text;
+       
     }
     
     public void setimage(String image){
@@ -27,12 +26,7 @@ public class AdminDashboardModel {
         return image;
     }
     
-    public void settext(String text){
-        this.text = text;
-    }
-    public String gettext(){
-       return text;
-    }
+    
         
     }
     

@@ -6,18 +6,16 @@ package view;
 
 /**
  *
- * @author nirajhamal
+ * @author sailenawale
  */
-
 public class logout extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
 
     /**
-     * Creates new form support
+     * Creates new form log
      */
-    public logout
-
+    public logout() {
         initComponents();
     }
 
@@ -31,32 +29,16 @@ public class logout extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-<<<<<<<< HEAD:src/view/logout.java
         number3 = new javax.swing.JLabel();
-        helpfulbutton = new javax.swing.JButton();
+        loginbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
-========
-        jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
->>>>>>>> niraj:src/view/bookingconfirmed.java
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
 
-<<<<<<<< HEAD:src/view/logout.java
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
@@ -66,18 +48,23 @@ public class logout extends javax.swing.JFrame {
         jPanel1.add(number3);
         number3.setBounds(360, 170, 470, 60);
 
-        helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
-        helpfulbutton.setText("Login");
-        helpfulbutton.setBorder(null);
-        helpfulbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginbutton.setBackground(new java.awt.Color(185, 12, 47));
+        loginbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        loginbutton.setForeground(new java.awt.Color(241, 150, 174));
+        loginbutton.setText("Login");
+        loginbutton.setBorder(null);
+        loginbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                helpfulbuttonMouseClicked(evt);
+                loginbuttonMouseClicked(evt);
             }
         });
-        jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 240, 130, 40);
+        loginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(loginbutton);
+        loginbutton.setBounds(360, 240, 130, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
@@ -87,69 +74,21 @@ public class logout extends javax.swing.JFrame {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
-<<<<<<< HEAD
-        image.setBounds(0, 0, 1260, 730);
-========
-        jPanel3.setLayout(null);
-
-        jButton2.setBackground(new java.awt.Color(184, 13, 47));
-        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(241, 151, 174));
-        jButton2.setText("PAY NOW");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton2);
-        jButton2.setBounds(530, 520, 170, 40);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/A12BC.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel3.add(jLabel1);
-        jLabel1.setBounds(30, 10, 1140, 17);
->>>>>>>> niraj:src/view/bookingconfirmed.java
-=======
         image.setBounds(0, 0, 1260, 740);
->>>>>>> 4d259b7e93c7c2fc5f11380bdd1326171edde359
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<<< HEAD:src/view/logout.java
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-========
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
->>>>>>>> niraj:src/view/bookingconfirmed.java
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1106, 785);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
+    private void loginbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
+    }//GEN-LAST:event_loginbuttonMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_loginbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,20 +115,17 @@ public class logout extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new logout().setVisible(true));
     }
 
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton helpfulbutton;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginbutton;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
-        
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
->>>>>>>> niraj:src/view/bookingconfirmed.java
     // End of variables declaration//GEN-END:variables
+public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+    loginbutton.addActionListener(listener);
+}
+public javax.swing.JButton getLoginButton() {
+    return loginbutton;
+}
 }

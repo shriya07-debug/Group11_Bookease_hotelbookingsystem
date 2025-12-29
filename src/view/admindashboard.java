@@ -1,32 +1,27 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package view;
-import controller.AdminDashboardController;
-import model.AdminDashboardModel;
+
+
 /**
  *
- * @author Acer
+ * @author sailenawale
  */
 public class admindashboard extends javax.swing.JFrame {
     
-    private final AdminDashboardController controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(admindashboard.class.getName());
+
+    /**
+     * Creates new form admindash
+     */
     public admindashboard() {
         initComponents();
-        controller = new AdminDashboardController();
-        displayDashboardData();
+        drawerPanel.setLocation(-300, 0); // Start with drawer hidden
+        new controller.AdminDashboardController().setupAdminDashboard(this);
     }
-     private void displayDashboardData() {
-        // Get data from controller
-        AdminDashboardModel data = controller.getDashboardData();
-        
-        if (data != null) {
-            // Display text
-            text.setText(data.gettext());
-            
-            // Display image (simple text for now)
-            imagedisplayarea.setText("Image: " + data.getimage());
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,9 +36,9 @@ public class admindashboard extends javax.swing.JFrame {
         AdminDashboard = new javax.swing.JLabel();
         GenerateInvoice = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
-        imagedisplayarea = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        menubar = new javax.swing.JLabel();
+        menuicon = new javax.swing.JLabel();
         drawerPanel = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         recentbookings = new javax.swing.JLabel();
@@ -52,17 +47,13 @@ public class admindashboard extends javax.swing.JFrame {
         dashboardicon = new javax.swing.JLabel();
         supporticon = new javax.swing.JLabel();
         hotelprofileicon = new javax.swing.JLabel();
-        support1 = new javax.swing.JLabel();
+        support = new javax.swing.JLabel();
         panel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        text = new javax.swing.JLabel();
-        image = new javax.swing.JLabel();
-        admindashboardbackgroundcolor = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        backimage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
-        setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -82,55 +73,40 @@ public class admindashboard extends javax.swing.JFrame {
         GenerateInvoice.setForeground(new java.awt.Color(232, 128, 153));
         GenerateInvoice.setText("Generate Invoice");
         GenerateInvoice.setBorder(null);
-        GenerateInvoice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenerateInvoiceActionPerformed(evt);
-            }
-        });
         jPanel1.add(GenerateInvoice);
-        GenerateInvoice.setBounds(650, 570, 220, 40);
+        GenerateInvoice.setBounds(650, 620, 220, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
         slogan.setBounds(100, 616, 90, 70);
-        jPanel1.add(imagedisplayarea);
-        imagedisplayarea.setBounds(520, 180, 480, 240);
+        jPanel1.add(image);
+        image.setBounds(430, 180, 410, 420);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         jPanel1.add(logo);
         logo.setBounds(0, 570, 100, 120);
 
-        menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
-        menubar.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        menuicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menubarMouseClicked(evt);
+                menuiconMouseClicked(evt);
             }
         });
-        jPanel1.add(menubar);
-        menubar.setBounds(10, 10, 50, 40);
+        jPanel1.add(menuicon);
+        menuicon.setBounds(10, 10, 50, 40);
 
         drawerPanel.setLayout(null);
 
         dashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
         dashboard.setText("Dashboard");
-        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dashboardMouseClicked(evt);
-            }
-        });
         drawerPanel.add(dashboard);
         dashboard.setBounds(70, 210, 150, 30);
 
         recentbookings.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         recentbookings.setForeground(new java.awt.Color(255, 255, 255));
         recentbookings.setText("Recent Bookings");
-        recentbookings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                recentbookingsMouseClicked(evt);
-            }
-        });
         drawerPanel.add(recentbookings);
         recentbookings.setBounds(70, 260, 220, 30);
 
@@ -141,11 +117,6 @@ public class admindashboard extends javax.swing.JFrame {
         profile.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
-        profile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                profileMouseClicked(evt);
-            }
-        });
         drawerPanel.add(profile);
         profile.setBounds(70, 350, 160, 40);
 
@@ -161,16 +132,11 @@ public class admindashboard extends javax.swing.JFrame {
         drawerPanel.add(hotelprofileicon);
         hotelprofileicon.setBounds(20, 350, 50, 40);
 
-        support1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        support1.setForeground(new java.awt.Color(255, 255, 255));
-        support1.setText("Support");
-        support1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                support1MouseClicked(evt);
-            }
-        });
-        drawerPanel.add(support1);
-        support1.setBounds(70, 310, 160, 30);
+        support.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        support.setForeground(new java.awt.Color(255, 255, 255));
+        support.setText("Support");
+        drawerPanel.add(support);
+        support.setBounds(70, 310, 160, 30);
 
         panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
@@ -184,15 +150,17 @@ public class admindashboard extends javax.swing.JFrame {
 
         jPanel1.add(drawerPanel);
         drawerPanel.setBounds(0, 0, 330, 720);
-        jPanel1.add(text);
-        text.setBounds(500, 470, 500, 60);
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/admindash.png"))); // NOI18N
-        image.setText("jLabel2");
-        jPanel1.add(image);
-        image.setBounds(0, 0, 1280, 720);
-        jPanel1.add(admindashboardbackgroundcolor);
-        admindashboardbackgroundcolor.setBounds(0, 0, 0, 720);
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("<html><center>\nWhere water<br> meets wonder.<br>\nLuxury redefined<br> with fluid elegance<br>\nand seamless comfort<br>\nin the city's heart.\n</center></html>");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(892, 167, 180, 430);
+
+        backimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/admindash.png"))); // NOI18N
+        backimage.setText("jLabel2");
+        jPanel1.add(backimage);
+        backimage.setBounds(0, 0, 1280, 720);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -200,51 +168,9 @@ public class admindashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-                // TODO add your handling code here:
-                this.dispose();
-        
-                // Open dashboard
-                new admindashboard().setVisible(true);
-    }//GEN-LAST:event_dashboardMouseClicked
-
-    private void recentbookingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recentbookingsMouseClicked
-        ////        // TODO add your handling code here:
-        ////        this.dispose();
-        ////
-        ////        //Open bookinghistory
-        ////        new bookinghistory().setVisible(true);
-    }//GEN-LAST:event_recentbookingsMouseClicked
-
-    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+    private void menuiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuiconMouseClicked
         // TODO add your handling code here:
-        //        this.dispose();
-        //
-        //        // Open support
-        //        new support().setVisible(true);
-    }//GEN-LAST:event_profileMouseClicked
-
-    private void GenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateInvoiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GenerateInvoiceActionPerformed
-
-    private void support1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_support1MouseClicked
-        // TODO add your handling code here:
-        
-        this.dispose();
-        new support().setVisible(true);
-    }//GEN-LAST:event_support1MouseClicked
-
-    private void menubarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menubarMouseClicked
-        // TODO add your handling code here:
-        if (drawerPanel.getX() < 0) {
-            // Slide IN from left
-            drawerPanel.setBounds(0, 0, 300, 720);
-        } else {
-            // Slide OUT to left
-            drawerPanel.setBounds(-300, 0, 300, 720);
-        }
-    }//GEN-LAST:event_menubarMouseClicked
+    }//GEN-LAST:event_menuiconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -268,30 +194,71 @@ public class admindashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new admindashboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(()-> {
+            new admindashboard().setVisible(true);
+            
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminDashboard;
     private javax.swing.JButton GenerateInvoice;
-    private javax.swing.JLabel admindashboardbackgroundcolor;
+    private javax.swing.JLabel backimage;
     private javax.swing.JLabel bookingicon;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel dashboardicon;
     private javax.swing.JPanel drawerPanel;
     private javax.swing.JLabel hotelprofileicon;
     private javax.swing.JLabel image;
-    private javax.swing.JLabel imagedisplayarea;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel menubar;
+    private javax.swing.JLabel menuicon;
     private javax.swing.JLabel panel;
     private javax.swing.JLabel profile;
     private javax.swing.JLabel recentbookings;
     private javax.swing.JLabel slogan;
-    private javax.swing.JLabel support1;
+    private javax.swing.JLabel support;
     private javax.swing.JLabel supporticon;
-    private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JLabel getImageLabel() {
+        return image;
+    }
+    
+    public javax.swing.JLabel getMenuIcon() {
+        return menuicon;
+    }
+    
+    public javax.swing.JPanel getDrawerPanel() {
+        return drawerPanel;
+    }
+    
+    public javax.swing.JLabel getDashboardLabel() {
+        return dashboard;
+    }
+    
+    public javax.swing.JLabel getRecentBookingsLabel() {
+        return recentbookings;
+    }
+    
+    public javax.swing.JLabel getProfileLabel() {
+        return profile;
+    }
+    
+    public javax.swing.JLabel getSupportLabel() {
+        return support;
+    }
+    
+    public javax.swing.JButton getGenerateInvoiceButton() {
+        return GenerateInvoice;
+    }
+    
+    // Listener attachment methods
+    public void addGenerateInvoiceListener(java.awt.event.ActionListener listener) {
+        GenerateInvoice.addActionListener(listener);
+    }
+    
+    public void addMenuBarListener(java.awt.event.MouseListener listener) {
+        menuicon.addMouseListener(listener);
+    }}

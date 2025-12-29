@@ -4,15 +4,13 @@
  */
 package view;
 
-import controller.ReviewController;
-import model.ReviewModel;
 
 /**
  *
  * @author sailenawale
  */
 public class reviews extends javax.swing.JFrame {
-    private final ReviewController controller;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reviews.class.getName());
 
     /**
@@ -20,20 +18,7 @@ public class reviews extends javax.swing.JFrame {
      */
     
     public reviews() {
-    this("Aquaphor Hotel"); 
-}
-    public reviews(String hotelName) {
-        initComponents();
-        controller = new ReviewController(hotelName);
-        loadReviews();
-    }
-private void loadReviews() {
-    StringBuilder sb = new StringBuilder();
-    for (ReviewModel r : controller.getReviews()) {
-        sb.append("★ ").append(r.getUserName()).append(":\n");
-        sb.append(r.getComment()).append("\n\n");
-    }
-    txtreviews.setText(sb.toString());
+    initComponents(); // This line is CRITICAL
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,18 +105,7 @@ private void loadReviews() {
 
     private void addreviewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addreviewbuttonActionPerformed
         // TODO add your handling code here:
-         javax.swing.JDialog dialog = new javax.swing.JDialog(this, "Add Review", true);
-         addreviewpanel panel = new addreviewpanel();
-         dialog.add(panel);
-         dialog.pack();
-         dialog.setLocationRelativeTo(this);
-         dialog.setVisible(true);
-    
-    // Check if submitted
-    if (panel.isSubmitted()) {  // Use the getter method
-    controller.addReview(panel.getUserName(), panel.getComment());  // Use getter methods
-    loadReviews();
-      }
+        
     }//GEN-LAST:event_addreviewbuttonActionPerformed
 
     /**
@@ -169,4 +143,14 @@ private void loadReviews() {
     private javax.swing.JTextArea txtreviews;
     private javax.swing.JButton viewdetailsbutton;
     // End of variables declaration//GEN-END:variables
-}
+                                            
+    
+    // UI Event Listener ONLY
+    private void viewdetailsbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // Handle view details if needed
+    }                                               
+    
+    // Getter for UI component
+    public javax.swing.JTextArea getReviewsTextArea() {
+        return txtreviews;
+    }}

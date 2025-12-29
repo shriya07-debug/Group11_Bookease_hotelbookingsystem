@@ -4,6 +4,7 @@
  */
 package javaapplication3;
 
+import controller.UserController;
 import view.login;
 
 
@@ -25,10 +26,9 @@ public class JavaApplication3 {
 
            
             login login = new login();
+            UserController controller = new UserController();
+            controller.setupLoginView(login);
             login.setVisible(true);
-            
-            // Center the window on screen
-            login.setLocationRelativeTo(null);
         });
     }   
 }

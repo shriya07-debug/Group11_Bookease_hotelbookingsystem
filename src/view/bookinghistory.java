@@ -3,49 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.BookingController;
-import javax.swing.table.DefaultTableModel;
-/**
- *
+
+ /*
  * @author sailenawale
  */
 public class bookinghistory extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
   
-    private final BookingController bookingController;  
-    private final int userId = 1; // Your user ID
+    
     
     public bookinghistory() {
         initComponents();
-        bookingController = new BookingController(); 
-        setupTable();
-        loadBookings();
         setLocationRelativeTo(null);
         setVisible(true);// Center window
     }
     
-    private void setupTable() {
-        String[] columns = {"User_id", "Booking_id", "Hotel_name", "Check_in_date", 
-                        "Check_out_date", "Price", "Status"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; 
-            }
-        };
-        table.setModel(model); 
-    }
-    private void loadBookings() {
-        
-      try {
-        bookingController.loadUserBookings(table, userId);
-    } catch (Exception e) {
-        System.out.println("Error in loadBookings: " + e.getMessage());
-            // Don't crash - just show empty table
-      }
-    }
-  
+ 
     /**
      * Creates new form bookinghistory
      */
@@ -64,7 +38,6 @@ public class bookinghistory extends javax.swing.JFrame {
         bookinghistory = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        scroll = new javax.swing.JScrollBar();
         backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
@@ -121,8 +94,6 @@ public class bookinghistory extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(120, 190, 920, 440);
-        jPanel1.add(scroll);
-        scroll.setBounds(1040, 190, 20, 440);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,10 +120,7 @@ public class bookinghistory extends javax.swing.JFrame {
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open userdashboard
-        new userdashboard().setVisible(true);
+ 
     }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
@@ -186,7 +154,12 @@ public class bookinghistory extends javax.swing.JFrame {
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollBar scroll;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTable getBookingsTable() {
+        return table;
+    }
+public javax.swing.JLabel getBackButton() {
+        return backbutton;
+    }
 }

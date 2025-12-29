@@ -2,101 +2,149 @@ package controller;
 
 import model.UserModel;
 import dao.UserDAO;
-
+import java.awt.Component;
+import view.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class UserController {
     private final UserDAO userDAO;
     
     public UserController() {
         this.userDAO = new UserDAO();
-        System.out.println("UserController initialized");
     }
     
-    public UserModel login(String email, String password) {
-        System.out.println("Login attempt for: " + email);
+    // Setup login view with listeners
+    public void setupLoginView(login loginView) {
+        // Add login button listener
+        loginView.addLoginButtonListener((ActionEvent e) -> {
+            handleLogin(loginView);
+        });
+    }
+    
+    // Setup signup view with listeners
+    public void setupSignupView(signup signupView) {
+        // Add signup button listener
+        signupView.addSignupButtonListener((ActionEvent e) -> {
+            handleSignup(signupView);
+        });
+    }
+    
+    // Setup logout view with listeners
+    public void setupLogoutView(logout logoutView) {
+        // Add login button listener for logout page
+        logoutView.addLoginButtonListener((ActionEvent e) -> {
+            handleLogoutToLogin(logoutView);
+        });
+    }
+    
+    // Setup dashboard logout
+    public void setupDashboardLogout(JFrame dashboard, JButton logoutButton) {
+        logoutButton.addActionListener(e -> {
+            handleDashboardLogout(dashboard);
+        });
+    }
+    
+    // Business logic methods
+    private void handleLogin(login loginView) {
+        String email = loginView.getEmailField().getText().trim();
+        String password = new String(loginView.getPasswordField().getPassword()).trim();
         
-        if (email == null || email.trim().isEmpty()) {
-            System.out.println("Email is required");
-            return null;
+        if (email.isEmpty() || password.isEmpty()) {
+            showError(loginView, "Fields cannot be empty!");
+            return;
         }
         
-        if (password == null || password.trim().isEmpty()) {
-            System.out.println("Password is required");
-            return null;
-        }
-        
-        UserModel user = userDAO.login(email.trim(), password.trim());
+        UserModel user = userDAO.login(email, password);
         
         if (user == null) {
-            System.out.println("Invalid credentials");
-            return null;
+            showError(loginView, "Invalid credentials!");
+            return;
         }
         
-        if (!user.isActive()) {
-            System.out.println("Account is " + user.getStatus() + ". Please wait for activation.");
-            return null;
-        }
-        
-        System.out.println("Login successful for: " + user.getUsername());
-        return user;
+        loginView.dispose();
+        navigateToDashboard(user);
     }
     
-    public boolean signup(String username, String email, String password) {
-    System.out.println("\n=== USERCONTROLLER.SIGNUP() ===");
-    System.out.println("Username: '" + username + "'");
-    System.out.println("Email: '" + email + "'");
-    System.out.println("Password length: " + password.length());
+    private void handleSignup(signup signupView) {
+    String username = signupView.getUsernameField().getText().trim();
+    String email = signupView.getEmailField().getText().trim();
+    String password = new String(signupView.getPasswordField().getPassword()).trim();
     
-    // Validate
-    if (username == null || username.trim().isEmpty()) {
-        System.out.println("ERROR: Username is empty");
-        return false;
+    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        showError(signupView, "All fields required!");
+        return;
     }
     
-    if (email == null || email.trim().isEmpty()) {
-        System.out.println("ERROR: Email is empty");
-        return false;
+    if (!email.contains("@")) {
+        showError(signupView, "Invalid email!");
+        return;
     }
     
-    if (password == null || password.trim().isEmpty() || password.length() < 4) {
-        System.out.println("ERROR: Password too short");
-        return false;
-    }
+ 
+    UserModel newUser = new UserModel(username, email, password, "user", "active");
     
-    // Don't lowercase here - let the database handle it
-    email = email.trim();
-    System.out.println("Email after trimming: '" + email + "'");
-    
-    // Check if email exists
-    System.out.println("Calling emailExists()...");
-    boolean emailAlreadyExists = userDAO.emailExists(email);
-    System.out.println("emailExists() returned: " + emailAlreadyExists);
-    
-    if (emailAlreadyExists) {
-        System.out.println("Signup failed: Email already exists");
-        return false;
-    }
-    
-    System.out.println("Email does not exist, proceeding with signup...");
-    
-    // Create user - default role is "user"
-    UserModel newUser = new UserModel(username, email, password, "user");
-    newUser.setStatus("active");
-    
-    System.out.println("Created UserModel:");
-    System.out.println("  Username: " + newUser.getUsername());
-    System.out.println("  Email: " + newUser.getEmail());
-    System.out.println("  Password: " + (newUser.getPassword() != null ? "***" : "NULL"));
-    System.out.println("  Role: " + newUser.getRole());
-    System.out.println("  Status: " + newUser.getStatus());
-    System.out.println("Calling userDAO.signup()...");
-    
-    // Save to database
     boolean success = userDAO.signup(newUser);
     
-    System.out.println("userDAO.signup() returned: " + success);
-    System.out.println("=== END USERCONTROLLER.SIGNUP() ===\n");
+    if (success) {
+        JOptionPane.showMessageDialog(signupView, "Signup successful!");
+        signupView.dispose();
+        showLoginView();
+    } else {
+        showError(signupView, "Signup failed! Email might already exist.");
+    }
+}
     
-    return success;
+    private void handleLogoutToLogin(logout logoutView) {
+        logoutView.dispose();
+        showLoginView();
+    }
+    
+    private void handleDashboardLogout(JFrame dashboard) {
+        int response = JOptionPane.showConfirmDialog(
+            dashboard,
+            "Are you sure you want to logout?",
+            "Confirm Logout",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if (response == JOptionPane.YES_OPTION) {
+            dashboard.dispose();
+            showLogoutView();
+        }
+    }
+    
+    private void navigateToDashboard(UserModel user) {
+        String role = user.getRole().toLowerCase();
+        
+        switch (role) {
+            case "superadmin":
+                new superadmindashboard().setVisible(true);
+                break;
+            case "hotel_admin":
+                new admindashboard().setVisible(true);
+                break;
+            case "user":
+            default:
+                new userdashboard().setVisible(true);
+                break;
+        }
+    }
+    
+    private void showLoginView() {
+        login loginView = new login();
+        setupLoginView(loginView);
+        loginView.setVisible(true);
+    }
+    
+    private void showLogoutView() {
+        logout logoutView = new logout();
+        setupLogoutView(logoutView);
+        logoutView.setVisible(true);
+    }
+    
+    private void showError(Component parent, String message) {
+        JOptionPane.showMessageDialog(parent, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

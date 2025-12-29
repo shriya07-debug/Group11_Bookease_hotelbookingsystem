@@ -13,10 +13,11 @@ public class viewdetails extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewdetails.class.getName());
 
     /**
-     * Creates new form Hotelfiltering
+     * Creates new form viewdetails
      */
     public viewdetails() {
         initComponents();
+        new controller.ViewdetailsController(this);
     }
 
     /**
@@ -29,122 +30,117 @@ public class viewdetails extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        image = new javax.swing.JLabel();
+        viewdetails = new javax.swing.JLabel();
+        location = new javax.swing.JLabel();
+        hotelid = new javax.swing.JLabel();
+        availabilitygooglemaps = new javax.swing.JLabel();
+        contact = new javax.swing.JLabel();
+        price = new javax.swing.JLabel();
+        ratings = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        booknowbutton = new javax.swing.JButton();
+        slogan = new javax.swing.JLabel();
+        reviews = new javax.swing.JButton();
+        hotelname = new javax.swing.JLabel();
+        backimg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
+        jPanel1.add(image);
+        image.setBounds(90, 50, 490, 640);
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(240, 150, 174));
-        jLabel2.setText("View Details");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(540, 180, 240, 40);
+        viewdetails.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        viewdetails.setForeground(new java.awt.Color(240, 150, 174));
+        viewdetails.setText("View Details");
+        jPanel1.add(viewdetails);
+        viewdetails.setBounds(730, 90, 240, 40);
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Hotel ID: ");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(540, 270, 110, 23);
+        location.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        location.setForeground(new java.awt.Color(255, 255, 255));
+        location.setText("Location: ");
+        jPanel1.add(location);
+        location.setBounds(640, 290, 380, 23);
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Location: ");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(540, 330, 220, 23);
+        hotelid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        hotelid.setForeground(new java.awt.Color(255, 255, 255));
+        hotelid.setText("Hotel id:");
+        jPanel1.add(hotelid);
+        hotelid.setBounds(640, 190, 370, 23);
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Hotel Name:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(540, 300, 190, 23);
+        availabilitygooglemaps.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        availabilitygooglemaps.setForeground(new java.awt.Color(255, 255, 255));
+        availabilitygooglemaps.setText("Availability in google maps: ");
+        jPanel1.add(availabilitygooglemaps);
+        availabilitygooglemaps.setBounds(640, 340, 390, 23);
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Availability in google maps: ");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(540, 360, 280, 23);
+        contact.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        contact.setForeground(new java.awt.Color(255, 255, 255));
+        contact.setText("Contact: ");
+        jPanel1.add(contact);
+        contact.setBounds(640, 390, 370, 23);
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Contact: ");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(540, 390, 240, 23);
+        price.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        price.setForeground(new java.awt.Color(255, 255, 255));
+        price.setText("Price: ");
+        jPanel1.add(price);
+        price.setBounds(640, 440, 380, 23);
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Price: ");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(540, 420, 230, 23);
+        ratings.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ratings.setForeground(new java.awt.Color(255, 255, 255));
+        ratings.setText("Ratings: ");
+        jPanel1.add(ratings);
+        ratings.setBounds(640, 490, 380, 30);
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Ratings: ");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(540, 450, 200, 20);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
+        logo.setText("jLabel10");
+        jPanel1.add(logo);
+        logo.setBounds(0, -20, 90, 100);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
-        jLabel10.setText("jLabel10");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(0, 70, 90, 100);
-
-        jButton1.setBackground(new java.awt.Color(184, 13, 47));
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(241, 151, 174));
-        jButton1.setText("Book Now");
-        jButton1.setBorder(null);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        booknowbutton.setBackground(new java.awt.Color(184, 13, 47));
+        booknowbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        booknowbutton.setForeground(new java.awt.Color(241, 151, 174));
+        booknowbutton.setText("Book Now");
+        booknowbutton.setBorder(null);
+        booknowbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 redirect_bookingconfirmed(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jPanel1.add(booknowbutton);
+        booknowbutton.setBounds(650, 540, 150, 40);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(90, 10, 90, 60);
+
+        reviews.setBackground(new java.awt.Color(184, 13, 47));
+        reviews.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        reviews.setForeground(new java.awt.Color(241, 151, 174));
+        reviews.setText("Reviews");
+        reviews.setBorder(null);
+        reviews.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reviewsredirect_bookingconfirmed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(600, 510, 150, 23);
+        jPanel1.add(reviews);
+        reviews.setBounds(860, 540, 150, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/nirajhamal/Documents/Screenshot 2025-12-12 at 2.01.09 PM.png")); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 900, 720);
+        hotelname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        hotelname.setForeground(new java.awt.Color(255, 255, 255));
+        hotelname.setText("Hotel Name:");
+        jPanel1.add(hotelname);
+        hotelname.setBounds(640, 240, 370, 23);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 200, 234, 91);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(540, 230, 234, 91);
-
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(590, 240, 78, 23);
+        backimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/details.png"))); // NOI18N
+        backimg.setText("jLabel1");
+        jPanel1.add(backimg);
+        backimg.setBounds(0, 0, 1140, 720);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -152,14 +148,14 @@ public class viewdetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void redirect_bookingconfirmed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_redirect_bookingconfirmed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_redirect_bookingconfirmed
+
+    private void reviewsredirect_bookingconfirmed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewsredirect_bookingconfirmed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reviewsredirect_bookingconfirmed
 
     /**
      * @param args the command line arguments
@@ -185,24 +181,60 @@ public class viewdetails extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new viewdetails().setVisible(true));
     }
+    // In viewdetails.java - Add these public setter methods:
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel availabilitygooglemaps;
+    private javax.swing.JLabel backimg;
+    private javax.swing.JButton booknowbutton;
+    private javax.swing.JLabel contact;
+    private javax.swing.JLabel hotelid;
+    private javax.swing.JLabel hotelname;
+    private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel location;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel price;
+    private javax.swing.JLabel ratings;
+    private javax.swing.JButton reviews;
+    private javax.swing.JLabel slogan;
+    private javax.swing.JLabel viewdetails;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JLabel getHotelNameLabel() {
+        return hotelname;
+    }
+    public javax.swing.JLabel getHotelIdLabel() {
+        return hotelid;
+    }
+    public javax.swing.JLabel getLocationLabel() {
+        return location;
+    }
+    
+    public javax.swing.JLabel getGoogleMapsLabel() {
+        return availabilitygooglemaps;
+    }
+    
+    public javax.swing.JLabel getContactLabel() {
+        return contact;
+    }
+    
+    public javax.swing.JLabel getPriceLabel() {
+        return price;
+    }
+    
+    public javax.swing.JLabel getRatingsLabel() {
+        return ratings;
+    }
+    
+    public javax.swing.JLabel getImageLabel() {
+        return image;
+    }
+    
+    public javax.swing.JButton getBookNowButton() {
+        return booknowbutton;
+    }
+    
+    public javax.swing.JButton getReviewsButton() {
+        return reviews;
+    }}

@@ -1,64 +1,177 @@
 package controller;
 
 import dao.ProfileDAO;
-import dao.NotificationDAO;
-import model.NotificationModel;
 import model.ProfileModel;
+import view.profile;
+import javax.swing.*;
+import java.awt.Image;
+import java.io.File;
 
 public class ProfileController {
-    private final ProfileDAO profileDAO;
-    private NotificationDAO notificationDAO;
+    private profile view;
+    private int userId;
+    private String currentPhotoPath;
     
-    public ProfileController() {
-        profileDAO = new ProfileDAO();
+    public ProfileController(profile view, int userId) {
+        this.view = view;
+        this.userId = userId;
+        
+        // Show window
+        view.setVisible(true);
+        view.setLocationRelativeTo(null);
+        
+        // Load data
+        loadProfileData();
+        
+        // Setup all button listeners
+        setupButtonListeners();
+    }
+    
+    private void loadProfileData() {
+        ProfileDAO dao = new ProfileDAO();
+        ProfileModel user = dao.getProfileById(userId);
+        
+        if (user != null) {
+            view.getUserIdLabel().setText("User ID: " + user.getUserId());
+            view.getFullNameLabel().setText("Full Name: " + user.getFullName());
+            view.getEmailLabel().setText("Email: " + user.getEmail());
+            view.getPhoneLabel().setText("Phone: " + user.getPhone());
+            
+            // Load photo
+            loadProfilePhoto();
+        }
+    }
+    
+    private void loadProfilePhoto() {
         try {
-            notificationDAO = new NotificationDAO();
+            String photoPath = "src/images/user_" + userId + ".jpg";
+            File photoFile = new File(photoPath);
+            
+            if (photoFile.exists()) {
+                ImageIcon icon = new ImageIcon(photoPath);
+                Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
+                view.getPhotoLabel().setIcon(new ImageIcon(scaled));
+                currentPhotoPath = photoPath;
+            }
         } catch (Exception e) {
-            System.out.println("NotificationDAO initialization failed: " + e.getMessage());
-            notificationDAO = null; // Set to null if fails
+            // Keep default
         }
     }
     
-    public ProfileModel getProfile(int userId) {
-        return profileDAO.getProfileById(userId);
+    private void setupButtonListeners() {
+        // Edit button
+        view.getEditButton().addActionListener(e -> handleEdit());
+        
+        // Cancel button
+        view.getCancelButton().addActionListener(e -> handleCancel());
+        
+        // Logout button
+        view.getLogoutButton().addActionListener(e -> handleLogout());
+        
+        // Upload button
+        view.getUploadButton().addActionListener(e -> handleUpload());
+        
+        // Remove button
+        view.getRemoveButton().addActionListener(e -> handleRemove());
+        
+        // Back button
+        view.getBackButtonLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                handleBack();
+            }
+        });
     }
     
-    public boolean updateProfile(ProfileModel profile) {
-        // Validate first
-        if (!validateProfile(profile)) {
-            return false;
+    private void handleEdit() {
+        String newName = JOptionPane.showInputDialog(view, "Enter new name:");
+        if (newName != null && !newName.trim().isEmpty()) {
+            // Update database
+            ProfileDAO dao = new ProfileDAO();
+            ProfileModel user = new ProfileModel();
+            user.setUserId(userId);
+            user.setFullName(newName);
+            user.setEmail(view.getEmailLabel().getText().replace("Email: ", ""));
+            user.setPhone(view.getPhoneLabel().getText().replace("Phone: ", ""));
+            
+            dao.updateProfile(user);
+            
+            // Show message
+            JOptionPane.showMessageDialog(view, "You changed your profile details");
+            
+            // Update UI
+            view.getFullNameLabel().setText("Full Name: " + newName);
         }
+    }
+    
+    private void handleCancel() {
+        view.dispose();
+        new view.userdashboard().setVisible(true);
+    }
+    
+    private void handleLogout() {
+        view.dispose();
+        new view.logout().setVisible(true);
+    }
+    
+    private void handleUpload() {
+        JFileChooser fileChooser = new JFileChooser();
         
-        // Save profile
-        boolean success = profileDAO.updateProfile(profile);
-        
-        // Create notification if successful AND notificationDAO is available
-        if (success && notificationDAO != null) {
+        if (fileChooser.showOpenDialog(view) == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            
             try {
-                String message = "Profile updated: " + profile.getFullName() + 
-                               " | Email: " + profile.getEmail() + 
-                               " | Phone: " + profile.getPhone();
-                NotificationModel notification = new NotificationModel();
-                notification.setUserId(profile.getUserId());
-                notification.setMessage(message);
-                notificationDAO.createNotification(notification);
+                String newFileName = "user_" + userId + ".jpg";
+                File destination = new File("src/images", newFileName);
+                
+                // Copy file
+                java.io.FileInputStream fis = new java.io.FileInputStream(selectedFile);
+                java.io.FileOutputStream fos = new java.io.FileOutputStream(destination);
+                
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                
+                while ((bytesRead = fis.read(buffer)) != -1) {
+                    fos.write(buffer, 0, bytesRead);
+                }
+                
+                fis.close();
+                fos.close();
+                
+                // Display photo
+                ImageIcon icon = new ImageIcon(destination.getAbsolutePath());
+                Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
+                view.getPhotoLabel().setIcon(new ImageIcon(scaled));
+                
+                currentPhotoPath = destination.getAbsolutePath();
+                JOptionPane.showMessageDialog(view, "Photo uploaded!");
+                
             } catch (Exception e) {
-                System.out.println("Failed to create notification: " + e.getMessage());
-                // Don't return false, profile update was successful
+                JOptionPane.showMessageDialog(view, "Error uploading photo");
             }
         }
-        
-        return success;
     }
     
-    // Validation method
-    public boolean validateProfile(ProfileModel profile) {
-        if (profile.getFullName() == null || profile.getFullName().trim().isEmpty()) {
-            return false;
+    private void handleRemove() {
+        if (currentPhotoPath != null) {
+            try {
+                File photoFile = new File(currentPhotoPath);
+                if (photoFile.exists()) {
+                    photoFile.delete();
+                }
+                
+                // Remove photo from UI
+                view.getPhotoLabel().setIcon(null);
+                currentPhotoPath = null;
+                JOptionPane.showMessageDialog(view, "Photo removed!");
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(view, "Error removing photo");
+            }
         }
-        if (profile.getEmail() == null || !profile.getEmail().contains("@")) {
-            return false;
-        }
-        return !(profile.getPhone() == null || profile.getPhone().trim().isEmpty());
+    }
+    
+    private void handleBack() {
+        view.dispose();
+        new view.userdashboard().setVisible(true);
     }
 }
