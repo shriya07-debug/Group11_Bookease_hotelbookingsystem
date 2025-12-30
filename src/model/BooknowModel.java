@@ -83,4 +83,8 @@ public class BooknowModel {
     public void setStatus(String status) { 
         this.status = status; 
     }
+
+    public int getnoOfPeople() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }  

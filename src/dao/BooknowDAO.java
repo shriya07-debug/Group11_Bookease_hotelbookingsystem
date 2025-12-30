@@ -19,35 +19,29 @@ public class BooknowDAO {
      * @param booking
      * @return true if successful, false otherwise
      */
-    public boolean saveBooking(BooknowModel booking) {
-        String sql = "INSERT INTO bookings (room_type, number_of_people, check_in_date, check_out_date) " +
-                     "VALUES (?, ?, ?, ?)";
-        
-        try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, booking.getRoomType());
-            ps.setInt(2, booking.getNumberOfPeople());
-            ps.setDate(3, booking.getCheckInDate());
-            ps.setDate(4, booking.getCheckOutDate());
+public boolean saveBooking(BooknowModel booking) {
+    String sql = "INSERT INTO bookings " +
+                 "(room_type, number_of_people, check_in_date, check_out_date) " +
+                 "VALUES (?, ?, ?, ?)";
 
-            int rowsAffected = ps.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                // Optionally get the generated ID
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        booking.setId(rs.getInt(1));
-                    }
-                }
-                return true;
-            }
-            return false;
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error saving booking: " + e.getMessage(), 
-                                         "Database Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        ps.setString(1, booking.getRoomType());
+        ps.setInt(2, booking.getNumberOfPeople());
+        ps.setDate(3, booking.getCheckInDate());
+        ps.setDate(4, booking.getCheckOutDate());
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected > 0;
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null,
+            "Error saving booking: " + e.getMessage(),
+            "Database Error",
+            JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();  // Remove later, helpful for debugging now
+        return false;
     }
+}
 
     /**
      * Get all bookings (useful for future admin view)
@@ -64,7 +58,7 @@ public class BooknowDAO {
                 BooknowModel booking = new BooknowModel();
                 booking.setId(rs.getInt("id"));
                 booking.setRoomType(rs.getString("room_type"));
-                booking.setNumberOfPeople(rs.getInt("number_of_people"));
+                booking.setNumberOfPeople(rs.getInt("no_of_people"));
                 booking.setCheckInDate(rs.getDate("check_in_date"));
                 booking.setCheckOutDate(rs.getDate("check_out_date"));
                
