@@ -3,175 +3,145 @@ package controller;
 import dao.ProfileDAO;
 import model.ProfileModel;
 import view.profile;
+import view.userdashboard;
 import javax.swing.*;
-import java.awt.Image;
-import java.io.File;
 
 public class ProfileController {
-    private profile view;
-    private int userId;
-    private String currentPhotoPath;
+    private ProfileDAO profileDAO;
+    private int currentUserId;
+    private profile profileWindow;
     
-    public ProfileController(profile view, int userId) {
-        this.view = view;
-        this.userId = userId;
+    public ProfileController() {
+        this.profileDAO = new ProfileDAO();
+    }
+    
+    public void setupProfile(profile window, int userId) {
+        this.profileWindow = window;
+        this.currentUserId = userId;
         
-        // Show window
-        view.setVisible(true);
-        view.setLocationRelativeTo(null);
-        
-        // Load data
         loadProfileData();
-        
-        // Setup all button listeners
-        setupButtonListeners();
+        setupButtonActions();
     }
     
     private void loadProfileData() {
-        ProfileDAO dao = new ProfileDAO();
-        ProfileModel user = dao.getProfileById(userId);
-        
-        if (user != null) {
-            view.getUserIdLabel().setText("User ID: " + user.getUserId());
-            view.getFullNameLabel().setText("Full Name: " + user.getFullName());
-            view.getEmailLabel().setText("Email: " + user.getEmail());
-            view.getPhoneLabel().setText("Phone: " + user.getPhone());
-            
-            // Load photo
-            loadProfilePhoto();
-        }
-    }
-    
-    private void loadProfilePhoto() {
         try {
-            String photoPath = "src/images/user_" + userId + ".jpg";
-            File photoFile = new File(photoPath);
+            ProfileModel userProfile = profileDAO.getProfileById(currentUserId);
             
-            if (photoFile.exists()) {
-                ImageIcon icon = new ImageIcon(photoPath);
-                Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-                view.getPhotoLabel().setIcon(new ImageIcon(scaled));
-                currentPhotoPath = photoPath;
+            if (userProfile != null) {
+                profileWindow.getUserIdField().setText(String.valueOf(userProfile.getUserId()));
+                profileWindow.getUserIdField().setEditable(false);
+                profileWindow.getFullNameField().setText(userProfile.getFullName());
+                profileWindow.getEmailField().setText(userProfile.getEmail());
+                profileWindow.getPhoneField().setText(userProfile.getPhone());
+                
+                if (userProfile.getPhotoPath() != null && !userProfile.getPhotoPath().isEmpty()) {
+                    profileWindow.getPhotoLabel().setIcon(new ImageIcon(userProfile.getPhotoPath()));
+                }
             }
         } catch (Exception e) {
-            // Keep default
+            e.printStackTrace();
         }
     }
     
-    private void setupButtonListeners() {
-        // Edit button
-        view.getEditButton().addActionListener(e -> handleEdit());
-        
-        // Cancel button
-        view.getCancelButton().addActionListener(e -> handleCancel());
-        
-        // Logout button
-        view.getLogoutButton().addActionListener(e -> handleLogout());
-        
-        // Upload button
-        view.getUploadButton().addActionListener(e -> handleUpload());
-        
-        // Remove button
-        view.getRemoveButton().addActionListener(e -> handleRemove());
-        
-        // Back button
-        view.getBackButtonLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+    private void setupButtonActions() {
+        // Back button - go to dashboard
+        profileWindow.getBackButtonLabel().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                handleBack();
+                profileWindow.dispose();
+                new userdashboard().setVisible(true);
             }
         });
-    }
-    
-    private void handleEdit() {
-        String newName = JOptionPane.showInputDialog(view, "Enter new name:");
-        if (newName != null && !newName.trim().isEmpty()) {
-            // Update database
-            ProfileDAO dao = new ProfileDAO();
-            ProfileModel user = new ProfileModel();
-            user.setUserId(userId);
-            user.setFullName(newName);
-            user.setEmail(view.getEmailLabel().getText().replace("Email: ", ""));
-            user.setPhone(view.getPhoneLabel().getText().replace("Phone: ", ""));
-            
-            dao.updateProfile(user);
-            
-            // Show message
-            JOptionPane.showMessageDialog(view, "You changed your profile details");
-            
-            // Update UI
-            view.getFullNameLabel().setText("Full Name: " + newName);
-        }
-    }
-    
-    private void handleCancel() {
-        view.dispose();
-        new view.userdashboard().setVisible(true);
-    }
-    
-    private void handleLogout() {
-        view.dispose();
-        new view.logout().setVisible(true);
-    }
-    
-    private void handleUpload() {
-        JFileChooser fileChooser = new JFileChooser();
         
-        if (fileChooser.showOpenDialog(view) == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
+        // Edit button - save profile
+        profileWindow.getEditButton().addActionListener(e -> saveProfile());
+        
+        // Cancel button - go to dashboard
+        profileWindow.getCancelButton().addActionListener(e -> {
+            profileWindow.dispose();
+            new userdashboard().setVisible(true);
+        });
+        
+        // Logout button - logout
+        profileWindow.getLogoutButton().addActionListener(e -> logout());
+        
+        // Upload photo button
+        profileWindow.getUploadButton().addActionListener(e -> uploadPhoto());
+        
+        // Remove photo button
+        profileWindow.getRemoveButton().addActionListener(e -> removePhoto());
+    }
+    
+    private void saveProfile() {
+        String fullName = profileWindow.getFullNameField().getText().trim();
+        String email = profileWindow.getEmailField().getText().trim();
+        String phone = profileWindow.getPhoneField().getText().trim();
+        
+        if (fullName.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(profileWindow, "Name and Email are required!");
+            return;
+        }
+        
+        boolean success = profileDAO.updateProfile(
+            new ProfileModel(currentUserId, fullName, email, phone, null)
+        );
+        
+        if (success) {
+            JOptionPane.showMessageDialog(profileWindow, "Profile updated!");
+        } else {
+            JOptionPane.showMessageDialog(profileWindow, "Update failed!");
+        }
+    }
+    
+    private void logout() {
+        int confirm = JOptionPane.showConfirmDialog(profileWindow, 
+            "Logout?", "Confirm", JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            profileWindow.dispose();
+            // Add login screen navigation if available
+        }
+    }
+    
+    private void uploadPhoto() {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter(
+            "Images", "jpg", "jpeg", "png", "gif"));
+        
+        if (chooser.showOpenDialog(profileWindow) == JFileChooser.APPROVE_OPTION) {
+            String photoPath = chooser.getSelectedFile().getAbsolutePath();
             
-            try {
-                String newFileName = "user_" + userId + ".jpg";
-                File destination = new File("src/images", newFileName);
-                
-                // Copy file
-                java.io.FileInputStream fis = new java.io.FileInputStream(selectedFile);
-                java.io.FileOutputStream fos = new java.io.FileOutputStream(destination);
-                
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                
-                while ((bytesRead = fis.read(buffer)) != -1) {
-                    fos.write(buffer, 0, bytesRead);
-                }
-                
-                fis.close();
-                fos.close();
-                
-                // Display photo
-                ImageIcon icon = new ImageIcon(destination.getAbsolutePath());
-                Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-                view.getPhotoLabel().setIcon(new ImageIcon(scaled));
-                
-                currentPhotoPath = destination.getAbsolutePath();
-                JOptionPane.showMessageDialog(view, "Photo uploaded!");
-                
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(view, "Error uploading photo");
+            ProfileModel profile = new ProfileModel(
+                currentUserId,
+                profileWindow.getFullNameField().getText(),
+                profileWindow.getEmailField().getText(),
+                profileWindow.getPhoneField().getText(),
+                photoPath
+            );
+            
+            if (profileDAO.updateProfileWithPhoto(profile)) {
+                profileWindow.getPhotoLabel().setIcon(new ImageIcon(photoPath));
+                JOptionPane.showMessageDialog(profileWindow, "Photo uploaded!");
             }
         }
     }
     
-    private void handleRemove() {
-        if (currentPhotoPath != null) {
-            try {
-                File photoFile = new File(currentPhotoPath);
-                if (photoFile.exists()) {
-                    photoFile.delete();
-                }
-                
-                // Remove photo from UI
-                view.getPhotoLabel().setIcon(null);
-                currentPhotoPath = null;
-                JOptionPane.showMessageDialog(view, "Photo removed!");
-                
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(view, "Error removing photo");
+    private void removePhoto() {
+        int confirm = JOptionPane.showConfirmDialog(profileWindow, 
+            "Remove photo?", "Confirm", JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            ProfileModel profile = new ProfileModel(
+                currentUserId,
+                profileWindow.getFullNameField().getText(),
+                profileWindow.getEmailField().getText(),
+                profileWindow.getPhoneField().getText(),
+                null
+            );
+            
+            if (profileDAO.updateProfileWithPhoto(profile)) {
+                profileWindow.getPhotoLabel().setIcon(null);
+                JOptionPane.showMessageDialog(profileWindow, "Photo removed!");
             }
         }
-    }
-    
-    private void handleBack() {
-        view.dispose();
-        new view.userdashboard().setVisible(true);
     }
 }

@@ -27,7 +27,7 @@ public class NotificationController {
             
             if (notifications.isEmpty()) {
                 model.addElement(" No notifications yet");
-                model.addElement("Update your profile to get notifications!");
+                
             } else {
                 for (NotificationModel notif : notifications) {
                     String displayText = "• " + notif.getMessage() + 

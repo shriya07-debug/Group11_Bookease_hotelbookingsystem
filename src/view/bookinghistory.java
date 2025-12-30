@@ -80,10 +80,12 @@ public class bookinghistory extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "User_id", "Booking_id", "Hotel_name", "Check_in_date", "Check_out_date", "Price", "Status"
+                "user_id", "booking_id", "hotel_name", "check_in_date", "check_out_date", "total_price", "status"
             }
         ));
         table.setMaximumSize(new java.awt.Dimension(105, 400));
@@ -105,12 +107,11 @@ public class bookinghistory extends javax.swing.JFrame {
         backbutton.setBounds(30, 650, 30, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
-        image.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         image.setMaximumSize(new java.awt.Dimension(1280, 720));
         image.setMinimumSize(new java.awt.Dimension(1280, 720));
         image.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.add(image);
-        image.setBounds(0, 0, 1280, 720);
+        image.setBounds(-10, 0, 1280, 700);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);

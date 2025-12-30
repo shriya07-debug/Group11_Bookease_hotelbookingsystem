@@ -48,6 +48,7 @@ public class viewdetails extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
         jPanel1.add(image);
@@ -111,7 +112,7 @@ public class viewdetails extends javax.swing.JFrame {
             }
         });
         jPanel1.add(booknowbutton);
-        booknowbutton.setBounds(650, 540, 150, 40);
+        booknowbutton.setBounds(640, 540, 150, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");

@@ -2,70 +2,61 @@ package controller;
 
 import dao.BookingDAO;
 import model.BookingModel;
+import view.bookinghistory;
+import view.userdashboard;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class BookingController {
-    private final BookingDAO bookingDAO;
+    private BookingDAO bookingDAO;
     
     public BookingController() {
         this.bookingDAO = new BookingDAO();
     }
     
-    // Get user bookings (for controller use)
-    public List<BookingModel> getUserBookings(int userId) {
-        return bookingDAO.getUserBookings(userId);
+    public void setupBookingHistory(bookinghistory window, int userId) {
+        loadBookingData(window, userId);
+        setupBackButton(window);
     }
     
-    // Create table model with booking data
-    public DefaultTableModel createBookingsTableModel(int userId) {
-        List<BookingModel> bookings = getUserBookings(userId);
-        
-        String[] columns = {"User_id", "Booking_id", "Hotel_name", "Check_in_date", 
-                          "Check_out_date", "Price", "Status"};
-        
-        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+    private void loadBookingData(bookinghistory window, int userId) {
+        try {
+            List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
+            
+            // Create table model with EXACT column names
+            String[] columns = {"user_id", "booking_id", "hotel_name", "check_in_date", 
+                              "check_out_date", "total_price", "status"};
+            
+            DefaultTableModel model = new DefaultTableModel(columns, 0);
+            
+            for (BookingModel booking : bookings) {
+                model.addRow(new Object[]{
+                    booking.getUserId(),
+                    booking.getBookingId(),
+                    booking.getHotelName(),
+                    booking.getCheckInDate(),
+                    booking.getCheckOutDate(),
+                    "Rs " + booking.getPrice(),
+                    booking.getStatus()
+                });
+            }
+            
+            window.getBookingsTable().setModel(model);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(window, "Error loading bookings!");
+        }
+    }
+    
+    private void setupBackButton(bookinghistory window) {
+        window.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                window.dispose();
+                new userdashboard().setVisible(true);
             }
-        };
-        
-        for (BookingModel booking : bookings) {
-            model.addRow(new Object[]{
-                userId,
-                booking.getBookingId(),
-                booking.getHotelName(),
-                booking.getCheckInDate(),
-                booking.getCheckOutDate(),
-                "Rs " + booking.getPrice(),
-                booking.getStatus()
-            });
-        }
-        
-        return model;
-    }
-    
-    // Get user bookings count
-    public int getUserBookingCount(int userId) {
-        return getUserBookings(userId).size();
-    }
-    
-    // Check if user has bookings
-    public boolean hasBookings(int userId) {
-        return !getUserBookings(userId).isEmpty();
-    }
-    
-    // Get total amount spent
-    public double getTotalSpent(int userId) {
-        List<BookingModel> bookings = getUserBookings(userId);
-        double total = 0;
-        for (BookingModel booking : bookings) {
-            if ("confirmed".equalsIgnoreCase(booking.getStatus()) || 
-                "completed".equalsIgnoreCase(booking.getStatus())) {
-                total += booking.getPrice();
-            }
-        }
-        return total;
+        });
     }
 }

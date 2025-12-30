@@ -65,6 +65,7 @@ private void setImage(JLabel label, String path) {
     
     private void handleReviews() {
         view.dispose();
-        new reviews().setVisible(true);
+        reviews reviewsPage = new reviews();
+        new ReviewController(reviewsPage, "Aquaphor Hotel");
     }
 }

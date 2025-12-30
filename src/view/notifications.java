@@ -15,12 +15,15 @@ public class notifications extends javax.swing.JFrame {
 
     /**
      * Creates new form notifications
+     * @param userId
      */
     public notifications(int userId) {
         initComponents();      
         setLocationRelativeTo(null);
         new controller.NotificationController(userId).setupNotifications(this);
     }
+
+    
     
 
     /**
@@ -33,7 +36,7 @@ public class notifications extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        userdashboard = new javax.swing.JLabel();
+        notifications = new javax.swing.JLabel();
         notificationsicon = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
         msg = new javax.swing.JLabel();
@@ -53,11 +56,11 @@ public class notifications extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        userdashboard.setForeground(new java.awt.Color(232, 128, 153));
-        userdashboard.setText("Notifications");
-        jPanel1.add(userdashboard);
-        userdashboard.setBounds(510, 40, 290, 40);
+        notifications.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        notifications.setForeground(new java.awt.Color(232, 128, 153));
+        notifications.setText("Notifications");
+        jPanel1.add(notifications);
+        notifications.setBounds(510, 40, 290, 40);
 
         notificationsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifications.png"))); // NOI18N
         jPanel1.add(notificationsicon);
@@ -152,9 +155,9 @@ public class notifications extends javax.swing.JFrame {
     private javax.swing.JLabel msg;
     private javax.swing.JLabel msg1;
     private javax.swing.JLabel msg2;
+    private javax.swing.JLabel notifications;
     private javax.swing.JLabel notificationsicon;
     private javax.swing.JLabel slogan;
-    private javax.swing.JLabel userdashboard;
     // End of variables declaration//GEN-END:variables
  public javax.swing.JList<String> getNotificationsList() {
         return jList1;

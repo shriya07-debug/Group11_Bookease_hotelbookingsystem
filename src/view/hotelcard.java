@@ -9,6 +9,10 @@ package view;
  */
 public class hotelcard extends javax.swing.JPanel {
 
+    public static void dispose() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * Creates new form hotelcard
      */

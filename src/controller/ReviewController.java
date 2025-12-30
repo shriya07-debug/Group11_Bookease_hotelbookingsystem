@@ -1,28 +1,40 @@
 package controller;
 
-import model.ReviewModel;
-import database.MySqlConnection; // Use your existing connection
 import view.reviews;
 import view.addreviewpanel;
 import javax.swing.*;
 import java.sql.*;
-import java.util.*;
+import view.viewdetails;
 
 public class ReviewController {
-    private final String hotelName;
-    private reviews mainView;
+    private reviews view;
+    private Connection connection;
+    private String hotelName;
     
-    public ReviewController(String hotelName) {
+    public ReviewController(reviews view, String hotelName) {
+        this.view = view;
         this.hotelName = hotelName;
-    }
-    
-    public void setMainView(reviews view) {
-        this.mainView = view;
+        
+        database.MySqlConnection db = new database.MySqlConnection();
+        this.connection = db.openConnection(); 
+        // Show window
+        view.setVisible(true);
+        view.setLocationRelativeTo(null);
+        
+        // Load existing reviews
         loadReviews();
+        
+        // Setup button listener
+        setupButtonListeners();
     }
     
-    public void handleAddReviewButton() {
-        JDialog dialog = new JDialog(mainView, "Add Review", true);
+    private void setupButtonListeners() {
+        view.getAddReviewButton().addActionListener(e -> handleAddReview());
+        view.getViewDetailsButton().addActionListener(e -> handleViewDetails());
+    }
+    
+    private void handleAddReview() {
+        JDialog dialog = new JDialog(view, "Add Review", true);
         addreviewpanel panel = new addreviewpanel();
         
         panel.getSubmitButton().addActionListener(e -> {
@@ -33,6 +45,8 @@ public class ReviewController {
                 saveReview(user, comment);
                 loadReviews();
                 dialog.dispose();
+            } else {
+                JOptionPane.showMessageDialog(dialog, "Please enter name and review!");
             }
         });
         
@@ -40,15 +54,14 @@ public class ReviewController {
         
         dialog.add(panel);
         dialog.pack();
-        dialog.setLocationRelativeTo(mainView);
+        dialog.setLocationRelativeTo(view);
         dialog.setVisible(true);
     }
     
     private void saveReview(String user, String comment) {
-        String sql = "INSERT INTO reviews (hotel_name, user_name, comment) VALUES (?, ?, ?)";
-        
-        try (Connection conn = MySqlConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            String sql = "INSERT INTO reviews (hotel_name, user_name, comment) VALUES (?, ?, ?)";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, hotelName);
             pstmt.setString(2, user);
             pstmt.setString(3, comment);
@@ -59,29 +72,28 @@ public class ReviewController {
     }
     
     private void loadReviews() {
-        List<ReviewModel> reviews = new ArrayList<>();
-        String sql = "SELECT user_name, comment FROM reviews WHERE hotel_name = ?";
-        
-        try (Connection conn = MySqlConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            String sql = "SELECT user_name, comment FROM reviews WHERE hotel_name = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, hotelName);
             ResultSet rs = pstmt.executeQuery();
             
-            while (rs.next()) {
-                reviews.add(new ReviewModel(hotelName, rs.getString("user_name"), rs.getString("comment")));
-            }
-            
-            // Update UI
             StringBuilder sb = new StringBuilder();
-            for (ReviewModel r : reviews) {
-                sb.append("★ ").append(r.getUserName()).append(":\n");
-                sb.append(r.getComment()).append("\n\n");
+            while (rs.next()) {
+                sb.append("★ ").append(rs.getString("user_name")).append(":\n");
+                sb.append(rs.getString("comment")).append("\n\n");
             }
             
-            mainView.getReviewsTextArea().setText(sb.toString());
+            view.getReviewsTextArea().setText(sb.toString());
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    private void handleViewDetails() {
+    // Close reviews page
+    view.dispose();
+    
+    new viewdetails().setVisible(true);
+}
 }

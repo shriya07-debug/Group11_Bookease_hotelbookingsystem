@@ -57,6 +57,12 @@ public class SuperAdminController {
                 navigateToAllHotelAdmins(dashboard);
             }
         });
+        dashboard.getViewAnalyticsLabel().addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent evt) {
+        navigateToAnalytics(dashboard); // ADD THIS CALL
+    }
+});
         
         // Logout
         dashboard.getLogoutLabel().addMouseListener(new MouseAdapter() {
@@ -65,12 +71,33 @@ public class SuperAdminController {
                 logout(dashboard);
             }
         });
+        
     }
     
     private void setupSaveButton(superadmindashboard dashboard) {
         dashboard.addSaveButtonListener(e -> {
             createHotelAdmin(dashboard);
         });
+    }
+    private void navigateToAnalytics(superadmindashboard dashboard) {
+        try {
+            // Create analytics window
+            view.analytics analyticsWindow = new view.analytics();
+            
+            // Create and call AnalyticsController to load data
+            controller.AnalyticsController analyticsController = new controller.AnalyticsController();
+            analyticsController.loadTable(analyticsWindow);
+            
+            // Show window
+            analyticsWindow.setVisible(true);
+            dashboard.dispose();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(dashboard, 
+                "Error opening analytics: " + e.getMessage(), 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void createHotelAdmin(superadmindashboard dashboard) {
@@ -155,4 +182,5 @@ public class SuperAdminController {
         dashboard.dispose();
         new view.logout().setVisible(true);
     }
+    
 }

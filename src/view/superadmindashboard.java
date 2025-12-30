@@ -43,6 +43,7 @@ public class superadmindashboard extends javax.swing.JFrame {
         hoteladminsicon = new javax.swing.JLabel();
         dashboardicon = new javax.swing.JLabel();
         logouticon = new javax.swing.JLabel();
+        viewanalytics = new javax.swing.JLabel();
         panel = new javax.swing.JLabel();
         password = new javax.swing.JLabel();
         hoteladmincredentials = new javax.swing.JLabel();
@@ -132,6 +133,17 @@ public class superadmindashboard extends javax.swing.JFrame {
         logouticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoutbutton.png"))); // NOI18N
         drawerPanel.add(logouticon);
         logouticon.setBounds(20, 260, 50, 30);
+
+        viewanalytics.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        viewanalytics.setForeground(new java.awt.Color(255, 255, 255));
+        viewanalytics.setText("View Analytics");
+        viewanalytics.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewanalyticsMouseClicked(evt);
+            }
+        });
+        drawerPanel.add(viewanalytics);
+        viewanalytics.setBounds(70, 310, 210, 30);
 
         panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
@@ -231,6 +243,10 @@ public class superadmindashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_savebuttonActionPerformed
 
+    private void viewanalyticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewanalyticsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewanalyticsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -279,6 +295,7 @@ public class superadmindashboard extends javax.swing.JFrame {
     private javax.swing.JButton savebutton;
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel superadmindashboard;
+    private javax.swing.JLabel viewanalytics;
     // End of variables declaration//GEN-END:variables
 public javax.swing.JLabel getMenuIcon() {
         return menuicon;
@@ -324,4 +341,7 @@ public javax.swing.JLabel getMenuIcon() {
     public void addMenuIconListener(java.awt.event.MouseListener listener) {
         menuicon.addMouseListener(listener);
     }
+    public javax.swing.JLabel getViewAnalyticsLabel() {
+    return viewanalytics; // Your actual label name
+}
 }

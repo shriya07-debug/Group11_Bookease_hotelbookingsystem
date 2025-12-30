@@ -145,12 +145,14 @@ public class reviews extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
                                             
     
-    // UI Event Listener ONLY
-    private void viewdetailsbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // Handle view details if needed
-    }                                               
+    public javax.swing.JButton getAddReviewButton() {
+    return addreviewbutton; // Your actual button name
+}                          
     
     // Getter for UI component
     public javax.swing.JTextArea getReviewsTextArea() {
         return txtreviews;
-    }}
+    }
+    public javax.swing.JButton getViewDetailsButton() {
+    return viewdetailsbutton; // Your actual button name
+}}

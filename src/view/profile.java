@@ -11,15 +11,16 @@ public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
   
-    public profile() {
-    initComponents(); // This line is CRITICAL
-}
+ 
  
     /**
      * Creates new form profile
      */
    
-
+public profile() {
+    initComponents();
+     
+}
   
   
     
@@ -41,20 +42,20 @@ public class profile extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         phoneno = new javax.swing.JLabel();
         userid = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         mailicon = new javax.swing.JLabel();
         nameicon = new javax.swing.JLabel();
         noicon = new javax.swing.JLabel();
-        faceicon = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
+        faceicon = new javax.swing.JLabel();
         idicon = new javax.swing.JLabel();
         backbutton = new javax.swing.JLabel();
         newpp = new javax.swing.JLabel();
         uploadbutton = new javax.swing.JButton();
+        fullnamefield = new javax.swing.JTextField();
         removebutton = new javax.swing.JButton();
+        emailfield = new javax.swing.JTextField();
+        phonenofield = new javax.swing.JTextField();
+        useridfield = new javax.swing.JTextField();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,31 +132,19 @@ public class profile extends javax.swing.JFrame {
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("E-mail");
         jPanel1.add(email);
-        email.setBounds(380, 260, 330, 30);
+        email.setBounds(380, 260, 70, 30);
 
         phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         phoneno.setForeground(new java.awt.Color(255, 255, 255));
         phoneno.setText("Phone no");
         jPanel1.add(phoneno);
-        phoneno.setBounds(380, 330, 340, 30);
+        phoneno.setBounds(380, 330, 90, 30);
 
         userid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         userid.setForeground(new java.awt.Color(255, 255, 255));
         userid.setText("User Id");
         jPanel1.add(userid);
-        userid.setBounds(380, 120, 310, 30);
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(430, 290, 290, 30);
-
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3);
-        jSeparator3.setBounds(440, 360, 280, 20);
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4);
-        jSeparator4.setBounds(450, 150, 270, 50);
+        userid.setBounds(380, 120, 70, 30);
 
         mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
         jPanel1.add(mailicon);
@@ -169,19 +158,15 @@ public class profile extends javax.swing.JFrame {
         jPanel1.add(noicon);
         noicon.setBounds(700, 340, 42, 17);
 
-        faceicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
-        jPanel1.add(faceicon);
-        faceicon.setBounds(50, 140, 140, 170);
-
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
         fullname.setText("Full name");
         jPanel1.add(fullname);
-        fullname.setBounds(380, 190, 330, 30);
+        fullname.setBounds(380, 190, 80, 30);
 
-        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator5);
-        jSeparator5.setBounds(470, 220, 250, 20);
+        faceicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
+        jPanel1.add(faceicon);
+        faceicon.setBounds(50, 140, 140, 170);
 
         idicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-badge.png"))); // NOI18N
         jPanel1.add(idicon);
@@ -210,6 +195,8 @@ public class profile extends javax.swing.JFrame {
         });
         jPanel1.add(uploadbutton);
         uploadbutton.setBounds(30, 340, 70, 30);
+        jPanel1.add(fullnamefield);
+        fullnamefield.setBounds(480, 200, 210, 23);
 
         removebutton.setBackground(new java.awt.Color(184, 12, 47));
         removebutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -224,6 +211,18 @@ public class profile extends javax.swing.JFrame {
         });
         jPanel1.add(removebutton);
         removebutton.setBounds(130, 340, 70, 30);
+        jPanel1.add(emailfield);
+        emailfield.setBounds(470, 270, 210, 23);
+
+        phonenofield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phonenofieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(phonenofield);
+        phonenofield.setBounds(480, 340, 210, 23);
+        jPanel1.add(useridfield);
+        useridfield.setBounds(480, 130, 210, 23);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
@@ -277,6 +276,10 @@ public class profile extends javax.swing.JFrame {
        
     }//GEN-LAST:event_removebuttonActionPerformed
 
+    private void phonenofieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenofieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phonenofieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,31 +310,31 @@ public class profile extends javax.swing.JFrame {
     private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;
+    private javax.swing.JTextField emailfield;
     private javax.swing.JLabel faceicon;
     private javax.swing.JLabel fullname;
+    private javax.swing.JTextField fullnamefield;
     private javax.swing.JLabel idicon;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JButton logoutbutton;
     private javax.swing.JLabel mailicon;
     private javax.swing.JLabel nameicon;
     private javax.swing.JLabel newpp;
     private javax.swing.JLabel noicon;
     private javax.swing.JLabel phoneno;
+    private javax.swing.JTextField phonenofield;
     private javax.swing.JLabel profile;
     private javax.swing.JButton removebutton;
     private javax.swing.JLabel slogan;
     private javax.swing.JButton uploadbutton;
     private javax.swing.JLabel userid;
+    private javax.swing.JTextField useridfield;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JLabel getUserIdLabel() { return userid; }
-public javax.swing.JLabel getFullNameLabel() { return fullname; }
-public javax.swing.JLabel getEmailLabel() { return email; }
-public javax.swing.JLabel getPhoneLabel() { return phoneno; }
+public javax.swing.JTextField getUserIdField() { return useridfield; }
+public javax.swing.JTextField getFullNameField() { return fullnamefield; }
+public javax.swing.JTextField getEmailField() { return emailfield; }
+public javax.swing.JTextField getPhoneField() { return phonenofield; }
 public javax.swing.JLabel getPhotoLabel() { return newpp; }
 public javax.swing.JButton getEditButton() { return editbutton; }
 public javax.swing.JLabel getBackButtonLabel() { return backbutton; }

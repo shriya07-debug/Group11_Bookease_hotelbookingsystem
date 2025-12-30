@@ -7,8 +7,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class DashboardController {
-    
+    private final int currentUserId = 1;
     public void setupUserDashboard(userdashboard dashboard) {
+   
         setupSearch(dashboard);
         setupNavigation(dashboard);
         setupMenuBar(dashboard);
@@ -48,34 +49,39 @@ public class DashboardController {
     }
     
     private void showHotelOnDashboard(userdashboard dashboard, HotelModel hotel) {
-        JLabel welcomeLabel = dashboard.getWelcomeLabel();
-        if (welcomeLabel != null && welcomeLabel.isVisible()) {
-            welcomeLabel.setVisible(false);
-        }
-        
-        // Use HotelController to create and setup the hotel card
-        HotelController hotelController = new HotelController();
-        hotelcard card = hotelController.createHotelCard(hotel);
-        
-        int hotelCardCount = countHotelCards(dashboard);
-        int cardWidth = 300;
-        int cardHeight = 450;
-        int gap = 55;
-        int xPosition = 400 + (hotelCardCount * (cardWidth + gap));
-        
-        card.setBounds(xPosition, 200, cardWidth, cardHeight);
-        dashboard.getMainPanel().add(card);
-        dashboard.getMainPanel().setComponentZOrder(card, 0);
-        
-        dashboard.getMainPanel().revalidate();
-        dashboard.getMainPanel().repaint();
-        
-        JOptionPane.showMessageDialog(dashboard, 
-            "✓ " + hotel.getHotelName() + " added to dashboard!",
-            "Success",
-            JOptionPane.INFORMATION_MESSAGE);
+    JLabel welcomeLabel = dashboard.getWelcomeLabel();
+    if (welcomeLabel != null && welcomeLabel.isVisible()) {
+        welcomeLabel.setVisible(false);
     }
     
+    // Use HotelController to create and setup the hotel card
+    HotelController hotelController = new HotelController();
+    hotelcard card = hotelController.createHotelCard(hotel);
+    
+    // ADD THIS - Override view details button to close dashboard
+    card.getViewDetailsButton().addActionListener(e -> {
+        dashboard.dispose(); // Close dashboard
+        new view.viewdetails().setVisible(true); // Open viewdetails
+    });
+    
+    int hotelCardCount = countHotelCards(dashboard);
+    int cardWidth = 300;
+    int cardHeight = 450;
+    int gap = 55;
+    int xPosition = 400 + (hotelCardCount * (cardWidth + gap));
+    
+    card.setBounds(xPosition, 200, cardWidth, cardHeight);
+    dashboard.getMainPanel().add(card);
+    dashboard.getMainPanel().setComponentZOrder(card, 0);
+    
+    dashboard.getMainPanel().revalidate();
+    dashboard.getMainPanel().repaint();
+    
+    JOptionPane.showMessageDialog(dashboard, 
+        "✓ " + hotel.getHotelName() + " added to dashboard!",
+        "Success",
+        JOptionPane.INFORMATION_MESSAGE);
+}
     private int countHotelCards(userdashboard dashboard) {
         int count = 0;
         for (java.awt.Component comp : dashboard.getMainPanel().getComponents()) {
@@ -104,12 +110,6 @@ public class DashboardController {
     }
     
     private void setupNavigation(userdashboard dashboard) {
-        dashboard.getProfileLabel().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navigateToProfile(dashboard);
-            }
-        });
         
         dashboard.getDashboardLabel().addMouseListener(new MouseAdapter() {
             @Override
@@ -138,27 +138,49 @@ public class DashboardController {
                 navigateToSupport(dashboard);
             }
         });
+        dashboard.getProfileLabel().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navigateToProfile(dashboard);
+            }
+        });
+        
     }
+    
+    
     
     private void navigateToProfile(userdashboard dashboard) {
+        // Create profile window
+        profile profileWindow = new profile();
+        
+        // Setup profile with controller
+        ProfileController profileController = new ProfileController();
+        profileController.setupProfile(profileWindow, currentUserId);
+        
+        // Switch windows
         dashboard.dispose();
-        new profile().setVisible(true);
+        profileWindow.setVisible(true);
     }
-    
     private void refreshDashboard(userdashboard dashboard) {
         dashboard.dispose();
         new userdashboard().setVisible(true);
     }
     
     private void navigateToBookingHistory(userdashboard dashboard) {
+    try {
+        bookinghistory historyWindow = new bookinghistory();
+        BookingController controller = new BookingController();
+        controller.setupBookingHistory(historyWindow, currentUserId);
+        
         dashboard.dispose();
-        new bookinghistory().setVisible(true);
+        historyWindow.setVisible(true);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-    
+}
     private void navigateToNotifications(userdashboard dashboard) {
         dashboard.dispose();
-        int userId = getCurrentUserId(); // Get from session
-        new notifications(userId).setVisible(true);
+        new notifications(currentUserId).setVisible(true);
     }
     
     private void navigateToSupport(userdashboard dashboard) {

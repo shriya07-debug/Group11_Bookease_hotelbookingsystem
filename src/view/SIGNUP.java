@@ -96,7 +96,7 @@ public class signup extends javax.swing.JFrame {
         signupbutton.setBorder(null);
         signupbutton.addActionListener(this::signupbuttonActionPerformed);
         getContentPane().add(signupbutton);
-        signupbutton.setBounds(180, 450, 220, 40);
+        signupbutton.setBounds(190, 450, 200, 40);
         getContentPane().add(usernamefield);
         usernamefield.setBounds(140, 210, 300, 40);
 
