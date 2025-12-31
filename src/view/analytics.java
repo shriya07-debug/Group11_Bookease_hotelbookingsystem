@@ -84,6 +84,8 @@ public class analytics extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        analyticstable.setRowHeight(30);
+        analyticstable.setSelectionBackground(new java.awt.Color(232, 57, 95));
         analyticstable.setShowHorizontalLines(true);
         analyticstable.setShowVerticalLines(true);
         analyticstable.addMouseListener(new java.awt.event.MouseAdapter() {
