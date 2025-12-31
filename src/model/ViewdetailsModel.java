@@ -23,8 +23,9 @@ public class ViewdetailsModel {
     // Constructors
     public ViewdetailsModel () {}
     
-    public ViewdetailsModel(String hotelName, String location, String googleMapsUrl, 
+    public ViewdetailsModel(int hotelId, String hotelName, String location, String googleMapsUrl, 
                  String contact, double price, double ratings, String image) {
+        this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.location = location;
         this.googleMapsUrl = googleMapsUrl;

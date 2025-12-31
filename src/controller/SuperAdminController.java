@@ -10,6 +10,7 @@ import view.superadmindashboard;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.viewallhoteladmins;
 
 public class SuperAdminController {
     private final SuperAdminDAO superAdminDAO;
@@ -80,107 +81,134 @@ public class SuperAdminController {
         });
     }
     private void navigateToAnalytics(superadmindashboard dashboard) {
-        try {
-            // Create analytics window
-            view.analytics analyticsWindow = new view.analytics();
-            
-            // Create and call AnalyticsController to load data
-            controller.AnalyticsController analyticsController = new controller.AnalyticsController();
-            analyticsController.loadTable(analyticsWindow);
-            
-            // Show window
-            analyticsWindow.setVisible(true);
-            dashboard.dispose();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(dashboard, 
-                "Error opening analytics: " + e.getMessage(), 
-                "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    try {
+        view.analytics analyticsWindow = new view.analytics();
+        AnalyticsController analyticsController = new AnalyticsController();
+        analyticsController.loadTable(analyticsWindow);  // This now sets up back button too
+        
+        dashboard.dispose();
+        analyticsWindow.setVisible(true);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(dashboard, "Error opening analytics: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
     
     private void createHotelAdmin(superadmindashboard dashboard) {
-        // Get values from form
-        String hotelIdStr = dashboard.getHotelIdField().getText().trim();
-        String email = dashboard.getEmailField().getText().trim();
-        String password = new String(dashboard.getPasswordField().getPassword()).trim();
-        
-        // Validate
-        if (hotelIdStr.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(dashboard, 
-                "All fields are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (!email.contains("@")) {
-            JOptionPane.showMessageDialog(dashboard, 
-                "Invalid email address!", "Invalid Email", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (password.length() < 4) {
-            JOptionPane.showMessageDialog(dashboard, 
-                "Password must be at least 4 characters!", "Weak Password", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        try {
-            int hotelId = Integer.parseInt(hotelIdStr);
-            
-            // Check if hotel exists
-            if (!superAdminDAO.hotelExists(hotelId)) {
-                JOptionPane.showMessageDialog(dashboard, 
-                    "Hotel ID " + hotelId + " does not exist!", "Invalid Hotel", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            // Create model
-            SuperAdminModel admin = new SuperAdminModel(hotelId, email, password);
-            
-            // Save to database
-            boolean success = superAdminDAO.createHotelAdmin(admin);
-            
-            if (success) {
-                JOptionPane.showMessageDialog(dashboard, 
-                    "Hotel Admin Created Successfully!\n\n" +
-                    "Hotel ID: " + hotelId + "\n" +
-                    "Email: " + email, "Success", JOptionPane.INFORMATION_MESSAGE);
-                
-                // Clear fields
-                dashboard.getHotelIdField().setText("");
-                dashboard.getEmailField().setText("");
-                dashboard.getPasswordField().setText("");
-                dashboard.getHotelIdField().requestFocus();
-                
-            } else {
-                JOptionPane.showMessageDialog(dashboard, 
-                    "Failed to create hotel admin!\nEmail might already exist.", 
-                    "Creation Failed", JOptionPane.ERROR_MESSAGE);
-            }
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(dashboard, 
-                "Hotel ID must be a number!", "Invalid Hotel ID", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(dashboard, 
-                "Error: " + e.getMessage(), "System Error", JOptionPane.ERROR_MESSAGE);
-        }
+    // Get values from form
+    String hotelIdStr = dashboard.getHotelIdField().getText().trim();
+    String hotelName = dashboard.getHotelNameField().getText().trim();
+    String email = dashboard.getEmailField().getText().trim();
+    String password = new String(dashboard.getPasswordField().getPassword()).trim();
+    
+    // Validate
+    if (hotelIdStr.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(dashboard, 
+            "All fields are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
     
+    if (!email.contains("@")) {
+        JOptionPane.showMessageDialog(dashboard, 
+            "Invalid email address!", "Invalid Email", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    if (password.length() < 4) {
+        JOptionPane.showMessageDialog(dashboard, 
+            "Password must be at least 4 characters!", "Weak Password", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    try {
+        int hotelId = Integer.parseInt(hotelIdStr);
+        
+        // NO HOTEL CHECK - just save directly to users table
+        
+        // Check if email already exists in users table
+        if (superAdminDAO.emailExists(email)) {
+            JOptionPane.showMessageDialog(dashboard, 
+                "Email '" + email + "' already exists!\n" +
+                "Please use a different email address.", 
+                "Duplicate Email", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Create model
+        SuperAdminModel admin = new SuperAdminModel(hotelId,hotelName, email, password);
+        
+        // Save to database (to users table)
+        boolean success = superAdminDAO.createHotelAdmin(admin);
+        
+        if (success) {
+            JOptionPane.showMessageDialog(dashboard, 
+                "Hotel Admin Created Successfully!\n\n" +
+                "Hotel ID: " + hotelId + "\n" +
+                "Hotel Name: " + hotelName + "\n" +        
+                "Admin Email: " + email + "\n" +
+                "Password: " + password + "\n\n" +
+                "Saved to users table as 'hotel_admin'", 
+                "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Clear fields
+            dashboard.getHotelIdField().setText("");
+            dashboard.getHotelNameField().setText("");
+            dashboard.getEmailField().setText("");
+            dashboard.getPasswordField().setText("");
+            dashboard.getHotelIdField().requestFocus();
+            
+        } else {
+            JOptionPane.showMessageDialog(dashboard, 
+                "Failed to create hotel admin!", 
+                "Creation Failed", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(dashboard, 
+            "Hotel ID must be a number!", "Invalid Hotel ID", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace(); // Add this to see the actual error
+        JOptionPane.showMessageDialog(dashboard, 
+            "Error: " + e.getMessage(), "System Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
     private void refreshDashboard(superadmindashboard dashboard) {
         dashboard.dispose();
         new view.superadmindashboard().setVisible(true);
     }
     
+    // Add this method to your superadmin dashboard controller
     private void navigateToAllHotelAdmins(superadmindashboard dashboard) {
+    try {
+        // Create the view all hotel admins window
+        view.viewallhoteladmins adminsWindow = new view.viewallhoteladmins();
+        
+        // Create controller and setup the window
+        ViewAllHotelAdminsController controller = new ViewAllHotelAdminsController();
+        controller.setupViewAllHotelAdmins(adminsWindow);
+        
+        // Close current window and show new window
         dashboard.dispose();
-        new view.viewallhoteladmins().setVisible(true);
+        adminsWindow.setVisible(true);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(dashboard, 
+            "Error opening hotel admins: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
+}
     private void logout(superadmindashboard dashboard) {
+    try {
         dashboard.dispose();
+        // Use the LogoutController static method
+        LogoutController.showLogoutWindow();
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Fallback
         new view.logout().setVisible(true);
     }
+}
     
 }

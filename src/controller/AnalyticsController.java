@@ -6,6 +6,8 @@ import model.AdminPerformanceModel;
 import view.analytics;
 import javax.swing.*;
 import java.sql.Connection;
+import view.superadmindashboard;
+import view.viewallhoteladmins;
 
 public class AnalyticsController {
     
@@ -53,6 +55,7 @@ public class AnalyticsController {
                 }
             }
         });
+        setupBackButton(window);  // ADD THIS LINE
         
         // ADD THIS: Close connection
         db.closeConnection(conn);
@@ -96,4 +99,12 @@ public class AnalyticsController {
         util.chartdisplay.showCharts(performance);
     }
 }
+    private void setupBackButton(analytics window) {
+        window.addBackButtonListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                window.dispose();
+                new superadmindashboard().setVisible(true);
+            }
+        });
+    }
 }

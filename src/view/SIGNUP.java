@@ -150,9 +150,7 @@ public class signup extends javax.swing.JFrame {
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
+       
     }//GEN-LAST:event_accountMouseClicked
 
     
@@ -211,6 +209,10 @@ public javax.swing.JTextField getEmailField() {
 public javax.swing.JPasswordField getPasswordField() { 
     return passwordfield;
 }
+  public javax.swing.JLabel getAccountLabel() {
+        return account; // The "Already have an account?" label
+    }
+public javax.swing.JButton getSignupButton() { return signupbutton; }
 public void addSignupButtonListener(java.awt.event.ActionListener listener) {
         signupbutton.addActionListener(listener);
 }

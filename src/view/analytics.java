@@ -32,6 +32,8 @@ public class analytics extends javax.swing.JFrame {
         analytics = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         analyticstable = new javax.swing.JTable();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        backbutton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,8 +49,24 @@ public class analytics extends javax.swing.JFrame {
         jPanel1.add(analytics);
         analytics.setBounds(410, 30, 340, 60);
 
+        analyticstable.setBackground(new java.awt.Color(254, 185, 206));
         analyticstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,7 +94,18 @@ public class analytics extends javax.swing.JFrame {
         jScrollPane1.setViewportView(analyticstable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(220, 200, 800, 402);
+        jScrollPane1.setBounds(130, 200, 920, 420);
+        jPanel1.add(jScrollBar1);
+        jScrollBar1.setBounds(1050, 200, 10, 420);
+
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(20, 640, 30, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -91,6 +120,11 @@ public class analytics extends javax.swing.JFrame {
     private void analyticstableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_analyticstableMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_analyticstableMouseClicked
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -120,10 +154,17 @@ public class analytics extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel analytics;
     private javax.swing.JTable analyticstable;
+    private javax.swing.JLabel backbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 public javax.swing.JTable getAnalyticstable() {
     return analyticstable;
-}}
+}
+public void addBackButtonListener(java.awt.event.MouseListener listener) {
+        backbutton.addMouseListener(listener);
+    }
+
+}

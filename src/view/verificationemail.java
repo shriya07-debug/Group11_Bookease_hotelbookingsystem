@@ -78,7 +78,7 @@ public class verificationemail extends javax.swing.JFrame {
             }
         });
         jPanel1.add(done);
-        done.setBounds(610, 320, 120, 40);
+        done.setBounds(590, 320, 120, 40);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         jPanel1.add(image);

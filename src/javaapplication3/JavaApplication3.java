@@ -1,33 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package javaapplication3;
 
 import controller.UserController;
 import view.login;
 
-
-
-/**
- *
- * @author sailenawale
- */
 public class JavaApplication3 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        
-// TODO code application logic here
-       java.awt.EventQueue.invokeLater(() -> {
+        java.awt.EventQueue.invokeLater(() -> {
+            // Create ONE login window
+            login loginWindow = new login();
             
-           
-            login login = new login();
+            // Create controller and setup the login window
             UserController controller = new UserController();
-            controller.setupLoginView(login);
-            new login().setVisible(true);
+            controller.setupLoginView(loginWindow);
+            
+            // Make the SAME window visible
+            loginWindow.setVisible(true);
         });
     }   
 }

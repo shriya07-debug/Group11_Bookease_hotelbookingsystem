@@ -300,7 +300,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;&#xa;Where water&lt;br&gt; meets wonder.&lt;br&gt;&#xa;Luxury redefined&lt;br&gt; with fluid elegance&lt;br&gt;&#xa;and seamless comfort&lt;br&gt;&#xa;in the city&apos;s heart.&#xa;&lt;/center&gt;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt; Where water&lt;br&gt; meets wonder.&lt;br&gt; Luxury redefined&lt;br&gt; with fluid elegance&lt;br&gt; and seamless comfort&lt;br&gt; in the city&apos;s heart. &lt;/center&gt;&lt;/html&gt;"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

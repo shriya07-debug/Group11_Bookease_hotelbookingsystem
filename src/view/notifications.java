@@ -73,15 +73,15 @@ public class notifications extends javax.swing.JFrame {
 
         msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg);
-        msg.setBounds(320, 350, 40, 40);
+        msg.setBounds(320, 290, 40, 40);
 
         msg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg1);
-        msg1.setBounds(320, 170, 40, 40);
+        msg1.setBounds(320, 150, 40, 40);
 
         msg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg2);
-        msg2.setBounds(320, 260, 40, 40);
+        msg2.setBounds(320, 220, 40, 40);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -91,7 +91,7 @@ public class notifications extends javax.swing.JFrame {
         list.setViewportView(jList1);
 
         jPanel1.add(list);
-        list.setBounds(380, 170, 560, 450);
+        list.setBounds(380, 150, 560, 470);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {

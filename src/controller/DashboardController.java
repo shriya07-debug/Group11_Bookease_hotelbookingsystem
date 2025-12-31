@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 public class DashboardController {
     private final int currentUserId = 1;
     public void setupUserDashboard(userdashboard dashboard) {
-   
+        
         setupSearch(dashboard);
         setupNavigation(dashboard);
         setupMenuBar(dashboard);
@@ -93,13 +93,26 @@ public class DashboardController {
     }
     
     private void setupMenuBar(userdashboard dashboard) {
-        dashboard.getMenuIcon().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                toggleDrawer(dashboard.getDrawerPanel());
-            }
-        });
+    System.out.println("DEBUG setupMenuBar called");
+    System.out.println("dashboard: " + dashboard);
+    System.out.println("dashboard.getMenuIcon(): " + dashboard.getMenuIcon());
+    
+    if (dashboard.getMenuIcon() == null) {
+        System.out.println("ERROR: menuIcon is null!");
+        return;
     }
+    
+    dashboard.getMenuIcon().addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent evt) {
+            System.out.println("DEBUG: Menu icon clicked!");
+            System.out.println("drawerPanel: " + dashboard.getDrawerPanel());
+            toggleDrawer(dashboard.getDrawerPanel());
+        }
+    });
+    
+    System.out.println("DEBUG: Mouse listener added successfully");
+}
     
     private void toggleDrawer(javax.swing.JPanel drawerPanel) {
         if (drawerPanel.getX() < 0) {
@@ -149,17 +162,28 @@ public class DashboardController {
     
     
     private void navigateToProfile(userdashboard dashboard) {
+    try {
+        // Get current user ID
+        int userId = currentUserId; // Or get from session
+        
         // Create profile window
         profile profileWindow = new profile();
         
-        // Setup profile with controller
+        // Create and setup ProfileController
         ProfileController profileController = new ProfileController();
-        profileController.setupProfile(profileWindow, currentUserId);
+        profileController.setupProfile(profileWindow, userId);
         
-        // Switch windows
+        // Close dashboard and show profile
         dashboard.dispose();
         profileWindow.setVisible(true);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(dashboard, 
+            "Error opening profile: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
     }
+}
     private void refreshDashboard(userdashboard dashboard) {
         dashboard.dispose();
         new userdashboard().setVisible(true);

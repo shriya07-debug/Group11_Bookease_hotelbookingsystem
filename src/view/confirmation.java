@@ -34,8 +34,8 @@ public class confirmation extends javax.swing.JFrame {
         bookingconfirmation = new javax.swing.JLabel();
         text = new javax.swing.JLabel();
         bookingid = new javax.swing.JLabel();
-        bookingdateandtime = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,7 +55,7 @@ public class confirmation extends javax.swing.JFrame {
         paynowbutton.setText("Pay now");
         paynowbutton.setBorder(null);
         jPanel1.add(paynowbutton);
-        paynowbutton.setBounds(370, 470, 160, 40);
+        paynowbutton.setBounds(380, 460, 160, 40);
 
         bookingconfirmation.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         bookingconfirmation.setForeground(new java.awt.Color(232, 128, 153));
@@ -71,17 +71,17 @@ public class confirmation extends javax.swing.JFrame {
         jPanel1.add(bookingid);
         bookingid.setBounds(380, 290, 450, 30);
 
-        bookingdateandtime.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        bookingdateandtime.setForeground(new java.awt.Color(255, 255, 255));
-        bookingdateandtime.setText("Booking Date & Time: ");
-        jPanel1.add(bookingdateandtime);
-        bookingdateandtime.setBounds(380, 340, 440, 30);
-
         status.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         status.setForeground(new java.awt.Color(255, 255, 255));
         status.setText("Status: ");
         jPanel1.add(status);
         status.setBounds(380, 380, 580, 40);
+
+        date.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        date.setForeground(new java.awt.Color(255, 255, 255));
+        date.setText("Date:");
+        jPanel1.add(date);
+        date.setBounds(380, 340, 440, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         jPanel1.add(image);
@@ -120,8 +120,8 @@ public class confirmation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookingconfirmation;
-    private javax.swing.JLabel bookingdateandtime;
     private javax.swing.JLabel bookingid;
+    private javax.swing.JLabel date;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton paynowbutton;
@@ -129,4 +129,23 @@ public class confirmation extends javax.swing.JFrame {
     private javax.swing.JLabel status;
     private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
+// Getter methods for controller
+public javax.swing.JLabel getBookingIdLabel() {
+    return bookingid;
 }
+
+public javax.swing.JLabel getDateLabel() {
+    return date;
+}
+
+public javax.swing.JLabel getStatusLabel() {
+    return status;
+}
+
+public javax.swing.JLabel getTextLabel() {
+    return text;
+}
+
+public javax.swing.JButton getPayNowButton() {
+    return paynowbutton;
+}}

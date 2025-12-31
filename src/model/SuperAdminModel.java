@@ -6,14 +6,16 @@ package model;
 
 public class SuperAdminModel {
     private int hotelId;
+    private String hotelName;
     private String email;
     private String password;
     private String role = "hotel_admin"; // Default role
     
     public SuperAdminModel() {}
     
-    public SuperAdminModel(int hotelId, String email, String password) {
+    public SuperAdminModel(int hotelId,String hotelName, String email, String password) {
         this.hotelId = hotelId;
+        this.hotelName = hotelName;
         this.email = email;
         this.password = password;
     }
@@ -21,6 +23,13 @@ public class SuperAdminModel {
     // Getters and setters
     public int getHotelId() { return hotelId; }
     public void setHotelId(int hotelId) { this.hotelId = hotelId; }
+    
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+    public String getHotelName(){
+        return hotelName;
+    }
     
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

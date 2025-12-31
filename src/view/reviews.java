@@ -56,7 +56,7 @@ public class reviews extends javax.swing.JFrame {
         reviews.setForeground(new java.awt.Color(241, 150, 174));
         reviews.setText("Reviews");
         jPanel1.add(reviews);
-        reviews.setBounds(340, 120, 180, 40);
+        reviews.setBounds(340, 100, 180, 40);
 
         addreviewbutton.setBackground(new java.awt.Color(184, 12, 47));
         addreviewbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -69,7 +69,7 @@ public class reviews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(addreviewbutton);
-        addreviewbutton.setBounds(390, 513, 150, 40);
+        addreviewbutton.setBounds(390, 540, 150, 40);
 
         viewdetailsbutton.setBackground(new java.awt.Color(184, 12, 47));
         viewdetailsbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -77,7 +77,7 @@ public class reviews extends javax.swing.JFrame {
         viewdetailsbutton.setText("View details");
         viewdetailsbutton.setBorder(null);
         jPanel1.add(viewdetailsbutton);
-        viewdetailsbutton.setBounds(690, 510, 170, 40);
+        viewdetailsbutton.setBounds(710, 540, 170, 40);
 
         jScrollPane1.setForeground(new java.awt.Color(254, 185, 206));
 
@@ -90,7 +90,7 @@ public class reviews extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtreviews);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 170, 600, 420);
+        jScrollPane1.setBounds(340, 160, 600, 470);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");

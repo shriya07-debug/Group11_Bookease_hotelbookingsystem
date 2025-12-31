@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.DashboardController;
 
 
 public class userdashboard extends javax.swing.JFrame {
@@ -15,8 +14,10 @@ public class userdashboard extends javax.swing.JFrame {
     public userdashboard() {
         initComponents();
         drawerPanel.setLocation(-300, 0);
-        new DashboardController().setupUserDashboard(this);
-  }
+        
+        new controller.DashboardController().setupUserDashboard(this);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,11 +183,6 @@ public class userdashboard extends javax.swing.JFrame {
                 searchbarFocusLost(evt);
             }
         });
-        searchbar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchbarActionPerformed(evt);
-            }
-        });
         jPanel1.add(searchbar);
         searchbar.setBounds(800, 40, 140, 40);
 
@@ -242,10 +238,6 @@ public class userdashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_supportMouseClicked
 
-    private void menuiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuiconMouseClicked
-        
-    }//GEN-LAST:event_menuiconMouseClicked
-
     private void searchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusGained
         // TODO add your handling code here:
         if(searchbar.getText().trim().equals("Search here")){
@@ -258,11 +250,12 @@ public class userdashboard extends javax.swing.JFrame {
         if(searchbar.getText().trim().equals("")){
             searchbar.setText("       Search here");}
     }//GEN-LAST:event_searchbarFocusLost
+  
+   
 
-    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+    private void menuiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuiconMouseClicked
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_searchbarActionPerformed
+    }//GEN-LAST:event_menuiconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -325,4 +318,9 @@ public class userdashboard extends javax.swing.JFrame {
     public javax.swing.JLabel getBookingHistoryLabel() { return bookinghistory; }
     public javax.swing.JLabel getNotificationsLabel() { return notifications; }
     public javax.swing.JLabel getSupportLabel() { return support; }
+    
+    public void addMenuIconListener(java.awt.event.MouseListener listener) {
+        menuicon.addMouseListener(listener);
+    }
+    
 }

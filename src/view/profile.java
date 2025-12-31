@@ -95,7 +95,7 @@ public profile() {
             }
         });
         jPanel1.add(cancelbutton);
-        cancelbutton.setBounds(630, 430, 110, 30);
+        cancelbutton.setBounds(770, 420, 120, 40);
 
         logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
         logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -113,7 +113,7 @@ public profile() {
             }
         });
         jPanel1.add(logoutbutton);
-        logoutbutton.setBounds(510, 510, 110, 30);
+        logoutbutton.setBounds(590, 500, 120, 40);
 
         editbutton.setBackground(new java.awt.Color(184, 12, 47));
         editbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -126,7 +126,7 @@ public profile() {
             }
         });
         jPanel1.add(editbutton);
-        editbutton.setBounds(380, 433, 110, 30);
+        editbutton.setBounds(380, 423, 130, 40);
 
         email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,15 +148,15 @@ public profile() {
 
         mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
         jPanel1.add(mailicon);
-        mailicon.setBounds(700, 270, 30, 20);
+        mailicon.setBounds(860, 260, 30, 20);
 
         nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
         jPanel1.add(nameicon);
-        nameicon.setBounds(700, 200, 42, 17);
+        nameicon.setBounds(860, 190, 42, 17);
 
         noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
         jPanel1.add(noicon);
-        noicon.setBounds(700, 340, 42, 17);
+        noicon.setBounds(860, 330, 42, 17);
 
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,7 +170,7 @@ public profile() {
 
         idicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-badge.png"))); // NOI18N
         jPanel1.add(idicon);
-        idicon.setBounds(700, 120, 42, 30);
+        idicon.setBounds(860, 120, 42, 30);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,7 +196,7 @@ public profile() {
         jPanel1.add(uploadbutton);
         uploadbutton.setBounds(30, 340, 70, 30);
         jPanel1.add(fullnamefield);
-        fullnamefield.setBounds(480, 200, 210, 23);
+        fullnamefield.setBounds(480, 183, 370, 40);
 
         removebutton.setBackground(new java.awt.Color(184, 12, 47));
         removebutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -212,7 +212,7 @@ public profile() {
         jPanel1.add(removebutton);
         removebutton.setBounds(130, 340, 70, 30);
         jPanel1.add(emailfield);
-        emailfield.setBounds(470, 270, 210, 23);
+        emailfield.setBounds(480, 250, 370, 40);
 
         phonenofield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,9 +220,9 @@ public profile() {
             }
         });
         jPanel1.add(phonenofield);
-        phonenofield.setBounds(480, 340, 210, 23);
+        phonenofield.setBounds(480, 323, 370, 40);
         jPanel1.add(useridfield);
-        useridfield.setBounds(480, 130, 210, 23);
+        useridfield.setBounds(480, 113, 370, 40);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");

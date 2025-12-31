@@ -2,10 +2,8 @@ package controller;
 
 import model.UserModel;
 import dao.UserDAO;
-import java.awt.Component;
 import view.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 
 public class UserController {
     private final UserDAO userDAO;
@@ -14,51 +12,52 @@ public class UserController {
         this.userDAO = new UserDAO();
     }
     
-    // Setup login view with listeners
+    // Setup login view
     public void setupLoginView(login loginView) {
-        // Add login button listener
-        loginView.addLoginButtonListener((ActionEvent e) -> {
-            handleLogin(loginView);
+        // Login button
+        loginView.getLoginButton().addActionListener(e -> handleLogin(loginView));
+        
+        // Create account navigation
+        loginView.getAccountLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navigateToSignup(loginView);
+            }
+        });
+        
+        // Forgot password navigation
+        loginView.getForgotPasswordLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navigateToForgotPassword(loginView);
+            }
         });
     }
     
-    // Setup signup view with listeners
+    // Setup signup view
     public void setupSignupView(signup signupView) {
-        // Add signup button listener
-        signupView.addSignupButtonListener((ActionEvent e) -> {
-            handleSignup(signupView);
+        // Signup button
+        signupView.getSignupButton().addActionListener(e -> handleSignup(signupView));
+        
+        // Already have account navigation
+        signupView.getAccountLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navigateToLogin(signupView);
+            }
         });
     }
     
-    // Setup logout view with listeners
-    public void setupLogoutView(logout logoutView) {
-        // Add login button listener for logout page
-        logoutView.addLoginButtonListener((ActionEvent e) -> {
-            handleLogoutToLogin(logoutView);
-        });
-    }
-    
-    // Setup dashboard logout
-    public void setupDashboardLogout(JFrame dashboard, JButton logoutButton) {
-        logoutButton.addActionListener(e -> {
-            handleDashboardLogout(dashboard);
-        });
-    }
-    
-    // Business logic methods
     private void handleLogin(login loginView) {
         String email = loginView.getEmailField().getText().trim();
         String password = new String(loginView.getPasswordField().getPassword()).trim();
         
         if (email.isEmpty() || password.isEmpty()) {
-            showError(loginView, "Fields cannot be empty!");
+            JOptionPane.showMessageDialog(loginView, "Email and password required!");
             return;
         }
         
         UserModel user = userDAO.login(email, password);
         
         if (user == null) {
-            showError(loginView, "Invalid credentials!");
+            JOptionPane.showMessageDialog(loginView, "Invalid credentials!");
             return;
         }
         
@@ -66,85 +65,79 @@ public class UserController {
         navigateToDashboard(user);
     }
     
-    private void handleSignup(signup signupView) {
-    String username = signupView.getUsernameField().getText().trim();
-    String email = signupView.getEmailField().getText().trim();
-    String password = new String(signupView.getPasswordField().getPassword()).trim();
-    
-    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-        showError(signupView, "All fields required!");
-        return;
-    }
-    
-    if (!email.contains("@")) {
-        showError(signupView, "Invalid email!");
-        return;
-    }
-    
- 
-    UserModel newUser = new UserModel(username, email, password, "user", "active");
-    
-    boolean success = userDAO.signup(newUser);
-    
-    if (success) {
-        JOptionPane.showMessageDialog(signupView, "Signup successful!");
-        signupView.dispose();
-        showLoginView();
-    } else {
-        showError(signupView, "Signup failed! Email might already exist.");
-    }
-}
-    
-    private void handleLogoutToLogin(logout logoutView) {
-        logoutView.dispose();
-        showLoginView();
-    }
-    
-    private void handleDashboardLogout(JFrame dashboard) {
-        int response = JOptionPane.showConfirmDialog(
-            dashboard,
-            "Are you sure you want to logout?",
-            "Confirm Logout",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE
-        );
-        
-        if (response == JOptionPane.YES_OPTION) {
-            dashboard.dispose();
-            showLogoutView();
-        }
-    }
-    
     private void navigateToDashboard(UserModel user) {
         String role = user.getRole().toLowerCase();
         
         switch (role) {
+            case "super_admin":
             case "superadmin":
-                new superadmindashboard().setVisible(true);
+                superadmindashboard superAdminDashboard = new superadmindashboard();
+                superAdminDashboard.setVisible(true);
                 break;
+                
             case "hotel_admin":
-                new admindashboard().setVisible(true);
+                admindashboard adminDashboard = new admindashboard();
+                adminDashboard.setVisible(true);
                 break;
-            case "user":
-            default:
-                new userdashboard().setVisible(true);
+                
+             case "user":
+                userdashboard userDashboard = new userdashboard();
+                userDashboard.setVisible(true);
                 break;
         }
     }
     
-    private void showLoginView() {
+    private void handleSignup(signup signupView) {
+        String username = signupView.getUsernameField().getText().trim();
+        String email = signupView.getEmailField().getText().trim();
+        String password = new String(signupView.getPasswordField().getPassword()).trim();
+        
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(signupView, "All fields required!");
+            return;
+        }
+        
+        if (!email.contains("@")) {
+            JOptionPane.showMessageDialog(signupView, "Invalid email format!");
+            return;
+        }
+        
+        UserModel newUser = new UserModel(username, email, password, "user", "active");
+        
+        boolean success = userDAO.signup(newUser);
+        
+        if (success) {
+            JOptionPane.showMessageDialog(signupView, "Signup successful! You can now login.");
+            signupView.dispose();
+            showLoginView();
+        } else {
+            JOptionPane.showMessageDialog(signupView, "Signup failed! Email may already exist.");
+        }
+    }
+    
+    private void navigateToSignup(login loginView) {
+        loginView.dispose();
+        signup signupView = new signup();
+        setupSignupView(signupView);
+        signupView.setVisible(true);
+    }
+    
+    private void navigateToLogin(signup signupView) {
+        signupView.dispose();
         login loginView = new login();
         setupLoginView(loginView);
         loginView.setVisible(true);
     }
     
-    private void showLogoutView() {
-        logout logoutView = new logout();
-        setupLogoutView(logoutView);
-        logoutView.setVisible(true);
+    private void navigateToForgotPassword(login loginView) {
+        loginView.dispose();
+        ForgotPassword forgotPasswordView = new ForgotPassword();
+        forgotPasswordView.setVisible(true);
     }
     
-    private void showError(Component parent, String message) {
-        JOptionPane.showMessageDialog(parent, message, "Error", JOptionPane.ERROR_MESSAGE);
+    public void showLoginView() {
+        login loginView = new login();
+        setupLoginView(loginView);
+        loginView.setVisible(true);
     }
 }

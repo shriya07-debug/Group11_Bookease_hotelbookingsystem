@@ -57,6 +57,7 @@ public class bookinghistory extends javax.swing.JFrame {
         jPanel1.add(bookinghistory);
         bookinghistory.setBounds(410, 40, 330, 45);
 
+        table.setBackground(new java.awt.Color(254, 185, 206));
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(

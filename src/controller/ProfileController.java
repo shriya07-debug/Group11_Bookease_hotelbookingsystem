@@ -92,13 +92,24 @@ public class ProfileController {
         }
     }
     
+    // ONLY THIS METHOD IS CHANGED - logout navigation
     private void logout() {
         int confirm = JOptionPane.showConfirmDialog(profileWindow, 
             "Logout?", "Confirm", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
             profileWindow.dispose();
-            // Add login screen navigation if available
+            
+            // Navigate to logout page
+            try {
+                // Check if LogoutController exists
+                Class.forName("controller.LogoutController");
+                // Call LogoutController
+                controller.LogoutController.showLogoutWindow();
+            } catch (ClassNotFoundException e) {
+                // If LogoutController doesn't exist, open logout view directly
+                new view.logout().setVisible(true);
+            }
         }
     }
     

@@ -11,8 +11,8 @@ import jakarta.mail.internet.*;
 public class EmailService {
 
     // Use your Gmail and app password here
-    private static final String FROM_EMAIL = "dikshyant1415@xavier.edu.np";
-    private static final String APP_PASSWORD = "gycb puge oguq jhoq";
+    private static final String FROM_EMAIL = "shriyaawale2007@gmail.com";
+    private static final String APP_PASSWORD = "othv bxwe ogcv uoxj";
 
     public static void sendEmail(String toEmail, String subject, String messageText) {
 

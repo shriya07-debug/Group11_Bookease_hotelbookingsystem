@@ -155,7 +155,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html><center>\nWhere water<br> meets wonder.<br>\nLuxury redefined<br> with fluid elegance<br>\nand seamless comfort<br>\nin the city's heart.\n</center></html>");
+        jLabel1.setText("<html><center> Where water<br> meets wonder.<br> Luxury redefined<br> with fluid elegance<br> and seamless comfort<br> in the city's heart. </center></html>");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(892, 167, 180, 430);
 
@@ -261,6 +261,6 @@ public javax.swing.JLabel getImageLabel() {
         GenerateInvoice.addActionListener(listener);
     }
     
-    public void addMenuBarListener(java.awt.event.MouseListener listener) {
+    public void addMenuIconListener(java.awt.event.MouseListener listener) {
         menuicon.addMouseListener(listener);
     }}

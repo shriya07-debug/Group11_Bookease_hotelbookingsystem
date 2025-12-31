@@ -141,10 +141,7 @@ public class login extends javax.swing.JFrame {
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        //open signup
-        new signup().setVisible(true);
+       
     }//GEN-LAST:event_accountMouseClicked
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
@@ -202,7 +199,17 @@ public class login extends javax.swing.JFrame {
     public javax.swing.JPasswordField getPasswordField() { 
         return passwordfield; 
     }
+    public javax.swing.JButton getLoginButton() {
+    return loginbutton;
+}
      public void addLoginButtonListener(java.awt.event.ActionListener listener) {
         loginbutton.addActionListener(listener);
+    }
+     public javax.swing.JLabel getAccountLabel() {
+        return account; // The "Create an account" label
+    }
+    
+    public javax.swing.JLabel getForgotPasswordLabel() {
+        return forgetpassword; // The "Forget password?" label
     }
 }

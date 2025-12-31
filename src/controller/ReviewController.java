@@ -7,9 +7,9 @@ import java.sql.*;
 import view.viewdetails;
 
 public class ReviewController {
-    private reviews view;
-    private Connection connection;
-    private String hotelName;
+    private final reviews view;
+    private final Connection connection;
+    private final String hotelName;
     
     public ReviewController(reviews view, String hotelName) {
         this.view = view;
