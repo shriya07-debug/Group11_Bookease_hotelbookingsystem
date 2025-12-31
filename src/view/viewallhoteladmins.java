@@ -15,8 +15,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
      * Creates new form viewallhoteladmins
      */
     public viewallhoteladmins() {
-        initComponents();
-       
+        initComponents();    
         setLocationRelativeTo(null);
     }
 

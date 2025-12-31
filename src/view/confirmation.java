@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.BookingConfirmationController;
+
 /**
  *
  * @author sailenawale
@@ -36,6 +38,9 @@ public class confirmation extends javax.swing.JFrame {
         bookingid = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
+        datefield = new javax.swing.JTextField();
+        statusfield = new javax.swing.JTextField();
+        bookingidfieldid = new javax.swing.JTextField();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,13 +60,13 @@ public class confirmation extends javax.swing.JFrame {
         paynowbutton.setText("Pay now");
         paynowbutton.setBorder(null);
         jPanel1.add(paynowbutton);
-        paynowbutton.setBounds(380, 460, 160, 40);
+        paynowbutton.setBounds(590, 440, 160, 40);
 
         bookingconfirmation.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         bookingconfirmation.setForeground(new java.awt.Color(232, 128, 153));
         bookingconfirmation.setText("Booking Confirmation");
         jPanel1.add(bookingconfirmation);
-        bookingconfirmation.setBounds(460, 120, 410, 40);
+        bookingconfirmation.setBounds(460, 120, 410, 60);
         jPanel1.add(text);
         text.setBounds(380, 230, 520, 40);
 
@@ -69,19 +74,31 @@ public class confirmation extends javax.swing.JFrame {
         bookingid.setForeground(new java.awt.Color(255, 255, 255));
         bookingid.setText("Booking ID: ");
         jPanel1.add(bookingid);
-        bookingid.setBounds(380, 290, 450, 30);
+        bookingid.setBounds(380, 270, 110, 30);
 
         status.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         status.setForeground(new java.awt.Color(255, 255, 255));
         status.setText("Status: ");
         jPanel1.add(status);
-        status.setBounds(380, 380, 580, 40);
+        status.setBounds(380, 350, 80, 40);
 
         date.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         date.setForeground(new java.awt.Color(255, 255, 255));
         date.setText("Date:");
         jPanel1.add(date);
-        date.setBounds(380, 340, 440, 30);
+        date.setBounds(380, 310, 50, 30);
+
+        datefield.setEditable(false);
+        jPanel1.add(datefield);
+        datefield.setBounds(510, 310, 400, 40);
+
+        statusfield.setEditable(false);
+        jPanel1.add(statusfield);
+        statusfield.setBounds(510, 360, 400, 40);
+
+        bookingidfieldid.setEditable(false);
+        jPanel1.add(bookingidfieldid);
+        bookingidfieldid.setBounds(510, 253, 400, 40);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         jPanel1.add(image);
@@ -115,32 +132,37 @@ public class confirmation extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new confirmation().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {BookingConfirmationController.show(1);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookingconfirmation;
     private javax.swing.JLabel bookingid;
+    private javax.swing.JTextField bookingidfieldid;
     private javax.swing.JLabel date;
+    private javax.swing.JTextField datefield;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton paynowbutton;
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel status;
+    private javax.swing.JTextField statusfield;
     private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
 // Getter methods for controller
-public javax.swing.JLabel getBookingIdLabel() {
-    return bookingid;
+public javax.swing.JTextField getBookingIdField() {
+    return bookingidfieldid;
 }
 
-public javax.swing.JLabel getDateLabel() {
-    return date;
+public javax.swing.JTextField getDateField() {
+    return datefield;
 }
 
-public javax.swing.JLabel getStatusLabel() {
-    return status;
+public javax.swing.JTextField getStatusField() {
+    return statusfield;
 }
+
 
 public javax.swing.JLabel getTextLabel() {
     return text;
