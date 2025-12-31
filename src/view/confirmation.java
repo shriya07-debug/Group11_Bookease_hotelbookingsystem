@@ -34,13 +34,13 @@ public class confirmation extends javax.swing.JFrame {
         slogan = new javax.swing.JLabel();
         paynowbutton = new javax.swing.JButton();
         bookingconfirmation = new javax.swing.JLabel();
-        text = new javax.swing.JLabel();
         bookingid = new javax.swing.JLabel();
         status = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
         datefield = new javax.swing.JTextField();
         statusfield = new javax.swing.JTextField();
         bookingidfieldid = new javax.swing.JTextField();
+        backbutton = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,45 +60,55 @@ public class confirmation extends javax.swing.JFrame {
         paynowbutton.setText("Pay now");
         paynowbutton.setBorder(null);
         jPanel1.add(paynowbutton);
-        paynowbutton.setBounds(590, 440, 160, 40);
+        paynowbutton.setBounds(590, 490, 160, 40);
 
         bookingconfirmation.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         bookingconfirmation.setForeground(new java.awt.Color(232, 128, 153));
         bookingconfirmation.setText("Booking Confirmation");
         jPanel1.add(bookingconfirmation);
-        bookingconfirmation.setBounds(460, 120, 410, 60);
-        jPanel1.add(text);
-        text.setBounds(380, 230, 520, 40);
+        bookingconfirmation.setBounds(440, 120, 410, 60);
 
         bookingid.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         bookingid.setForeground(new java.awt.Color(255, 255, 255));
         bookingid.setText("Booking ID: ");
         jPanel1.add(bookingid);
-        bookingid.setBounds(380, 270, 110, 30);
+        bookingid.setBounds(330, 270, 110, 30);
 
         status.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         status.setForeground(new java.awt.Color(255, 255, 255));
         status.setText("Status: ");
         jPanel1.add(status);
-        status.setBounds(380, 350, 80, 40);
+        status.setBounds(330, 400, 80, 40);
 
         date.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         date.setForeground(new java.awt.Color(255, 255, 255));
         date.setText("Date:");
         jPanel1.add(date);
-        date.setBounds(380, 310, 50, 30);
+        date.setBounds(330, 340, 50, 30);
 
         datefield.setEditable(false);
+        datefield.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jPanel1.add(datefield);
-        datefield.setBounds(510, 310, 400, 40);
+        datefield.setBounds(460, 330, 450, 40);
 
         statusfield.setEditable(false);
+        statusfield.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jPanel1.add(statusfield);
-        statusfield.setBounds(510, 360, 400, 40);
+        statusfield.setBounds(460, 400, 450, 40);
 
         bookingidfieldid.setEditable(false);
+        bookingidfieldid.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jPanel1.add(bookingidfieldid);
-        bookingidfieldid.setBounds(510, 253, 400, 40);
+        bookingidfieldid.setBounds(460, 260, 450, 40);
+
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(40, 640, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         jPanel1.add(image);
@@ -109,6 +119,10 @@ public class confirmation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,6 +151,7 @@ public class confirmation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
     private javax.swing.JLabel bookingconfirmation;
     private javax.swing.JLabel bookingid;
     private javax.swing.JTextField bookingidfieldid;
@@ -148,7 +163,6 @@ public class confirmation extends javax.swing.JFrame {
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel status;
     private javax.swing.JTextField statusfield;
-    private javax.swing.JLabel text;
     // End of variables declaration//GEN-END:variables
 // Getter methods for controller
 public javax.swing.JTextField getBookingIdField() {
@@ -162,11 +176,9 @@ public javax.swing.JTextField getDateField() {
 public javax.swing.JTextField getStatusField() {
     return statusfield;
 }
-
-
-public javax.swing.JLabel getTextLabel() {
-    return text;
-}
+public javax.swing.JLabel getBackButton() {
+        return backbutton;
+    }
 
 public javax.swing.JButton getPayNowButton() {
     return paynowbutton;

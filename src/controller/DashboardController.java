@@ -208,9 +208,13 @@ public class DashboardController {
     }
     
     private void navigateToSupport(userdashboard dashboard) {
-        dashboard.dispose();
-        new support().setVisible(true);
-    }
+    dashboard.dispose();
+    
+    // Create support window for user
+    support supportWindow = new support("user");
+    SupportController.setupSupport(supportWindow, "user");
+    supportWindow.setVisible(true);
+}
     
     private int getCurrentUserId() {
         // Get from session

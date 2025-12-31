@@ -165,4 +165,5 @@ public class notifications extends javax.swing.JFrame {
     
     public javax.swing.JLabel getBackButton() {
         return backbutton;
-    }}
+    }
+}

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.support;
 
 public class AdminDashboardController {
     
@@ -127,10 +128,13 @@ public class AdminDashboardController {
     }
     
     private void navigateToSupport(admindashboard dashboard) {
-        dashboard.dispose();
-        // TODO: Create admin support view or use existing support
-        new view.support().setVisible(true);
-    }
+    dashboard.dispose();
+    
+    // Create support window for hotel admin
+    support supportWindow = new support("hotel_admin");
+    SupportController.setupSupport(supportWindow, "hotel_admin");
+    supportWindow.setVisible(true);
+}
     
     private void generateInvoice() {
         JOptionPane.showMessageDialog(null, 

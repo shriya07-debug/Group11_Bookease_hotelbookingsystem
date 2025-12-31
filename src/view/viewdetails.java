@@ -43,6 +43,7 @@ public class viewdetails extends javax.swing.JFrame {
         slogan = new javax.swing.JLabel();
         reviews = new javax.swing.JButton();
         hotelname = new javax.swing.JLabel();
+        backbutton = new javax.swing.JLabel();
         backimg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,6 +139,15 @@ public class viewdetails extends javax.swing.JFrame {
         jPanel1.add(hotelname);
         hotelname.setBounds(640, 240, 370, 23);
 
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(40, 650, 40, 30);
+
         backimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/details.png"))); // NOI18N
         backimg.setText("jLabel1");
         jPanel1.add(backimg);
@@ -157,6 +167,10 @@ public class viewdetails extends javax.swing.JFrame {
     private void reviewsredirect_bookingconfirmed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewsredirect_bookingconfirmed
         // TODO add your handling code here:
     }//GEN-LAST:event_reviewsredirect_bookingconfirmed
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -187,6 +201,7 @@ public class viewdetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel availabilitygooglemaps;
+    private javax.swing.JLabel backbutton;
     private javax.swing.JLabel backimg;
     private javax.swing.JButton booknowbutton;
     private javax.swing.JLabel contact;
@@ -238,4 +253,7 @@ public javax.swing.JLabel getHotelNameLabel() {
     
     public javax.swing.JButton getReviewsButton() {
         return reviews;
+    }
+public javax.swing.JLabel getBackButton() {
+        return backbutton;
     }}

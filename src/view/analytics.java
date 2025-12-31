@@ -105,7 +105,7 @@ public class analytics extends javax.swing.JFrame {
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(20, 640, 30, 30);
+        backbutton.setBounds(20, 650, 30, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         jPanel1.add(jLabel1);

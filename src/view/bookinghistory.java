@@ -16,7 +16,7 @@ public class bookinghistory extends javax.swing.JFrame {
     public bookinghistory() {
         initComponents();
         setLocationRelativeTo(null);
-        setVisible(true);// Center window
+        setVisible(true);
     }
     
  
@@ -105,7 +105,7 @@ public class bookinghistory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(backbutton);
-        backbutton.setBounds(30, 650, 30, 30);
+        backbutton.setBounds(20, 640, 30, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1280, 720));

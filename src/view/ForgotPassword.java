@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class ForgotPassword extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
-private final ForgotPasswordController controller = new ForgotPasswordController();
+    private final ForgotPasswordController controller = new ForgotPasswordController();
 
     /**
      * Creates new form ForgotPassword
@@ -257,4 +257,4 @@ public ForgotPassword() {
     private javax.swing.JTextField txtNewPassword;
     private javax.swing.JTextField txtOtp;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JLabel getBackButtonLabel() { return backbutton; }}
