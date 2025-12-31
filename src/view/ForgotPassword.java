@@ -1,8 +1,5 @@
 package view;
 
-
-
-
 import controller.ForgotPasswordController;
 import javax.swing.JOptionPane;
 
@@ -11,15 +8,15 @@ import javax.swing.JOptionPane;
 
    
 @SuppressWarnings("serial")
-public class ForgotPassword extends javax.swing.JFrame {
+public class forgotpassword extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(forgotpassword.class.getName());
 private final ForgotPasswordController controller = new ForgotPasswordController();
 
     /**
      * Creates new form ForgotPassword
      */
-public ForgotPassword() {
+public forgotpassword() {
         initComponents();
      
     }
@@ -44,7 +41,6 @@ public ForgotPassword() {
         maincolorlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 450));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));

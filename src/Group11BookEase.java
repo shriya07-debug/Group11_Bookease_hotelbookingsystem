@@ -1,7 +1,8 @@
 import dao.UserDAO;
-import view.ForgotPassword;
+import view.forgotpassword;
 import view.admindashboard;
 import view.adminprofile;
+import view.invoice;
 
 
 
@@ -20,6 +21,7 @@ public class Group11BookEase {
     
         java.awt.EventQueue.invokeLater(() -> {
             new adminprofile().setVisible(true);
+            new invoice("BOOK001").setVisible(true);
         });
     }} 
     

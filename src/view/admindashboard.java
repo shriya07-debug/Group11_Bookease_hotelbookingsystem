@@ -188,6 +188,7 @@ public class admindashboard extends javax.swing.JFrame {
 
     private void GenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateInvoiceActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_GenerateInvoiceActionPerformed
 
     /**
