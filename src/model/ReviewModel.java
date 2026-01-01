@@ -31,9 +31,6 @@ public class ReviewModel {
         return comment;
     }
     
-    @Override
-    public String toString() {
-        return userName + ": " + comment;
-    }
+    
 }
 

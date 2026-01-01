@@ -4,15 +4,13 @@
  */
 package view;
 
-import controller.ReviewController;
-import model.ReviewModel;
 
 /**
  *
  * @author sailenawale
  */
 public class reviews extends javax.swing.JFrame {
-    private final ReviewController controller;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(reviews.class.getName());
 
     /**
@@ -20,20 +18,7 @@ public class reviews extends javax.swing.JFrame {
      */
     
     public reviews() {
-    this("Aquaphor Hotel"); 
-}
-    public reviews(String hotelName) {
-        initComponents();
-        controller = new ReviewController(hotelName);
-        loadReviews();
-    }
-private void loadReviews() {
-    StringBuilder sb = new StringBuilder();
-    for (ReviewModel r : controller.getReviews()) {
-        sb.append("★ ").append(r.getUserName()).append(":\n");
-        sb.append(r.getComment()).append("\n\n");
-    }
-    txtreviews.setText(sb.toString());
+    initComponents(); // This line is CRITICAL
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +56,7 @@ private void loadReviews() {
         reviews.setForeground(new java.awt.Color(241, 150, 174));
         reviews.setText("Reviews");
         jPanel1.add(reviews);
-        reviews.setBounds(340, 120, 180, 40);
+        reviews.setBounds(550, 100, 180, 40);
 
         addreviewbutton.setBackground(new java.awt.Color(184, 12, 47));
         addreviewbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -84,7 +69,7 @@ private void loadReviews() {
             }
         });
         jPanel1.add(addreviewbutton);
-        addreviewbutton.setBounds(390, 513, 150, 40);
+        addreviewbutton.setBounds(380, 560, 150, 40);
 
         viewdetailsbutton.setBackground(new java.awt.Color(184, 12, 47));
         viewdetailsbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -92,7 +77,7 @@ private void loadReviews() {
         viewdetailsbutton.setText("View details");
         viewdetailsbutton.setBorder(null);
         jPanel1.add(viewdetailsbutton);
-        viewdetailsbutton.setBounds(690, 510, 170, 40);
+        viewdetailsbutton.setBounds(700, 560, 170, 40);
 
         jScrollPane1.setForeground(new java.awt.Color(254, 185, 206));
 
@@ -105,7 +90,7 @@ private void loadReviews() {
         jScrollPane1.setViewportView(txtreviews);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 170, 600, 420);
+        jScrollPane1.setBounds(310, 160, 650, 470);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
@@ -120,18 +105,7 @@ private void loadReviews() {
 
     private void addreviewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addreviewbuttonActionPerformed
         // TODO add your handling code here:
-         javax.swing.JDialog dialog = new javax.swing.JDialog(this, "Add Review", true);
-         addreviewpanel panel = new addreviewpanel();
-         dialog.add(panel);
-         dialog.pack();
-         dialog.setLocationRelativeTo(this);
-         dialog.setVisible(true);
-    
-    // Check if submitted
-    if (panel.isSubmitted()) {  // Use the getter method
-    controller.addReview(panel.getUserName(), panel.getComment());  // Use getter methods
-    loadReviews();
-      }
+        
     }//GEN-LAST:event_addreviewbuttonActionPerformed
 
     /**
@@ -169,4 +143,16 @@ private void loadReviews() {
     private javax.swing.JTextArea txtreviews;
     private javax.swing.JButton viewdetailsbutton;
     // End of variables declaration//GEN-END:variables
-}
+                                            
+    
+    public javax.swing.JButton getAddReviewButton() {
+    return addreviewbutton; // Your actual button name
+}                          
+    
+    // Getter for UI component
+    public javax.swing.JTextArea getReviewsTextArea() {
+        return txtreviews;
+    }
+    public javax.swing.JButton getViewDetailsButton() {
+    return viewdetailsbutton; // Your actual button name
+}}

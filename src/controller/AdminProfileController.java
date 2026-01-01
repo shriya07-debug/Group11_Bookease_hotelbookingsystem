@@ -5,8 +5,8 @@ import dao.AdminProfileDao;
 import javax.swing.JOptionPane;
 
 public class AdminProfileController {
-    private AdminProfileDao adminDao;
-    private String currentHotelId;
+    private final AdminProfileDao adminDao;
+    private final String currentHotelId;
     
     public AdminProfileController(String hotelId) {
         this.adminDao = new AdminProfileDao();

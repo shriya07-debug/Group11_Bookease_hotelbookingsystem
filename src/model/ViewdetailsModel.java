@@ -18,23 +18,25 @@ public class ViewdetailsModel {
     private String contact;
     private double price;
     private double ratings;
-    private boolean availability;
+    private String image;
     
     // Constructors
     public ViewdetailsModel () {}
     
-    public ViewdetailsModel(String hotelName, String location, String googleMapsUrl, 
-                 String contact, double price, double ratings, boolean availability) {
+    public ViewdetailsModel(int hotelId, String hotelName, String location, String googleMapsUrl, 
+                 String contact, double price, double ratings, String image) {
+        this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.location = location;
         this.googleMapsUrl = googleMapsUrl;
         this.contact = contact;
         this.price = price;
         this.ratings = ratings;
-        this.availability = availability;
+        
+        this.image = image;
     }
     
-    // Getters and Setters
+    
     public int getHotelId() { return hotelId; }
     public void setHotelId(int hotelId) { this.hotelId = hotelId; }
     
@@ -56,7 +58,12 @@ public class ViewdetailsModel {
     public double getRatings() { return ratings; }
     public void setRatings(double ratings) { this.ratings = ratings; }
     
-    public boolean isAvailability() { return availability; }
-    public void setAvailability(boolean availability) { this.availability = availability; }
+ 
+    public void setImage(String image){
+        this.image = image;
+    }
+    public String getImage(){
+        return image;
+    }
 }
 

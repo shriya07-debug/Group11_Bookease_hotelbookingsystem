@@ -2,27 +2,29 @@ package model;
 
 public class UserModel {
     private int userId;
+    private Integer hotelId; // Use Integer to allow null
     private String username;
     private String email;
     private String password;
     private String role;
-    private Integer hotelId;
     private String status;
+    private String lastLogin;
     
-    // Constructors
+    // Constructor
     public UserModel() {}
-    
-    public UserModel(String username, String email, String password, String role) {
+    public UserModel(String username, String email, String password, String role, String status) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.status = "pending";
+        this.status = status;
     }
-    
-    // Getters and Setters
+    // Getters and setters
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
+    
+    public Integer getHotelId() { return hotelId; }
+    public void setHotelId(Integer hotelId) { this.hotelId = hotelId; }
     
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -36,26 +38,9 @@ public class UserModel {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
     
-    public Integer getHotelId() { return hotelId; }
-    public void setHotelId(Integer hotelId) { this.hotelId = hotelId; }
-    
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
     
-    // Utility methods
-    public boolean isActive() {
-        return "active".equalsIgnoreCase(this.status);
-    }
-    
-    @Override
-    public String toString() {
-        return "UserModel{" +
-               "userId=" + userId +
-               ", username='" + username + '\'' +
-               ", email='" + email + '\'' +
-               ", role='" + role + '\'' +
-               ", status='" + status + '\'' +
-               ", hotelId=" + hotelId +
-               '}';
-    }
+    public String getLastLogin() { return lastLogin; }
+    public void setLastLogin(String lastLogin) { this.lastLogin = lastLogin; }
 }

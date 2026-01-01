@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
-import javax.swing.ImageIcon;  // Add this import
-import java.awt.Image;         // Add this import
 /**
  *
  * @author sailenawale
  */
 public class hotelcard extends javax.swing.JPanel {
+
+    public static void dispose() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     /**
      * Creates new form hotelcard
@@ -41,7 +43,7 @@ public class hotelcard extends javax.swing.JPanel {
 
         viewdetails.setBackground(new java.awt.Color(246, 80, 90));
         viewdetails.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        viewdetails.setForeground(new java.awt.Color(255, 255, 255));
+        viewdetails.setForeground(new java.awt.Color(255, 0, 51));
         viewdetails.setText("View details");
         viewdetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,62 +114,7 @@ public class hotelcard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewdetailsActionPerformed
-        // TODO add your handling code here:
-    }
-            /**
-     * Sets the hotel ID on the card
-     */
-    public void setHotelId(String id) {
-        hotelid.setText("Hotel_id: " + id);
-    }
-    
-    /**
-     * Sets the hotel name on the card
-     */
-    public void setHotelName(String name) {
-        hotelname.setText("Hotel_name: " + name);
-    }
-    
-    /**
-     * Sets the hotel location on the card
-     */
-    public void setLocation(String location) {
-        Location1.setText("Location: " + location);
-    }/**
-     * Sets the room status on the card
-     */
-    public void setRoomStatus(String status) {
-        roomstatus1.setText("Room_status: " + status);
-    }
-    
-    /**
-     * Sets the rating on the card
-     */
-    public void setRating(double rating) {
-        Ratings1.setText("Rating: " + rating);
-        // The star image is already there (star3)
-    }
-    
-    /**
-     * Sets the hotel image on the card
-     */
-    public void setImage(ImageIcon image) {
-        jLabel1.setIcon(image);  // jLabel1 is your image display area
-    }
-    /**
-     * Sets the hotel image from file path
-     */
-    public void setImage(String imagePath) {
-        if (imagePath != null && !imagePath.isEmpty()) {
-        try {
-            ImageIcon icon = new ImageIcon(imagePath);
-            Image img = icon.getImage();
-            Image scaled = img.getScaledInstance(300, -1, Image.SCALE_SMOOTH);
-            jLabel1.setIcon(new ImageIcon(scaled));
-        } catch (Exception e) {
-            System.out.println("Error: " + imagePath);
-        }
-      }
+        // TODO add your handling code here 
     }//GEN-LAST:event_viewdetailsActionPerformed
 
 
@@ -181,4 +128,38 @@ public class hotelcard extends javax.swing.JPanel {
     private javax.swing.JLabel star3;
     private javax.swing.JButton viewdetails;
     // End of variables declaration//GEN-END:variables
+    public void addViewDetailsListener(java.awt.event.ActionListener listener) {
+        viewdetails.addActionListener(listener);
+    }
+    
+    public javax.swing.JButton getViewDetailsButton() {
+        return viewdetails;
+    }
+    
+    public javax.swing.JLabel getHotelIdLabel() {
+        return hotelid;
+    }
+    
+    public javax.swing.JLabel getHotelNameLabel() {
+        return hotelname;
+    }
+    
+    public javax.swing.JLabel getLocationLabel() {
+        return Location1;
+    }
+    
+    public javax.swing.JLabel getRoomStatusLabel() {
+        return roomstatus1;
+    }
+    
+    public javax.swing.JLabel getRatingLabel() {
+        return Ratings1;
+    }
+    
+    public javax.swing.JLabel getImageLabel() {
+        return jLabel1;
+    }
+    public void setImage(javax.swing.ImageIcon image) {
+    jLabel1.setIcon(image);
+  }
 }

@@ -3,56 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.NotificationController;
-import model.NotificationModel;
-import javax.swing.*;
-import java.util.List;
+
 
 /**
  *
  * @author sailenawale
  */
 public class notifications extends javax.swing.JFrame {
-    private final int currentUserId = 1;
+   
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(notifications.class.getName());
 
     /**
      * Creates new form notifications
+     * @param userId
      */
-    public notifications() {
-        initComponents();
-        loadNotifications();
+    public notifications(int userId) {
+        initComponents();      
         setLocationRelativeTo(null);
+        new controller.NotificationController(userId).setupNotifications(this);
     }
-private void loadNotifications() {
-       try {
-        NotificationController controller = new NotificationController();
-        List<NotificationModel> notifications = controller.getUserNotifications(currentUserId);
-        
-        // Use jList1 (your JList component)
-        DefaultListModel<String> model = new DefaultListModel<>();
-        
-        if (notifications.isEmpty()) {
-            model.addElement(" No notifications yet");
-            model.addElement("Update your profile to get notifications!");
-        } else {
-            for (NotificationModel notif : notifications) {
-                String displayText = "• " + notif.getMessage() + 
-                                   " [" + notif.getCreatedAt() + "]";
-                model.addElement(displayText);
-            }
-        }
-        
-        jList1.setModel(model);
-        
-    } catch (Exception e) {
-        // Show error in the list
-        DefaultListModel<String> errorModel = new DefaultListModel<>();
-        errorModel.addElement("Error loading notifications");
-        errorModel.addElement("Check database connection");
-        jList1.setModel(errorModel);
-     }
-    }
+
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +36,7 @@ private void loadNotifications() {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        userdashboard = new javax.swing.JLabel();
+        notifications = new javax.swing.JLabel();
         notificationsicon = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
         msg = new javax.swing.JLabel();
@@ -83,11 +56,11 @@ private void loadNotifications() {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        userdashboard.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        userdashboard.setForeground(new java.awt.Color(232, 128, 153));
-        userdashboard.setText("Notifications");
-        jPanel1.add(userdashboard);
-        userdashboard.setBounds(510, 40, 290, 40);
+        notifications.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        notifications.setForeground(new java.awt.Color(232, 128, 153));
+        notifications.setText("Notifications");
+        jPanel1.add(notifications);
+        notifications.setBounds(510, 40, 290, 40);
 
         notificationsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifications.png"))); // NOI18N
         jPanel1.add(notificationsicon);
@@ -100,15 +73,15 @@ private void loadNotifications() {
 
         msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg);
-        msg.setBounds(320, 350, 40, 40);
+        msg.setBounds(320, 290, 40, 40);
 
         msg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg1);
-        msg1.setBounds(320, 170, 40, 40);
+        msg1.setBounds(320, 150, 40, 40);
 
         msg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/msg.png"))); // NOI18N
         jPanel1.add(msg2);
-        msg2.setBounds(320, 260, 40, 40);
+        msg2.setBounds(320, 220, 40, 40);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -118,7 +91,7 @@ private void loadNotifications() {
         list.setViewportView(jList1);
 
         jPanel1.add(list);
-        list.setBounds(380, 170, 560, 450);
+        list.setBounds(380, 150, 560, 470);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,10 +115,7 @@ private void loadNotifications() {
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open userdashboard
-        new userdashboard().setVisible(true);
+       
     }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
@@ -170,7 +140,10 @@ private void loadNotifications() {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new notifications().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+                int userId = 1;
+                new notifications(userId).setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -182,8 +155,15 @@ private void loadNotifications() {
     private javax.swing.JLabel msg;
     private javax.swing.JLabel msg1;
     private javax.swing.JLabel msg2;
+    private javax.swing.JLabel notifications;
     private javax.swing.JLabel notificationsicon;
     private javax.swing.JLabel slogan;
-    private javax.swing.JLabel userdashboard;
     // End of variables declaration//GEN-END:variables
+ public javax.swing.JList<String> getNotificationsList() {
+        return jList1;
+    }
+    
+    public javax.swing.JLabel getBackButton() {
+        return backbutton;
+    }
 }

@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import dao.UserDAO;
-import model.UserModel;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.List;
 /**
  *
  * @author sailenawale
@@ -20,8 +15,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
      * Creates new form viewallhoteladmins
      */
     public viewallhoteladmins() {
-        initComponents();
-        loadHotelAdmins(); // Add this line
+        initComponents();    
         setLocationRelativeTo(null);
     }
 
@@ -39,8 +33,8 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         backbutton = new javax.swing.JLabel();
+        jScrollBar1 = new javax.swing.JScrollBar();
         image = new javax.swing.JLabel();
-        scrollbar1 = new java.awt.Scrollbar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -58,6 +52,8 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jPanel1.add(superadmindashboard);
         superadmindashboard.setBounds(380, 40, 410, 44);
 
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBackground(new java.awt.Color(254, 185, 206));
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +89,10 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(1000);
+        }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(120, 170, 920, 470);
@@ -105,12 +105,12 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         });
         jPanel1.add(backbutton);
         backbutton.setBounds(20, 640, 30, 30);
+        jPanel1.add(jScrollBar1);
+        jScrollBar1.setBounds(1040, 170, 10, 470);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
         jPanel1.add(image);
         image.setBounds(0, -10, 1280, 730);
-        jPanel1.add(scrollbar1);
-        scrollbar1.setBounds(1040, 170, 16, 470);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -120,56 +120,9 @@ public class viewallhoteladmins extends javax.swing.JFrame {
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open dashboard
-        new superadmindashboard().setVisible(true);
+       
     }//GEN-LAST:event_backbuttonMouseClicked
-    private void loadHotelAdmins() {
-    System.out.println("\n=== LOADING HOTEL ADMINS ===");
     
-    try {
-        UserDAO userDAO = new UserDAO();
-        List<UserModel> hotelAdmins = userDAO.getAllHotelAdmins();
-        
-        // Get the table model
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
-        // Clear existing data (but keep column headers)
-        model.setRowCount(0);
-        
-        // Add data to table
-        for (UserModel admin : hotelAdmins) {
-            Object[] rowData = {
-                admin.getHotelId() != null ? admin.getHotelId() : "N/A",
-                admin.getUsername() != null ? admin.getUsername() : "N/A",
-                admin.getEmail() != null ? admin.getEmail() : "N/A",
-                admin.getPassword() != null ? "******" : "N/A", // Show as stars for security
-                admin.getStatus() != null ? admin.getStatus() : "N/A",
-                "N/A" // Last login - you can add this field later
-            };
-            model.addRow(rowData);
-        }
-        
-        System.out.println("Loaded " + hotelAdmins.size() + " hotel admins into table");
-        
-        // If no hotel admins found, show message
-        if (hotelAdmins.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "No hotel admins found in the database.",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-    } catch (Exception e) {
-        System.out.println("Error loading hotel admins: " + e.getMessage());
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, 
-            "Error loading hotel admins: " + e.getMessage(),
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    }
-}
     /**
      * @param args the command line arguments
      */
@@ -199,9 +152,20 @@ public class viewallhoteladmins extends javax.swing.JFrame {
     private javax.swing.JLabel backbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private java.awt.Scrollbar scrollbar1;
     private javax.swing.JLabel superadmindashboard;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JTable getAdminsTable() {
+        return jTable1;
+    }
+    
+    public javax.swing.JLabel getBackButton() {
+        return backbutton;
+    }
+    
+    // Listener attachment method
+    public void addBackButtonListener(java.awt.event.MouseListener listener) {
+        backbutton.addMouseListener(listener);
+    }}

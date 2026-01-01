@@ -3,12 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import javax.swing.*;
-import controller.ProfileController;
-import java.awt.Image;
-import java.io.File;
-import model.ProfileModel;
-
 /**
  *
  * @author sailenawale
@@ -16,122 +10,18 @@ import model.ProfileModel;
 public class profile extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(profile.class.getName());
-    private int currentUserId;// Your user ID
-    private String currentPhotoPath;
-   
+  
  
  
     /**
      * Creates new form profile
      */
-    public profile(int userId, String userRole) {
-        if ("user".equalsIgnoreCase(userRole)) {
-        this.currentUserId = userId;
-        initComponents();
-        loadUserData();
-        setLocationRelativeTo(null);
-        cancelbutton.setVisible(true); 
-        loadProfilePhoto(); 
-    }else {
-        // For admin/superadmin, show message and redirect
-        JOptionPane.showMessageDialog(null,
-            userRole + " accounts do not have user profiles.\n" +
-            "Please use the admin dashboard for account settings.",
-            "Profile Not Available",
-            JOptionPane.INFORMATION_MESSAGE);
-        
-        // Redirect based on role
-        this.dispose();
-         if ("superadmin".equalsIgnoreCase(userRole)) {
-            new superadmindashboard().setVisible(true);
-        } else {
-            new userdashboard().setVisible(true);
-        }
-    }
-}
-
-    private profile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
    
-
-  
-    private void loadProfilePhoto() {
-    try {
-        String photoPath = "src/images/user_" + currentUserId + ".jpg";
-        File photoFile = new File(photoPath);
-        
-        if (photoFile.exists()) {
-            ImageIcon icon = new ImageIcon(photoPath);
-            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-            newpp.setIcon(new ImageIcon(scaled));
-            
-            faceicon.setVisible(false);
-            newpp.setVisible(true);
-            uploadbutton.setText("Change");
-            currentPhotoPath = photoPath;
-        }
-    } catch (Exception e) {
-        // Do nothing - show face by default
-    }
+public profile() {
+    initComponents();
+     
 }
-    
-    private void loadUserData() {
-    try {
-        ProfileController profileController = new ProfileController();
-        ProfileModel profile = profileController.getProfile(currentUserId);
-        
-        if (profile != null) {
-            userid.setText("User ID: " + profile.getUserId());
-            fullname.setText("Full Name: " + (profile.getFullName() != null ? profile.getFullName() : ""));
-            email.setText("Email: " + (profile.getEmail() != null ? profile.getEmail() : ""));
-            phoneno.setText("Phone: " + (profile.getPhone() != null ? profile.getPhone() : ""));
-        } else {
-            // Load from user session or database directly
-            userid.setText("User ID: " + currentUserId);
-            // You might want to fetch user data from users table here
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error loading profile: " + e.getMessage());
-    }
-}
-    
-
-// Update your edit/save method:
-private void saveProfileChanges(String newName, String newEmail, String newPhone) {
-        ProfileModel updatedProfile = new ProfileModel();
-        updatedProfile.setUserId(currentUserId);
-        updatedProfile.setFullName(newName);
-        updatedProfile.setEmail(newEmail);
-        updatedProfile.setPhone(newPhone);
-        
-        ProfileController profileController = new ProfileController();
-        
-        // Validate before saving
-        if (newName.trim().isEmpty() || newEmail.trim().isEmpty() || newPhone.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "All fields are required!");
-            return;
-        }
-        
-        if (!newEmail.contains("@")) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email!");
-            return;
-        }
-        
-        boolean success = profileController.updateProfile(updatedProfile);
-        if (success) {
-            JOptionPane.showMessageDialog(this, "Profile updated successfully!");
-            loadUserData(); // Reload updated data
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed to update profile!");
-        }
-    }
-
-      
   
-    
-   
   
     
     /**
@@ -152,20 +42,20 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         email = new javax.swing.JLabel();
         phoneno = new javax.swing.JLabel();
         userid = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         mailicon = new javax.swing.JLabel();
         nameicon = new javax.swing.JLabel();
         noicon = new javax.swing.JLabel();
-        faceicon = new javax.swing.JLabel();
         fullname = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
+        faceicon = new javax.swing.JLabel();
         idicon = new javax.swing.JLabel();
         backbutton = new javax.swing.JLabel();
         newpp = new javax.swing.JLabel();
         uploadbutton = new javax.swing.JButton();
+        fullnamefield = new javax.swing.JTextField();
         removebutton = new javax.swing.JButton();
+        emailfield = new javax.swing.JTextField();
+        phonenofield = new javax.swing.JTextField();
+        useridfield = new javax.swing.JTextField();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -205,7 +95,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
             }
         });
         jPanel1.add(cancelbutton);
-        cancelbutton.setBounds(630, 430, 110, 30);
+        cancelbutton.setBounds(770, 420, 120, 40);
 
         logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
         logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -223,7 +113,7 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
             }
         });
         jPanel1.add(logoutbutton);
-        logoutbutton.setBounds(510, 510, 110, 30);
+        logoutbutton.setBounds(590, 500, 120, 40);
 
         editbutton.setBackground(new java.awt.Color(184, 12, 47));
         editbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -236,67 +126,51 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
             }
         });
         jPanel1.add(editbutton);
-        editbutton.setBounds(380, 433, 110, 30);
+        editbutton.setBounds(380, 423, 130, 40);
 
         email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("E-mail");
         jPanel1.add(email);
-        email.setBounds(380, 260, 330, 30);
+        email.setBounds(380, 260, 70, 30);
 
         phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         phoneno.setForeground(new java.awt.Color(255, 255, 255));
         phoneno.setText("Phone no");
         jPanel1.add(phoneno);
-        phoneno.setBounds(380, 330, 340, 30);
+        phoneno.setBounds(380, 330, 90, 30);
 
         userid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         userid.setForeground(new java.awt.Color(255, 255, 255));
         userid.setText("User Id");
         jPanel1.add(userid);
-        userid.setBounds(380, 120, 310, 30);
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(430, 290, 290, 30);
-
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3);
-        jSeparator3.setBounds(440, 360, 280, 20);
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4);
-        jSeparator4.setBounds(450, 150, 270, 50);
+        userid.setBounds(380, 120, 70, 30);
 
         mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
         jPanel1.add(mailicon);
-        mailicon.setBounds(700, 270, 30, 20);
+        mailicon.setBounds(860, 260, 30, 20);
 
         nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
         jPanel1.add(nameicon);
-        nameicon.setBounds(700, 200, 42, 17);
+        nameicon.setBounds(860, 190, 42, 17);
 
         noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
         jPanel1.add(noicon);
-        noicon.setBounds(700, 340, 42, 17);
-
-        faceicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
-        jPanel1.add(faceicon);
-        faceicon.setBounds(50, 140, 140, 170);
+        noicon.setBounds(860, 330, 42, 17);
 
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
         fullname.setText("Full name");
         jPanel1.add(fullname);
-        fullname.setBounds(380, 190, 330, 30);
+        fullname.setBounds(380, 190, 80, 30);
 
-        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator5);
-        jSeparator5.setBounds(470, 220, 250, 20);
+        faceicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newface.png"))); // NOI18N
+        jPanel1.add(faceicon);
+        faceicon.setBounds(50, 140, 140, 170);
 
         idicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-badge.png"))); // NOI18N
         jPanel1.add(idicon);
-        idicon.setBounds(700, 120, 42, 30);
+        idicon.setBounds(860, 120, 42, 30);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,6 +195,8 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         });
         jPanel1.add(uploadbutton);
         uploadbutton.setBounds(30, 340, 70, 30);
+        jPanel1.add(fullnamefield);
+        fullnamefield.setBounds(480, 183, 370, 40);
 
         removebutton.setBackground(new java.awt.Color(184, 12, 47));
         removebutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -335,6 +211,18 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
         });
         jPanel1.add(removebutton);
         removebutton.setBounds(130, 340, 70, 30);
+        jPanel1.add(emailfield);
+        emailfield.setBounds(480, 250, 370, 40);
+
+        phonenofield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phonenofieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(phonenofield);
+        phonenofield.setBounds(480, 323, 370, 40);
+        jPanel1.add(useridfield);
+        useridfield.setBounds(480, 113, 370, 40);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
@@ -353,171 +241,44 @@ private void saveProfileChanges(String newName, String newEmail, String newPhone
     }//GEN-LAST:event_cancelbuttonMouseClicked
 
     private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
-        // TODO add your handling code here:
-        new login().setVisible(true);
+        
        
 
     }//GEN-LAST:event_logoutbuttonMouseClicked
 
     private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
         // TODO add your handling code here:
-        this.dispose(); // Close profile
-        new logout().setVisible(true); // Open logout
+       
     }//GEN-LAST:event_logoutbuttonActionPerformed
 
     private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
-        // TODO add your handling code here:
-        editbutton.setText("Edit");
-        cancelbutton.setVisible(true);
-        loadUserData(); // Reload original data
-        
-        this.dispose();
-        new userdashboard().setVisible(true);
+       
     }//GEN-LAST:event_cancelbuttonActionPerformed
 
     private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
         // TODO add your handling code here:
-                                             
-    // Ask which field to edit
-    String[] options = {"Name", "Email", "Phone"};
-    String choice = (String) JOptionPane.showInputDialog(
-        this,
-        "What do you want to edit?",
-        "Edit Profile",
-        JOptionPane.QUESTION_MESSAGE,
-        null,
-        options,
-        options[0]
-    );
-    
-    if (choice == null) return; // User cancelled
-    
-    if (choice.equals("Name")) {
-        String currentName = fullname.getText().replace("Full Name: ", "");
-        String newName = JOptionPane.showInputDialog(this, "Enter your name:", currentName);
-        
-        if (newName != null && !newName.trim().isEmpty()) {
-            fullname.setText("Full Name: " + newName.trim());
-            saveToDatabase();
-        }
-    }
-    else if (choice.equals("Email")) {
-        String currentEmail = email.getText().replace("Email: ", "");
-        String newEmail = JOptionPane.showInputDialog(this, "Enter your email:", currentEmail);
-        
-        if (newEmail != null && !newEmail.trim().isEmpty()) {
-            email.setText("Email: " + newEmail.trim());
-            saveToDatabase();
-        }
-    }
-    else if (choice.equals("Phone")) {
-        String currentPhone = phoneno.getText().replace("Phone: ", "");
-        String newPhone = JOptionPane.showInputDialog(this, "Enter your phone:", currentPhone);
-        
-        if (newPhone != null && !newPhone.trim().isEmpty()) {
-            phoneno.setText("Phone: " + newPhone.trim());
-            saveToDatabase();
-        }
-    }
-}
-
-// Helper method to save to database
-private void saveToDatabase() {
-    ProfileModel profile = new ProfileModel();
-    profile.setUserId(currentUserId);
-    profile.setFullName(fullname.getText().replace("Full Name: ", ""));
-    profile.setEmail(email.getText().replace("Email: ", ""));
-    profile.setPhone(phoneno.getText().replace("Phone: ", ""));
-    
-    ProfileController controller = new ProfileController();
-    boolean success = controller.updateProfile(profile);
-    
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Updated successfully!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Error saving!");
-     }
+                                            
 
     }//GEN-LAST:event_editbuttonActionPerformed
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-
-        // Open userdashboard
-        new userdashboard().setVisible(true);
     }//GEN-LAST:event_backbuttonMouseClicked
 
     private void uploadbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbuttonActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-    
-    if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = fileChooser.getSelectedFile(); // This is the actual file
-        
-        try {
-            // Save in images folder
-            String newFileName = "user_" + currentUserId + ".jpg";
-            File destination = new File("src/images", newFileName);
-            
-            // Copy file
-            java.io.FileInputStream fis = new java.io.FileInputStream(selectedFile); // Use selectedFile here
-            java.io.FileOutputStream fos = new java.io.FileOutputStream(destination);
-            
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesRead);
-            }
-            
-            fis.close();
-            fos.close();
-            
-            // Display photo
-            ImageIcon icon = new ImageIcon(destination.getAbsolutePath());
-            Image scaled = icon.getImage().getScaledInstance(140, 170, Image.SCALE_SMOOTH);
-            newpp.setIcon(new ImageIcon(scaled));
-            
-            // Hide face, show photo
-            faceicon.setVisible(false);
-            newpp.setVisible(true);
-            uploadbutton.setText("Change");
-            
-            currentPhotoPath = destination.getAbsolutePath();
-            
-            JOptionPane.showMessageDialog(this, "Photo uploaded!");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
-     }
+       
+     
     }//GEN-LAST:event_uploadbuttonActionPerformed
 
     private void removebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebuttonActionPerformed
         // TODO add your handling code here:
-        if (currentPhotoPath != null) {
-        try {
-            File photoFile = new File(currentPhotoPath);
-            if (photoFile.exists()) {
-                photoFile.delete();
-            }
-            
-            // Show face again
-            faceicon.setVisible(true);
-            newpp.setVisible(false);
-            uploadbutton.setText("Upload");
-            currentPhotoPath = null;
-            
-            JOptionPane.showMessageDialog(this, "Photo removed!");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error removing photo");
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "No photo to remove");
-     }
+       
     }//GEN-LAST:event_removebuttonActionPerformed
+
+    private void phonenofieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenofieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phonenofieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -549,25 +310,35 @@ private void saveToDatabase() {
     private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;
+    private javax.swing.JTextField emailfield;
     private javax.swing.JLabel faceicon;
     private javax.swing.JLabel fullname;
+    private javax.swing.JTextField fullnamefield;
     private javax.swing.JLabel idicon;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JButton logoutbutton;
     private javax.swing.JLabel mailicon;
     private javax.swing.JLabel nameicon;
     private javax.swing.JLabel newpp;
     private javax.swing.JLabel noicon;
     private javax.swing.JLabel phoneno;
+    private javax.swing.JTextField phonenofield;
     private javax.swing.JLabel profile;
     private javax.swing.JButton removebutton;
     private javax.swing.JLabel slogan;
     private javax.swing.JButton uploadbutton;
     private javax.swing.JLabel userid;
+    private javax.swing.JTextField useridfield;
     // End of variables declaration//GEN-END:variables
-}
+public javax.swing.JTextField getUserIdField() { return useridfield; }
+public javax.swing.JTextField getFullNameField() { return fullnamefield; }
+public javax.swing.JTextField getEmailField() { return emailfield; }
+public javax.swing.JTextField getPhoneField() { return phonenofield; }
+public javax.swing.JLabel getPhotoLabel() { return newpp; }
+public javax.swing.JButton getEditButton() { return editbutton; }
+public javax.swing.JLabel getBackButtonLabel() { return backbutton; }
+public javax.swing.JButton getCancelButton() { return cancelbutton; }
+public javax.swing.JButton getLogoutButton() { return logoutbutton; }
+public javax.swing.JButton getUploadButton() { return uploadbutton; }
+public javax.swing.JButton getRemoveButton() { return removebutton; }}

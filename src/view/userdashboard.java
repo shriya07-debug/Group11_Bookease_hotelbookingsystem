@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import java.awt.HeadlessException;
-import javax.swing.*;  
-import model.HotelModel;    
-import controller.HotelController;
+
 
 public class userdashboard extends javax.swing.JFrame {
     
@@ -16,9 +13,11 @@ public class userdashboard extends javax.swing.JFrame {
     
     public userdashboard() {
         initComponents();
-         drawerPanel.setLocation(-300, 0);
+        drawerPanel.setLocation(-300, 0);
         
-  }
+        new controller.DashboardController().setupUserDashboard(this);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +32,7 @@ public class userdashboard extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         userdashboard = new javax.swing.JLabel();
         slogan = new javax.swing.JLabel();
-        menubar = new javax.swing.JLabel();
+        menuicon = new javax.swing.JLabel();
         drawerPanel = new javax.swing.JPanel();
         profile = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
@@ -76,14 +75,14 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel1.add(slogan);
         slogan.setBounds(90, 640, 90, 50);
 
-        menubar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
-        menubar.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hamburger Menu.png"))); // NOI18N
+        menuicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menubarMouseClicked(evt);
+                menuiconMouseClicked(evt);
             }
         });
-        jPanel1.add(menubar);
-        menubar.setBounds(10, 10, 50, 40);
+        jPanel1.add(menuicon);
+        menuicon.setBounds(10, 10, 50, 40);
 
         drawerPanel.setLayout(null);
 
@@ -184,11 +183,6 @@ public class userdashboard extends javax.swing.JFrame {
                 searchbarFocusLost(evt);
             }
         });
-        searchbar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchbarActionPerformed(evt);
-            }
-        });
         jPanel1.add(searchbar);
         searchbar.setBounds(800, 40, 140, 40);
 
@@ -221,82 +215,28 @@ public class userdashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-       String hotelName = searchbar.getText().trim();
-    
-    if (hotelName.isEmpty() || hotelName.equalsIgnoreCase("Search here")) {
-        JOptionPane.showMessageDialog(this, "Please enter hotel name!");
-        return;
-    }
-    
-    // Use HotelController instead of direct DAO call
-    HotelController hotelController = new HotelController();
-    HotelModel hotel = hotelController.searchHotel(hotelName);
-    
-    if (hotel == null) {
-        JOptionPane.showMessageDialog(this, "Hotel '" + hotelName + "' not found!");
-        return;
-    }
-    
-    // Show hotel on THIS dashboard
-    showHotel(hotel);
-    
-    // Clear search
-    searchbar.setText("");
-    
+
     }//GEN-LAST:event_searchMouseClicked
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        // TODO add your handling code here:
-        int testUserId = 1;
-        String testUserRole = "user";
-         this.dispose();
-
-        // Open profile
-        new profile(testUserId, testUserRole).setVisible(true);
+      
     }//GEN-LAST:event_profileMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-        // TODO add your handling code here:
-         this.dispose();
-
-        // Open dashboard
-        new userdashboard().setVisible(true);
+        
     }//GEN-LAST:event_dashboardMouseClicked
 
     private void bookinghistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookinghistoryMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
         
-        //Open bookinghistory
-        new bookinghistory().setVisible(true);
     }//GEN-LAST:event_bookinghistoryMouseClicked
 
     private void notificationsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-
-        // Open notifications
-        new notifications().setVisible(true);
+        
     }//GEN-LAST:event_notificationsMouseClicked
 
     private void supportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supportMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-
-        // Open support
-        new support().setVisible(true);
+        
     }//GEN-LAST:event_supportMouseClicked
-
-    private void menubarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menubarMouseClicked
-        // TODO add your handling code here:
-        if (drawerPanel.getX() < 0) {
-        // Slide IN from left
-        drawerPanel.setBounds(0, 0, 300, 720);
-    } else {
-        // Slide OUT to left
-        drawerPanel.setBounds(-300, 0, 300, 720);
-    }
-    }//GEN-LAST:event_menubarMouseClicked
 
     private void searchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusGained
         // TODO add your handling code here:
@@ -310,11 +250,12 @@ public class userdashboard extends javax.swing.JFrame {
         if(searchbar.getText().trim().equals("")){
             searchbar.setText("       Search here");}
     }//GEN-LAST:event_searchbarFocusLost
+  
+   
 
-    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+    private void menuiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuiconMouseClicked
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_searchbarActionPerformed
+    }//GEN-LAST:event_menuiconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -339,70 +280,7 @@ public class userdashboard extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new userdashboard().setVisible(true));
-    }
-    public void showHotel(HotelModel hotel) {
-        try {
-            if (welcome != null && welcome.isVisible()) {
-            welcome.setVisible(false);
-        }
-            // Create hotel card
-            hotelcard card = new hotelcard();
-            
-            // Set hotel info
-            card.setHotelId(String.valueOf(hotel.getHotelId()));
-            card.setHotelName(hotel.getHotelName());
-            card.setLocation(hotel.getLocation());
-            card.setRoomStatus(hotel.getRoomStatus());
-            card.setRating(hotel.getRating());
-            card.setImage(hotel.getImagePath()); 
-          
-            
-            card.setVisible(true);  
-            // Count existing hotel cards
-            int hotelCardCount = 0;
-            for (java.awt.Component comp : jPanel1.getComponents()) {
-                if (comp instanceof hotelcard) {
-                    hotelCardCount++;
-                }
-            }
-            
-            // CLOSE side-by-side: 300 width + 10px gap
-            int cardWidth = 300;
-            int cardHeight = 450;
-            int gap = 55; 
-            
-            // First card: x=400, Second: x=710, Third: x=1020
-            int xPosition = 400 + (hotelCardCount * (cardWidth + gap));
-            
-            // Set position - SMALLER CARD
-            card.setBounds(xPosition, 200, cardWidth, cardHeight);
-                  
-//            card.setBounds(400, 200, 300, 450);
-//            // Add to the main panel
-            jPanel1.add(card);
-       
-            jPanel1.setComponentZOrder(card, 0); // Bring to front
-       
-    
-            // Refresh
-            jPanel1.revalidate();
-            jPanel1.repaint();
-            
-            card.repaint();
-            // Show message
-            JOptionPane.showMessageDialog(this, 
-                "✓ " + hotel.getHotelName() + " added to your dashboard!",
-                "Success",
-                JOptionPane.INFORMATION_MESSAGE);
-                
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "Error showing hotel!");
-        }
-    }
-
-  
-
-    
+    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookinghistory;
@@ -413,7 +291,7 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel menubar;
+    private javax.swing.JLabel menuicon;
     private javax.swing.JLabel notifications;
     private javax.swing.JLabel notificationsicon;
     private javax.swing.JLabel panel;
@@ -427,4 +305,22 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel userdashboard;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
+    public javax.swing.JTextField getSearchBar() { return searchbar; }
+    public javax.swing.JLabel getSearchButton() { return search; }
+    public javax.swing.JPanel getMainPanel() { return jPanel1; }
+    public javax.swing.JLabel getWelcomeLabel() { return welcome; }
+    public javax.swing.JPanel getDrawerPanel() { return drawerPanel; }
+    public javax.swing.JLabel getMenuIcon() { return menuicon; }  
+    
+    // Navigation getters
+    public javax.swing.JLabel getProfileLabel() { return profile; }
+    public javax.swing.JLabel getDashboardLabel() { return dashboard; }
+    public javax.swing.JLabel getBookingHistoryLabel() { return bookinghistory; }
+    public javax.swing.JLabel getNotificationsLabel() { return notifications; }
+    public javax.swing.JLabel getSupportLabel() { return support; }
+    
+    public void addMenuIconListener(java.awt.event.MouseListener listener) {
+        menuicon.addMouseListener(listener);
+    }
+    
 }
