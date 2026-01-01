@@ -5,7 +5,7 @@
 package controller;
 import model.BooknowModel;
 import dao.BooknowDAO;
-import view.booknow;  // Adjust if your view class is in a different package
+import view.book;  // Adjust if your view class is in a different package
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,10 +17,10 @@ import java.text.SimpleDateFormat;
  * @author Nitro
  */
 public class BooknowController {
- private final booknow view;           // The View
+ private final book view;           // The View
     private final BooknowDAO dao;         // The DAO9* 
 
-    public BooknowController(booknow view, Connection connection) {
+    public BooknowController(book view, Connection connection) {
         this.view = view;
         this.dao = new BooknowDAO(connection);
 
