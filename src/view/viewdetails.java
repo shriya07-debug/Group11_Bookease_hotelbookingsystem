@@ -113,7 +113,7 @@ public class viewdetails extends javax.swing.JFrame {
             }
         });
         jPanel1.add(booknowbutton);
-        booknowbutton.setBounds(640, 540, 150, 40);
+        booknowbutton.setBounds(630, 540, 150, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
