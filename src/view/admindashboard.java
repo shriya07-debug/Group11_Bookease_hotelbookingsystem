@@ -159,7 +159,7 @@ public class admindashboard extends javax.swing.JFrame {
         this.dispose();
 
         // Open profile
-        //new adminprofile().setVisible(true);
+        new adminprofile().setVisible(true);
     }//GEN-LAST:event_profileMouseClicked
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
@@ -188,7 +188,6 @@ public class admindashboard extends javax.swing.JFrame {
 
     private void GenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateInvoiceActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_GenerateInvoiceActionPerformed
 
     /**

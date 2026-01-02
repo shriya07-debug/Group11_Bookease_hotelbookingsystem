@@ -1,5 +1,8 @@
 package view;
 
+
+
+
 import controller.ForgotPasswordController;
 import javax.swing.JOptionPane;
 
@@ -41,6 +44,7 @@ public forgotpassword() {
         maincolorlabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));

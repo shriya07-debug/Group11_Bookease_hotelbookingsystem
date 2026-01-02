@@ -7,31 +7,31 @@ package dao;
 
 
 import database.Database;
-import database.mysqlconnection;
+import database.MySqlConnection;
 import java.sql.*;
 
 public class UserDAO {
 
-    Database db = new mysqlconnection();
+    Database db = new MySqlConnection();
 
     // Check if email exists
     public boolean emailExists(String email) {
 
-        Connection conn = mysqlconnection.getConnection();
+        Connection conn = db.openConnection();
         String query = "SELECT * FROM users WHERE email='" + email + "'";
 
         ResultSet rs = db.runQuery(conn, query);
 
         try {
             if (rs != null && rs.next()) {
-               
+                db.closeConnection(conn);
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        
+        db.closeConnection(conn);
         return false;
     }
 

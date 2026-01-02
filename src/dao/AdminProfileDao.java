@@ -1,6 +1,6 @@
 package dao;
 
-import database.mysqlconnection;
+import database.MySqlConnection;
 import model.AdminProfileModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class AdminProfileDao {
         ResultSet rs = null;
         
         try {
-            conn = mysqlconnection.getConnection();
+            conn = MySqlConnection.getConnection();
             if (conn == null) {
                 System.out.println("Database connection is null!");
                 return null;
@@ -51,7 +51,7 @@ public class AdminProfileDao {
         PreparedStatement ps = null;
         
         try {
-            conn = mysqlconnection.getConnection();
+            conn = MySqlConnection.getConnection();
             if (conn == null) {
                 System.out.println("❌ Database connection is null!");
                 return false;
@@ -81,7 +81,7 @@ public class AdminProfileDao {
         PreparedStatement ps = null;
         
         try {
-            conn = mysqlconnection.getConnection();
+            conn = MySqlConnection.getConnection();
             if (conn == null) {
                 System.out.println("❌ Database connection is null!");
                 return false;
@@ -109,7 +109,7 @@ public class AdminProfileDao {
         ResultSet rs = null;
         
         try {
-            conn = mysqlconnection.getConnection();
+            conn = MySqlConnection.getConnection();
             if (conn == null) {
                 System.out.println("Database connection is null!");
                 return false;
@@ -140,7 +140,7 @@ public class AdminProfileDao {
         ResultSet rs = null;
         
         try {
-            conn = mysqlconnection.getConnection();
+            conn = MySqlConnection.getConnection();
             if (conn == null) {
                 System.out.println("Database connection is null!");
                 return admins;

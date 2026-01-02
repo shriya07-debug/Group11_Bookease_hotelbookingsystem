@@ -3,6 +3,7 @@ package controller;
 import model.AdminProfileModel;
 import dao.AdminProfileDao;
 import javax.swing.JOptionPane;
+import database.MySqlConnection;
 
 public class AdminProfileController {
     private AdminProfileDao adminDao;
