@@ -48,7 +48,6 @@ public class book extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         roomtype = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         checkindate = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
@@ -96,15 +95,11 @@ public class book extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Delux", "Suite", " " }));
         
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(350, 220, 90, 23);
+        jComboBox1.setBounds(410, 220, 30, 23);
 
         roomtype.setEditable(false);
         jPanel1.add(roomtype);
         roomtype.setBounds(170, 210, 280, 40);
-
-        jLabel6.setText("jLabel6");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(400, 400, 42, 17);
         jPanel1.add(checkindate);
         checkindate.setBounds(170, 390, 280, 40);
 
@@ -179,7 +174,6 @@ public class book extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextField numberofpeople;

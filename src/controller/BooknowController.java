@@ -1,38 +1,113 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
+
 import model.BooknowModel;
 import dao.BooknowDAO;
-import view.book;  // Adjust if your view class is in a different package
+import view.book;
+import database.MySqlConnection;
+import view.confirmation;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
-/**
- *
- * @author Nitro
- */
+
 public class BooknowController {
- private final book view;           // The View
-    private final BooknowDAO dao;         // The DAO9* 
-
-    public BooknowController(book view, Connection connection) {
+    private final book view;
+    private BooknowDAO dao;
+    
+    public BooknowController(book view) {
         this.view = view;
-        this.dao = new BooknowDAO(connection);
-
-        // Attach listeners to view components
-        this.view.getConfirmButton().addActionListener(new ConfirmListener());
+        
+        // Initialize database connection inside controller
+        initializeDatabaseConnection();
+        
+        // Setup all event listeners
+        setupEventListeners();
     }
-
+    
+    private void initializeDatabaseConnection() {
+        try {
+            MySqlConnection mysqlConn = new MySqlConnection();
+            Connection connection = mysqlConn.openConnection();
+            
+            if (connection != null && !connection.isClosed()) {
+                this.dao = new BooknowDAO(connection);
+                System.out.println("Database connection established for booking!");
+            } else {
+                JOptionPane.showMessageDialog(view,
+                    "Failed to establish database connection",
+                    "Connection Error", 
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, 
+                "Database connection error: " + e.getMessage(),
+                "Connection Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void setupEventListeners() {
+        // Confirm button
+        view.getConfirmButton().addActionListener(new ConfirmListener());
+        
+        // Combo box selection
+        view.getComboBox().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleComboBoxSelection();
+            }
+        });
+        
+        // Back button (if you want controller to handle it)
+        if (view.getBackButton() != null) {
+            view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    handleBackButton();
+                }
+            });
+        }
+    }
+    
+    private void handleComboBoxSelection() {
+        String selected = view.getComboBoxSelectedItem();
+        if (selected != null && !selected.trim().isEmpty() && !selected.equals(" ")) {
+            view.setRoomTypeText(selected);
+        }
+    }
+    
+    private void handleBackButton() {
+        // Close current window and go back (optional)
+        view.dispose();
+        // You can add navigation back to previous page here
+    }
+    
+    // Simple navigation to confirmation page
+    private void navigateToConfirmation() {
+        // Close current window
+        view.dispose();
+        
+        // Open confirmation page
+        SwingUtilities.invokeLater(() -> {
+             BookingConfirmationController.show(1);
+        });
+    }
+    
     // Inner class to handle Confirm button click
     class ConfirmListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
+                // Validate database connection
+                if (dao == null) {
+                    JOptionPane.showMessageDialog(view,
+                        "Database connection not available. Please try again.",
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
                 // Step 1: Gather and validate data from View
                 String roomType = getRoomTypeFromView();
                 int numberOfPeople = getNumberOfPeopleFromView();
@@ -51,13 +126,7 @@ public class BooknowController {
                     return;
                 }
 
-                // Optional: Check availability
-                if (!dao.isRoomAvailable(roomType, checkInDate, checkOutDate)) {
-                    JOptionPane.showMessageDialog(view,
-                        "Sorry, this room type is not available for the selected dates.",
-                        "Room Unavailable", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
+                
 
                 // Step 3: Create Model and populate it
                 BooknowModel booking = new BooknowModel();
@@ -65,20 +134,23 @@ public class BooknowController {
                 booking.setNumPeople(numberOfPeople);
                 booking.setCheckInDate(checkInDate);
                 booking.setCheckOutDate(checkOutDate);
-                // bookingDate and status are set in model constructor
 
                 // Step 4: Save via DAO
                 boolean success = dao.saveBooking(booking);
 
                 if (success) {
+                    // Get booking ID (optional)
+                    int bookingId = 1; // Replace with actual booking ID if needed
+    
                     JOptionPane.showMessageDialog(view,
-                        "Booking confirmed successfully!\nRoom: " + roomType +
-                        "\nGuests: " + numberOfPeople +
-                        "\nCheck-in: " + checkInDate +
-                        "\nCheck-out: " + checkOutDate,
+                        "Booking confirmed successfully!\nBooking ID: " + bookingId,
                         "Success", JOptionPane.INFORMATION_MESSAGE);
-
-                    view.clearForm();  // Clear fields after success
+    
+                    view.clearForm();
+    
+                    // NAVIGATE TO CONFIRMATION PAGE
+                    navigateToConfirmation();
+    
                 } else {
                     JOptionPane.showMessageDialog(view,
                         "Failed to save booking. Please try again.",
@@ -89,6 +161,7 @@ public class BooknowController {
                 JOptionPane.showMessageDialog(view,
                     "Unexpected error: " + ex.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
         }
     }
@@ -146,5 +219,5 @@ public class BooknowController {
                 "Invalid " + fieldName + " date format!\nUse: yyyy-MM-dd (e.g., 2025-12-25)");
             return null;
         }
-    }   
+    }
 }

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.book;
 import view.viewdetails;
 import view.reviews;
 import view.userdashboard;
@@ -84,8 +85,17 @@ private void setImage(JLabel label, String path) {
     }
     
     private void handleBookNow() {
-        JOptionPane.showMessageDialog(view, "Booking feature coming soon!");
-    }
+    // Close current window
+    view.dispose();
+    
+    // Open the book page
+    SwingUtilities.invokeLater(() -> {
+        book bookingPage = new book();
+        BooknowController bookingController = new BooknowController(bookingPage);
+        bookingPage.setController(bookingController);
+        bookingPage.setVisible(true);
+    });
+}
     
     private void handleReviews() {
         view.dispose();

@@ -20,15 +20,16 @@ public class BooknowDAO {
      * @return true if successful, false otherwise
      */
 public boolean saveBooking(BooknowModel booking) {
-    String sql = "INSERT INTO bookings " +
-                 "(room_type, number_of_people, check_in_date, check_out_date) " +
-                 "VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO booknow " +
+                 "(booking_id, room_type, number_of_people, check_in_date, check_out_date) " +
+                 "VALUES (?,?, ?, ?, ?)";
 
     try (PreparedStatement ps = connection.prepareStatement(sql)) {
-        ps.setString(1, booking.getRoomType());
-        ps.setInt(2, booking.getNumberOfPeople());
-        ps.setDate(3, booking.getCheckInDate());
-        ps.setDate(4, booking.getCheckOutDate());
+        ps.setInt(1, 1);
+        ps.setString(2, booking.getRoomType());
+        ps.setInt(3, booking.getNumberOfPeople());
+        ps.setDate(4, booking.getCheckInDate());
+        ps.setDate(5, booking.getCheckOutDate());
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected > 0;
@@ -49,7 +50,7 @@ public boolean saveBooking(BooknowModel booking) {
      */
     public List<BooknowModel> getAllBookings() {
         List<BooknowModel> bookings = new ArrayList<>();
-        String sql = "SELECT * FROM bookings ORDER BY booking_date DESC";
+        String sql = "SELECT * FROM booknow ORDER BY booking_date DESC";
         
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -79,7 +80,7 @@ public boolean saveBooking(BooknowModel booking) {
      * @return 
      */
     public boolean isRoomAvailable(String roomType, Date checkIn, Date checkOut) {
-        String sql = "SELECT COUNT(*) FROM bookings " +
+        String sql = "SELECT COUNT(*) FROM booknow " +
                      "WHERE room_type = ? " +
                      "AND ((check_in_date <= ? AND check_out_date >= ?) " +
                      "OR (check_in_date <= ? AND check_out_date >= ?))";

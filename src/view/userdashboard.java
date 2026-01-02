@@ -155,11 +155,11 @@ public class userdashboard extends javax.swing.JFrame {
 
         supporticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Support.png"))); // NOI18N
         drawerPanel.add(supporticon);
-        supporticon.setBounds(20, 310, 50, 25);
+        supporticon.setBounds(20, 300, 50, 50);
 
-        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Vector.png"))); // NOI18N
+        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
         drawerPanel.add(profileicon);
-        profileicon.setBounds(20, 360, 60, 30);
+        profileicon.setBounds(20, 350, 80, 50);
 
         panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
@@ -199,7 +199,7 @@ public class userdashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(970, 50, 40, 20);
+        search.setBounds(970, 50, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newdash.png"))); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1280, 720));

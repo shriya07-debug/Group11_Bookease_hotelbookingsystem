@@ -37,11 +37,11 @@ public class superadmindashboard extends javax.swing.JFrame {
         slogan = new javax.swing.JLabel();
         menuicon = new javax.swing.JLabel();
         drawerPanel = new javax.swing.JPanel();
+        dashboardicon = new javax.swing.JLabel();
         dashboard = new javax.swing.JLabel();
         allhoteladmins = new javax.swing.JLabel();
-        logout = new javax.swing.JLabel();
         hoteladminsicon = new javax.swing.JLabel();
-        dashboardicon = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         logouticon = new javax.swing.JLabel();
         viewanalytics = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,6 +92,10 @@ public class superadmindashboard extends javax.swing.JFrame {
 
         drawerPanel.setLayout(null);
 
+        dashboardicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/=.png"))); // NOI18N
+        drawerPanel.add(dashboardicon);
+        dashboardicon.setBounds(20, 160, 70, 30);
+
         dashboard.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         dashboard.setForeground(new java.awt.Color(255, 255, 255));
         dashboard.setText("Dashboard");
@@ -114,6 +118,10 @@ public class superadmindashboard extends javax.swing.JFrame {
         drawerPanel.add(allhoteladmins);
         allhoteladmins.setBounds(70, 210, 240, 30);
 
+        hoteladminsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        drawerPanel.add(hoteladminsicon);
+        hoteladminsicon.setBounds(15, 210, 50, 30);
+
         logout.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Logout");
@@ -124,14 +132,6 @@ public class superadmindashboard extends javax.swing.JFrame {
         });
         drawerPanel.add(logout);
         logout.setBounds(70, 310, 150, 30);
-
-        hoteladminsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        drawerPanel.add(hoteladminsicon);
-        hoteladminsicon.setBounds(15, 210, 25, 30);
-
-        dashboardicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/=.png"))); // NOI18N
-        drawerPanel.add(dashboardicon);
-        dashboardicon.setBounds(20, 160, 70, 30);
 
         logouticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoutbutton.png"))); // NOI18N
         drawerPanel.add(logouticon);
