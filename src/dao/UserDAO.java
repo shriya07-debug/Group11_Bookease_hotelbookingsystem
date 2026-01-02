@@ -1,5 +1,6 @@
 package dao;
 
+<<<<<<< HEAD
 import model.UserModel;
 import database.mysqlconnection;
 import java.sql.*;
@@ -31,6 +32,29 @@ public class UserDAO {
                 user.setStatus(rs.getString("status"));
                 user.setHotelId(rs.getInt("hotel_id"));
                 return user;
+=======
+
+import database.Database;
+import database.MySqlConnection;
+import java.sql.*;
+
+public class UserDAO {
+
+    Database db = new MySqlConnection();
+
+    // Check if email exists
+    public boolean emailExists(String email) {
+
+        Connection conn = db.openConnection();
+        String query = "SELECT * FROM users WHERE email='" + email + "'";
+
+        ResultSet rs = db.runQuery(conn, query);
+
+        try {
+            if (rs != null && rs.next()) {
+                db.closeConnection(conn);
+                return true;
+>>>>>>> kshitiznew
             }
             
         } catch (SQLException e) {
