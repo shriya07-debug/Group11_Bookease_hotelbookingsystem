@@ -4,21 +4,16 @@ import model.BooknowModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class BooknowDAO {
     private final Connection connection;
 
-    // Constructor - receives the connection from your JFrame
+    
     public BooknowDAO(Connection connection) {
         this.connection = connection;
     }
 
-    /**
-     * Save a new booking to the database
-     * @param booking
-     * @return true if successful, false otherwise
-     */
+    
 public boolean saveBooking(BooknowModel booking) {
     String sql = "INSERT INTO booknow " +
                  "(booking_id, room_type, number_of_people, check_in_date, check_out_date) " +
@@ -34,20 +29,17 @@ public boolean saveBooking(BooknowModel booking) {
         int rowsAffected = ps.executeUpdate();
         return rowsAffected > 0;
 
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null,
-            "Error saving booking: " + e.getMessage(),
-            "Database Error",
-            JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();  // Remove later, helpful for debugging now
-        return false;
+    } 
+    
+    catch (SQLException e) {
+        System.out.println(e);
     }
+    
+    return false;
+    
 }
 
-    /**
-     * Get all bookings (useful for future admin view)
-     * @return 
-     */
+    
     public List<BooknowModel> getAllBookings() {
         List<BooknowModel> bookings = new ArrayList<>();
         String sql = "SELECT * FROM booknow ORDER BY booking_date DESC";
@@ -65,20 +57,15 @@ public boolean saveBooking(BooknowModel booking) {
                
                 bookings.add(booking);
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error fetching bookings: " + e.getMessage());
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
         return bookings;
     }
 
-    /**
-     * Optional: Check if a room is already booked for given dates
-     * (You can expand this later for real availability check)
-     * @param roomType
-     * @param checkIn
-     * @param checkOut
-     * @return 
-     */
+    
     public boolean isRoomAvailable(String roomType, Date checkIn, Date checkOut) {
         String sql = "SELECT COUNT(*) FROM booknow " +
                      "WHERE room_type = ? " +
@@ -94,13 +81,13 @@ public boolean saveBooking(BooknowModel booking) {
             
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) == 0; // true if no overlapping bookings
+                return rs.getInt(1) == 0; 
             }
-        } catch (SQLException e) {
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
-        return false; // assume not available if error
+        return false; 
     }
-
-    // You can add more methods later: updateBooking, deleteBooking, getBookingById, etc.
-
-    }
+}

@@ -34,9 +34,13 @@ public class UserDAO {
                 return user;
             }
             
-        } catch (SQLException e) {
-            System.out.println("Login error: " + e.getMessage());
-        } finally {
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
+        } 
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return null;
@@ -55,10 +59,14 @@ public class UserDAO {
             
             return pstmt.executeUpdate() > 0;
             
-        } catch (SQLException e) {
-            System.out.println("Signup error: " + e.getMessage());
+        }
+        
+        catch (SQLException e) {
+            System.out.println(e);
             return false;
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
     }
@@ -66,7 +74,7 @@ public class UserDAO {
     public boolean createHotelAdmin(int hotelId, String email, String password) {
         Connection conn = mysql.openConnection();
         
-        // Generate username from email
+  
         String username = email.split("@")[0];
         
         String sql = "INSERT INTO users (username, email, password, role, hotel_id, status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -81,10 +89,14 @@ public class UserDAO {
             
             return pstmt.executeUpdate() > 0;
             
-        } catch (SQLException e) {
-            System.out.println("Create hotel admin error: " + e.getMessage());
+        }
+        
+        catch (SQLException e) {
+            System.out.println(e);
             return false;
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
     }
@@ -109,9 +121,13 @@ public class UserDAO {
                 admins.add(admin);
             }
             
-        } catch (SQLException e) {
-            System.out.println("Get hotel admins error: " + e.getMessage());
-        } finally {
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
+        } 
+        
+        finally {
             mysql.closeConnection(conn);
         }
         

@@ -315,7 +315,7 @@ public class superadmindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel superadmindashboard;
     private javax.swing.JLabel viewanalytics;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JLabel getMenuIcon() {
+    public javax.swing.JLabel getMenuIcon() {
         return menuicon;
     }
     
@@ -354,7 +354,6 @@ public javax.swing.JLabel getMenuIcon() {
         return savebutton;
     }
     
-    // Listener attachment methods
     public void addSaveButtonListener(java.awt.event.ActionListener listener) {
         savebutton.addActionListener(listener);
     }
@@ -363,6 +362,6 @@ public javax.swing.JLabel getMenuIcon() {
         menuicon.addMouseListener(listener);
     }
     public javax.swing.JLabel getViewAnalyticsLabel() {
-    return viewanalytics; // Your actual label name
-}
+        return viewanalytics; 
+    }
 }

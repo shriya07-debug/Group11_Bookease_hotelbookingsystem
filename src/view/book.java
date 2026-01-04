@@ -14,7 +14,6 @@ import javax.swing.*;
 public class book extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(book.class.getName());
-    private BooknowController controller;
     /**
      * Creates new form book
      */
@@ -26,7 +25,6 @@ public class book extends javax.swing.JFrame {
     
     // Add a getter for the connection (optional, useful for testing)
     public void setController(BooknowController controller) {
-        this.controller = controller;
     }
 
 
@@ -181,10 +179,10 @@ public class book extends javax.swing.JFrame {
     private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
 
-public JButton getConfirmButton() {
+    public JButton getConfirmButton() {
         return confirm;
     }
-public JLabel getBackButton() {  // ADD THIS GETTER
+    public JLabel getBackButton() {  
         return backbutton;
     }
     public JComboBox<String> getjComboBox1() {
@@ -207,28 +205,26 @@ public JLabel getBackButton() {  // ADD THIS GETTER
         return checkoutdate;
     }
 
-    // Make this method public so the controller can call it
+   
     public void clearForm() {
         jComboBox1.setSelectedIndex(0);
         roomtype.setText("");
         numberofpeople.setText("");
         checkindate.setText("");
         checkoutdate.setText("");
-        // roomtype.setEnabled(false); // uncomment if you want to keep this
+        
     }
-public String getComboBoxSelectedItem() {
-    return (String) jComboBox1.getSelectedItem();
-}
+    public String getComboBoxSelectedItem() {
+        return (String) jComboBox1.getSelectedItem();
+    }
 
-// Setter for text field
-public void setRoomTypeText(String text) {
-    roomtype.setText(text);
-}
 
-// Getter for combo box component (for adding listeners)
-public JComboBox<String> getComboBox() {
-    return jComboBox1;
-}
+    public void setRoomTypeText(String text) {
+        roomtype.setText(text);
+    }
 
-   
+
+    public JComboBox<String> getComboBox() {
+        return jComboBox1;
+    }  
 }

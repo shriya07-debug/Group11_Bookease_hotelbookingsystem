@@ -164,22 +164,23 @@ public class confirmation extends javax.swing.JFrame {
     private javax.swing.JLabel status;
     private javax.swing.JTextField statusfield;
     // End of variables declaration//GEN-END:variables
-// Getter methods for controller
+
 public javax.swing.JTextField getBookingIdField() {
     return bookingidfieldid;
-}
+    }
 
 public javax.swing.JTextField getDateField() {
     return datefield;
-}
+    }
 
 public javax.swing.JTextField getStatusField() {
     return statusfield;
-}
+    }
 public javax.swing.JLabel getBackButton() {
         return backbutton;
     }
 
 public javax.swing.JButton getPayNowButton() {
     return paynowbutton;
-}}
+   }
+}

@@ -104,8 +104,7 @@ public class reviews extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addreviewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addreviewbuttonActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:   
     }//GEN-LAST:event_addreviewbuttonActionPerformed
 
     /**
@@ -146,13 +145,14 @@ public class reviews extends javax.swing.JFrame {
                                             
     
     public javax.swing.JButton getAddReviewButton() {
-    return addreviewbutton; // Your actual button name
-}                          
+        return addreviewbutton; 
+    }                          
     
-    // Getter for UI component
+  
     public javax.swing.JTextArea getReviewsTextArea() {
         return txtreviews;
     }
     public javax.swing.JButton getViewDetailsButton() {
-    return viewdetailsbutton; // Your actual button name
-}}
+        return viewdetailsbutton; 
+    }
+}

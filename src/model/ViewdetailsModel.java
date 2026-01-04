@@ -20,7 +20,7 @@ public class ViewdetailsModel {
     private double ratings;
     private String image;
     
-    // Constructors
+ 
     public ViewdetailsModel () {}
     
     public ViewdetailsModel(int hotelId, String hotelName, String location, String googleMapsUrl, 
@@ -36,29 +36,55 @@ public class ViewdetailsModel {
         this.image = image;
     }
     
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+    public int getHotelId() {
+        return hotelId;
+    }
     
-    public int getHotelId() { return hotelId; }
-    public void setHotelId(int hotelId) { this.hotelId = hotelId; }
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+    public String getHotelName() {
+        return hotelName; 
+    }
     
-    public String getHotelName() { return hotelName; }
-    public void setHotelName(String hotelName) { this.hotelName = hotelName; }
+    public void setLocation(String location) { 
+        this.location = location; 
+    }
+    public String getLocation() {
+        return location;
+    }
     
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public void setGoogleMapsUrl(String googleMapsUrl) { 
+        this.googleMapsUrl = googleMapsUrl; 
+    }
+    public String getGoogleMapsUrl() {
+        return googleMapsUrl;
+    }
     
-    public String getGoogleMapsUrl() { return googleMapsUrl; }
-    public void setGoogleMapsUrl(String googleMapsUrl) { this.googleMapsUrl = googleMapsUrl; }
+    public void setContact(String contact) {
+        this.contact = contact; 
+    }
+    public String getContact() {
+        return contact; 
+    }
     
-    public String getContact() { return contact; }
-    public void setContact(String contact) { this.contact = contact; }
+    public void setPrice(double price) {
+        this.price = price; 
+    }
+    public double getPrice() {
+        return price; 
+    }
     
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
-    
-    public double getRatings() { return ratings; }
-    public void setRatings(double ratings) { this.ratings = ratings; }
-    
- 
+    public void setRatings(double ratings) {
+        this.ratings = ratings; 
+    } 
+    public double getRatings() {
+        return ratings; 
+    }
+     
     public void setImage(String image){
         this.image = image;
     }

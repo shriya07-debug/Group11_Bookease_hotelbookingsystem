@@ -13,7 +13,7 @@ import java.util.List;
 public class NotificationDAO {
     MySqlConnection mysql = new MySqlConnection();
     
-    // Get all notifications for a user
+
     public List<NotificationModel> getUserNotifications(int userId) {
         List<NotificationModel> notifications = new ArrayList<>();
         Connection conn = mysql.openConnection();
@@ -32,15 +32,19 @@ public class NotificationDAO {
                 
                 notifications.add(notification);
             }
-        } catch (Exception ex) {
-            System.out.println("Error in getUserNotifications: " + ex);
-        } finally {
+        } 
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        } 
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return notifications;
     }
     
-    // Create a new notification
+ 
     public boolean createNotification(NotificationModel notification) {
         Connection conn = mysql.openConnection();
         String sql = "INSERT INTO notifications (user_id, message) VALUES (?, ?)";
@@ -52,9 +56,13 @@ public class NotificationDAO {
             int rowsAffected = pstm.executeUpdate();
             return rowsAffected > 0;
             
-        } catch (Exception ex) {
-            System.out.println("Error in createNotification: " + ex);
-        } finally {
+        }
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return false;

@@ -156,7 +156,8 @@ public class support extends javax.swing.JFrame {
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel support;
     // End of variables declaration//GEN-END:variables
-// Getter method for controller
+
 public javax.swing.JButton getHelpfulButton() {
     return helpfulbutton;
-}}
+    }
+}

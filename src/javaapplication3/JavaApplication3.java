@@ -20,10 +20,10 @@ public class JavaApplication3 {
      */
     public static void main(String[] args) {
     java.awt.EventQueue.invokeLater(() -> {
-        login login = new login();  // Create ONE login object
+        login login = new login();  
         UserController controller = new UserController();
-        controller.setupLoginView(login);  // Set up THIS login
-        login.setVisible(true);  // Show THIS login (not a new one!)
+        controller.setupLoginView(login);  
+        login.setVisible(true);  
     });
 }
 }

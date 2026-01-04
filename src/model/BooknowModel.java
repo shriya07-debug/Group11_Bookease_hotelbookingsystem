@@ -12,79 +12,90 @@ public class BooknowModel {
     private Timestamp bookingDate;
     private String status;
     
-    // Constructor
-    public BooknowModel() {
+
+    public BooknowModel() {}
+    
+   
+    public BooknowModel(int id, String roomType, int numberOfPeople, 
+                       Date checkInDate, Date checkOutDate) {
+        this.id = id; 
+        this.roomType = roomType;
+        this.numberOfPeople = numberOfPeople;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.bookingDate = new Timestamp(System.currentTimeMillis());
         this.status = "Confirmed";
     }
     
-    // Getters and Setters
-  public int getId() { 
-        return id; 
+    
+    public BooknowModel(int id, String roomType, int numberOfPeople, 
+                       Date checkInDate, Date checkOutDate, 
+                       Timestamp bookingDate, String status) {
+        this.id = id; 
+        this.roomType = roomType;
+        this.numberOfPeople = numberOfPeople;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.bookingDate = bookingDate;
+        this.status = status;
     }
     
+
     public void setId(int id) { 
         this.id = id; 
     }
-    
-    public String getRoomType() { 
-        return roomType; 
+    public int getId() { 
+        return id; 
     }
     
     public void setRoomType(String roomType) { 
         this.roomType = roomType; 
     }
-    
-    public int getNumberOfPeople() { 
-        return numberOfPeople; 
+    public String getRoomType() { 
+        return roomType; 
     }
     
     public void setNumberOfPeople(int numberOfPeople) { 
         this.numberOfPeople = numberOfPeople; 
     }
-    
-    // Keep this for backward compatibility with controller
-    public int getNumPeople() { 
+    public int getNumberOfPeople() { 
         return numberOfPeople; 
     }
     
+    // Note: You have duplicate methods for numberOfPeople/numPeople
+    // Consider removing one to avoid confusion
     public void setNumPeople(int numPeople) { 
         this.numberOfPeople = numPeople; 
     }
-    
-    public Date getCheckInDate() { 
-        return checkInDate; 
+    public int getNumPeople() { 
+        return numberOfPeople; 
     }
     
     public void setCheckInDate(Date checkInDate) { 
         this.checkInDate = checkInDate; 
     }
-    
-    public Date getCheckOutDate() { 
-        return checkOutDate; 
+    public Date getCheckInDate() { 
+        return checkInDate; 
     }
-    
+   
     public void setCheckOutDate(Date checkOutDate) { 
         this.checkOutDate = checkOutDate; 
     }
-    
-    public Timestamp getBookingDate() { 
-        return bookingDate; 
+    public Date getCheckOutDate() { 
+        return checkOutDate; 
     }
     
     public void setBookingDate(Timestamp bookingDate) { 
         this.bookingDate = bookingDate; 
     }
-    
-    public String getStatus() { 
-        return status; 
+    public Timestamp getBookingDate() { 
+        return bookingDate; 
     }
     
     public void setStatus(String status) { 
         this.status = status; 
     }
-
-    public int getnoOfPeople() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getStatus() { 
+        return status; 
     }
-}  
+}

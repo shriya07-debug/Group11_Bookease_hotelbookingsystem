@@ -19,25 +19,22 @@ public forgotpasswordmodel(String username, String email, String password){
     public String getusername() {
         return username;
     }
-    
-
-
-public void setId(int user_id) {
-    this.user_id = user_id;
-}
-public int getId() {
+   
+    public void setId(int user_id) {
+        this.user_id = user_id;
+    }
+    public int getId() {
         return user_id;
     }
 
- public void setpassword(String password) {
+    public void setpassword(String password) {
         this.password = password;
     }
     public String getpassword() {
         return password;
     }
 
-
- public void setemail(String email) {
+    public void setemail(String email) {
          this.email = email;
     }
     public String getemail() {

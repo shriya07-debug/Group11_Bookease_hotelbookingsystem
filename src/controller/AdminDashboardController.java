@@ -31,6 +31,7 @@ public class AdminDashboardController {
     }
     
     private void setImage(JLabel label, String path) {
+        
         try {
             ImageIcon icon = new ImageIcon(getClass().getResource(path));
             if (icon.getIconWidth() <= 0) {
@@ -42,8 +43,10 @@ public class AdminDashboardController {
                 Image.SCALE_SMOOTH
             );
             label.setIcon(new ImageIcon(img));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        
+        catch (Exception e) {
+            System.out.println(e);
         }
     }
     
@@ -59,13 +62,15 @@ public class AdminDashboardController {
     private void toggleDrawer(JPanel drawerPanel) {
         if (drawerPanel.getX() < 0) {
             drawerPanel.setBounds(0, 0, 300, 720);
-        } else {
+        }
+        
+        else {
             drawerPanel.setBounds(-300, 0, 300, 720);
         }
     }
     
     private void setupNavigation(admindashboard dashboard) {
-        // Dashboard (refresh)
+       
         dashboard.getDashboardLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -73,7 +78,7 @@ public class AdminDashboardController {
             }
         });
         
-        // Recent Bookings
+     
         dashboard.getRecentBookingsLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -81,7 +86,7 @@ public class AdminDashboardController {
             }
         });
         
-        // Profile
+  
         dashboard.getProfileLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -89,7 +94,7 @@ public class AdminDashboardController {
             }
         });
         
-        // Support
+   
         dashboard.getSupportLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
@@ -111,7 +116,7 @@ public class AdminDashboardController {
     
     private void navigateToRecentBookings(admindashboard dashboard) {
         dashboard.dispose();
-        // TODO: Create admin booking history view
+        
         JOptionPane.showMessageDialog(dashboard, 
             "Recent Bookings feature coming soon!", 
             "Info", 
@@ -120,7 +125,7 @@ public class AdminDashboardController {
     
     private void navigateToProfile(admindashboard dashboard) {
         dashboard.dispose();
-        // TODO: Create admin profile view
+        
         JOptionPane.showMessageDialog(dashboard, 
             "Admin Profile feature coming soon!", 
             "Info", 
@@ -130,7 +135,7 @@ public class AdminDashboardController {
     private void navigateToSupport(admindashboard dashboard) {
     dashboard.dispose();
     
-    // Create support window for hotel admin
+   
     support supportWindow = new support("hotel_admin");
     SupportController.setupSupport(supportWindow, "hotel_admin");
     supportWindow.setVisible(true);

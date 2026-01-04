@@ -236,29 +236,23 @@ public profile() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseClicked
-        // TODO add your handling code here:
-    
+        // TODO add your handling code here:  
     }//GEN-LAST:event_cancelbuttonMouseClicked
 
     private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
-        
-       
-
+       // TODO add your handling code here:     
     }//GEN-LAST:event_logoutbuttonMouseClicked
 
     private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
-        // TODO add your handling code here:
-       
+        // TODO add your handling code here:     
     }//GEN-LAST:event_logoutbuttonActionPerformed
 
     private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
-       
+       // TODO add your handling code here:     
     }//GEN-LAST:event_cancelbuttonActionPerformed
 
     private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
-        // TODO add your handling code here:
-                                            
-
+        // TODO add your handling code here:                                          
     }//GEN-LAST:event_editbuttonActionPerformed
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
@@ -266,14 +260,11 @@ public profile() {
     }//GEN-LAST:event_backbuttonMouseClicked
 
     private void uploadbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbuttonActionPerformed
-        // TODO add your handling code here:
-       
-     
+        // TODO add your handling code here:    
     }//GEN-LAST:event_uploadbuttonActionPerformed
 
     private void removebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removebuttonActionPerformed
-        // TODO add your handling code here:
-       
+        // TODO add your handling code here:      
     }//GEN-LAST:event_removebuttonActionPerformed
 
     private void phonenofieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenofieldActionPerformed
@@ -331,14 +322,37 @@ public profile() {
     private javax.swing.JLabel userid;
     private javax.swing.JTextField useridfield;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTextField getUserIdField() { return useridfield; }
-public javax.swing.JTextField getFullNameField() { return fullnamefield; }
-public javax.swing.JTextField getEmailField() { return emailfield; }
-public javax.swing.JTextField getPhoneField() { return phonenofield; }
-public javax.swing.JLabel getPhotoLabel() { return newpp; }
-public javax.swing.JButton getEditButton() { return editbutton; }
-public javax.swing.JLabel getBackButtonLabel() { return backbutton; }
-public javax.swing.JButton getCancelButton() { return cancelbutton; }
-public javax.swing.JButton getLogoutButton() { return logoutbutton; }
-public javax.swing.JButton getUploadButton() { return uploadbutton; }
-public javax.swing.JButton getRemoveButton() { return removebutton; }}
+public javax.swing.JTextField getUserIdField() { 
+    return useridfield; 
+  }
+public javax.swing.JTextField getFullNameField() { 
+    return fullnamefield;
+  }
+public javax.swing.JTextField getEmailField() {
+    return emailfield;
+  }
+public javax.swing.JTextField getPhoneField() {
+    return phonenofield; 
+  }
+public javax.swing.JLabel getPhotoLabel() { 
+    return newpp; 
+  } 
+public javax.swing.JButton getEditButton() { 
+    return editbutton; 
+  }
+public javax.swing.JLabel getBackButtonLabel() { 
+    return backbutton;
+  }
+public javax.swing.JButton getCancelButton() {
+    return cancelbutton;
+  }
+public javax.swing.JButton getLogoutButton() {
+    return logoutbutton;
+  }
+public javax.swing.JButton getUploadButton() { 
+    return uploadbutton; 
+  }
+public javax.swing.JButton getRemoveButton() {
+    return removebutton; 
+  }
+}

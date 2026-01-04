@@ -160,8 +160,7 @@ public class viewdetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void redirect_bookingconfirmed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_redirect_bookingconfirmed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:       
     }//GEN-LAST:event_redirect_bookingconfirmed
 
     private void reviewsredirect_bookingconfirmed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reviewsredirect_bookingconfirmed
@@ -217,7 +216,7 @@ public class viewdetails extends javax.swing.JFrame {
     private javax.swing.JLabel slogan;
     private javax.swing.JLabel viewdetails;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JLabel getHotelNameLabel() {
+    public javax.swing.JLabel getHotelNameLabel() {
         return hotelname;
     }
     public javax.swing.JLabel getHotelIdLabel() {
@@ -254,6 +253,7 @@ public javax.swing.JLabel getHotelNameLabel() {
     public javax.swing.JButton getReviewsButton() {
         return reviews;
     }
-public javax.swing.JLabel getBackButton() {
+    public javax.swing.JLabel getBackButton() {
         return backbutton;
-    }}
+    }
+}

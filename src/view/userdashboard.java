@@ -305,19 +305,41 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel userdashboard;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
-    public javax.swing.JTextField getSearchBar() { return searchbar; }
-    public javax.swing.JLabel getSearchButton() { return search; }
-    public javax.swing.JPanel getMainPanel() { return jPanel1; }
-    public javax.swing.JLabel getWelcomeLabel() { return welcome; }
-    public javax.swing.JPanel getDrawerPanel() { return drawerPanel; }
-    public javax.swing.JLabel getMenuIcon() { return menuicon; }  
+    public javax.swing.JTextField getSearchBar() { 
+        return searchbar; 
+    }
+    public javax.swing.JLabel getSearchButton() {
+        return search; 
+    }
+    public javax.swing.JPanel getMainPanel() {
+        return jPanel1; 
+    }
+    public javax.swing.JLabel getWelcomeLabel() {
+        return welcome; 
+    }
+    public javax.swing.JPanel getDrawerPanel() {
+        return drawerPanel; 
+    }
+    public javax.swing.JLabel getMenuIcon() { 
+        return menuicon; 
+    }  
     
-    // Navigation getters
-    public javax.swing.JLabel getProfileLabel() { return profile; }
-    public javax.swing.JLabel getDashboardLabel() { return dashboard; }
-    public javax.swing.JLabel getBookingHistoryLabel() { return bookinghistory; }
-    public javax.swing.JLabel getNotificationsLabel() { return notifications; }
-    public javax.swing.JLabel getSupportLabel() { return support; }
+   
+    public javax.swing.JLabel getProfileLabel() { 
+        return profile; 
+    }
+    public javax.swing.JLabel getDashboardLabel() { 
+        return dashboard; 
+    }
+    public javax.swing.JLabel getBookingHistoryLabel() { 
+        return bookinghistory; 
+    }
+    public javax.swing.JLabel getNotificationsLabel() { 
+        return notifications; 
+    }
+    public javax.swing.JLabel getSupportLabel() { 
+        return support; 
+    }
     
     public void addMenuIconListener(java.awt.event.MouseListener listener) {
         menuicon.addMouseListener(listener);

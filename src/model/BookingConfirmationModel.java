@@ -8,11 +8,10 @@ public class BookingConfirmationModel {
     private Date date;
     private String status;
     
-    // Empty constructor
-    public BookingConfirmationModel() {
-    }
     
-    // Constructor from database
+    public BookingConfirmationModel() {}
+    
+    
     public BookingConfirmationModel(int confirmationId, int bookingId, 
                                    Date date, String status) {
         this.confirmationId = confirmationId;
@@ -21,37 +20,41 @@ public class BookingConfirmationModel {
         this.status = status;
     }
     
-    // Constructor for new confirmation
+    
     public BookingConfirmationModel(int bookingId, String status) {
         this.bookingId = bookingId;
         this.status = status;
         this.date = new Date();
     }
     
-    // Getters
-    public int getConfirmationId() { return confirmationId; }
-    public int getBookingId() { return bookingId; }
-    public Date getDate() { return date; }
-    public String getStatus() { return status; }
-    
-    // Setters
     public void setConfirmationId(int confirmationId) { 
         this.confirmationId = confirmationId; 
+    }  
+    public int getConfirmationId() {
+        return confirmationId;
     }
     
     public void setBookingId(int bookingId) { 
         this.bookingId = bookingId; 
     }
+    public int getBookingId() { 
+        return bookingId;
+    }
     
     public void setDate(Date date) { 
         this.date = date; 
+    }
+    public Date getDate() { 
+        return date;
     }
     
     public void setStatus(String status) { 
         this.status = status; 
     }
-    
-    // Format date for display
+    public String getStatus() { 
+        return status; 
+    }
+   
     public String getFormattedDate() {
         if (date != null) {
             return new java.text.SimpleDateFormat("dd-MMM-yyyy HH:mm").format(date);

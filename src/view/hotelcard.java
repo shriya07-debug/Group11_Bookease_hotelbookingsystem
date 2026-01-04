@@ -160,6 +160,6 @@ public class hotelcard extends javax.swing.JPanel {
         return jLabel1;
     }
     public void setImage(javax.swing.ImageIcon image) {
-    jLabel1.setIcon(image);
-  }
+        jLabel1.setIcon(image);
+    }
 }

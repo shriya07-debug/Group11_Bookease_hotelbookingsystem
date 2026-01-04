@@ -20,13 +20,9 @@ public class AdminDashboardModel {
     
     public void setimage(String image){
         this.image = image;
-    }
-    
+    }  
     public String getimage(){
         return image;
-    }
-    
-    
-        
-    }
+    }        
+}
     

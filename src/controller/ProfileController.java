@@ -7,7 +7,7 @@ import view.userdashboard;
 import javax.swing.*;
 
 public class ProfileController {
-    private ProfileDAO profileDAO;
+    private final ProfileDAO profileDAO;
     private int currentUserId;
     private profile profileWindow;
     
@@ -38,36 +38,39 @@ public class ProfileController {
                     profileWindow.getPhotoLabel().setIcon(new ImageIcon(userProfile.getPhotoPath()));
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        
+        catch (Exception e) {
+            System.out.println(e);
         }
     }
     
     private void setupButtonActions() {
-        // Back button - go to dashboard
+        
         profileWindow.getBackButtonLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 profileWindow.dispose();
                 new userdashboard().setVisible(true);
             }
         });
         
-        // Edit button - save profile
+        
         profileWindow.getEditButton().addActionListener(e -> saveProfile());
         
-        // Cancel button - go to dashboard
+       
         profileWindow.getCancelButton().addActionListener(e -> {
             profileWindow.dispose();
             new userdashboard().setVisible(true);
         });
         
-        // Logout button - logout
+     
         profileWindow.getLogoutButton().addActionListener(e -> logout());
         
-        // Upload photo button
+      
         profileWindow.getUploadButton().addActionListener(e -> uploadPhoto());
         
-        // Remove photo button
+     
         profileWindow.getRemoveButton().addActionListener(e -> removePhoto());
     }
     
@@ -92,7 +95,7 @@ public class ProfileController {
         }
     }
     
-    // ONLY THIS METHOD IS CHANGED - logout navigation
+    
     private void logout() {
         int confirm = JOptionPane.showConfirmDialog(profileWindow, 
             "Logout?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -100,14 +103,15 @@ public class ProfileController {
         if (confirm == JOptionPane.YES_OPTION) {
             profileWindow.dispose();
             
-            // Navigate to logout page
+            
             try {
-                // Check if LogoutController exists
+                
                 Class.forName("controller.LogoutController");
-                // Call LogoutController
+              
                 controller.LogoutController.showLogoutWindow();
-            } catch (ClassNotFoundException e) {
-                // If LogoutController doesn't exist, open logout view directly
+            } 
+            
+            catch (ClassNotFoundException e) {
                 new view.logout().setVisible(true);
             }
         }

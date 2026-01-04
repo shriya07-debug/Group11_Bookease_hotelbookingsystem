@@ -12,7 +12,7 @@ public class NotificationModel {
     private String message;
     private Date createdAt;
     
-    // Constructors
+ 
     public NotificationModel() {}
     
     public NotificationModel(int notificationId, int userId, String message, Date createdAt) {
@@ -22,32 +22,32 @@ public class NotificationModel {
         this.createdAt = createdAt;
     }
     
-    // Getters and Setters
-    public int getNotificationId() { 
-        return notificationId; 
-    }
     public void setNotificationId(int notificationId) {
         this.notificationId = notificationId; 
     }
-    
-    public int getUserId() { 
-        return userId; 
+    public int getNotificationId() { 
+        return notificationId; 
     }
+   
     public void setUserId(int userId) {
         this.userId = userId; 
     }
-    
-    public String getMessage() {
-        return message; 
+    public int getUserId() { 
+        return userId; 
     }
+    
     public void setMessage(String message) {
         this.message = message; 
     }
-    
-    public Date getCreatedAt() {
-        return createdAt; 
+    public String getMessage() {
+        return message; 
     }
+    
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt; 
     }
+    public Date getCreatedAt() {
+        return createdAt; 
+    }
+    
 }

@@ -26,7 +26,7 @@ public class ForgotPasswordController {
         }
 
         generatedOtp = String.valueOf(new Random().nextInt(900000) + 100000);
-        otpVerified = false; // reset old verification
+        otpVerified = false; 
 
         EmailService.sendEmail(
             email,
@@ -48,14 +48,7 @@ public class ForgotPasswordController {
         return false;
     }
 
-    // 🔒 Reset password ONLY if OTP verified
-
-    /**
-     *
-     * @param email
-     * @param newPassword
-     * @return
-     */
+    
     public boolean resetPassword(String email, String newPassword) {
 
         if (!otpVerified) {

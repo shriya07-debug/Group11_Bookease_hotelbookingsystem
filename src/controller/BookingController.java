@@ -4,12 +4,11 @@ import dao.BookingDAO;
 import model.BookingModel;
 import view.bookinghistory;
 import view.userdashboard;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class BookingController {
-    private BookingDAO bookingDAO;
+    private final BookingDAO bookingDAO;
     
     public BookingController() {
         this.bookingDAO = new BookingDAO();
@@ -24,7 +23,7 @@ public class BookingController {
         try {
             List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
             
-            // Create table model with EXACT column names
+            
             String[] columns = {"user_id", "booking_id", "hotel_name", "check_in_date", 
                               "check_out_date", "total_price", "status"};
             
@@ -44,9 +43,10 @@ public class BookingController {
             
             window.getBookingsTable().setModel(model);
             
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(window, "Error loading bookings!");
+        } 
+        
+        catch (Exception e) {
+            System.out.println(e);
         }
     }
     

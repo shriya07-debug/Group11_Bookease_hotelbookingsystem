@@ -4,12 +4,12 @@ import model.BooknowModel;
 import dao.BooknowDAO;
 import view.book;
 import database.MySqlConnection;
-import view.confirmation;
-
+import java.awt.HeadlessException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class BooknowController {
@@ -18,11 +18,9 @@ public class BooknowController {
     
     public BooknowController(book view) {
         this.view = view;
-        
-        // Initialize database connection inside controller
+     
         initializeDatabaseConnection();
-        
-        // Setup all event listeners
+  
         setupEventListeners();
     }
     
@@ -40,29 +38,26 @@ public class BooknowController {
                     "Connection Error", 
                     JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(view, 
-                "Database connection error: " + e.getMessage(),
-                "Connection Error", 
-                JOptionPane.ERROR_MESSAGE);
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
     }
     
     private void setupEventListeners() {
-        // Confirm button
+       
         view.getConfirmButton().addActionListener(new ConfirmListener());
         
-        // Combo box selection
-        view.getComboBox().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleComboBoxSelection();
-            }
+      
+        view.getComboBox().addActionListener((ActionEvent e) -> {
+            handleComboBoxSelection();
         });
         
-        // Back button (if you want controller to handle it)
+       
         if (view.getBackButton() != null) {
             view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     handleBackButton();
                 }
@@ -78,28 +73,26 @@ public class BooknowController {
     }
     
     private void handleBackButton() {
-        // Close current window and go back (optional)
-        view.dispose();
-        // You can add navigation back to previous page here
-    }
-    
-    // Simple navigation to confirmation page
-    private void navigateToConfirmation() {
-        // Close current window
         view.dispose();
         
-        // Open confirmation page
+    }
+    
+
+    private void navigateToConfirmation() {
+       
+        view.dispose();
+        
         SwingUtilities.invokeLater(() -> {
              BookingConfirmationController.show(1);
         });
     }
     
-    // Inner class to handle Confirm button click
+   
     class ConfirmListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                // Validate database connection
+               
                 if (dao == null) {
                     JOptionPane.showMessageDialog(view,
                         "Database connection not available. Please try again.",
@@ -108,17 +101,17 @@ public class BooknowController {
                     return;
                 }
                 
-                // Step 1: Gather and validate data from View
+               
                 String roomType = getRoomTypeFromView();
                 int numberOfPeople = getNumberOfPeopleFromView();
                 java.sql.Date checkInDate = getCheckInDateFromView();
                 java.sql.Date checkOutDate = getCheckOutDateFromView();
 
                 if (roomType == null || checkInDate == null || checkOutDate == null) {
-                    return; // Validation failed, message already shown
+                    return; 
                 }
 
-                // Step 2: Validate dates (check-out after check-in)
+                
                 if (!checkOutDate.after(checkInDate)) {
                     JOptionPane.showMessageDialog(view,
                         "Check-out date must be after check-in date!",
@@ -128,19 +121,19 @@ public class BooknowController {
 
                 
 
-                // Step 3: Create Model and populate it
+              
                 BooknowModel booking = new BooknowModel();
                 booking.setRoomType(roomType);
                 booking.setNumPeople(numberOfPeople);
                 booking.setCheckInDate(checkInDate);
                 booking.setCheckOutDate(checkOutDate);
 
-                // Step 4: Save via DAO
+        
                 boolean success = dao.saveBooking(booking);
 
                 if (success) {
-                    // Get booking ID (optional)
-                    int bookingId = 1; // Replace with actual booking ID if needed
+                  
+                    int bookingId = 1; 
     
                     JOptionPane.showMessageDialog(view,
                         "Booking confirmed successfully!\nBooking ID: " + bookingId,
@@ -148,7 +141,7 @@ public class BooknowController {
     
                     view.clearForm();
     
-                    // NAVIGATE TO CONFIRMATION PAGE
+         
                     navigateToConfirmation();
     
                 } else {
@@ -157,16 +150,13 @@ public class BooknowController {
                         "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(view,
-                    "Unexpected error: " + ex.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
+            } catch (HeadlessException ex) {
+                System.out.println(e);
             }
         }
     }
 
-    // Helper methods to extract and validate data from View
+    
 
     private String getRoomTypeFromView() {
         String selected = (String) view.getjComboBox1().getSelectedItem();
@@ -182,6 +172,7 @@ public class BooknowController {
         return roomType;
     }
 
+    
     private int getNumberOfPeopleFromView() {
         String text = view.getNumberofpeople().getText().trim();
         if (text.isEmpty()) {
@@ -190,10 +181,12 @@ public class BooknowController {
         }
         try {
             return Integer.parseInt(text);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(view, "Please enter a valid number for people!");
-            return -1;
+        } 
+        
+        catch (NumberFormatException ex) {
+            System.out.println(ex);
         }
+        return -1;
     }
 
     private java.sql.Date getCheckInDateFromView() {
@@ -211,13 +204,15 @@ public class BooknowController {
         }
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false);  // Strict parsing
+            sdf.setLenient(false);  
             java.util.Date utilDate = sdf.parse(dateStr);
             return new java.sql.Date(utilDate.getTime());
-        } catch (java.text.ParseException ex) {
-            JOptionPane.showMessageDialog(view,
-                "Invalid " + fieldName + " date format!\nUse: yyyy-MM-dd (e.g., 2025-12-25)");
-            return null;
+        } 
+        
+        catch (java.text.ParseException ex) {
+            System.out.println(ex);
+               
         }
+        return null;
     }
 }

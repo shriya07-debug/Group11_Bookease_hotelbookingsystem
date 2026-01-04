@@ -14,7 +14,7 @@ public class ViewdetailsDAO {
             MySqlConnection db = new MySqlConnection();
             conn = db.openConnection();
             
-            // FIXED: Using viewdetails table (not hotels)
+            
             String query = "SELECT * FROM viewdetails WHERE hotel_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, hotelId);
@@ -33,8 +33,10 @@ public class ViewdetailsDAO {
             
             db.closeConnection(conn);
             
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
         
         return hotel;

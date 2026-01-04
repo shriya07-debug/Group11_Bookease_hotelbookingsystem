@@ -32,9 +32,13 @@ public class BookingDAO {
                 
                 bookings.add(booking);
             }
-        } catch (Exception ex) {
-            System.out.println("Error in getUserBookings: " + ex);
-        } finally {
+        } 
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return bookings;

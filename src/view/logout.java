@@ -124,8 +124,8 @@ public class logout extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 public void addLoginButtonListener(java.awt.event.ActionListener listener) {
     loginbutton.addActionListener(listener);
-}
+   }
 public javax.swing.JButton getLoginButton() {
     return loginbutton;
-}
+   }
 }
