@@ -39,6 +39,8 @@ public Object[][] getHotelAdminsForTable() throws SQLException {
     
     return rows.toArray(Object[][]::new);
 }
+
+
     public AdminPerformanceModel getAdminPerformance(int hotelId) throws SQLException {
    
     String sql = "SELECT u.username, " +

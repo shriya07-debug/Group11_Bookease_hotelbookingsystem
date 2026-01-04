@@ -20,9 +20,9 @@ public class HotelController {
         } 
         
         catch (Exception e) {
-            System.out.println(e);
-            return null;
+            System.out.println(e);      
         }
+        return null;
     }
     
     
@@ -40,6 +40,7 @@ public class HotelController {
         
         String imagePath = hotel.getImagePath();
         if (imagePath != null && !imagePath.isEmpty()) {
+            
             try {
                
                 ImageIcon icon = new ImageIcon(imagePath);

@@ -6,7 +6,7 @@ public class AdminProfileModel {
     private String email;
     private String phone;
     
-    // Constructors
+  
     public AdminProfileModel(int aInt, String string, String string1) {}
     
     public AdminProfileModel(String hotelId, String fullName, String email, String phone) {
@@ -16,7 +16,7 @@ public class AdminProfileModel {
         this.phone = phone;
     }
     
-    // Getters and Setters
+
     public String getHotelId() { return hotelId; }
     public void setHotelId(String hotelId) { this.hotelId = hotelId; }
     

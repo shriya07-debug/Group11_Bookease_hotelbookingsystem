@@ -322,8 +322,7 @@ public class userdashboard extends javax.swing.JFrame {
     }
     public javax.swing.JLabel getMenuIcon() { 
         return menuicon; 
-    }  
-    
+    }   
    
     public javax.swing.JLabel getProfileLabel() { 
         return profile; 

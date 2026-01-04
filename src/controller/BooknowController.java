@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import view.userdashboard;
+import view.viewdetails;
 
 public class BooknowController {
     private final book view;
@@ -74,6 +76,9 @@ public class BooknowController {
     
     private void handleBackButton() {
         view.dispose();
+        SwingUtilities.invokeLater(() -> {
+            new viewdetails().setVisible(true);
+        });
         
     }
     
