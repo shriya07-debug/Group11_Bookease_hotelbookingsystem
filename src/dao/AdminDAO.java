@@ -22,8 +22,8 @@ public class AdminDAO {
                         rs.getInt("admin_id"),
                         rs.getString("fullname"),
                         rs.getString("email"),
-                        rs.getString("phone"),
-                        rs.getString("photo")
+                        rs.getString("phone")
+                        
                 );
             }
         } catch (SQLException e) {

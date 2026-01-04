@@ -6,13 +6,13 @@ import view.adminprofile;
 
 import javax.swing.*;
 
-public class ProfileController {
+public class AdminProfileController {
 
     private final adminprofile view;
     private final AdminDAO dao = new AdminDAO();
     private final int adminId = 1; // change if needed
 
-    public ProfileController(adminprofile view) {
+    public AdminProfileController(adminprofile view) {
         this.view = view;
         loadAdminData();
         addActions();

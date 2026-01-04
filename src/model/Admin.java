@@ -5,19 +5,49 @@ public class Admin {
     private String fullName;
     private String email;
     private String phone;
-    private String photoPath;
+   
 
-    public Admin(int id, String fullName, String email, String phone, String photoPath) {
+    public Admin(int id, String fullName, String email, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.photoPath = photoPath;
+        
     }
 
-    public int getId() { return id; }
-    public String getFullName() { return fullName; }
-    public String getEmail() { return email; }
-    public String getPhone() { return phone; }
-    public String getPhotoPath() { return photoPath; }
-}
+    // ===== GETTERS =====
+    public int getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+    // ===== SETTERS =====
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    
+    }
+
