@@ -146,7 +146,7 @@ public class addreviewpanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 
- public javax.swing.JTextField getUserNameField() {
+    public javax.swing.JTextField getUserNameField() {
         return txtusername;
     }
     

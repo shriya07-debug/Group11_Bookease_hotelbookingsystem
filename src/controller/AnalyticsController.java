@@ -6,13 +6,14 @@ import model.AdminPerformanceModel;
 import view.analytics;
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.SQLException;
 import view.superadmindashboard;
-import view.viewallhoteladmins;
 
 public class AnalyticsController {
     
     
-            public void loadTable(analytics window) {
+    public void loadTable(analytics window) {
+        
     try {
         MySqlConnection db = new MySqlConnection();
         Connection conn = db.openConnection();
@@ -26,7 +27,7 @@ public class AnalyticsController {
         );
         table.setModel(model);
         
-        // Add click listener
+       
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -38,8 +39,8 @@ public class AnalyticsController {
                     int hotelId;
                     
                     try {
-                        if (hotelIdObj instanceof String) {
-                            hotelId = Integer.parseInt((String) hotelIdObj);
+                        if (hotelIdObj instanceof String string) {
+                            hotelId = Integer.parseInt(string);
                         } else {
                             hotelId = (int) hotelIdObj;
                         }
@@ -47,26 +48,29 @@ public class AnalyticsController {
                         String adminName = table.getValueAt(row, 1).toString();
                         showAnalytics(hotelId, adminName);
                         
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, 
-                            "Invalid hotel ID format: " + hotelIdObj, 
-                            "Error", JOptionPane.ERROR_MESSAGE);
+                    } 
+                    
+                    catch (NumberFormatException e) {
+                        System.out.println(e);
+                        
                     }
                 }
             }
         });
-        setupBackButton(window);  // ADD THIS LINE
         
-        // ADD THIS: Close connection
+        setupBackButton(window); 
+       
         db.closeConnection(conn);
         
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(window, "Error loading data: " + e.getMessage());
+    } 
+    
+    catch (SQLException e) {
+       System.out.println(e);
     }
 }
     
     private void showAnalytics(int hotelId, String adminName) {
+        
         try {
             MySqlConnection db = new MySqlConnection();
             Connection conn = db.openConnection();
@@ -76,16 +80,17 @@ public class AnalyticsController {
             
             if (performance != null) {
                 showChartDialog(performance, adminName);
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+            }           
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
     }
     
     
     private void showChartDialog(AdminPerformanceModel performance, String adminName) {
-    // Option 1: Simple message (current)
+  
     String message = "Analytics for: " + adminName + "\n\n" +
                     "Total Bookings: " + performance.getTotalBookings() + "\n" +
                     "Total Revenue: ₹" + performance.getTotalRevenue() + "\n\n" +
@@ -95,12 +100,14 @@ public class AnalyticsController {
         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
     
     if (choice == JOptionPane.OK_OPTION) {
-        // Show JFreeChart
+        
         util.chartdisplay.showCharts(performance);
     }
 }
+    
     private void setupBackButton(analytics window) {
         window.addBackButtonListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 window.dispose();
                 new superadmindashboard().setVisible(true);

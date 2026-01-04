@@ -1,7 +1,7 @@
 package controller;
 
 import view.confirmation;
-import view.userdashboard; // Add this import
+import view.userdashboard; 
 import dao.BookingConfirmationDAO;
 import model.BookingConfirmationModel;
 import javax.swing.*;
@@ -11,9 +11,9 @@ import javax.swing.SwingUtilities;
 
 public class BookingConfirmationController {
     
-    private confirmation view;
+    private final confirmation view;
     
-    // Add a non-static method to handle setup with back button
+    
     public BookingConfirmationController(confirmation view, int bookingId) {
         this.view = view;
         setupBackButton();
@@ -35,17 +35,16 @@ public class BookingConfirmationController {
     }
     
     private void handleBackNavigation() {
-        // Dispose current confirmation window
+        
         view.dispose();
         
-        // Navigate back to userdashboard
         SwingUtilities.invokeLater(() -> {
             new userdashboard().setVisible(true);
         });
     }
     
     private void handlePayNow() {
-        // Handle payment logic
+      
         JOptionPane.showMessageDialog(view, "Payment feature coming soon!");
     }
     
@@ -75,7 +74,7 @@ public class BookingConfirmationController {
         }
     }
     
-    // Keep the static show method for backward compatibility
+    
     public static void show(int bookingId) {
         confirmation view = new confirmation();
         new BookingConfirmationController(view, bookingId);

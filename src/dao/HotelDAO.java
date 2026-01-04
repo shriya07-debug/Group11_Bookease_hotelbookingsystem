@@ -30,9 +30,13 @@ public class HotelDAO {
                 hotel.setImagePath(result.getString("image_path"));
                 return hotel;
             }
-        } catch (Exception ex) {
+        } 
+        
+        catch (Exception ex) {
             System.out.println(ex);
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return null;
@@ -54,9 +58,13 @@ public class HotelDAO {
                 hotel.setImagePath(result.getString("image_path"));
                 return hotel;
             }
-        } catch (Exception ex) {
+        }
+        
+        catch (Exception ex) {
             System.out.println(ex);
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return null;
@@ -78,9 +86,13 @@ public class HotelDAO {
                 hotel.setImagePath(result.getString("image_path"));
                 hotels.add(hotel);
             }
-        } catch (Exception ex) {
+        } 
+        
+        catch (Exception ex) {
             System.out.println(ex);
-        } finally {
+        } 
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return hotels;
@@ -97,13 +109,19 @@ public class HotelDAO {
             pstm.setString(5, hotel.getImagePath());
             pstm.executeUpdate();
             return true;
-        } catch (Exception ex) {
+        } 
+        
+        catch (Exception ex) {
             System.out.println(ex);
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return false;
     }
+    
+    
     
     public List<HotelModel> getAvailableHotels() {
         List<HotelModel> hotels = new ArrayList<>();
@@ -121,9 +139,13 @@ public class HotelDAO {
                 hotel.setImagePath(result.getString("image_path"));
                 hotels.add(hotel);
             }
-        } catch (Exception ex) {
+        }
+        
+        catch (Exception ex) {
             System.out.println(ex);
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return hotels;

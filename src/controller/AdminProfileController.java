@@ -13,14 +13,14 @@ public class AdminProfileController {
         this.currentHotelId = hotelId;
     }
     
-    // Load admin data
+  
     public AdminProfileModel loadAdminData() {
         return adminDao.getAdminById(currentHotelId);
     }
     
-    // Update profile
+ 
     public boolean updateProfile(String fullName, String email, String phone) {
-        // Validate
+  
         if (fullName == null || fullName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Full Name is required!");
             return false;
@@ -36,26 +36,28 @@ public class AdminProfileController {
             return false;
         }
         
-        // Check email
+  
         if (adminDao.isEmailTaken(email, currentHotelId)) {
             JOptionPane.showMessageDialog(null, "Email already taken by another admin!");
             return false;
         }
         
-        // Update
+    
         AdminProfileModel admin = new AdminProfileModel(currentHotelId, fullName, email, phone);
         boolean updated = adminDao.updateAdmin(admin);
         
         if (updated) {
             JOptionPane.showMessageDialog(null, "Profile updated successfully!");
             return true;
-        } else {
+        } 
+        
+        else {
             JOptionPane.showMessageDialog(null, "Update failed!");
             return false;
         }
     }
     
-    // Delete profile
+    
     public boolean deleteProfile() {
         int confirm = JOptionPane.showConfirmDialog(null, 
             "Are you sure you want to delete your profile?", 
@@ -76,7 +78,7 @@ public class AdminProfileController {
         return false;
     }
     
-    // Getters
+
     public String getCurrentHotelId() {
         return currentHotelId;
     }

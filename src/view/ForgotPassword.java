@@ -257,4 +257,7 @@ public ForgotPassword() {
     private javax.swing.JTextField txtNewPassword;
     private javax.swing.JTextField txtOtp;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JLabel getBackButtonLabel() { return backbutton; }}
+   public javax.swing.JLabel getBackButtonLabel() {
+    return backbutton; 
+   }
+}

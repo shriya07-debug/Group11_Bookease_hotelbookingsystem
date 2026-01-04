@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.book;
 import view.viewdetails;
 import view.reviews;
 import view.userdashboard;
@@ -37,7 +38,6 @@ public class ViewdetailsController {
     }
     
     private void loadHotelImage(String imagePath) {
-    // Copy the exact setImage method from AdminDashboardController
     JLabel imageLabel = view.getImageLabel();
     setImage(imageLabel, imagePath);
 }
@@ -54,15 +54,17 @@ private void setImage(JLabel label, String path) {
             Image.SCALE_SMOOTH
         );
         label.setIcon(new ImageIcon(img));
-    } catch (Exception e) {
-        e.printStackTrace();
+    } 
+    
+    catch (Exception e) {
+        System.out.println(e);
     }
 }
     private void setupButtonListeners() {
         view.getBookNowButton().addActionListener(e -> handleBookNow());
         view.getReviewsButton().addActionListener(e -> handleReviews());
     }
-    // Add this method to setup back button listener
+    
     private void setupBackButtonListener() {
         view.getBackButton().addMouseListener(new MouseAdapter() {
             @Override
@@ -72,20 +74,26 @@ private void setImage(JLabel label, String path) {
         });
     }
     
-    // Add this method to handle back navigation
+
     private void handleBackNavigation() {
-        // Dispose current viewdetails window
         view.dispose();
         
-        // Navigate back to userdashboard
         SwingUtilities.invokeLater(() -> {
             new userdashboard().setVisible(true);
         });
     }
     
     private void handleBookNow() {
-        JOptionPane.showMessageDialog(view, "Booking feature coming soon!");
-    }
+
+    view.dispose();
+   
+    SwingUtilities.invokeLater(() -> {
+        book bookingPage = new book();
+        BooknowController bookingController = new BooknowController(bookingPage);
+        bookingPage.setController(bookingController);
+        bookingPage.setVisible(true);
+    });
+}
     
     private void handleReviews() {
         view.dispose();

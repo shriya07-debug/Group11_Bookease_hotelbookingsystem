@@ -5,6 +5,7 @@ import view.login;
 import javax.swing.*;
 
 public class LogoutController {
+   
     public static void showLogoutWindow() {
         SwingUtilities.invokeLater(() -> {
             logout logoutWindow = new logout();

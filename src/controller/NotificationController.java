@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NotificationController {
     private final NotificationDAO notificationDAO;
-    private int userId;
+    private final int userId;
     
     public NotificationController(int userId) {
         this.notificationDAO = new NotificationDAO();
@@ -38,7 +38,9 @@ public class NotificationController {
             
             view.getNotificationsList().setModel(model);
             
-        } catch (Exception e) {
+        } 
+        
+        catch (Exception e) {
             DefaultListModel<String> errorModel = new DefaultListModel<>();
             errorModel.addElement("Error loading notifications");
             errorModel.addElement("Check database connection");

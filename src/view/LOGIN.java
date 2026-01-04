@@ -200,16 +200,16 @@ public class login extends javax.swing.JFrame {
         return passwordfield; 
     }
     public javax.swing.JButton getLoginButton() {
-    return loginbutton;
-}
-     public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+        return loginbutton;
+    }
+    public void addLoginButtonListener(java.awt.event.ActionListener listener) {
         loginbutton.addActionListener(listener);
     }
-     public javax.swing.JLabel getAccountLabel() {
-        return account; // The "Create an account" label
+    public javax.swing.JLabel getAccountLabel() {
+        return account; 
     }
     
     public javax.swing.JLabel getForgotPasswordLabel() {
-        return forgetpassword; // The "Forget password?" label
+        return forgetpassword; 
     }
 }

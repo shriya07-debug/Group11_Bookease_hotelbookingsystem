@@ -162,10 +162,10 @@ public class analytics extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTable getAnalyticstable() {
-    return analyticstable;
-}
-public void addBackButtonListener(java.awt.event.MouseListener listener) {
+    public javax.swing.JTable getAnalyticstable() {
+        return analyticstable;
+    }
+    public void addBackButtonListener(java.awt.event.MouseListener listener) {
         backbutton.addMouseListener(listener);
     }
 

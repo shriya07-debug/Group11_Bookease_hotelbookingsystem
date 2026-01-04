@@ -3,6 +3,7 @@ package dao;
 import model.BookingConfirmationModel;
 import database.MySqlConnection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BookingConfirmationDAO {
     private final MySqlConnection db;
@@ -11,7 +12,7 @@ public class BookingConfirmationDAO {
         this.db = new MySqlConnection();
     }
     
-    // Get confirmation by booking ID
+   
     public BookingConfirmationModel getConfirmationByBookingId(int bookingId) {
         String sql = "SELECT * FROM booking_confirmation WHERE booking_id = " + bookingId;
         
@@ -24,7 +25,7 @@ public class BookingConfirmationDAO {
                 confirmation.setConfirmationId(rs.getInt("confirmation_id"));
                 confirmation.setBookingId(rs.getInt("booking_id"));
                 
-                // Date
+               
                 var timestamp = rs.getTimestamp("date");
                 if (timestamp != null) {
                     confirmation.setDate(new java.util.Date(timestamp.getTime()));
@@ -37,27 +38,38 @@ public class BookingConfirmationDAO {
             }
             
             db.closeConnection(conn);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        finally{
             db.closeConnection(conn);
         }
         
         return null;
     }
     
-    // Create confirmation
+
     public boolean createConfirmation(int bookingId) {
         String sql = "INSERT INTO booking_confirmation (booking_id, status) VALUES (" + bookingId + ", 'confirmed')";
         
         var conn = db.openConnection();
+        
         try {
             int result = db.executeUpdate(conn, sql);
             db.closeConnection(conn);
             return result > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            db.closeConnection(conn);
-            return false;
+        } 
+        
+        catch (Exception e) {
+            System.out.println(e);
         }
+        
+        finally{
+            db.closeConnection(conn);
+        }
+        return false;
     }
 }

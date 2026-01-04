@@ -158,10 +158,10 @@ public class bookinghistory extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTable getBookingsTable() {
+    public javax.swing.JTable getBookingsTable() {
         return table;
     }
-public javax.swing.JLabel getBackButton() {
+    public javax.swing.JLabel getBackButton() {
         return backbutton;
     }
 }

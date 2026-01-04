@@ -224,7 +224,7 @@ public class admindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel support;
     private javax.swing.JLabel supporticon;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JLabel getImageLabel() {
+    public javax.swing.JLabel getImageLabel() {
         return image;
     }
     
@@ -256,11 +256,12 @@ public javax.swing.JLabel getImageLabel() {
         return GenerateInvoice;
     }
     
-    // Listener attachment methods
+    
     public void addGenerateInvoiceListener(java.awt.event.ActionListener listener) {
         GenerateInvoice.addActionListener(listener);
     }
     
     public void addMenuIconListener(java.awt.event.MouseListener listener) {
         menuicon.addMouseListener(listener);
-    }}
+    }
+}

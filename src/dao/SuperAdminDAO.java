@@ -5,6 +5,7 @@ import model.SuperAdminModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +20,26 @@ public class SuperAdminDAO {
             System.out.println("Hotel ID: " + admin.getHotelId());
             System.out.println("Email: " + admin.getEmail());
             System.out.println("Hotel Name: " + admin.getHotelName());
-            
-            // Generate username from email (remove @ and domain)
+        
             String username = admin.getEmail().split("@")[0];
             System.out.println("Generated username: " + username);
             
-            // 1. First, create the hotel in hotels table
+           
             if (!hotelExists(admin.getHotelId())) {
                 String hotelSql = "INSERT INTO hotels (Hotel_id, Hotel_name) VALUES (?, ?)";
+                
                 try (PreparedStatement hotelStmt = conn.prepareStatement(hotelSql)) {
                     hotelStmt.setInt(1, admin.getHotelId());
                     hotelStmt.setString(2, admin.getHotelName());
                     hotelStmt.executeUpdate();
                     System.out.println("DEBUG: Hotel created in hotels table");
                 }
-            } else {
+            }
+            
+            else {
                 System.out.println("DEBUG: Hotel already exists, updating hotel name");
-                // Optional: Update hotel name if hotel exists
                 String updateHotelSql = "UPDATE hotels SET Hotel_name = ? WHERE Hotel_id = ?";
+                
                 try (PreparedStatement updateStmt = conn.prepareStatement(updateHotelSql)) {
                     updateStmt.setString(1, admin.getHotelName());
                     updateStmt.setInt(2, admin.getHotelId());
@@ -44,31 +47,33 @@ public class SuperAdminDAO {
                 }
             }
             
-            // 2. Create hotel admin in users table
-            // FIXED: 5 placeholders for 5 values
+       
             String userSql = "INSERT INTO users (username, email, password, role, hotel_id) VALUES (?, ?, ?, ?, ?)";
             
             try (PreparedStatement pstm = conn.prepareStatement(userSql)) {
-                pstm.setString(1, username);              // username
-                pstm.setString(2, admin.getEmail());      // email
-                pstm.setString(3, admin.getPassword());   // password
-                pstm.setString(4, admin.getRole());       // role
-                pstm.setInt(5, admin.getHotelId());       // hotel_id
+                pstm.setString(1, username);              
+                pstm.setString(2, admin.getEmail());      
+                pstm.setString(3, admin.getPassword());   
+                pstm.setString(4, admin.getRole());       
+                pstm.setInt(5, admin.getHotelId());       
                 
                 int rows = pstm.executeUpdate();
                 System.out.println("DEBUG: Rows affected in users table: " + rows);
                 return rows > 0;
             }
-        } catch (Exception ex) {
-            System.out.println("ERROR creating hotel admin: " + ex.getMessage());
-            ex.printStackTrace();
+        } 
+        
+        catch (SQLException ex) {
+            System.out.println(ex);
             return false;
-        } finally {
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
     }
     
-    // Check if email already exists in users table
+  
     public boolean emailExists(String email) {
         Connection conn = mysql.openConnection();
         String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
@@ -83,15 +88,19 @@ public class SuperAdminDAO {
                 return count > 0;
             }
             
-        } catch (Exception ex) {
-            System.out.println("Error checking email: " + ex.getMessage());
-        } finally {
+        } 
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return false;
     }
     
-    // Check if hotel exists
+
     public boolean hotelExists(int hotelId) {
         Connection conn = mysql.openConnection();
         String sql = "SELECT COUNT(*) FROM hotels WHERE Hotel_id = ?";
@@ -104,15 +113,19 @@ public class SuperAdminDAO {
                 return result.getInt(1) > 0;
             }
             
-        } catch (Exception ex) {
-            System.out.println("Error checking hotel: " + ex.getMessage());
-        } finally {
+        } 
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return false;
     }
+
     
-    // Get all hotel admins
     public List<SuperAdminModel> getAllHotelAdmins() {
         List<SuperAdminModel> admins = new ArrayList<>();
         Connection conn = mysql.openConnection();
@@ -130,9 +143,13 @@ public class SuperAdminDAO {
                 admins.add(admin);
             }
             
-        } catch (Exception ex) {
-            System.out.println("Error getting hotel admins: " + ex.getMessage());
-        } finally {
+        }
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        } 
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return admins;

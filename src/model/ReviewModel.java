@@ -29,8 +29,6 @@ public class ReviewModel {
     }
     public String getComment() { 
         return comment;
-    }
-    
-    
+    }  
 }
 

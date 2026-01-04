@@ -4,7 +4,6 @@ import dao.UserDAO;
 import model.UserModel;
 import view.viewallhoteladmins;
 import view.superadmindashboard;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class ViewAllHotelAdminsController {
     
     private void setupBackButton(viewallhoteladmins view) {
         view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 view.dispose();
                 new superadmindashboard().setVisible(true);

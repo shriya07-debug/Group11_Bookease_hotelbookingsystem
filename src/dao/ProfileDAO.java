@@ -10,6 +10,7 @@ import java.sql.*;
 
 public class ProfileDAO {
     MySqlConnection mysql = new MySqlConnection();
+    
  public ProfileModel getProfileById(int userId) {
     Connection conn = mysql.openConnection();
     String sql = "SELECT * FROM profiles WHERE user_id = ?";
@@ -22,33 +23,38 @@ public class ProfileDAO {
             ProfileModel profile = new ProfileModel();
             profile.setUserId(result.getInt("user_id"));
             profile.setFullName(result.getString("full_name"));
-            profile.setEmail(result.getString("email")); // Now this should have value
+            profile.setEmail(result.getString("email")); 
             profile.setPhone(result.getString("phone"));
             profile.setPhotoPath(result.getString("photo_path"));
             return profile;
-        } else {
-            // If no profile exists, check if user exists and create a basic profile
-            // This handles cases where user exists but profile wasn't created
+        } 
+        
+        else {
             String userSql = "SELECT username, email FROM users WHERE user_id = ?";
+            
             try (PreparedStatement userStmt = conn.prepareStatement(userSql)) {
                 userStmt.setInt(1, userId);
                 ResultSet userResult = userStmt.executeQuery();
                 
                 if (userResult.next()) {
-                    // Create a basic profile object with user data
+              
                     ProfileModel profile = new ProfileModel();
                     profile.setUserId(userId);
                     profile.setFullName(userResult.getString("username"));
                     profile.setEmail(userResult.getString("email"));
-                    profile.setPhone(""); // Empty phone initially
+                    profile.setPhone(""); 
                     profile.setPhotoPath(null);
                     return profile;
                 }
             }
         }
-    } catch (Exception ex) {
-        System.out.println("Error in getProfileById: " + ex);
-    } finally {
+    } 
+    
+    catch (Exception ex) {
+        System.out.println(ex);
+    } 
+    
+    finally {
         mysql.closeConnection(conn);
     }
     return null;
@@ -68,13 +74,19 @@ public class ProfileDAO {
             int rowsAffected = pstm.executeUpdate();
             return rowsAffected > 0;
             
-        } catch (Exception ex) {
-            System.out.println("Error in updateProfile: " + ex);
-        } finally {
+        } 
+        
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        finally {
             mysql.closeConnection(conn);
         }
         return false;
     }
+    
+    
     public boolean updateProfileWithPhoto(ProfileModel profile) {
     Connection conn = mysql.openConnection();
     String sql = "UPDATE profiles SET full_name = ?, email = ?, phone = ?, photo_path = ? WHERE user_id = ?";
@@ -87,10 +99,14 @@ public class ProfileDAO {
         pstm.setInt(5, profile.getUserId());
         
         return pstm.executeUpdate() > 0;
-    } catch (Exception ex) {
-        System.out.println("Error: " + ex);
+    } 
+    
+    catch (Exception ex) {
+        System.out.println(ex);
         return false;
-    } finally {
+    } 
+    
+    finally {
         mysql.closeConnection(conn);
     }
   }

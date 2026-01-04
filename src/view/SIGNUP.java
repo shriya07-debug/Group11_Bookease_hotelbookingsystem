@@ -202,19 +202,21 @@ public class signup extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 public javax.swing.JTextField getUsernameField() { 
     return usernamefield;
-}
+    }
 public javax.swing.JTextField getEmailField() {
     return emailfield;
-}
+    }
 public javax.swing.JPasswordField getPasswordField() { 
     return passwordfield;
-}
-  public javax.swing.JLabel getAccountLabel() {
-        return account; // The "Already have an account?" label
     }
-public javax.swing.JButton getSignupButton() { return signupbutton; }
+public javax.swing.JLabel getAccountLabel() {
+    return account; 
+    }
+public javax.swing.JButton getSignupButton() { 
+    return signupbutton; 
+    }
 public void addSignupButtonListener(java.awt.event.ActionListener listener) {
-        signupbutton.addActionListener(listener);
-}
+    signupbutton.addActionListener(listener);
+    }
    
 }

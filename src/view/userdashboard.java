@@ -155,11 +155,11 @@ public class userdashboard extends javax.swing.JFrame {
 
         supporticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Support.png"))); // NOI18N
         drawerPanel.add(supporticon);
-        supporticon.setBounds(20, 310, 50, 25);
+        supporticon.setBounds(20, 300, 50, 50);
 
-        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Vector.png"))); // NOI18N
+        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
         drawerPanel.add(profileicon);
-        profileicon.setBounds(20, 360, 60, 30);
+        profileicon.setBounds(20, 350, 80, 50);
 
         panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/panel.png"))); // NOI18N
         panel.setMinimumSize(new java.awt.Dimension(363, 720));
@@ -199,7 +199,7 @@ public class userdashboard extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(970, 50, 40, 20);
+        search.setBounds(970, 50, 40, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newdash.png"))); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -305,19 +305,41 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel userdashboard;
     private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
-    public javax.swing.JTextField getSearchBar() { return searchbar; }
-    public javax.swing.JLabel getSearchButton() { return search; }
-    public javax.swing.JPanel getMainPanel() { return jPanel1; }
-    public javax.swing.JLabel getWelcomeLabel() { return welcome; }
-    public javax.swing.JPanel getDrawerPanel() { return drawerPanel; }
-    public javax.swing.JLabel getMenuIcon() { return menuicon; }  
+    public javax.swing.JTextField getSearchBar() { 
+        return searchbar; 
+    }
+    public javax.swing.JLabel getSearchButton() {
+        return search; 
+    }
+    public javax.swing.JPanel getMainPanel() {
+        return jPanel1; 
+    }
+    public javax.swing.JLabel getWelcomeLabel() {
+        return welcome; 
+    }
+    public javax.swing.JPanel getDrawerPanel() {
+        return drawerPanel; 
+    }
+    public javax.swing.JLabel getMenuIcon() { 
+        return menuicon; 
+    }  
     
-    // Navigation getters
-    public javax.swing.JLabel getProfileLabel() { return profile; }
-    public javax.swing.JLabel getDashboardLabel() { return dashboard; }
-    public javax.swing.JLabel getBookingHistoryLabel() { return bookinghistory; }
-    public javax.swing.JLabel getNotificationsLabel() { return notifications; }
-    public javax.swing.JLabel getSupportLabel() { return support; }
+   
+    public javax.swing.JLabel getProfileLabel() { 
+        return profile; 
+    }
+    public javax.swing.JLabel getDashboardLabel() { 
+        return dashboard; 
+    }
+    public javax.swing.JLabel getBookingHistoryLabel() { 
+        return bookinghistory; 
+    }
+    public javax.swing.JLabel getNotificationsLabel() { 
+        return notifications; 
+    }
+    public javax.swing.JLabel getSupportLabel() { 
+        return support; 
+    }
     
     public void addMenuIconListener(java.awt.event.MouseListener listener) {
         menuicon.addMouseListener(listener);

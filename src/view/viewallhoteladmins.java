@@ -157,7 +157,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel superadmindashboard;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTable getAdminsTable() {
+    public javax.swing.JTable getAdminsTable() {
         return jTable1;
     }
     
@@ -165,7 +165,8 @@ public javax.swing.JTable getAdminsTable() {
         return backbutton;
     }
     
-    // Listener attachment method
+    
     public void addBackButtonListener(java.awt.event.MouseListener listener) {
         backbutton.addMouseListener(listener);
-    }}
+    }
+}

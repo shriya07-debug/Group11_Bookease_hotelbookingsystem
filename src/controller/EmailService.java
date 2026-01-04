@@ -10,7 +10,7 @@ import jakarta.mail.internet.*;
 
 public class EmailService {
 
-    // Use your Gmail and app password here
+    
     private static final String FROM_EMAIL = "shriyaawale2007@gmail.com";
     private static final String APP_PASSWORD = "othv bxwe ogcv uoxj";
 
@@ -39,8 +39,10 @@ public class EmailService {
             Transport.send(msg);
             System.out.println("Email sent successfully!");
 
-        } catch (MessagingException e) {
-            e.printStackTrace();
+        } 
+        
+        catch (MessagingException e) {
+            System.out.println(e);
         }
     }
 }

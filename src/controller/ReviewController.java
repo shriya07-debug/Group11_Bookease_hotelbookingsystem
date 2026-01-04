@@ -17,14 +17,12 @@ public class ReviewController {
         
         database.MySqlConnection db = new database.MySqlConnection();
         this.connection = db.openConnection(); 
-        // Show window
+        
         view.setVisible(true);
         view.setLocationRelativeTo(null);
-        
-        // Load existing reviews
+       
         loadReviews();
-        
-        // Setup button listener
+       
         setupButtonListeners();
     }
     
@@ -45,7 +43,9 @@ public class ReviewController {
                 saveReview(user, comment);
                 loadReviews();
                 dialog.dispose();
-            } else {
+            } 
+            
+            else {
                 JOptionPane.showMessageDialog(dialog, "Please enter name and review!");
             }
         });
@@ -58,6 +58,7 @@ public class ReviewController {
         dialog.setVisible(true);
     }
     
+    
     private void saveReview(String user, String comment) {
         try {
             String sql = "INSERT INTO reviews (hotel_name, user_name, comment) VALUES (?, ?, ?)";
@@ -66,8 +67,10 @@ public class ReviewController {
             pstmt.setString(2, user);
             pstmt.setString(3, comment);
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
     }
     
@@ -86,14 +89,15 @@ public class ReviewController {
             
             view.getReviewsTextArea().setText(sb.toString());
             
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
     }
-    private void handleViewDetails() {
-    // Close reviews page
-    view.dispose();
     
+    private void handleViewDetails() {  
+    view.dispose();
     new viewdetails().setVisible(true);
-}
+    }
 }

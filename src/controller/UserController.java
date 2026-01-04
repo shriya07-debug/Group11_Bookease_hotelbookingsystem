@@ -12,33 +12,35 @@ public class UserController {
         this.userDAO = new UserDAO();
     }
     
-    // Setup login view
+   
     public void setupLoginView(login loginView) {
-        // Login button
+     
         loginView.getLoginButton().addActionListener(e -> handleLogin(loginView));
-        
-        // Create account navigation
+       
         loginView.getAccountLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 navigateToSignup(loginView);
             }
         });
         
-        // Forgot password navigation
+     
         loginView.getForgotPasswordLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 navigateToForgotPassword(loginView);
             }
         });
     }
     
-    // Setup signup view
+ 
     public void setupSignupView(signup signupView) {
-        // Signup button
+      
         signupView.getSignupButton().addActionListener(e -> handleSignup(signupView));
         
-        // Already have account navigation
+        
         signupView.getAccountLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 navigateToLogin(signupView);
             }
@@ -69,21 +71,19 @@ public class UserController {
         String role = user.getRole().toLowerCase();
         
         switch (role) {
-            case "super_admin":
-            case "superadmin":
+            case "superadmin" -> {
                 superadmindashboard superAdminDashboard = new superadmindashboard();
                 superAdminDashboard.setVisible(true);
-                break;
-                
-            case "hotel_admin":
+            }
+            case "hotel_admin", "hoteladmin" -> {
                 admindashboard adminDashboard = new admindashboard();
                 adminDashboard.setVisible(true);
-                break;
+            }
                 
-             case "user":
+            case "user" -> {
                 userdashboard userDashboard = new userdashboard();
                 userDashboard.setVisible(true);
-                break;
+            }
         }
     }
     
