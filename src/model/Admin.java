@@ -6,13 +6,15 @@ public class Admin {
     private String email;
     private String phone;
    
+    // Add empty constructor
+    public Admin() {
+    }
 
     public Admin(int id, String fullName, String email, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        
     }
 
     // ===== GETTERS =====
@@ -31,6 +33,7 @@ public class Admin {
     public String getPhone() {
         return phone;
     }
+    
     // ===== SETTERS =====
     public void setId(int id) {
         this.id = id;
@@ -47,7 +50,4 @@ public class Admin {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    
-    }
-
+}
