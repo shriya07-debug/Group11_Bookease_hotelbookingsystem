@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
-import database.mysqlconnection;
+import database.MySqlConnection;
 import model.HotelModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HotelDAO {
-    mysqlconnection mysql = new mysqlconnection();
+    MySqlConnection mysql = new MySqlConnection();
     
     public HotelModel getHotelById(int hotelId) {
         Connection conn = mysql.openConnection();

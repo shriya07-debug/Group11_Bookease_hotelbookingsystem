@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 import dao.UserDAO;
 import model.UserModel;
@@ -16,9 +13,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewallhoteladmins.class.getName());
 
-    /**
-     * Creates new form viewallhoteladmins
-     */
+   
     public viewallhoteladmins() {
         initComponents();
         loadHotelAdmins(); // Add this line
@@ -56,7 +51,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         superadmindashboard.setForeground(new java.awt.Color(232, 128, 153));
         superadmindashboard.setText("View all hotel admins");
         jPanel1.add(superadmindashboard);
-        superadmindashboard.setBounds(380, 40, 410, 44);
+        superadmindashboard.setBounds(380, 40, 410, 47);
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

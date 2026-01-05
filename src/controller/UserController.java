@@ -2,6 +2,7 @@ package controller;
 
 import model.UserModel;
 import dao.UserDAO;
+import java.sql.SQLException;
 
 
 public class UserController {
@@ -12,7 +13,7 @@ public class UserController {
         System.out.println("UserController initialized");
     }
     
-    public UserModel login(String email, String password) {
+    public UserModel login(String email, String password) throws SQLException {
         System.out.println("Login attempt for: " + email);
         
         if (email == null || email.trim().isEmpty()) {

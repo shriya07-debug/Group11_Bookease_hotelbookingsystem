@@ -1,13 +1,15 @@
-<<<<<<< HEAD
+
 import dao.ForgotPasswordDao;
 import view.ForgotPassword;
-=======
+
 import dao.UserDAO;
 import view.forgotpassword;
 import view.admindashboard;
 import view.adminprofile;
 
->>>>>>> kshitiznew
+
+
+import view.adminprofile;
 
 
 

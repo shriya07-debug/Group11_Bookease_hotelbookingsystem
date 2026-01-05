@@ -1,19 +1,18 @@
 package dao;
 
-<<<<<<< HEAD
 import model.UserModel;
-import database.mysqlconnection;
+import database.MySqlConnection;
 import java.sql.*;
 
 public class UserDAO {
-    private final mysqlconnection mysql;
+    private final MySqlConnection mysql;
     
     public UserDAO() {
-        this.mysql = new mysqlconnection();
+        this.mysql = new MySqlConnection();
         System.out.println("UserDAO initialized");
     }
     
-    public UserModel login(String email, String password) {
+    public UserModel login(String email, String password) throws SQLException {
         Connection conn = mysql.openConnection();
         String sql = "SELECT user_id, username, email, role, status, hotel_id FROM users WHERE email = ? AND password = ?";
         
@@ -32,11 +31,23 @@ public class UserDAO {
                 user.setStatus(rs.getString("status"));
                 user.setHotelId(rs.getInt("hotel_id"));
                 return user;
-=======
+
 
 import database.Database;
 import database.MySqlConnection;
 import java.sql.*;
+
+    public boolean createHotelAdmin(int hotelId, String email, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean emailExists(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean signup(UserModel newUser) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 public class UserDAO {
 
@@ -54,7 +65,7 @@ public class UserDAO {
             if (rs != null && rs.next()) {
                 db.closeConnection(conn);
                 return true;
->>>>>>> kshitiznew
+
             }
             
         } catch (SQLException e) {
@@ -420,4 +431,4 @@ public String getHotelName(int hotelId) {
     }
     return "Hotel #" + hotelId;
  }
-}
+}}
