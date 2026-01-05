@@ -1,17 +1,25 @@
 package controller;
 
 import dao.AdminDAO;
+import dao.AdminProfileDao;
 import model.Admin;
 import view.adminprofile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.AdminProfileModel;
 
 public class AdminProfileController {
+
+
+    private final AdminProfileDao adminDao;
+    private final String currentHotelId;
+
 
     private final adminprofile view;
     private final AdminDAO dao = new AdminDAO();
     private final int adminId = 1;
+
 
     private final AdminProfileDao adminDao;
     private final String currentHotelId;
@@ -175,9 +183,14 @@ public class AdminProfileController {
     
 
 
+
     public String getCurrentHotelId() {
         return currentHotelId;
 
+
+    public String getCurrentHotelId() {
+        return currentHotelId;
+    }
     private void startEditing() {
         isEditing = true;
         setFieldsEditable(true);
@@ -283,5 +296,6 @@ public class AdminProfileController {
         }
         
         return true;
+
     }
 }
