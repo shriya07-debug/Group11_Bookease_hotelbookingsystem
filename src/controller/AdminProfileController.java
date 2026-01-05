@@ -1,16 +1,33 @@
 package controller;
 
 import dao.AdminDAO;
+
+import dao.AdminProfileDao;
+
 import model.Admin;
 import view.adminprofile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class AdminProfileController {
     private final adminprofile view;
     private final AdminDAO dao = new AdminDAO();
     private final int adminId = 1;
+
+import model.AdminProfileModel;
+
+public class AdminProfileController {
+
+    private final AdminProfileDao adminDao;
+    private final String currentHotelId;
+
+    private final adminprofile view;
+    private final AdminDAO dao = new AdminDAO();
+    private final int adminId = 1;
+
+
     
     private boolean isEditing = false;
     private Admin originalAdmin; // Store original data for cancel
@@ -21,6 +38,7 @@ public class AdminProfileController {
         addActions();
         setFieldsEditable(false); // Initially not editable
     }
+
 
     private void loadAdminData() {
         Admin admin = dao.getAdminById(adminId);
@@ -33,6 +51,80 @@ public class AdminProfileController {
         }
     }
 
+    
+  
+    public AdminProfileModel loadAdminData() {
+        return adminDao.getAdminById(currentHotelId);
+    }
+    
+ 
+    public boolean updateProfile(String fullName, String email, String phone) {
+  
+        if (fullName == null || fullName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Full Name is required!");
+            return false;
+        }
+        
+        if (email == null || !email.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Valid Email is required!");
+            return false;
+        }
+        
+        if (phone == null || phone.length() < 10) {
+            JOptionPane.showMessageDialog(null, "Phone must be at least 10 digits!");
+            return false;
+        }
+        
+  
+        if (adminDao.isEmailTaken(email, currentHotelId)) {
+            JOptionPane.showMessageDialog(null, "Email already taken by another admin!");
+            return false;
+        }
+        
+    
+        AdminProfileModel admin = new AdminProfileModel(currentHotelId, fullName, email, phone);
+        boolean updated = adminDao.updateAdmin(admin);
+        
+        if (updated) {
+            JOptionPane.showMessageDialog(null, "Profile updated successfully!");
+            return true;
+        } 
+        
+        else {
+            JOptionPane.showMessageDialog(null, "Update failed!");
+            return false;
+        }
+    }
+    
+    
+    public boolean deleteProfile() {
+        int confirm = JOptionPane.showConfirmDialog(null, 
+            "Are you sure you want to delete your profile?", 
+            "Confirm Delete", 
+            JOptionPane.YES_NO_OPTION
+        );
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            boolean deleted = adminDao.deleteAdmin(currentHotelId);
+            if (deleted) {
+                JOptionPane.showMessageDialog(null, "Profile deleted successfully!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Delete failed!");
+                return false;
+
+    private void loadAdminData() {
+        Admin admin = dao.getAdminById(adminId);
+        if (admin != null) {
+            this.originalAdmin = admin; // Store original
+            view.getUserIdField().setText(String.valueOf(admin.getId()));
+            view.getFullNameField().setText(admin.getFullName());
+            view.getEmailField().setText(admin.getEmail());
+            view.getPhoneField().setText(admin.getPhone());
+        }
+    }
+
+
     private void addActions() {
         view.getLogoutButton().addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(view, 
@@ -43,6 +135,9 @@ public class AdminProfileController {
                 JOptionPane.showMessageDialog(view, "Logged out successfully!");
                 view.dispose();
                 // You can add code here to go back to login screen
+
+
+
             }
         });
 
@@ -86,6 +181,11 @@ public class AdminProfileController {
         });
     }
     
+
+
+    public String getCurrentHotelId() {
+        return currentHotelId;
+
     private void startEditing() {
         isEditing = true;
         setFieldsEditable(true);
@@ -191,5 +291,6 @@ public class AdminProfileController {
         }
         
         return true;
+
     }
 }

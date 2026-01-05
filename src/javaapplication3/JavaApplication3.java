@@ -4,6 +4,7 @@
  */
 package javaapplication3;
 
+import controller.UserController;
 import view.login;
 
 
@@ -18,17 +19,11 @@ public class JavaApplication3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-// TODO code application logic here
-       java.awt.EventQueue.invokeLater(() -> {
-            System.out.println(" Starting Hotel Booking System...");
-
-           
-            login login = new login();
-            login.setVisible(true);
-            
-            // Center the window on screen
-            login.setLocationRelativeTo(null);
-        });
-    }   
+    java.awt.EventQueue.invokeLater(() -> {
+        login login = new login();  
+        UserController controller = new UserController();
+        controller.setupLoginView(login);  
+        login.setVisible(true);  
+    });
+}
 }

@@ -17,7 +17,8 @@ import java.util.Date;
     private String Status;
     private double Price;
     
-    // Constructor with hotelName
+     public BookingModel() {}
+     
     public BookingModel(int bookingId,int userId, String hotelName, Date CheckInDate, 
                    Date CheckOutDate, String Status, double Price) {
         this.bookingId = bookingId;
@@ -28,27 +29,26 @@ import java.util.Date;
         this.Status = Status;
         this.Price = Price;
     }
+   
     
-    // Default constructor
-    public BookingModel() {}
-    
-    // Getters and Setters
+   
     public void setBookingId(int bookingId) { 
         this.bookingId = bookingId; 
     }
     public int getBookingId() { 
         return bookingId;
     }
+    
     public void setUserId(int userId) { 
         this.userId = userId; 
     }
     public int getUserId() { 
         return userId;
     }
+    
     public void setHotelName(String hotelName) { 
         this.hotelName = hotelName;
-    } 
-    
+    }  
     public String getHotelName() { 
         return hotelName; 
     }       
@@ -60,7 +60,7 @@ import java.util.Date;
         return CheckInDate;
     }
    
-     public void setCheckOutDate(Date CheckOutDate) { 
+    public void setCheckOutDate(Date CheckOutDate) { 
         this.CheckOutDate = CheckOutDate; 
     }
     
@@ -74,8 +74,7 @@ import java.util.Date;
     public String getStatus() { 
         return Status; 
     }
-    
-    
+       
     public void setPrice(double Price) { 
         this.Price = Price;
     }

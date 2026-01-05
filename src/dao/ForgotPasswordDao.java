@@ -14,7 +14,7 @@ public class ForgotPasswordDao {
 
     Database db = new MySqlConnection();
 
-    // Check if email exists
+ 
     public boolean emailExists(String email) {
 
         Connection conn = db.openConnection();
@@ -27,15 +27,17 @@ public class ForgotPasswordDao {
                 db.closeConnection(conn);
                 return true;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+        
+        catch (SQLException e) {
+            System.out.println(e);
         }
 
         db.closeConnection(conn);
         return false;
     }
 
-    // Update password
+
     public boolean updatePassword(String email, String newPassword) {
 
         Connection conn = db.openConnection();

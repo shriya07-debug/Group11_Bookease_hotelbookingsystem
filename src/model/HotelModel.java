@@ -35,31 +35,35 @@ public class HotelModel {
     public int getHotelId() { 
         return hotel_id; 
     }
+    
     public void setHotelName(String hotel_name) { 
         this.hotel_name = hotel_name;    
-    }
-    
+    }  
     public String getHotelName() { 
         return hotel_name; 
     }
+    
     public void setLocation(String location) { 
         this.location = location; 
     }
     public String getLocation() { 
         return location; 
     }
+    
     public void setRoomStatus(String room_status) { 
         this.room_status = room_status; 
     }
     public String getRoomStatus() { 
         return room_status; 
     }
+    
      public void setRating(double rating) { 
         this.rating = rating; 
     }
     public double getRating() { 
         return rating; 
     }
+    
     public void setImagePath(String image) { 
         this.image = image; 
     }

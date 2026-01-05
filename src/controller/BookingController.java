@@ -2,85 +2,62 @@
 package controller;
 
 import dao.BookingDAO;
-import java.awt.HeadlessException;
 import model.BookingModel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import view.bookinghistory;
+import view.userdashboard;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-/**
- *
- * @author sailenawale
- */
+
 public class BookingController {
-   
     private final BookingDAO bookingDAO;
     
     public BookingController() {
         this.bookingDAO = new BookingDAO();
     }
     
-    // Load user bookings into table
-    public void loadUserBookings(JTable table, int userId) {
+    public void setupBookingHistory(bookinghistory window, int userId) {
+        loadBookingData(window, userId);
+        setupBackButton(window);
+    }
+    
+    private void loadBookingData(bookinghistory window, int userId) {
         try {
             List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Clear existing rows
             
-            boolean hasData = false;
+            
+            String[] columns = {"user_id", "booking_id", "hotel_name", "check_in_date", 
+                              "check_out_date", "total_price", "status"};
+            
+            DefaultTableModel model = new DefaultTableModel(columns, 0);
+            
             for (BookingModel booking : bookings) {
-                hasData = true;
-                Object[] row = {
-                    userId, 
+                model.addRow(new Object[]{
+                    booking.getUserId(),
                     booking.getBookingId(),
                     booking.getHotelName(),
                     booking.getCheckInDate(),
                     booking.getCheckOutDate(),
                     "Rs " + booking.getPrice(),
                     booking.getStatus()
-                };
-                model.addRow(row);
+                });
             }
             
-            if (!hasData) {
-                JOptionPane.showMessageDialog(null,
-                    "No bookings found.\nBook hotels from dashboard first!",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
+            window.getBookingsTable().setModel(model);
             
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null,
-                "Error loading bookings: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+        } 
+        
+        catch (Exception e) {
+            System.out.println(e);
         }
     }
     
-    // Get user bookings count
-    public int getUserBookingCount(int userId) {
-        List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
-        return bookings.size();
-    }
-    
-    // Check if user has bookings
-    public boolean hasBookings(int userId) {
-        List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
-        return !bookings.isEmpty();
-    }
-    
-    // Get total amount spent
-    public double getTotalSpent(int userId) {
-        List<BookingModel> bookings = bookingDAO.getUserBookings(userId);
-        double total = 0;
-        for (BookingModel booking : bookings) {
-            if ("confirmed".equalsIgnoreCase(booking.getStatus()) || 
-                "completed".equalsIgnoreCase(booking.getStatus())) {
-                total += booking.getPrice();
+    private void setupBackButton(bookinghistory window) {
+        window.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                window.dispose();
+                new userdashboard().setVisible(true);
             }
-        }
-        return total;
+        });
     }
 }
-
-

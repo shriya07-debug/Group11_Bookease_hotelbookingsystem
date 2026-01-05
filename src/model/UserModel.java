@@ -2,60 +2,78 @@ package model;
 
 public class UserModel {
     private int userId;
+    private Integer hotelId; 
     private String username;
     private String email;
     private String password;
     private String role;
-    private Integer hotelId;
     private String status;
+    private String lastLogin;
     
-    // Constructors
+    
     public UserModel() {}
     
-    public UserModel(String username, String email, String password, String role) {
+    public UserModel(String username, String email, String password, String role, String status) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.status = "pending";
+        this.status = status;
+    }
+    public void setUserId(int userId) { 
+        this.userId = userId;
+    }
+    public int getUserId() {
+        return userId;
     }
     
-    // Getters and Setters
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
-    
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
-    
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-    
-    public Integer getHotelId() { return hotelId; }
-    public void setHotelId(Integer hotelId) { this.hotelId = hotelId; }
-    
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-    
-    // Utility methods
-    public boolean isActive() {
-        return "active".equalsIgnoreCase(this.status);
+    public void setHotelId(Integer hotelId) { 
+        this.hotelId = hotelId;
+    }
+    public Integer getHotelId() {
+        return hotelId; 
     }
     
-    @Override
-    public String toString() {
-        return "UserModel{" +
-               "userId=" + userId +
-               ", username='" + username + '\'' +
-               ", email='" + email + '\'' +
-               ", role='" + role + '\'' +
-               ", status='" + status + '\'' +
-               ", hotelId=" + hotelId +
-               '}';
+    public void setUsername(String username) { 
+        this.username = username;
     }
+    public String getUsername() { 
+        return username;
+    }
+   
+    public void setEmail(String email) {
+        this.email = email; 
+    }
+    public String getEmail() { 
+        return email;
+    }
+   
+    public void setPassword(String password) {
+        this.password = password; 
+    } 
+    public String getPassword() {
+        return password; 
+    }
+    
+    public void setRole(String role) {
+        this.role = role; 
+    } 
+    public String getRole() { 
+        return role; 
+    }
+   
+    public void setStatus(String status) {
+        this.status = status;
+    } 
+    public String getStatus() {
+        return status;
+    }
+   
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin; 
+    } 
+    public String getLastLogin() {
+        return lastLogin;
+    }
+   
 }
