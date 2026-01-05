@@ -11,15 +11,20 @@ import javax.swing.JOptionPane;
 
    
 @SuppressWarnings("serial")
-public class ForgotPassword extends javax.swing.JFrame {
+public class forgotpassword extends javax.swing.JFrame {
     
+<<<<<<< HEAD
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
     private final ForgotPasswordController controller = new ForgotPasswordController();
+=======
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(forgotpassword.class.getName());
+private final ForgotPasswordController controller = new ForgotPasswordController();
+>>>>>>> kshitiznew
 
     /**
      * Creates new form ForgotPassword
      */
-public ForgotPassword() {
+public forgotpassword() {
         initComponents();
      
     }
