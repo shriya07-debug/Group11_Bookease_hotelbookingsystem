@@ -4,9 +4,6 @@
  */
 package view;
 
-import controller.UserController;
-import javax.swing.JOptionPane;
-
 
 
 
@@ -15,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author hp
  */
 public class signup extends javax.swing.JFrame {
-    private final UserController userController;
+   
    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger( signup.class.getName());
    
@@ -23,7 +20,6 @@ public class signup extends javax.swing.JFrame {
      * Creates new form SIGNUP
      */
     public  signup() {
-        userController = new UserController();
         initComponents();
     }
 
@@ -42,7 +38,6 @@ public class signup extends javax.swing.JFrame {
         logouser = new javax.swing.JLabel();
         mailbox = new javax.swing.JLabel();
         key = new javax.swing.JLabel();
-        hoteltap = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         signupbutton = new javax.swing.JButton();
         usernamefield = new javax.swing.JTextField();
@@ -50,6 +45,7 @@ public class signup extends javax.swing.JFrame {
         password = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         passwordfield = new javax.swing.JPasswordField();
+        slogan = new javax.swing.JLabel();
         layout = new javax.swing.JLabel();
         signup2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -89,10 +85,6 @@ public class signup extends javax.swing.JFrame {
         getContentPane().add(key);
         key.setBounds(450, 360, 50, 60);
 
-        hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
-        getContentPane().add(hoteltap);
-        hoteltap.setBounds(90, 10, 160, 40);
-
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         getContentPane().add(logo);
         logo.setBounds(0, -30, 100, 110);
@@ -104,7 +96,7 @@ public class signup extends javax.swing.JFrame {
         signupbutton.setBorder(null);
         signupbutton.addActionListener(this::signupbuttonActionPerformed);
         getContentPane().add(signupbutton);
-        signupbutton.setBounds(180, 450, 220, 40);
+        signupbutton.setBounds(190, 450, 200, 40);
         getContentPane().add(usernamefield);
         usernamefield.setBounds(140, 210, 300, 40);
 
@@ -128,6 +120,11 @@ public class signup extends javax.swing.JFrame {
         getContentPane().add(passwordfield);
         passwordfield.setBounds(140, 370, 300, 40);
 
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        getContentPane().add(slogan);
+        slogan.setBounds(90, 30, 90, 16);
+
         layout.setBackground(new java.awt.Color(255, 0, 51));
         layout.setForeground(new java.awt.Color(255, 0, 0));
         layout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/signup page.png"))); // NOI18N
@@ -148,58 +145,14 @@ public class signup extends javax.swing.JFrame {
 
     private void signupbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbuttonActionPerformed
         // TODO add your handling code here:
-         signupAction();
-         
             
     }//GEN-LAST:event_signupbuttonActionPerformed
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
+       
     }//GEN-LAST:event_accountMouseClicked
-private void signupAction() {
-    String username = usernamefield.getText().trim();
-    String email = emailfield.getText().trim();
-    String password = new String(passwordfield.getPassword()).trim();
-    
-    System.out.println("Signup attempt:");
-    System.out.println("Username: " + username);
-    System.out.println("Email: " + email);
-    System.out.println("Password length: " + password.length());
-    
-    // Validate input
-    if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "All fields are required!");
-        return;
-    }
-    
-    if (!email.contains("@")) {
-        JOptionPane.showMessageDialog(this, "Invalid email format!");
-        return;
-    }
-    
-    if (password.length() < 4) {
-        JOptionPane.showMessageDialog(this, "Password must be at least 4 characters!");
-        return;
-    }
-    
-    UserController userController = new UserController();
-    boolean success = userController.signup(username, email, password);
-    
-    if (success) {
-        JOptionPane.showMessageDialog(this, "Signup successful!");
-        // ONLY dispose and navigate AFTER successful signup
-        this.dispose();
-        new login().setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Signup failed. Email may already exist.");
-        //  Don't dispose - keep form open so user can try again
-    }
-}
 
-   
     
 
 
@@ -232,7 +185,6 @@ private void signupAction() {
     private javax.swing.JLabel account;
     private javax.swing.JLabel email;
     private javax.swing.JTextField emailfield;
-    private javax.swing.JLabel hoteltap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel key;
     private javax.swing.JLabel layout;
@@ -244,7 +196,27 @@ private void signupAction() {
     private javax.swing.JLabel signup;
     private javax.swing.JTextField signup2;
     private javax.swing.JButton signupbutton;
+    private javax.swing.JLabel slogan;
     private javax.swing.JLabel username;
     private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JTextField getUsernameField() { 
+    return usernamefield;
+    }
+public javax.swing.JTextField getEmailField() {
+    return emailfield;
+    }
+public javax.swing.JPasswordField getPasswordField() { 
+    return passwordfield;
+    }
+public javax.swing.JLabel getAccountLabel() {
+    return account; 
+    }
+public javax.swing.JButton getSignupButton() { 
+    return signupbutton; 
+    }
+public void addSignupButtonListener(java.awt.event.ActionListener listener) {
+    signupbutton.addActionListener(listener);
+    }
+   
 }

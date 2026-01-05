@@ -4,19 +4,12 @@
  */
 package view;
 
-import controller.UserController;
-import model.UserModel;
-import javax.swing.*;
-
 /**
  *
  * @author hp
  */
 public class login extends javax.swing.JFrame {
-    
-    private final UserController userController;
-    
-    
+   
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
 
     /**
@@ -25,9 +18,7 @@ public class login extends javax.swing.JFrame {
      */
     
     public login() {
-        userController = new UserController();
         initComponents();
-   
     }
         /**
          * This method is called from within the constructor to initialize the form.
@@ -47,7 +38,6 @@ public class login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        Hoteltap = new javax.swing.JLabel();
         account = new javax.swing.JLabel();
         forgetpassword = new javax.swing.JLabel();
         Mailbox = new javax.swing.JLabel();
@@ -58,6 +48,7 @@ public class login extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         password = new javax.swing.JLabel();
         loginbutton = new javax.swing.JButton();
+        slogan = new javax.swing.JLabel();
         layout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,10 +63,6 @@ public class login extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adsT 2.png"))); // NOI18N
         jPanel1.add(logo);
         logo.setBounds(0, -10, 100, 90);
-
-        Hoteltap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hotel in a Tap.png"))); // NOI18N
-        jPanel1.add(Hoteltap);
-        Hoteltap.setBounds(100, 20, 110, 40);
 
         account.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         account.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,6 +121,11 @@ public class login extends javax.swing.JFrame {
         jPanel1.add(loginbutton);
         loginbutton.setBounds(730, 433, 200, 50);
 
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(90, 36, 90, 20);
+
         layout.setBackground(new java.awt.Color(204, 0, 0));
         layout.setForeground(new java.awt.Color(204, 0, 0));
         layout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -149,54 +141,14 @@ public class login extends javax.swing.JFrame {
 
     private void accountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        //open signup
-        new signup().setVisible(true);
+       
     }//GEN-LAST:event_accountMouseClicked
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
         // TODO add your handling code here:
-         loginAction();
-                 
+      
     }//GEN-LAST:event_loginbuttonActionPerformed
-    private void loginAction() {
-        String email = emailfield.getText().trim();
-        String password = new String(passwordfield.getPassword()).trim();
-        
-        UserModel user = userController.login(email, password);
-        
-        if (user != null) {
-            // Login successful - open appropriate dashboard
-            dispose();
-            openDashboard(user);
-        }
-    }
     
-    private void openDashboard(UserModel user) {
-        String role = user.getRole().toLowerCase();
-        
-        switch (role) {
-        case "superadmin":
-        case "admin":
-            JOptionPane.showMessageDialog(this, "Opening Super Admin Dashboard");
-            new superadmindashboard().setVisible(true);
-            break;
-            
-        case "hotel_admin":
-        case "hotel admin":
-            JOptionPane.showMessageDialog(this, "Opening Hotel Admin Dashboard");
-            // new HotelAdminDashboard().setVisible(true);
-            break;
-            
-        case "user":
-        case "customer":
-        default:
-            JOptionPane.showMessageDialog(this, "Opening User Dashboard");
-            new userdashboard().setVisible(true);
-            break;
-    }
-    }
     
 
 
@@ -226,7 +178,6 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Hoteltap;
     private javax.swing.JLabel Login;
     private javax.swing.JLabel Mailbox;
     private javax.swing.JLabel account;
@@ -240,6 +191,25 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel password;
     private javax.swing.JPasswordField passwordfield;
+    private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
+    public javax.swing.JTextField getEmailField() {
+        return emailfield; 
+    }
+    public javax.swing.JPasswordField getPasswordField() { 
+        return passwordfield; 
+    }
+    public javax.swing.JButton getLoginButton() {
+        return loginbutton;
+    }
+    public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+        loginbutton.addActionListener(listener);
+    }
+    public javax.swing.JLabel getAccountLabel() {
+        return account; 
+    }
     
+    public javax.swing.JLabel getForgotPasswordLabel() {
+        return forgetpassword; 
+    }
 }

@@ -13,7 +13,7 @@ public class logout extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(logout.class.getName());
 
     /**
-     * Creates new form support
+     * Creates new form log
      */
     public logout() {
         initComponents();
@@ -30,12 +30,14 @@ public class logout extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         number3 = new javax.swing.JLabel();
-        helpfulbutton = new javax.swing.JButton();
+        loginbutton = new javax.swing.JButton();
         slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
@@ -46,50 +48,47 @@ public class logout extends javax.swing.JFrame {
         jPanel1.add(number3);
         number3.setBounds(360, 170, 470, 60);
 
-        helpfulbutton.setBackground(new java.awt.Color(185, 12, 47));
-        helpfulbutton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        helpfulbutton.setForeground(new java.awt.Color(241, 150, 174));
-        helpfulbutton.setText("Login");
-        helpfulbutton.setBorder(null);
-        helpfulbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginbutton.setBackground(new java.awt.Color(185, 12, 47));
+        loginbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        loginbutton.setForeground(new java.awt.Color(241, 150, 174));
+        loginbutton.setText("Login");
+        loginbutton.setBorder(null);
+        loginbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                helpfulbuttonMouseClicked(evt);
+                loginbuttonMouseClicked(evt);
             }
         });
-        jPanel1.add(helpfulbutton);
-        helpfulbutton.setBounds(360, 250, 120, 30);
+        loginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(loginbutton);
+        loginbutton.setBounds(360, 240, 130, 40);
 
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel1.add(slogan);
-        slogan.setBounds(130, 40, 90, 16);
+        slogan.setBounds(120, 40, 90, 16);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
-        image.setBounds(0, 0, 1260, 730);
+        image.setBounds(0, 0, 1260, 740);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1106, 785);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void helpfulbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpfulbuttonMouseClicked
+    private void loginbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginbuttonMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
-   
-    }//GEN-LAST:event_helpfulbuttonMouseClicked
+    }//GEN-LAST:event_loginbuttonMouseClicked
+
+    private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +116,16 @@ public class logout extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton helpfulbutton;
     private javax.swing.JLabel image;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginbutton;
     private javax.swing.JLabel number3;
     private javax.swing.JLabel slogan;
     // End of variables declaration//GEN-END:variables
+public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+    loginbutton.addActionListener(listener);
+   }
+public javax.swing.JButton getLoginButton() {
+    return loginbutton;
+   }
 }
