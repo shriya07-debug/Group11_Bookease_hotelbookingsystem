@@ -1,21 +1,23 @@
 package controller;
 
 import dao.AdminDAO;
+import dao.AdminProfileDao;
 import model.Admin;
 import view.adminprofile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.AdminProfileModel;
 
 public class AdminProfileController {
-<<<<<<< HEAD
+
     private final AdminProfileDao adminDao;
     private final String currentHotelId;
-=======
+
     private final adminprofile view;
     private final AdminDAO dao = new AdminDAO();
     private final int adminId = 1;
->>>>>>> kshitiznew
+
     
     private boolean isEditing = false;
     private Admin originalAdmin; // Store original data for cancel
@@ -26,7 +28,7 @@ public class AdminProfileController {
         addActions();
         setFieldsEditable(false); // Initially not editable
     }
-<<<<<<< HEAD
+
     
   
     public AdminProfileModel loadAdminData() {
@@ -88,7 +90,6 @@ public class AdminProfileController {
             } else {
                 JOptionPane.showMessageDialog(null, "Delete failed!");
                 return false;
-=======
 
     private void loadAdminData() {
         Admin admin = dao.getAdminById(adminId);
@@ -111,7 +112,7 @@ public class AdminProfileController {
                 JOptionPane.showMessageDialog(view, "Logged out successfully!");
                 view.dispose();
                 // You can add code here to go back to login screen
->>>>>>> kshitiznew
+
             }
         });
 
@@ -155,11 +156,9 @@ public class AdminProfileController {
         });
     }
     
-<<<<<<< HEAD
 
     public String getCurrentHotelId() {
         return currentHotelId;
-=======
     private void startEditing() {
         isEditing = true;
         setFieldsEditable(true);
@@ -265,6 +264,6 @@ public class AdminProfileController {
         }
         
         return true;
->>>>>>> kshitiznew
+
     }
 }

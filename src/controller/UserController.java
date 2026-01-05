@@ -131,7 +131,7 @@ public class UserController {
     
     private void navigateToForgotPassword(login loginView) {
         loginView.dispose();
-        ForgotPassword forgotPasswordView = new ForgotPassword();
+        forgotpassword forgotPasswordView = new forgotpassword();
         forgotPasswordView.setVisible(true);
     }
     
