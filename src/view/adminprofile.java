@@ -1,0 +1,285 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package view;
+/**
+ *
+ * @author sailenawale
+ */
+public class adminprofile extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(adminprofile.class.getName());
+  
+ 
+ 
+    /**
+     * Creates new form profile
+     */
+   
+public adminprofile() {
+    initComponents();
+     
+}
+  
+  
+ 
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        profile = new javax.swing.JLabel();
+        slogan = new javax.swing.JLabel();
+        cancelbutton = new javax.swing.JButton();
+        backbutton = new javax.swing.JLabel();
+        logoutbutton = new javax.swing.JButton();
+        editbutton = new javax.swing.JButton();
+        mailicon = new javax.swing.JLabel();
+        email = new javax.swing.JLabel();
+        phoneno = new javax.swing.JLabel();
+        userid = new javax.swing.JLabel();
+        nameicon = new javax.swing.JLabel();
+        noicon = new javax.swing.JLabel();
+        fullname = new javax.swing.JLabel();
+        faceicon = new javax.swing.JLabel();
+        newpp = new javax.swing.JLabel();
+        fullnamefield = new javax.swing.JTextField();
+        emailfield = new javax.swing.JTextField();
+        phonenofield = new javax.swing.JTextField();
+        useridfield = new javax.swing.JTextField();
+        image = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(null);
+
+        profile.setBackground(new java.awt.Color(201, 12, 51));
+        profile.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        profile.setForeground(new java.awt.Color(201, 12, 51));
+        profile.setText("Admin Profile");
+        jPanel1.add(profile);
+        profile.setBounds(10, 200, 250, 60);
+
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(120, 40, 90, 16);
+
+        cancelbutton.setBackground(new java.awt.Color(184, 12, 47));
+        cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        cancelbutton.setForeground(new java.awt.Color(232, 128, 153));
+        cancelbutton.setText("Cancel");
+        cancelbutton.setBorder(null);
+        cancelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelbuttonMouseClicked(evt);
+            }
+        });
+        cancelbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cancelbutton);
+        cancelbutton.setBounds(770, 420, 120, 40);
+
+        backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backbutton);
+        backbutton.setBounds(40, 630, 40, 30);
+
+        logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
+        logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        logoutbutton.setForeground(new java.awt.Color(232, 128, 153));
+        logoutbutton.setText("Logout");
+        logoutbutton.setBorder(null);
+        logoutbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutbuttonMouseClicked(evt);
+            }
+        });
+        logoutbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(logoutbutton);
+        logoutbutton.setBounds(590, 500, 120, 40);
+
+        editbutton.setBackground(new java.awt.Color(184, 12, 47));
+        editbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        editbutton.setForeground(new java.awt.Color(232, 128, 153));
+        editbutton.setText("Edit");
+        editbutton.setBorder(null);
+        editbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editbutton);
+        editbutton.setBounds(380, 423, 130, 40);
+
+        mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
+        jPanel1.add(mailicon);
+        mailicon.setBounds(860, 240, 30, 60);
+
+        email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        email.setForeground(new java.awt.Color(255, 255, 255));
+        email.setText("E-mail");
+        jPanel1.add(email);
+        email.setBounds(380, 260, 70, 30);
+
+        phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        phoneno.setForeground(new java.awt.Color(255, 255, 255));
+        phoneno.setText("Phone no");
+        jPanel1.add(phoneno);
+        phoneno.setBounds(380, 330, 90, 30);
+
+        userid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        userid.setForeground(new java.awt.Color(255, 255, 255));
+        userid.setText("Admin Id");
+        jPanel1.add(userid);
+        userid.setBounds(380, 120, 80, 30);
+
+        nameicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 6.png"))); // NOI18N
+        jPanel1.add(nameicon);
+        nameicon.setBounds(860, 190, 42, 17);
+
+        noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
+        jPanel1.add(noicon);
+        noicon.setBounds(860, 330, 42, 17);
+
+        fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        fullname.setForeground(new java.awt.Color(255, 255, 255));
+        fullname.setText("Full name");
+        jPanel1.add(fullname);
+        fullname.setBounds(380, 190, 80, 30);
+
+        faceicon.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Downloads\\Vector (4).png")); // NOI18N
+        jPanel1.add(faceicon);
+        faceicon.setBounds(90, 240, 80, 170);
+        jPanel1.add(newpp);
+        newpp.setBounds(20, 110, 190, 230);
+        jPanel1.add(fullnamefield);
+        fullnamefield.setBounds(480, 183, 370, 40);
+        jPanel1.add(emailfield);
+        emailfield.setBounds(480, 250, 370, 40);
+
+        phonenofield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phonenofieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(phonenofield);
+        phonenofield.setBounds(480, 323, 370, 40);
+        jPanel1.add(useridfield);
+        useridfield.setBounds(480, 113, 370, 40);
+
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
+        image.setText("jLabel1");
+        jPanel1.add(image);
+        image.setBounds(0, 0, 1280, 740);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelbuttonMouseClicked
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_cancelbuttonMouseClicked
+
+    private void logoutbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutbuttonMouseClicked
+        
+       
+
+    }//GEN-LAST:event_logoutbuttonMouseClicked
+
+    private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_logoutbuttonActionPerformed
+
+    private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
+       
+    }//GEN-LAST:event_cancelbuttonActionPerformed
+
+    private void editbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbuttonActionPerformed
+        // TODO add your handling code here:
+                                            
+
+    }//GEN-LAST:event_editbuttonActionPerformed
+
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backbuttonMouseClicked
+
+    private void phonenofieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenofieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phonenofieldActionPerformed
+public void setEditButtonText(String text) {
+    editbutton.setText(text);
+}
+
+public void setEditButtonColor(java.awt.Color color) {
+    editbutton.setBackground(color);
+}
+
+public void setFieldsBackground(java.awt.Color color) {
+    fullnamefield.setBackground(color);
+    emailfield.setBackground(color);
+    phonenofield.setBackground(color);
+}
+    public static void main(String args[]) {
+    
+    java.awt.EventQueue.invokeLater(() -> {
+        adminprofile view = new adminprofile();
+        new controller.AdminProfileController(view);  // Initialize controller
+        view.setVisible(true);
+    });
+}
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbutton;
+    private javax.swing.JButton cancelbutton;
+    private javax.swing.JButton editbutton;
+    private javax.swing.JLabel email;
+    private javax.swing.JTextField emailfield;
+    private javax.swing.JLabel faceicon;
+    private javax.swing.JLabel fullname;
+    private javax.swing.JTextField fullnamefield;
+    private javax.swing.JLabel image;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton logoutbutton;
+    private javax.swing.JLabel mailicon;
+    private javax.swing.JLabel nameicon;
+    private javax.swing.JLabel newpp;
+    private javax.swing.JLabel noicon;
+    private javax.swing.JLabel phoneno;
+    private javax.swing.JTextField phonenofield;
+    private javax.swing.JLabel profile;
+    private javax.swing.JLabel slogan;
+    private javax.swing.JLabel userid;
+    private javax.swing.JTextField useridfield;
+    // End of variables declaration//GEN-END:variables
+public javax.swing.JTextField getUserIdField() { return useridfield; }
+public javax.swing.JTextField getFullNameField() { return fullnamefield; }
+public javax.swing.JTextField getEmailField() { return emailfield; }
+public javax.swing.JTextField getPhoneField() { return phonenofield; }
+public javax.swing.JButton getEditButton() { return editbutton; }
+public javax.swing.JLabel getBackButtonLabel() { return backbutton; }
+public javax.swing.JButton getCancelButton() { return cancelbutton; }
+public javax.swing.JButton getLogoutButton() { return logoutbutton; }
+}
