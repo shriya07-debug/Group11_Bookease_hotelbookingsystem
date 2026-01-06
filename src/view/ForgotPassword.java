@@ -11,15 +11,21 @@ import javax.swing.JOptionPane;
 
    
 @SuppressWarnings("serial")
-public class ForgotPassword extends javax.swing.JFrame {
+public class forgotpassword extends javax.swing.JFrame {
     
+
+
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
     private final ForgotPasswordController controller = new ForgotPasswordController();
 
+
+
+  
     /**
      * Creates new form ForgotPassword
      */
-public ForgotPassword() {
+public forgotpassword() {
         initComponents();
      
     }
@@ -260,4 +266,10 @@ public ForgotPassword() {
    public javax.swing.JLabel getBackButtonLabel() {
     return backbutton; 
    }
+
+    private static class ForgotPassword {
+
+        public ForgotPassword() {
+        }
+    }
 }

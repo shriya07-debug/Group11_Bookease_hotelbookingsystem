@@ -1,5 +1,23 @@
+
+
 import dao.ForgotPasswordDao;
 import view.ForgotPassword;
+
+import dao.UserDAO;
+import view.forgotpassword;
+import view.admindashboard;
+import view.adminprofile;
+
+
+
+import dao.UserDAO;
+import view.forgotpassword;
+import view.admindashboard;
+import view.adminprofile;
+
+
+
+import view.adminprofile;
 
 
 
@@ -15,11 +33,10 @@ public class Group11BookEase {
         } else {
             System.out.println("Email not found ❌");
         }
-
-
+    
         java.awt.EventQueue.invokeLater(() -> {
-            new ForgotPassword().setVisible(true);
+            new adminprofile().setVisible(true);
+            
         });
-
-}
-}
+    }} 
+    
