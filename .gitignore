@@ -6,3 +6,9 @@ MySqlConnection
 
 .git/
 build/
+
+ 
+build/
+
+*.class
+

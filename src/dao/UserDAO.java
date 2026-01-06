@@ -1,5 +1,8 @@
 package dao;
 
+import model.UserModel;
+
+
 
 import model.UserModel;
 import database.MySqlConnection;
@@ -13,6 +16,8 @@ public class UserDAO {
     
     public UserDAO() {
         this.mysql = new MySqlConnection();
+
+
 
 
 

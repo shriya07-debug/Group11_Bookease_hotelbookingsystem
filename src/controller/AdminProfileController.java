@@ -2,6 +2,10 @@ package controller;
 
 import dao.AdminDAO;
 
+
+import dao.AdminProfileDao;
+
+
 import dao.AdminProfileDao;
 
 import model.Admin;
@@ -9,6 +13,7 @@ import view.adminprofile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 
 public class AdminProfileController {
@@ -19,6 +24,16 @@ public class AdminProfileController {
 import model.AdminProfileModel;
 
 public class AdminProfileController {
+
+
+    private final AdminProfileDao adminDao;
+    private final String currentHotelId;
+
+
+    private final adminprofile view;
+    private final AdminDAO dao = new AdminDAO();
+    private final int adminId = 1;
+
 
     private final AdminProfileDao adminDao;
     private final String currentHotelId;
@@ -50,6 +65,7 @@ public class AdminProfileController {
             view.getPhoneField().setText(admin.getPhone());
         }
     }
+
 
     
   
@@ -113,6 +129,7 @@ public class AdminProfileController {
                 JOptionPane.showMessageDialog(null, "Delete failed!");
                 return false;
 
+
     private void loadAdminData() {
         Admin admin = dao.getAdminById(adminId);
         if (admin != null) {
@@ -135,7 +152,6 @@ public class AdminProfileController {
                 JOptionPane.showMessageDialog(view, "Logged out successfully!");
                 view.dispose();
                 // You can add code here to go back to login screen
-
 
 
             }
@@ -185,6 +201,11 @@ public class AdminProfileController {
 
     public String getCurrentHotelId() {
         return currentHotelId;
+
+
+    public String getCurrentHotelId() {
+        return currentHotelId;
+    }
 
     private void startEditing() {
         isEditing = true;
@@ -293,4 +314,4 @@ public class AdminProfileController {
         return true;
 
     }
-}
+}}
