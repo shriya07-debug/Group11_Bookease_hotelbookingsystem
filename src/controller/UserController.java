@@ -2,8 +2,13 @@ package controller;
 
 import model.UserModel;
 import dao.UserDAO;
+
+import java.sql.SQLException;
+
+
 import view.*;
 import javax.swing.*;
+
 
 public class UserController {
     private final UserDAO userDAO;
@@ -12,6 +17,10 @@ public class UserController {
         this.userDAO = new UserDAO();
     }
     
+
+    public UserModel login(String email, String password) throws SQLException {
+        System.out.println("Login attempt for: " + email);
+
    
     public void setupLoginView(login loginView) {
      
@@ -23,6 +32,7 @@ public class UserController {
                 navigateToSignup(loginView);
             }
         });
+
         
      
         loginView.getForgotPasswordLabel().addMouseListener(new java.awt.event.MouseAdapter() {

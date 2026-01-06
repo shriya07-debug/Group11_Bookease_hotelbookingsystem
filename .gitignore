@@ -1,5 +1,14 @@
 src/database
 nbproject/private/
 /dist/
+
+MySqlConnection
+
 .git/
 build/
+
+ 
+build/
+
+*.class
+

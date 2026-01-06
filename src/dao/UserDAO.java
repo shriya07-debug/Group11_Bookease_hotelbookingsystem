@@ -1,5 +1,8 @@
 package dao;
 
+import model.UserModel;
+
+
 
 import model.UserModel;
 import database.MySqlConnection;
@@ -13,6 +16,8 @@ public class UserDAO {
     
     public UserDAO() {
         this.mysql = new MySqlConnection();
+
+
 
 
 
@@ -39,7 +44,7 @@ public class UserDAO {
 
     }
     
-    public UserModel login(String email, String password) {
+    public UserModel login(String email, String password) throws SQLException {
         Connection conn = mysql.openConnection();
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
         
@@ -58,6 +63,41 @@ public class UserDAO {
                 user.setStatus(rs.getString("status"));
                 user.setHotelId(rs.getInt("hotel_id"));
                 return user;
+
+
+import database.Database;
+import database.MySqlConnection;
+import java.sql.*;
+
+    public boolean createHotelAdmin(int hotelId, String email, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean emailExists(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean signup(UserModel newUser) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+public class UserDAO {
+
+    Database db = new MySqlConnection();
+
+    // Check if email exists
+    public boolean emailExists(String email) {
+
+        Connection conn = db.openConnection();
+        String query = "SELECT * FROM users WHERE email='" + email + "'";
+
+        ResultSet rs = db.runQuery(conn, query);
+
+        try {
+            if (rs != null && rs.next()) {
+                db.closeConnection(conn);
+                return true;
+
             }
             
         } 
@@ -159,4 +199,31 @@ public class UserDAO {
         
         return admins;
     }
+
+    
+    return hotelAdmins;
 }
+
+// Also add this method if you want to get hotel name (if you have hotels table)
+public String getHotelName(int hotelId) {
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT hotel_name FROM hotels WHERE hotel_id = ?";
+    
+    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setInt(1, hotelId);
+        ResultSet rs = pstmt.executeQuery();
+        
+        if (rs.next()) {
+            return rs.getString("hotel_name");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error getting hotel name: " + e.getMessage());
+    } finally {
+        mysql.closeConnection(conn);
+    }
+    return "Hotel #" + hotelId;
+ }
+}}
+
+}
+
