@@ -1,5 +1,6 @@
 package dao;
 
+
 import model.UserModel;
 import database.MySqlConnection;
 import java.sql.*;
@@ -7,10 +8,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
+
     private final MySqlConnection mysql;
     
     public UserDAO() {
         this.mysql = new MySqlConnection();
+    }
+    
+    public boolean emailExists(String email) {
+        Connection conn = mysql.openConnection();
+        String query = "SELECT * FROM users WHERE email='" + email + "'";
+
+        ResultSet rs = mysql.runQuery(conn, query);
+
+        try {
+            if (rs != null && rs.next()) {
+                mysql.closeConnection(conn);
+                return true;
+            }
+        } 
+        
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        mysql.closeConnection(conn);
+        return false;
+
     }
     
     public UserModel login(String email, String password) {
