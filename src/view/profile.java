@@ -221,6 +221,8 @@ public profile() {
         });
         jPanel1.add(phonenofield);
         phonenofield.setBounds(480, 323, 370, 40);
+
+        useridfield.setEditable(false);
         jPanel1.add(useridfield);
         useridfield.setBounds(480, 113, 370, 40);
 

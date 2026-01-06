@@ -17,11 +17,6 @@ public class UserController {
         this.userDAO = new UserDAO();
     }
     
-
-    public UserModel login(String email, String password) throws SQLException {
-        System.out.println("Login attempt for: " + email);
-
-   
     public void setupLoginView(login loginView) {
      
         loginView.getLoginButton().addActionListener(e -> handleLogin(loginView));

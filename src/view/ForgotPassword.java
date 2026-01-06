@@ -20,12 +20,7 @@ public class forgotpassword extends javax.swing.JFrame {
     private final ForgotPasswordController controller = new ForgotPasswordController();
 
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(forgotpassword.class.getName());
-private final ForgotPasswordController controller = new ForgotPasswordController();
 
-
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(forgotpassword.class.getName());
-    private final ForgotPasswordController controller = new ForgotPasswordController();
 
   
     /**
