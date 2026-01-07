@@ -144,9 +144,7 @@ public class AdminDashboardController {
     dashboard.dispose();
     
     java.awt.EventQueue.invokeLater(() -> {
-        adminprofile profileFrame = new adminprofile();
-        
-       
+        adminprofile profileFrame = new adminprofile();      
         AdminProfileController controller = new AdminProfileController(profileFrame);
         
         profileFrame.setVisible(true);

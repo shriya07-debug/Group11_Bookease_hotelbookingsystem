@@ -61,15 +61,7 @@ public class BooknowModel {
     public int getNumberOfPeople() { 
         return numberOfPeople; 
     }
-    
-    // Note: You have duplicate methods for numberOfPeople/numPeople
-    // Consider removing one to avoid confusion
-    public void setNumPeople(int numPeople) { 
-        this.numberOfPeople = numPeople; 
-    }
-    public int getNumPeople() { 
-        return numberOfPeople; 
-    }
+   
     
     public void setCheckInDate(Date checkInDate) { 
         this.checkInDate = checkInDate; 
