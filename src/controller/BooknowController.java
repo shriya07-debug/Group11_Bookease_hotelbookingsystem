@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import view.userdashboard;
 import view.viewdetails;
 
 public class BooknowController {
@@ -129,7 +128,7 @@ public class BooknowController {
               
                 BooknowModel booking = new BooknowModel();
                 booking.setRoomType(roomType);
-                booking.setNumPeople(numberOfPeople);
+                booking.setNumberOfPeople(numberOfPeople);
                 booking.setCheckInDate(checkInDate);
                 booking.setCheckOutDate(checkOutDate);
 

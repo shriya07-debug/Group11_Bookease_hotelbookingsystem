@@ -146,7 +146,7 @@ public class confirmation extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {BookingConfirmationController.show(1);
+        java.awt.EventQueue.invokeLater(() -> {BookingConfirmationController.show(1001);
         });
     }
 

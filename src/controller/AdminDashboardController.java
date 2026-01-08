@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.adminprofile;
+import view.invoice;
 import view.support;
 
 public class AdminDashboardController {
@@ -105,9 +107,24 @@ public class AdminDashboardController {
     
     private void setupGenerateInvoice(admindashboard dashboard) {
         dashboard.addGenerateInvoiceListener(e -> {
-            generateInvoice();
+            generateInvoice(dashboard);
         });
     }
+    private void generateInvoice(admindashboard dashboard) {
+   
+    dashboard.dispose();
+    
+    java.awt.EventQueue.invokeLater(() -> {
+        invoice invoiceFrame = new invoice();
+        InvoiceController controller = new InvoiceController(invoiceFrame);
+        
+    
+        controller.showInvoice(201);
+        controller.setupBackButton();
+        
+        invoiceFrame.setVisible(true);
+    });
+}
     
     private void refreshDashboard(admindashboard dashboard) {
         dashboard.dispose();
@@ -123,14 +140,16 @@ public class AdminDashboardController {
             JOptionPane.INFORMATION_MESSAGE);
     }
     
-    private void navigateToProfile(admindashboard dashboard) {
-        dashboard.dispose();
+   private void navigateToProfile(admindashboard dashboard) {
+    dashboard.dispose();
+    
+    java.awt.EventQueue.invokeLater(() -> {
+        adminprofile profileFrame = new adminprofile();      
+        AdminProfileController controller = new AdminProfileController(profileFrame);
         
-        JOptionPane.showMessageDialog(dashboard, 
-            "Admin Profile feature coming soon!", 
-            "Info", 
-            JOptionPane.INFORMATION_MESSAGE);
-    }
+        profileFrame.setVisible(true);
+    });
+}
     
     private void navigateToSupport(admindashboard dashboard) {
     dashboard.dispose();
@@ -141,10 +160,5 @@ public class AdminDashboardController {
     supportWindow.setVisible(true);
 }
     
-    private void generateInvoice() {
-        JOptionPane.showMessageDialog(null, 
-            "Invoice generation feature coming soon!", 
-            "Info", 
-            JOptionPane.INFORMATION_MESSAGE);
-    }
+    
 }

@@ -4,26 +4,20 @@
  */
 package view;
 
- /*
- * @author sailenawale
+/**
+ *
+ * @author Nitro
  */
-public class bookinghistory extends javax.swing.JFrame {
+public class customerbookings extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(bookinghistory.class.getName());
-  
-    
-    
-    public bookinghistory() {
-        initComponents();
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-    
- 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(customerbookings.class.getName());
+
     /**
-     * Creates new form bookinghistory
+     * Creates new form custumerbookings
      */
- 
+    public customerbookings() {
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +28,7 @@ public class bookinghistory extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         bookinghistory = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -42,51 +36,48 @@ public class bookinghistory extends javax.swing.JFrame {
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
-        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
-        jPanel1.setLayout(null);
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(null);
 
         bookinghistory.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         bookinghistory.setForeground(new java.awt.Color(232, 128, 153));
-        bookinghistory.setText("Booking History");
-        jPanel1.add(bookinghistory);
-        bookinghistory.setBounds(380, 30, 330, 45);
+        bookinghistory.setText("Recent Bookings");
+        jPanel2.add(bookinghistory);
+        bookinghistory.setBounds(380, 40, 330, 45);
 
         table.setBackground(new java.awt.Color(254, 185, 206));
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "user_id", "booking_id", "hotel_name", "check_in_date", "check_out_date", "total_price", "status"
+                "name", "booking_id", "invoice_id", "check_in_date", "check_out_date", "room_type", "status", "price"
             }
         ));
         table.setMaximumSize(new java.awt.Dimension(105, 400));
@@ -95,7 +86,7 @@ public class bookinghistory extends javax.swing.JFrame {
         table.setShowGrid(true);
         jScrollPane1.setViewportView(table);
 
-        jPanel1.add(jScrollPane1);
+        jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(120, 190, 920, 440);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
@@ -104,25 +95,22 @@ public class bookinghistory extends javax.swing.JFrame {
                 backbuttonMouseClicked(evt);
             }
         });
-        jPanel1.add(backbutton);
+        jPanel2.add(backbutton);
         backbutton.setBounds(20, 640, 30, 30);
 
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookinghistory.png"))); // NOI18N
-        image.setMaximumSize(new java.awt.Dimension(1280, 720));
-        image.setMinimumSize(new java.awt.Dimension(1280, 720));
-        image.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jPanel1.add(image);
-        image.setBounds(-10, 0, 1280, 700);
+        jPanel2.add(image);
+        image.setBounds(0, 0, 1280, 710);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1280, 720);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(-1, -1, 1280, 730);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
- 
+
     }//GEN-LAST:event_backbuttonMouseClicked
 
     /**
@@ -147,21 +135,22 @@ public class bookinghistory extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new bookinghistory().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new customerbookings().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backbutton;
     private javax.swing.JLabel bookinghistory;
     private javax.swing.JLabel image;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    public javax.swing.JTable getBookingsTable() {
+public javax.swing.JTable getTable() {
         return table;
     }
-    public javax.swing.JLabel getBackButton() {
+    
+    public javax.swing.JLabel getBackbutton() {
         return backbutton;
     }
 }

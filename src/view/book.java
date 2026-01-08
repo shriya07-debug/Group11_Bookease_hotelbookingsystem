@@ -90,10 +90,10 @@ public class book extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(170, 440, 160, 21);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Delux", "Suite", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double", "Deluxe", "Suite" }));
         
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(410, 220, 30, 23);
+        jComboBox1.setBounds(390, 220, 50, 20);
 
         roomtype.setEditable(false);
         jPanel1.add(roomtype);
@@ -119,7 +119,7 @@ public class book extends javax.swing.JFrame {
         slogan.setBounds(100, 40, 90, 16);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
-        
+     
         jPanel1.add(backbutton);
         backbutton.setBounds(30, 640, 40, 30);
 

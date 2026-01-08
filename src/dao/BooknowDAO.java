@@ -20,7 +20,7 @@ public boolean saveBooking(BooknowModel booking) {
                  "VALUES (?,?, ?, ?, ?)";
 
     try (PreparedStatement ps = connection.prepareStatement(sql)) {
-        ps.setInt(1, 1);
+        ps.setInt(1, 1001);
         ps.setString(2, booking.getRoomType());
         ps.setInt(3, booking.getNumberOfPeople());
         ps.setDate(4, booking.getCheckInDate());

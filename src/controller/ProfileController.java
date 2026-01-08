@@ -29,7 +29,6 @@ public class ProfileController {
             
             if (userProfile != null) {
                 profileWindow.getUserIdField().setText(String.valueOf(userProfile.getUserId()));
-                profileWindow.getUserIdField().setEditable(false);
                 profileWindow.getFullNameField().setText(userProfile.getFullName());
                 profileWindow.getEmailField().setText(userProfile.getEmail());
                 profileWindow.getPhoneField().setText(userProfile.getPhone());
@@ -90,7 +89,8 @@ public class ProfileController {
         
         if (success) {
             JOptionPane.showMessageDialog(profileWindow, "Profile updated!");
-        } else {
+        } 
+        else {
             JOptionPane.showMessageDialog(profileWindow, "Update failed!");
         }
     }
