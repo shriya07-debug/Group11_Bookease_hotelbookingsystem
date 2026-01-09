@@ -22,7 +22,7 @@ public class OnlinePaymentController {
 
     public void processPayment(int amount) {
         
-        Stripe.apiKey = "sk_test_51SngdOEDyt2DDgGcX2wMkGoSDm4dEZ7ekcIhul3YcpNGN8EWMfDRyjq4zb3ah1YICWpkhKuE25k8CSGgIWcAV4DY00CMG7KPI9";
+//        Stripe.apiKey = "sk_test_51SngdOEDyt2DDgGcX2wMkGoSDm4dEZ7ekcIhul3YcpNGN8EWMfDRyjq4zb3ah1YICWpkhKuE25k8CSGgIWcAV4DY00CMG7KPI9";
 
         try {
           
