@@ -15,7 +15,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
     public viewallhoteladmins() {
         initComponents();    
         setLocationRelativeTo(null);
-        new ViewAllHotelAdminsController().setupViewAllHotelAdmins(this);
+     
     }
 
     /**
@@ -97,11 +97,6 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         jScrollPane1.setBounds(120, 170, 920, 470);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
-        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backbuttonMouseClicked(evt);
-            }
-        });
         jPanel1.add(backbutton);
         backbutton.setBounds(20, 640, 30, 30);
         jPanel1.add(jScrollBar1);
@@ -116,10 +111,6 @@ public class viewallhoteladmins extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backbuttonMouseClicked
     
     /**
      * @param args the command line arguments
@@ -143,7 +134,10 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new viewallhoteladmins().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+           viewallhoteladmins view = new viewallhoteladmins();
+           new ViewAllHotelAdminsController().setupViewAllHotelAdmins(view);
+                });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -159,12 +153,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         return jTable1;
     }
     
-//    public javax.swing.JLabel getBackButton() {
-//        return backbutton;
-//    }
-    
-    
-    public void addBackButtonListener(java.awt.event.MouseListener listener) {
-        backbutton.addMouseListener(listener);
+    public javax.swing.JLabel getBackbutton() {
+        return backbutton;
     }
 }
