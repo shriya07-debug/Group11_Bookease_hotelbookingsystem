@@ -49,5 +49,12 @@ public class NotificationModel {
     public Date getCreatedAt() {
         return createdAt; 
     }
+    public String getFormattedDate() {
+    if (createdAt != null) {
+       
+        return new java.text.SimpleDateFormat("MMM dd, h:mm a").format(createdAt);
+    }
+    return "";
+}
     
 }

@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import view.adminprofile;
+import view.customerbookings;
 import view.invoice;
 import view.support;
 
@@ -133,11 +134,17 @@ public class AdminDashboardController {
     
     private void navigateToRecentBookings(admindashboard dashboard) {
         dashboard.dispose();
+        SwingUtilities.invokeLater(() -> {
+        customerbookings bookingsPage = new customerbookings();
         
-        JOptionPane.showMessageDialog(dashboard, 
-            "Recent Bookings feature coming soon!", 
-            "Info", 
-            JOptionPane.INFORMATION_MESSAGE);
+       
+        CustomerBookingController controller = new CustomerBookingController();
+        controller.setupCustomerBookings(bookingsPage);
+        
+   
+        bookingsPage.setVisible(true);
+        bookingsPage.setLocationRelativeTo(null);
+    });
     }
     
    private void navigateToProfile(admindashboard dashboard) {

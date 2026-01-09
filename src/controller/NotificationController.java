@@ -20,33 +20,35 @@ public class NotificationController {
         setupBackButton(view);
     }
     
-    private void loadNotifications(notifications view) {
-        try {
-            List<NotificationModel> notifications = notificationDAO.getUserNotifications(userId);
-            DefaultListModel<String> model = new DefaultListModel<>();
-            
-            if (notifications.isEmpty()) {
-                model.addElement(" No notifications yet");
-                
-            } else {
-                for (NotificationModel notif : notifications) {
-                    String displayText = "• " + notif.getMessage() + 
-                                       " [" + notif.getCreatedAt() + "]";
-                    model.addElement(displayText);
-                }
-            }
-            
-            view.getNotificationsList().setModel(model);
-            
+  private void loadNotifications(notifications view) {
+    try {
+        List<NotificationModel> notifications = notificationDAO.getUserNotifications(userId);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        
+        if (notifications.isEmpty()) {
+            model.addElement(" No notifications yet");
         } 
         
-        catch (Exception e) {
-            DefaultListModel<String> errorModel = new DefaultListModel<>();
-            errorModel.addElement("Error loading notifications");
-            errorModel.addElement("Check database connection");
-            view.getNotificationsList().setModel(errorModel);
+        else {
+            for (NotificationModel notif : notifications) {
+            
+                String displayText = notif.getMessage() + 
+                                   " (" + notif.getFormattedDate() + ")";
+                model.addElement(displayText);
+            }
         }
+        
+        view.getNotificationsList().setModel(model);
+        
+    } 
+    
+    catch (Exception e) {
+        DefaultListModel<String> errorModel = new DefaultListModel<>();
+        errorModel.addElement("Error loading notifications");
+        errorModel.addElement("Check database connection");
+        view.getNotificationsList().setModel(errorModel);
     }
+}
     
     private void setupBackButton(notifications view) {
         view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
