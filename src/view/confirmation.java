@@ -5,6 +5,7 @@
 package view;
 
 import controller.BookingConfirmationController;
+import controller.OnlinePaymentController;
 
 /**
  *
@@ -19,6 +20,7 @@ public class confirmation extends javax.swing.JFrame {
      */
     public confirmation() {
         initComponents();
+        
     }
 
     /**
@@ -59,6 +61,11 @@ public class confirmation extends javax.swing.JFrame {
         paynowbutton.setForeground(new java.awt.Color(241, 151, 174));
         paynowbutton.setText("Pay now");
         paynowbutton.setBorder(null);
+        paynowbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paynowbuttonActionPerformed(evt);
+            }
+        });
         jPanel1.add(paynowbutton);
         paynowbutton.setBounds(590, 490, 160, 40);
 
@@ -123,6 +130,11 @@ public class confirmation extends javax.swing.JFrame {
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_backbuttonMouseClicked
+
+    private void paynowbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paynowbuttonActionPerformed
+        // TODO add your handling code here:
+//      
+    }//GEN-LAST:event_paynowbuttonActionPerformed
 
     /**
      * @param args the command line arguments

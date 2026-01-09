@@ -1,5 +1,8 @@
 
 package view;
+
+import controller.ViewAllHotelAdminsController;
+
 /**
  *
  * @author sailenawale
@@ -12,6 +15,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
     public viewallhoteladmins() {
         initComponents();    
         setLocationRelativeTo(null);
+        new ViewAllHotelAdminsController().setupViewAllHotelAdmins(this);
     }
 
     /**
@@ -45,7 +49,7 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         superadmindashboard.setForeground(new java.awt.Color(232, 128, 153));
         superadmindashboard.setText("View all hotel admins");
         jPanel1.add(superadmindashboard);
-        superadmindashboard.setBounds(380, 40, 410, 47);
+        superadmindashboard.setBounds(380, 40, 410, 44);
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setBackground(new java.awt.Color(254, 185, 206));

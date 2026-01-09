@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
+import controller.AdminDashboardController;
 
 /**
  *
@@ -18,8 +18,8 @@ public class admindashboard extends javax.swing.JFrame {
      */
     public admindashboard() {
         initComponents();
-        drawerPanel.setLocation(-300, 0); // Start with drawer hidden
-        new controller.AdminDashboardController().setupAdminDashboard(this);
+        drawerPanel.setLocation(-300, 0); 
+        new AdminDashboardController().setupAdminDashboard(this);
     }
     
 

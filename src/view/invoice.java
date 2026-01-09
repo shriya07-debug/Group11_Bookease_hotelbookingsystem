@@ -13,11 +13,12 @@ import controller.InvoiceController;
 public class invoice extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(invoice.class.getName());
-
+    private int userId;
     /**
      * Creates new form in
      */
-    public invoice() {
+    public invoice(int userId) {
+        this.userId = userId;
         initComponents();
     }
 
@@ -45,6 +46,7 @@ public class invoice extends javax.swing.JFrame {
         backbutton = new javax.swing.JLabel();
         bookingid = new javax.swing.JLabel();
         userid = new javax.swing.JLabel();
+        slogan = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -140,6 +142,11 @@ public class invoice extends javax.swing.JFrame {
         jPanel1.add(userid);
         userid.setBounds(360, 240, 550, 30);
 
+        slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        slogan.setText("Hotel in a tap");
+        jPanel1.add(slogan);
+        slogan.setBounds(140, 50, 90, 16);
+
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notification.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel1.add(image);
@@ -178,11 +185,12 @@ public class invoice extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-        invoice invoiceFrame = new invoice();
+        int userId = 1;
+        invoice invoiceFrame = new invoice(userId);
         
         
         InvoiceController controller = new InvoiceController(invoiceFrame);
-        controller.showInvoice(201);  
+        controller.showInvoice(userId);  
         controller.setupBackButton();
         
         invoiceFrame.setVisible(true);
@@ -205,6 +213,7 @@ public class invoice extends javax.swing.JFrame {
     private javax.swing.JLabel paymentmethod;
     private javax.swing.JLabel paymentstatus;
     private javax.swing.JLabel roomcharge;
+    private javax.swing.JLabel slogan;
     private javax.swing.JLabel totalcharge;
     private javax.swing.JLabel userid;
     // End of variables declaration//GEN-END:variables

@@ -112,20 +112,28 @@ public class AdminDashboardController {
         });
     }
     private void generateInvoice(admindashboard dashboard) {
-   
+    
+    int userId = getCurrentUserId();  
+    
     dashboard.dispose();
     
+    
     java.awt.EventQueue.invokeLater(() -> {
-        invoice invoiceFrame = new invoice();
+        invoice invoiceFrame = new invoice(userId);
         InvoiceController controller = new InvoiceController(invoiceFrame);
         
     
-        controller.showInvoice(201);
+        controller.showInvoice(userId);
         controller.setupBackButton();
         
         invoiceFrame.setVisible(true);
     });
+    
 }
+      private int getCurrentUserId() {
+        
+        return 201; 
+    }
     
     private void refreshDashboard(admindashboard dashboard) {
         dashboard.dispose();
