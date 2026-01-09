@@ -18,14 +18,14 @@ public class CustomerBookingDAO {
             conn = db.openConnection();
             
             String query = "SELECT " +
-                          "u.name, " +
+                          "u.username AS name, " +
                           "b.booking_id, " +
-                          "i.invoice_number, " +
+                          "i.invoice_id, " +
                           "b.check_in_date, " +
                           "b.check_out_date, " +
                           "bn.room_type, " +
                           "b.status, " +
-                          "i.total_price " +
+                          "i.total_charge " +
                           "FROM bookings b " +
                           "JOIN booknow bn ON b.booking_id = bn.booking_id "+
                           "JOIN users u ON b.user_id = u.user_id " +
@@ -38,12 +38,12 @@ public class CustomerBookingDAO {
                 CustomerBookingModel booking = new CustomerBookingModel();
                 booking.setName(rs.getString("name"));
                 booking.setBookingId(rs.getString("booking_id"));
-                booking.setInvoiceId(rs.getString("invoice_number"));
+                booking.setInvoiceId(rs.getString("invoice_id"));
                 booking.setCheckInDate(rs.getDate("check_in_date"));
                 booking.setCheckOutDate(rs.getDate("check_out_date"));
                 booking.setRoomType(rs.getString("room_type"));
                 booking.setStatus(rs.getString("status"));
-                booking.setPrice(rs.getDouble("total_price"));
+                booking.setPrice(rs.getDouble("total_charge"));
                 
                 bookings.add(booking);
             }
