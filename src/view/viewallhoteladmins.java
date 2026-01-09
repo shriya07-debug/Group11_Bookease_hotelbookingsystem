@@ -119,7 +119,6 @@ public class viewallhoteladmins extends javax.swing.JFrame {
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_backbuttonMouseClicked
     
     /**
@@ -160,9 +159,9 @@ public class viewallhoteladmins extends javax.swing.JFrame {
         return jTable1;
     }
     
-    public javax.swing.JLabel getBackButton() {
-        return backbutton;
-    }
+//    public javax.swing.JLabel getBackButton() {
+//        return backbutton;
+//    }
     
     
     public void addBackButtonListener(java.awt.event.MouseListener listener) {

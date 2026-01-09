@@ -40,13 +40,14 @@ public class ViewAllHotelAdminsController {
         view.getAdminsTable().setModel(model);
     }
     
-    private void setupBackButton(viewallhoteladmins view) {
-        view.getBackButton().addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                view.dispose();
-                new superadmindashboard().setVisible(true);
-            }
-        });
-    }
+  private void setupBackButton(viewallhoteladmins view) {
+    view.addBackButtonListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            System.out.println("Back button clicked - navigating to superadmin dashboard");
+            view.dispose();
+            new superadmindashboard().setVisible(true);
+        }
+    });
+  }
 }
