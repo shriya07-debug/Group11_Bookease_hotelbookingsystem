@@ -82,12 +82,12 @@ public class BooknowController {
     }
     
 
-    private void navigateToConfirmation() {
+    private void navigateToConfirmation(int bookingId) {
        
         view.dispose();
         
         SwingUtilities.invokeLater(() -> {
-             BookingConfirmationController.show(1);
+             BookingConfirmationController.show(bookingId);
         });
     }
     
@@ -135,26 +135,28 @@ public class BooknowController {
         
                 boolean success = dao.saveBooking(booking);
 
-                if (success) {
+                    if (success) {
                   
-                    int bookingId = 1; 
+                         int bookingId = 1001; 
     
                     JOptionPane.showMessageDialog(view,
                         "Booking confirmed successfully!\nBooking ID: " + bookingId,
                         "Success", JOptionPane.INFORMATION_MESSAGE);
     
                     view.clearForm();
+                    navigateToConfirmation(bookingId);
+     
     
-         
-                    navigateToConfirmation();
-    
-                } else {
+                } 
+                    else {
                     JOptionPane.showMessageDialog(view,
                         "Failed to save booking. Please try again.",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-            } catch (HeadlessException ex) {
+            } 
+            
+            catch (HeadlessException ex) {
                 System.out.println(e);
             }
         }
@@ -196,10 +198,12 @@ public class BooknowController {
     private java.sql.Date getCheckInDateFromView() {
         return parseDate(view.getCheckindate().getText().trim(), "Check-in");
     }
+    
 
     private java.sql.Date getCheckOutDateFromView() {
         return parseDate(view.getCheckoutdate().getText().trim(), "Check-out");
     }
+    
 
     private java.sql.Date parseDate(String dateStr, String fieldName) {
         if (dateStr.isEmpty()) {
