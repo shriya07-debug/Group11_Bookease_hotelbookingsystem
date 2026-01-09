@@ -59,18 +59,17 @@ public class BookingConfirmationController {
                 "Data Not Found",
                 JOptionPane.WARNING_MESSAGE);
             
-            view.getBookingIdField().setText("#" + bookingId + " (Not Found)");
+            view.getBookingIdField().setText(bookingId + " (Not Found)");
             view.getDateField().setText("No data in database");
             view.getStatusField().setText("Not confirmed");
             
-        } else {
+        } 
+        else {
             view.getBookingIdField().setText("#" + data.getBookingId());
             view.getDateField().setText(data.getFormattedDate());
             view.getStatusField().setText(data.getStatus());
             
-            if ("confirmed".equalsIgnoreCase(data.getStatus())) {
-                view.getStatusField().setForeground(new java.awt.Color(0, 180, 0));
-            }
+
         }
     }
     
