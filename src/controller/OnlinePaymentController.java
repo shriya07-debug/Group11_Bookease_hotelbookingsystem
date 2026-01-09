@@ -20,25 +20,34 @@ public class OnlinePaymentController {
 
 
 
-    public void processPayment(int amount) {
-        
-        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
-          Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
-        try {
-          
-            Map<String, Object> chargeParams = new HashMap<>();
-            chargeParams.put("amount", 1000); 
-            chargeParams.put("currency", "usd");
-            chargeParams.put("source", "tok_visa"); 
+  public void processPayment(int amount) {
 
-        
-            Charge charge = Charge.create(chargeParams); 
-
-            System.out.println("Payment Successful! Charge ID: " + charge.getId()); 
-
-        } catch (StripeException e) {
-            System.err.println("Payment Failed: " + e.getMessage());
-        }
+    String apiKey = System.getProperty("STRIPE_SECRET_KEY");
+    
+    if (apiKey == null || apiKey.isEmpty()) {
+        apiKey = System.getenv("STRIPE_SECRET_KEY");
     }
+    
+    if (apiKey == null || apiKey.isEmpty()) {
+        System.err.println("ERROR: Stripe API key not found!");
+        System.err.println("Set VM option: -DSTRIPE_SECRET_KEY=\"sk_test_...\"");
+        return;
+    }
+    
+    Stripe.apiKey = apiKey;
+    
+    try {
+        Map<String, Object> chargeParams = new HashMap<>();
+        chargeParams.put("amount", 1000); 
+        chargeParams.put("currency", "usd");
+        chargeParams.put("source", "tok_visa"); 
+
+        Charge charge = Charge.create(chargeParams); 
+        System.out.println("Payment Successful! Charge ID: " + charge.getId()); 
+
+    } catch (StripeException e) {
+        System.err.println("Payment Failed: " + e.getMessage());
+    }
+}
 }
 
