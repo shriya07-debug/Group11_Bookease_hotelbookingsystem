@@ -83,6 +83,9 @@ public class notifications extends javax.swing.JFrame {
         jPanel1.add(msg2);
         msg2.setBounds(320, 220, 40, 40);
 
+        jList1.setBackground(new java.awt.Color(254, 185, 206));
+        jList1.setBorder(null);
+        jList1.setFont(new java.awt.Font("Helvetica Neue", 2, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -91,7 +94,7 @@ public class notifications extends javax.swing.JFrame {
         list.setViewportView(jList1);
 
         jPanel1.add(list);
-        list.setBounds(380, 150, 560, 470);
+        list.setBounds(370, 150, 570, 470);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -43,4 +43,25 @@ public class InvoiceDAO {
         }
         return null;
     }
+    public int getInvoiceIdByBookingId(int bookingId) {
+    Connection con = db.openConnection();
+    String sql = "SELECT invoice_id FROM invoice WHERE booking_id = ?";
+    
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, bookingId);
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            return rs.getInt("invoice_id");
+        }
+    } 
+    catch (SQLException e) {
+        System.out.println(e);
+    } 
+    finally {
+        db.closeConnection(con);
+    }
+    return -1; // Return -1 if no invoice found
+  }
 }

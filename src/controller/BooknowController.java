@@ -2,6 +2,7 @@ package controller;
 
 import model.BooknowModel;
 import dao.BooknowDAO;
+import dao.NotificationDAO;
 import view.book;
 import database.MySqlConnection;
 import java.awt.HeadlessException;
@@ -11,14 +12,17 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import model.NotificationModel;
 import view.viewdetails;
 
 public class BooknowController {
     private final book view;
     private BooknowDAO dao;
+    private int currentUserId;
     
-    public BooknowController(book view) {
+    public BooknowController(book view, int userId) {
         this.view = view;
+        this.currentUserId = userId;
      
         initializeDatabaseConnection();
   
@@ -82,12 +86,12 @@ public class BooknowController {
     }
     
 
-    private void navigateToConfirmation() {
+    private void navigateToConfirmation(int bookingId) {
        
         view.dispose();
         
         SwingUtilities.invokeLater(() -> {
-             BookingConfirmationController.show(1);
+             BookingConfirmationController.show(bookingId);
         });
     }
     
@@ -135,32 +139,57 @@ public class BooknowController {
         
                 boolean success = dao.saveBooking(booking);
 
-                if (success) {
+                    if (success) {
                   
-                    int bookingId = 1; 
+                         int bookingId = 1001; 
     
                     JOptionPane.showMessageDialog(view,
                         "Booking confirmed successfully!\nBooking ID: " + bookingId,
                         "Success", JOptionPane.INFORMATION_MESSAGE);
-    
+                    
+                    createBookingNotification(bookingId, roomType);
                     view.clearForm();
+                    navigateToConfirmation(bookingId);
+     
     
-         
-                    navigateToConfirmation();
-    
-                } else {
+                } 
+                    else {
                     JOptionPane.showMessageDialog(view,
                         "Failed to save booking. Please try again.",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-            } catch (HeadlessException ex) {
+            } 
+            
+            catch (HeadlessException ex) {
                 System.out.println(e);
             }
         }
     }
 
+    private void createBookingNotification(int bookingId, String roomType) {
+    try {
+        NotificationDAO notificationDAO = new NotificationDAO();
+        NotificationModel notification = new NotificationModel();
+        notification.setUserId(currentUserId);
+        notification.setMessage("Your booking #" + bookingId + " for " + roomType + " has been confirmed!");
+        
+        boolean notificationCreated = notificationDAO.createNotification(notification);
+        
+        if (notificationCreated) {
+            System.out.println("Notification created for booking #" + bookingId);
+            
+            
+            JOptionPane.showMessageDialog(view,
+                "Notification sent! Check your notifications page.",
+                "Notification", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } 
     
+    catch (HeadlessException ex) {
+        System.out.println(ex);
+    }
+}
 
     private String getRoomTypeFromView() {
         String selected = (String) view.getjComboBox1().getSelectedItem();
@@ -196,10 +225,12 @@ public class BooknowController {
     private java.sql.Date getCheckInDateFromView() {
         return parseDate(view.getCheckindate().getText().trim(), "Check-in");
     }
+    
 
     private java.sql.Date getCheckOutDateFromView() {
         return parseDate(view.getCheckoutdate().getText().trim(), "Check-out");
     }
+    
 
     private java.sql.Date parseDate(String dateStr, String fieldName) {
         if (dateStr.isEmpty()) {

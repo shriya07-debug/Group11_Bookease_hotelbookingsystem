@@ -4,31 +4,17 @@ package view;
 
 
 import controller.ForgotPasswordController;
-import javax.swing.JOptionPane;
-
-
-    
 
    
 @SuppressWarnings("serial")
 public class forgotpassword extends javax.swing.JFrame {
-    
-
-
-
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ForgotPassword.class.getName());
-    private final ForgotPasswordController controller = new ForgotPasswordController();
-
-
-
-
-  
+     
     /**
      * Creates new form ForgotPassword
      */
 public forgotpassword() {
         initComponents();
-     
+        new ForgotPasswordController(this);
     }
    
 @SuppressWarnings("serial")
@@ -191,27 +177,12 @@ public forgotpassword() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetPasswordActionPerformed
-        // TODO add your handling code here:
-        boolean success = controller.resetPassword(
-               txtEmail.getText(),
-                txtNewPassword.getText()
-        );
-        if (success){
-            JOptionPane.showMessageDialog(this, "Password reset success");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "unsuccess ,verify ");
-        }
-      
+        // TODO add your handling code here:   
     }//GEN-LAST:event_btnResetPasswordActionPerformed
 
     private void btnVerifyOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyOtpActionPerformed
         // TODO add your handling code here:
-       if(controller.verifyOtp(txtOtp.getText())){
-           JOptionPane.showMessageDialog(this, "Otp Verified");
-       }else{
-           JOptionPane.showMessageDialog(this, "Invalid Otp");
-       }
+
     }//GEN-LAST:event_btnVerifyOtpActionPerformed
 
     private void txtOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtpActionPerformed
@@ -223,14 +194,7 @@ public forgotpassword() {
     }//GEN-LAST:event_txtNewPasswordActionPerformed
 
     private void btnSendOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendOtpActionPerformed
-   
-     String email = txtEmail.getText();
-    if (controller.sendOtp(email)) {
-        JOptionPane.showMessageDialog(this, "OTP sent to email");
-    } else {
-        JOptionPane.showMessageDialog(this, "Email not found");
-    }
-      
+
     }//GEN-LAST:event_btnSendOtpActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -238,10 +202,7 @@ public forgotpassword() {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        
-        new login().setVisible(true);
+
     }//GEN-LAST:event_backbuttonMouseClicked
 
     
@@ -264,13 +225,32 @@ public forgotpassword() {
     private javax.swing.JTextField txtNewPassword;
     private javax.swing.JTextField txtOtp;
     // End of variables declaration//GEN-END:variables
-   public javax.swing.JLabel getBackButtonLabel() {
-    return backbutton; 
-   }
-
-    private static class ForgotPassword {
-
-        public ForgotPassword() {
-        }
+   
+     public javax.swing.JButton getBtnResetPassword() {
+        return btnResetPassword;
     }
+    
+    public javax.swing.JButton getBtnSendOtp() {
+        return btnSendOtp;
+    }
+    
+    public javax.swing.JButton getBtnVerifyOtp() {
+        return btnVerifyOtp;
+    }
+ 
+    
+    public javax.swing.JTextField getTxtEmail() {
+        return txtEmail;
+    }
+    
+    public javax.swing.JTextField getTxtOtp() {
+        return txtOtp;
+    }
+    
+    public javax.swing.JTextField getTxtNewPassword() {
+        return txtNewPassword;
+    }
+    public javax.swing.JLabel getBackButton() {
+        return backbutton; 
+   }
 }

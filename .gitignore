@@ -12,3 +12,17 @@ build/
 
 *.class
 
+# SECRET KEYS - NEVER COMMIT THESE!
+.env
+*.key
+*.pem
+*.secret
+config.properties
+secrets.txt
+credentials.*
+
+# NETBEANS IDE FILES
+nbproject/private/
+/dist/
+/build/
+*.class

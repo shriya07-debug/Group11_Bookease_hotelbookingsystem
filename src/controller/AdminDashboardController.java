@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import view.adminprofile;
+import view.customerbookings;
 import view.invoice;
 import view.support;
 
@@ -111,20 +112,28 @@ public class AdminDashboardController {
         });
     }
     private void generateInvoice(admindashboard dashboard) {
-   
+    
+    int userId = getCurrentUserId();  
+    
     dashboard.dispose();
     
+    
     java.awt.EventQueue.invokeLater(() -> {
-        invoice invoiceFrame = new invoice();
+        invoice invoiceFrame = new invoice(userId);
         InvoiceController controller = new InvoiceController(invoiceFrame);
         
     
-        controller.showInvoice(201);
+        controller.showInvoice(userId);
         controller.setupBackButton();
         
         invoiceFrame.setVisible(true);
     });
+    
 }
+      private int getCurrentUserId() {
+        
+        return 201; 
+    }
     
     private void refreshDashboard(admindashboard dashboard) {
         dashboard.dispose();
@@ -133,11 +142,17 @@ public class AdminDashboardController {
     
     private void navigateToRecentBookings(admindashboard dashboard) {
         dashboard.dispose();
+        SwingUtilities.invokeLater(() -> {
+        customerbookings bookingsPage = new customerbookings();
         
-        JOptionPane.showMessageDialog(dashboard, 
-            "Recent Bookings feature coming soon!", 
-            "Info", 
-            JOptionPane.INFORMATION_MESSAGE);
+       
+        CustomerBookingController controller = new CustomerBookingController();
+        controller.setupCustomerBookings(bookingsPage);
+        
+   
+        bookingsPage.setVisible(true);
+        bookingsPage.setLocationRelativeTo(null);
+    });
     }
     
    private void navigateToProfile(admindashboard dashboard) {

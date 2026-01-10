@@ -185,21 +185,19 @@ public class SuperAdminController {
     }
     
  
-    private void navigateToAllHotelAdmins(superadmindashboard dashboard) {
+private void navigateToAllHotelAdmins(superadmindashboard dashboard) {
     try {
         view.viewallhoteladmins adminsWindow = new view.viewallhoteladmins();
-   
         ViewAllHotelAdminsController controller = new ViewAllHotelAdminsController();
         controller.setupViewAllHotelAdmins(adminsWindow);
         
-   
-        dashboard.dispose();
-        adminsWindow.setVisible(true);
+        adminsWindow.setVisible(true);  
+        dashboard.dispose();  
         
     } 
     
     catch (Exception e) {
-        System.out.println(e);
+        System.err.println(e);
     }
 }
     

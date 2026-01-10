@@ -89,7 +89,8 @@ private void setImage(JLabel label, String path) {
    
     SwingUtilities.invokeLater(() -> {
         book bookingPage = new book();
-        BooknowController bookingController = new BooknowController(bookingPage);
+        int userId = 1;
+        BooknowController bookingController = new BooknowController(bookingPage, userId);
         bookingPage.setController(bookingController);
         bookingPage.setVisible(true);
     });
@@ -98,6 +99,6 @@ private void setImage(JLabel label, String path) {
     private void handleReviews() {
         view.dispose();
         reviews reviewsPage = new reviews();
-        new ReviewController(reviewsPage, "Aquaphor Hotel");
+        ReviewController reviewController = new ReviewController(reviewsPage, "Aquaphor Hotel");
     }
-}
+} 
