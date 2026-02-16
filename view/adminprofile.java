@@ -47,12 +47,11 @@ public adminprofile() {
         emailfield = new javax.swing.JTextField();
         phonenofield = new javax.swing.JTextField();
         hotelidfield = new javax.swing.JTextField();
-        bigprofileicon = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         mailicon = new javax.swing.JLabel();
         noicon = new javax.swing.JLabel();
         idicon1 = new javax.swing.JLabel();
-        hotelicon = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +71,7 @@ public adminprofile() {
         slogan.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         slogan.setText("Hotel in a tap");
         jPanel2.add(slogan);
-        slogan.setBounds(100, 40, 90, 16);
+        slogan.setBounds(120, 40, 90, 16);
 
         cancelbutton.setBackground(new java.awt.Color(184, 12, 47));
         cancelbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -90,7 +89,7 @@ public adminprofile() {
             }
         });
         jPanel2.add(cancelbutton);
-        cancelbutton.setBounds(730, 450, 140, 40);
+        cancelbutton.setBounds(780, 450, 140, 40);
 
         logoutbutton.setBackground(new java.awt.Color(184, 12, 47));
         logoutbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -108,7 +107,7 @@ public adminprofile() {
             }
         });
         jPanel2.add(logoutbutton);
-        logoutbutton.setBounds(550, 520, 140, 40);
+        logoutbutton.setBounds(590, 510, 140, 40);
 
         editbutton.setBackground(new java.awt.Color(184, 12, 47));
         editbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -121,33 +120,33 @@ public adminprofile() {
             }
         });
         jPanel2.add(editbutton);
-        editbutton.setBounds(340, 460, 150, 40);
+        editbutton.setBounds(390, 450, 150, 40);
 
         email.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         email.setForeground(new java.awt.Color(255, 255, 255));
         email.setText("E-mail");
         jPanel2.add(email);
-        email.setBounds(340, 270, 80, 30);
+        email.setBounds(390, 280, 80, 30);
 
         phoneno.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         phoneno.setForeground(new java.awt.Color(255, 255, 255));
         phoneno.setText("Phone no");
         jPanel2.add(phoneno);
-        phoneno.setBounds(340, 340, 90, 30);
+        phoneno.setBounds(390, 350, 90, 30);
 
         adminid.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         adminid.setForeground(new java.awt.Color(255, 255, 255));
         adminid.setText("Hotel ID");
         jPanel2.add(adminid);
-        adminid.setBounds(340, 130, 90, 40);
+        adminid.setBounds(390, 130, 90, 40);
 
         fullname.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         fullname.setForeground(new java.awt.Color(255, 255, 255));
         fullname.setText("Hotel Name");
         jPanel2.add(fullname);
-        fullname.setBounds(340, 200, 100, 30);
+        fullname.setBounds(390, 200, 100, 30);
         jPanel2.add(fullnamefield);
-        fullnamefield.setBounds(480, 200, 340, 40);
+        fullnamefield.setBounds(560, 200, 340, 40);
 
         backbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/backbutton.png"))); // NOI18N
         backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -158,39 +157,35 @@ public adminprofile() {
         jPanel2.add(backbutton);
         backbutton.setBounds(20, 640, 30, 30);
         jPanel2.add(emailfield);
-        emailfield.setBounds(480, 270, 340, 40);
+        emailfield.setBounds(560, 273, 340, 40);
         jPanel2.add(phonenofield);
-        phonenofield.setBounds(480, 340, 340, 40);
+        phonenofield.setBounds(560, 340, 340, 40);
 
         hotelidfield.setEditable(false);
         jPanel2.add(hotelidfield);
-        hotelidfield.setBounds(480, 130, 340, 40);
+        hotelidfield.setBounds(560, 130, 340, 40);
 
-        bigprofileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotellogo2.png"))); // NOI18N
-        jPanel2.add(bigprofileicon);
-        bigprofileicon.setBounds(60, 130, 160, 220);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotellogo2.png"))); // NOI18N
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(60, 130, 160, 220);
 
         mailicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 3.png"))); // NOI18N
         jPanel2.add(mailicon);
-        mailicon.setBounds(830, 280, 30, 20);
+        mailicon.setBounds(920, 280, 30, 20);
 
         noicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image 7.png"))); // NOI18N
         jPanel2.add(noicon);
-        noicon.setBounds(830, 350, 42, 17);
+        noicon.setBounds(920, 350, 42, 17);
 
         idicon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-badge.png"))); // NOI18N
         jPanel2.add(idicon1);
-        idicon1.setBounds(830, 140, 42, 24);
+        idicon1.setBounds(920, 136, 42, 24);
 
-        hotelicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotelprofile.png"))); // NOI18N
-        jPanel2.add(hotelicon);
-        hotelicon.setBounds(830, 200, 30, 40);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotelprofile.png"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(920, 197, 30, 40);
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logobookease.png"))); // NOI18N
-        jPanel2.add(logo);
-        logo.setBounds(0, -10, 190, 90);
-
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profilepic.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/help.png"))); // NOI18N
         image.setText("jLabel1");
         jPanel2.add(image);
         image.setBounds(0, 0, 1290, 740);
@@ -245,19 +240,18 @@ public adminprofile() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminid;
     private javax.swing.JLabel backbutton;
-    private javax.swing.JLabel bigprofileicon;
     private javax.swing.JButton cancelbutton;
     private javax.swing.JButton editbutton;
     private javax.swing.JLabel email;
     private javax.swing.JTextField emailfield;
     private javax.swing.JLabel fullname;
     private javax.swing.JTextField fullnamefield;
-    private javax.swing.JLabel hotelicon;
     private javax.swing.JTextField hotelidfield;
     private javax.swing.JLabel idicon1;
     private javax.swing.JLabel image;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel logo;
     private javax.swing.JButton logoutbutton;
     private javax.swing.JLabel mailicon;
     private javax.swing.JLabel noicon;
